@@ -11,7 +11,7 @@
 		31E6E6CA258BFD3700591F72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */; };
 		31E6E6CC258BFD3700591F72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E6CB258BFD3700591F72 /* ViewController.swift */; };
 		31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E6E6D0258BFD3900591F72 /* Assets.xcassets */; };
-		31E6E6D4258BFD3900591F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31E6E6D2258BFD3900591F72 /* LaunchScreen.storyboard */; };
+		31E6E700258C093300591F72 /* SplashScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E6E6FF258C093300591F72 /* SplashScreen.xib */; };
 		D01532F399E202C2F1464915 /* Pods_Wardrobe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1B9047E3A9526460D1CD4 /* Pods_Wardrobe.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,8 +22,8 @@
 		31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		31E6E6CB258BFD3700591F72 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		31E6E6D0258BFD3900591F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		31E6E6D3258BFD3900591F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		31E6E6D5258BFD3900591F72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31E6E6FF258C093300591F72 /* SplashScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreen.xib; sourceTree = "<group>"; };
 		7868A0E5AC4E3FEEEEB60FFD /* Pods-Wardrobe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.release.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.release.xcconfig"; sourceTree = "<group>"; };
 		8E628020EFEE71A0D3856E4A /* Pods-Wardrobe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.debug.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,7 +123,7 @@
 		31E6E6ED258C03FE00591F72 /* SplashScreen */ = {
 			isa = PBXGroup;
 			children = (
-				31E6E6D2258BFD3900591F72 /* LaunchScreen.storyboard */,
+				31E6E6FF258C093300591F72 /* SplashScreen.xib */,
 			);
 			path = SplashScreen;
 			sourceTree = "<group>";
@@ -188,7 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31E6E6D4258BFD3900591F72 /* LaunchScreen.storyboard in Resources */,
+				31E6E700258C093300591F72 /* SplashScreen.xib in Resources */,
 				31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,17 +266,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		31E6E6D2258BFD3900591F72 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				31E6E6D3258BFD3900591F72 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		31E6E6D6258BFD3900591F72 /* Debug */ = {
