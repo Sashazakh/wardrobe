@@ -1,0 +1,19 @@
+import Foundation
+
+final class LoginPresenter {
+	weak var view: LoginViewInput?
+
+	private let router: LoginRouterInput
+	private let interactor: LoginInteractorInput
+
+    init(router: LoginRouterInput, interactor: LoginInteractorInput) {
+        self.router = router
+        self.interactor = interactor
+    }
+}
+
+extension LoginPresenter: LoginViewOutput {
+}
+
+extension LoginPresenter: LoginInteractorOutput {
+}
