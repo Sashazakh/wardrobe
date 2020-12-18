@@ -7,4 +7,9 @@ extension UIView {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = opacity
     }
+
+    func roundLowerCorners(_ radius: CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+    }
 }
