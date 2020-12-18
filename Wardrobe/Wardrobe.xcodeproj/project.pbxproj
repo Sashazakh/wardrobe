@@ -28,6 +28,12 @@
 		31E6E764258CF47800591F72 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31E6E761258CF47800591F72 /* DMSans-Medium.ttf */; };
 		31E6E765258CF47800591F72 /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31E6E762258CF47800591F72 /* DMSans-Bold.ttf */; };
 		31E6E766258CF47800591F72 /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31E6E763258CF47800591F72 /* DMSans-Regular.ttf */; };
+		31E6E775258D2CE500591F72 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E76F258D2CE500591F72 /* RegisterPresenter.swift */; };
+		31E6E776258D2CE500591F72 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E770258D2CE500591F72 /* RegisterRouter.swift */; };
+		31E6E777258D2CE500591F72 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E771258D2CE500591F72 /* RegisterViewController.swift */; };
+		31E6E778258D2CE500591F72 /* RegisterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E772258D2CE500591F72 /* RegisterProtocols.swift */; };
+		31E6E779258D2CE500591F72 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E773258D2CE500591F72 /* RegisterInteractor.swift */; };
+		31E6E77A258D2CE500591F72 /* RegisterContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E774258D2CE500591F72 /* RegisterContainer.swift */; };
 		D01532F399E202C2F1464915 /* Pods_Wardrobe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1B9047E3A9526460D1CD4 /* Pods_Wardrobe.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +62,12 @@
 		31E6E761258CF47800591F72 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Medium.ttf"; sourceTree = "<group>"; };
 		31E6E762258CF47800591F72 /* DMSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Bold.ttf"; sourceTree = "<group>"; };
 		31E6E763258CF47800591F72 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Regular.ttf"; sourceTree = "<group>"; };
+		31E6E76F258D2CE500591F72 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
+		31E6E770258D2CE500591F72 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
+		31E6E771258D2CE500591F72 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		31E6E772258D2CE500591F72 /* RegisterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProtocols.swift; sourceTree = "<group>"; };
+		31E6E773258D2CE500591F72 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
+		31E6E774258D2CE500591F72 /* RegisterContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContainer.swift; sourceTree = "<group>"; };
 		7868A0E5AC4E3FEEEEB60FFD /* Pods-Wardrobe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.release.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.release.xcconfig"; sourceTree = "<group>"; };
 		8E628020EFEE71A0D3856E4A /* Pods-Wardrobe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.debug.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +163,12 @@
 		31E6E6DE258BFE8C00591F72 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				31E6E76F258D2CE500591F72 /* RegisterPresenter.swift */,
+				31E6E770258D2CE500591F72 /* RegisterRouter.swift */,
+				31E6E771258D2CE500591F72 /* RegisterViewController.swift */,
+				31E6E772258D2CE500591F72 /* RegisterProtocols.swift */,
+				31E6E773258D2CE500591F72 /* RegisterInteractor.swift */,
+				31E6E774258D2CE500591F72 /* RegisterContainer.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -342,10 +360,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31E6E778258D2CE500591F72 /* RegisterProtocols.swift in Sources */,
 				0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */,
 				31E6E725258CE33C00591F72 /* LoginPresenter.swift in Sources */,
 				31E6E6C8258BFD3700591F72 /* AppDelegate.swift in Sources */,
 				31E6E729258CE33C00591F72 /* LoginInteractor.swift in Sources */,
+				31E6E777258D2CE500591F72 /* RegisterViewController.swift in Sources */,
+				31E6E775258D2CE500591F72 /* RegisterPresenter.swift in Sources */,
+				31E6E776258D2CE500591F72 /* RegisterRouter.swift in Sources */,
+				31E6E77A258D2CE500591F72 /* RegisterContainer.swift in Sources */,
 				31E6E72A258CE33C00591F72 /* LoginContainer.swift in Sources */,
 				31E6E726258CE33C00591F72 /* LoginRouter.swift in Sources */,
 				31E6E728258CE33C00591F72 /* LoginProtocols.swift in Sources */,
@@ -353,6 +376,7 @@
 				0D6E189E258D0288008273C8 /* UIViewExtenstion.swift in Sources */,
 				0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */,
 				31E6E727258CE33C00591F72 /* LoginViewController.swift in Sources */,
+				31E6E779258D2CE500591F72 /* RegisterInteractor.swift in Sources */,
 				0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */,
 				0D63E793258CF8550031AE6F /* NewItemScreenProtocols.swift in Sources */,
 				31E6E6CA258BFD3700591F72 /* SceneDelegate.swift in Sources */,

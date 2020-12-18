@@ -1,16 +1,18 @@
 import Foundation
 
-protocol LoginViewInput: class {
+protocol LoginViewInput: AnyObject {
 }
 
-protocol LoginViewOutput: class {
+protocol LoginViewOutput: AnyObject {
+    func didTapRegisterLabel()
 }
 
-protocol LoginInteractorInput: class {
+protocol LoginInteractorInput: AnyObject {
 }
 
-protocol LoginInteractorOutput: class {
+protocol LoginInteractorOutput: AnyObject {
 }
 
-protocol LoginRouterInput: class {
+protocol LoginRouterInput: AnyObject {
+    func showRegistrationScreen()
 }

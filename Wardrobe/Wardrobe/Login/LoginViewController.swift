@@ -177,6 +177,12 @@ final class LoginViewController: UIViewController {
         registerLabel.text = "Зарегистрироваться"
         registerLabel.font = UIFont(name: "DMSans-Regular", size: 12)
         registerLabel.textColor = .gray
+
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapRegisterLabel))
+
+        recognizer.numberOfTapsRequired = 1
+        label.addGestureRecognizer(recognizer)
+        label.isUserInteractionEnabled = true
     }
 
     private func setupUnderscoreView() {
@@ -251,6 +257,11 @@ final class LoginViewController: UIViewController {
             .height(1)
             .left(registerLabel.frame.minX)
             .right(Constants.screenWidth - registerLabel.frame.maxX)
+    }
+
+    @objc
+    private func didTapRegisterLabel() {
+        output?.didTapRegisterLabel()
     }
 }
 
