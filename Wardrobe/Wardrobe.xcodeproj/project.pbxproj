@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */; };
+		0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */; };
+		0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */; };
+		0D63E793258CF8550031AE6F /* NewItemScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78D258CF8550031AE6F /* NewItemScreenProtocols.swift */; };
+		0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */; };
+		0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */; };
+		0D6E189E258D0288008273C8 /* UIViewExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E189D258D0288008273C8 /* UIViewExtenstion.swift */; };
+		0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E18A1258D02C8008273C8 /* Colors.swift */; };
 		31E6E6C8258BFD3700591F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E6C7258BFD3700591F72 /* AppDelegate.swift */; };
 		31E6E6CA258BFD3700591F72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */; };
 		31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E6E6D0258BFD3900591F72 /* Assets.xcassets */; };
@@ -25,6 +33,14 @@
 
 /* Begin PBXFileReference section */
 		03A1B9047E3A9526460D1CD4 /* Pods_Wardrobe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wardrobe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenPresenter.swift; sourceTree = "<group>"; };
+		0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenRouter.swift; sourceTree = "<group>"; };
+		0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenViewController.swift; sourceTree = "<group>"; };
+		0D63E78D258CF8550031AE6F /* NewItemScreenProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenProtocols.swift; sourceTree = "<group>"; };
+		0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenInteractor.swift; sourceTree = "<group>"; };
+		0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenContainer.swift; sourceTree = "<group>"; };
+		0D6E189D258D0288008273C8 /* UIViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtenstion.swift; sourceTree = "<group>"; };
+		0D6E18A1258D02C8008273C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		31E6E6C4258BFD3700591F72 /* Wardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E6E6C7258BFD3700591F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +80,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0D63E789258CF83D0031AE6F /* NewItemScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */,
+				0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */,
+				0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */,
+				0D63E78D258CF8550031AE6F /* NewItemScreenProtocols.swift */,
+				0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */,
+				0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */,
+			);
+			path = NewItemScreen;
+			sourceTree = "<group>";
+		};
+		0D6E189B258D0240008273C8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0D6E189D258D0288008273C8 /* UIViewExtenstion.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0D6E18A0258D02B5008273C8 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				0D6E18A1258D02C8008273C8 /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 		243842AD100A2AB562BEB8F4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +139,7 @@
 		31E6E6C6258BFD3700591F72 /* Wardrobe */ = {
 			isa = PBXGroup;
 			children = (
+				0D63E789258CF83D0031AE6F /* NewItemScreen */,
 				31E6E71E258CE32900591F72 /* Login */,
 				31E6E6EC258C03EA00591F72 /* Shared */,
 				31E6E6EB258C03D100591F72 /* Application */,
@@ -123,6 +169,8 @@
 		31E6E6EC258C03EA00591F72 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				0D6E18A0258D02B5008273C8 /* Colors */,
+				0D6E189B258D0240008273C8 /* Extensions */,
 				31E6E760258CF45000591F72 /* Fonts */,
 				31E6E6D0258BFD3900591F72 /* Assets.xcassets */,
 			);
@@ -294,14 +342,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */,
 				31E6E725258CE33C00591F72 /* LoginPresenter.swift in Sources */,
 				31E6E6C8258BFD3700591F72 /* AppDelegate.swift in Sources */,
 				31E6E729258CE33C00591F72 /* LoginInteractor.swift in Sources */,
 				31E6E72A258CE33C00591F72 /* LoginContainer.swift in Sources */,
 				31E6E726258CE33C00591F72 /* LoginRouter.swift in Sources */,
 				31E6E728258CE33C00591F72 /* LoginProtocols.swift in Sources */,
+				0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */,
+				0D6E189E258D0288008273C8 /* UIViewExtenstion.swift in Sources */,
+				0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */,
 				31E6E727258CE33C00591F72 /* LoginViewController.swift in Sources */,
+				0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */,
+				0D63E793258CF8550031AE6F /* NewItemScreenProtocols.swift in Sources */,
 				31E6E6CA258BFD3700591F72 /* SceneDelegate.swift in Sources */,
+				0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */,
+				0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
