@@ -15,6 +15,12 @@
 		0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */; };
 		0D6E189E258D0288008273C8 /* UIViewExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E189D258D0288008273C8 /* UIViewExtenstion.swift */; };
 		0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E18A1258D02C8008273C8 /* Colors.swift */; };
+		13A7462B258D0B4600643369 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74625258D0B4600643369 /* MainScreenPresenter.swift */; };
+		13A7462C258D0B4600643369 /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74626258D0B4600643369 /* MainScreenRouter.swift */; };
+		13A7462D258D0B4600643369 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74627258D0B4600643369 /* MainScreenViewController.swift */; };
+		13A7462E258D0B4600643369 /* MainScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74628258D0B4600643369 /* MainScreenProtocols.swift */; };
+		13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74629258D0B4600643369 /* MainScreenInteractor.swift */; };
+		13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A7462A258D0B4600643369 /* MainScreenContainer.swift */; };
 		31E6E6C8258BFD3700591F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E6C7258BFD3700591F72 /* AppDelegate.swift */; };
 		31E6E6CA258BFD3700591F72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */; };
 		31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E6E6D0258BFD3900591F72 /* Assets.xcassets */; };
@@ -41,6 +47,12 @@
 		0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenContainer.swift; sourceTree = "<group>"; };
 		0D6E189D258D0288008273C8 /* UIViewExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtenstion.swift; sourceTree = "<group>"; };
 		0D6E18A1258D02C8008273C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		13A74625258D0B4600643369 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
+		13A74626258D0B4600643369 /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
+		13A74627258D0B4600643369 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		13A74628258D0B4600643369 /* MainScreenProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenProtocols.swift; sourceTree = "<group>"; };
+		13A74629258D0B4600643369 /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
+		13A7462A258D0B4600643369 /* MainScreenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenContainer.swift; sourceTree = "<group>"; };
 		31E6E6C4258BFD3700591F72 /* Wardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E6E6C7258BFD3700591F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +121,67 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		13A74624258D0B3000643369 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				13A74638258D0BAF00643369 /* Container */,
+				13A74637258D0BA500643369 /* Interactor */,
+				13A74636258D0B9300643369 /* Protocols */,
+				13A74635258D0B8A00643369 /* View */,
+				13A74634258D0B5500643369 /* Router */,
+				13A74633258D0B4A00643369 /* Presenter */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		13A74633258D0B4A00643369 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				13A74625258D0B4600643369 /* MainScreenPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		13A74634258D0B5500643369 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				13A74626258D0B4600643369 /* MainScreenRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		13A74635258D0B8A00643369 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				13A74627258D0B4600643369 /* MainScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13A74636258D0B9300643369 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				13A74628258D0B4600643369 /* MainScreenProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		13A74637258D0BA500643369 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				13A74629258D0B4600643369 /* MainScreenInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		13A74638258D0BAF00643369 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				13A7462A258D0B4600643369 /* MainScreenContainer.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
 		243842AD100A2AB562BEB8F4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +212,7 @@
 		31E6E6C6258BFD3700591F72 /* Wardrobe */ = {
 			isa = PBXGroup;
 			children = (
+				13A74624258D0B3000643369 /* MainScreen */,
 				0D63E789258CF83D0031AE6F /* NewItemScreen */,
 				31E6E71E258CE32900591F72 /* Login */,
 				31E6E6EC258C03EA00591F72 /* Shared */,
@@ -348,15 +422,21 @@
 				31E6E729258CE33C00591F72 /* LoginInteractor.swift in Sources */,
 				31E6E72A258CE33C00591F72 /* LoginContainer.swift in Sources */,
 				31E6E726258CE33C00591F72 /* LoginRouter.swift in Sources */,
+				13A7462E258D0B4600643369 /* MainScreenProtocols.swift in Sources */,
 				31E6E728258CE33C00591F72 /* LoginProtocols.swift in Sources */,
+				13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */,
 				0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */,
 				0D6E189E258D0288008273C8 /* UIViewExtenstion.swift in Sources */,
+				13A7462C258D0B4600643369 /* MainScreenRouter.swift in Sources */,
+				13A7462D258D0B4600643369 /* MainScreenViewController.swift in Sources */,
 				0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */,
 				31E6E727258CE33C00591F72 /* LoginViewController.swift in Sources */,
 				0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */,
 				0D63E793258CF8550031AE6F /* NewItemScreenProtocols.swift in Sources */,
+				13A7462B258D0B4600643369 /* MainScreenPresenter.swift in Sources */,
 				31E6E6CA258BFD3700591F72 /* SceneDelegate.swift in Sources */,
 				0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */,
+				13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */,
 				0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

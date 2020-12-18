@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
-        window?.rootViewController = LoginContainer.assemble(with: LoginContext()).viewController
+        window?.rootViewController = MainScreenContainer.assemble(with: MainScreenContext()).viewController
         window?.makeKeyAndVisible()
     }
 
