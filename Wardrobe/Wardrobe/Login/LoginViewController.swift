@@ -62,8 +62,8 @@ final class LoginViewController: UIViewController {
         view.addSubview(backgroundView)
 
         backgroundView.backgroundColor = GlobalColors.mainBlueScreen
-
-        backgroundView.layer.cornerRadius = 35
+        backgroundView.dropShadow()
+        backgroundView.roundLowerCorners(35)
     }
 
     private func setupWelcomeLabel() {
@@ -138,6 +138,7 @@ final class LoginViewController: UIViewController {
 
         passwordTextField.clearButtonMode = .whileEditing
         passwordTextField.autocorrectionType = .no
+        passwordTextField.isSecureTextEntry = true
     }
 
     private func setupLoginButton() {
@@ -275,7 +276,7 @@ extension LoginViewController {
         static let screenWidth = UIScreen.main.bounds.width
 
         struct WelcomeLabel {
-            static let text = "Добро пожаловать!"
+            static let text: String = "Добро пожаловать!"
         }
     }
 }
