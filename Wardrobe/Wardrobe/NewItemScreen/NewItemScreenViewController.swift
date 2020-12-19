@@ -1,13 +1,14 @@
 import UIKit
 import PinLayout
 
-final class NewItemScreenViewController: UIViewController {
+final class NewItemScreenViewController: UIViewController, UINavigationControllerDelegate {
     private weak var headerView: UIView!
     private weak var pageTitle: UILabel!
     private weak var backButton: UIButton!
     private weak var itemNameTextField: UITextField!
     private weak var imagePickButton: UIButton!
     private weak var addButton: UIButton!
+    private let pickerController: UIImagePickerController = UIImagePickerController()
 
 	var output: NewItemScreenViewOutput?
 
@@ -21,6 +22,10 @@ final class NewItemScreenViewController: UIViewController {
         layoutUI()
     }
 
+    @objc private func addImageAction(_ sender: Any) {
+        chooseHowToPickImage()
+    }
+
 }
 
 extension NewItemScreenViewController {
@@ -32,6 +37,7 @@ extension NewItemScreenViewController {
         setupItemNameTextField()
         setupImageButton()
         setupAddButton()
+        setupImagePicker()
     }
 
     private func layoutUI() {
@@ -41,6 +47,11 @@ extension NewItemScreenViewController {
         layoutItemNameTextField()
         layoutImageButton()
         layoutAddButton()
+    }
+
+    private func setupImagePicker() {
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
     }
 
     private func setupBackground() {
@@ -155,9 +166,9 @@ extension NewItemScreenViewController {
         imagePickButton.contentVerticalAlignment = .fill
         imagePickButton.contentHorizontalAlignment = .fill
         imagePickButton.imageView?.contentMode = .scaleAspectFit
-        imagePickButton.tintColor = GlobalColors.darkColor
-        imagePickButton.dropShadow()
+        imagePickButton.tintColor = .black//GlobalColors.darkColor
         imagePickButton.layer.cornerRadius = 20
+        imagePickButton.addTarget(self, action: #selector(addImageAction(_:)), for: .touchUpInside)
 
         headerView.addSubview(imagePickButton)
     }
@@ -200,5 +211,51 @@ extension NewItemScreenViewController {
     }
 }
 
+extension NewItemScreenViewController: UIImagePickerControllerDelegate {
+    private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
+               return UIAlertAction(title: title, style: .default) { [unowned self] _ in
+                   pickerController.sourceType = type
+                   present(self.pickerController, animated: true)
+               }
+           }
+
+        private func chooseHowToPickImage() {
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            if let action = self.action(for: .camera, title: "Camera") {
+                       alertController.addAction(action)
+            }
+            if let action = self.action(for: .savedPhotosAlbum, title: "Photo library") {
+                       alertController.addAction(action)
+            }
+
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+
+        private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
+            controller.dismiss(animated: true, completion: nil)
+            guard let img = image else {
+                return
+            }
+            output?.didImageLoaded(image: img)
+            let toset = img.alpha(0.5)
+            imagePickButton.setBackgroundImage(toset, for: .normal)
+            imagePickButton.clipsToBounds = true
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            pickerController(picker, didSelect: nil)
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            guard let image = info[.editedImage] as? UIImage else {
+                pickerController(picker, didSelect: nil)
+                return
+            }
+            pickerController(picker, didSelect: image)
+        }
+}
+
 extension NewItemScreenViewController: NewItemScreenViewInput {
+
 }

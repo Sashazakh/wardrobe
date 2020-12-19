@@ -8,12 +8,12 @@ final class InviteContainer {
         let router = InviteRouter()
         let interactor = InviteInteractor()
         let presenter = InvitePresenter(router: router, interactor: interactor)
-	let viewController = InviteViewController()
+        let viewController = InviteViewController()
 
         viewController.output = presenter
-	presenter.view = viewController
-	interactor.output = presenter
-	router.viewController = viewController
+        presenter.view = viewController
+        interactor.output = presenter
+        router.viewController = viewController
 
         return InviteContainer(view: viewController, router: router)
 	}
