@@ -1,13 +1,16 @@
 import UIKit
 import PinLayout
 
-final class NewItemScreenViewController: UIViewController {
+final class NewItemScreenViewController: UIViewController, UINavigationControllerDelegate {
     private weak var headerView: UIView!
     private weak var pageTitle: UILabel!
     private weak var backButton: UIButton!
     private weak var itemNameTextField: UITextField!
     private weak var imagePickButton: UIButton!
     private weak var addButton: UIButton!
+    private let pickerController: UIImagePickerController = UIImagePickerController()
+    private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
+    private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
 
 	var output: NewItemScreenViewOutput?
 
@@ -21,6 +24,14 @@ final class NewItemScreenViewController: UIViewController {
         layoutUI()
     }
 
+    @objc private func addImageAction(_ sender: Any) {
+        chooseHowToPickImage()
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
 }
 
 extension NewItemScreenViewController {
@@ -32,6 +43,8 @@ extension NewItemScreenViewController {
         setupItemNameTextField()
         setupImageButton()
         setupAddButton()
+        setupImagePicker()
+        setupRecognizers()
     }
 
     private func layoutUI() {
@@ -43,8 +56,26 @@ extension NewItemScreenViewController {
         layoutAddButton()
     }
 
+    private func setupRecognizers() {
+        tapOnMainViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        self.view.isUserInteractionEnabled = true
+        tapOnMainViewGestureRecognizer.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(tapOnMainViewGestureRecognizer)
+
+        headerView.isUserInteractionEnabled = true
+        tapOnHeaderViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        tapOnHeaderViewGestureRecognizer.numberOfTouchesRequired = 1
+        headerView.addGestureRecognizer(tapOnHeaderViewGestureRecognizer)
+    }
+
+    private func setupImagePicker() {
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
+    }
+
     private func setupBackground() {
         self.view.backgroundColor = GlobalColors.backgroundColor
+        self.view.isUserInteractionEnabled = true
     }
 
     // Back Button
@@ -70,6 +101,7 @@ extension NewItemScreenViewController {
     // Header View
 
     private func setupHeaderView() {
+
         let view = UIView()
         self.headerView = view
         self.view.addSubview(headerView)
@@ -107,34 +139,11 @@ extension NewItemScreenViewController {
     // Item name text field
 
     private func setupItemNameTextField() {
-        let textField = UITextField()
+        let textField = UITextField.customTextField(placeholder: "Название")
 
         itemNameTextField = textField
+        itemNameTextField.delegate = self
         headerView.addSubview(itemNameTextField)
-
-        itemNameTextField.attributedPlaceholder = NSAttributedString(string: "Название",
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-
-        itemNameTextField.clipsToBounds = true
-        itemNameTextField.layer.cornerRadius = 10
-        itemNameTextField.layer.borderWidth = 1
-        itemNameTextField.layer.borderColor = UIColor.white.cgColor
-        itemNameTextField.backgroundColor = UIColor.white
-        itemNameTextField.font = UIFont(name: "DMSans-Regular", size: 15)
-
-        itemNameTextField.leftView = UIView(frame: CGRect(x: .zero,
-                                                      y: .zero,
-                                                      width: 10,
-                                                      height: .zero))
-        itemNameTextField.leftViewMode = .always
-        itemNameTextField.rightView = UIView(frame: CGRect(x: .zero,
-                                                       y: .zero,
-                                                       width: 10,
-                                                       height: .zero))
-        itemNameTextField.rightViewMode = .unlessEditing
-
-        itemNameTextField.clearButtonMode = .whileEditing
-        itemNameTextField.autocorrectionType = .no
     }
 
     private func layoutItemNameTextField() {
@@ -155,9 +164,9 @@ extension NewItemScreenViewController {
         imagePickButton.contentVerticalAlignment = .fill
         imagePickButton.contentHorizontalAlignment = .fill
         imagePickButton.imageView?.contentMode = .scaleAspectFit
-        imagePickButton.tintColor = GlobalColors.darkColor
-        imagePickButton.dropShadow()
+        imagePickButton.tintColor = .black//GlobalColors.darkColor
         imagePickButton.layer.cornerRadius = 20
+        imagePickButton.addTarget(self, action: #selector(addImageAction(_:)), for: .touchUpInside)
 
         headerView.addSubview(imagePickButton)
     }
@@ -200,5 +209,58 @@ extension NewItemScreenViewController {
     }
 }
 
+extension NewItemScreenViewController: UIImagePickerControllerDelegate {
+    private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
+               return UIAlertAction(title: title, style: .default) { [unowned self] _ in
+                   pickerController.sourceType = type
+                   present(self.pickerController, animated: true)
+               }
+           }
+
+        private func chooseHowToPickImage() {
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            if let action = self.action(for: .camera, title: "Camera") {
+                       alertController.addAction(action)
+            }
+            if let action = self.action(for: .savedPhotosAlbum, title: "Photo library") {
+                       alertController.addAction(action)
+            }
+
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+
+        private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
+            controller.dismiss(animated: true, completion: nil)
+            guard let img = image else {
+                return
+            }
+            output?.didImageLoaded(image: img)
+            let toset = img.alpha(0.5)
+            imagePickButton.setBackgroundImage(toset, for: .normal)
+            imagePickButton.clipsToBounds = true
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            pickerController(picker, didSelect: nil)
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            guard let image = info[.editedImage] as? UIImage else {
+                pickerController(picker, didSelect: nil)
+                return
+            }
+            pickerController(picker, didSelect: image)
+        }
+}
+
 extension NewItemScreenViewController: NewItemScreenViewInput {
+
+}
+
+extension NewItemScreenViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }

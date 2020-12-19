@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CreateWardrobeViewInput: class {
 }
 
 protocol CreateWardrobeViewOutput: class {
+    func didImageLoaded(image: UIImage)
 }
 
 protocol CreateWardrobeInteractorInput: class {

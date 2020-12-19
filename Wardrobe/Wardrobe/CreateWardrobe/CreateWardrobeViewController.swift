@@ -1,7 +1,7 @@
 import UIKit
 import PinLayout
 
-final class CreateWardrobeViewController: UIViewController {
+final class CreateWardrobeViewController: UIViewController, UINavigationControllerDelegate {
     private weak var headerView: UIView!
     private weak var pageTitle: UILabel!
     private weak var backButton: UIButton!
@@ -10,6 +10,9 @@ final class CreateWardrobeViewController: UIViewController {
     private weak var imageButton: UIButton!
     private weak var addButton: UIButton!
     private weak var imagePickButton: UIButton!
+    private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
+    private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
+    private let pickerController: UIImagePickerController = UIImagePickerController()
 
     var output: CreateWardrobeViewOutput?
 
@@ -23,6 +26,13 @@ final class CreateWardrobeViewController: UIViewController {
         layoutUI()
     }
 
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
+    @objc private func addImageAction(_ sender: Any) {
+        chooseHowToPickImage()
+    }
 }
 
 extension CreateWardrobeViewController {
@@ -36,6 +46,8 @@ extension CreateWardrobeViewController {
         setupAddButton()
         setupWardrobeDescription()
         setupImagePickButton()
+        setupRecognizers()
+        setupImagePicker()
     }
 
     private func layoutUI() {
@@ -47,6 +59,23 @@ extension CreateWardrobeViewController {
         layoutImageButton()
         layoutAddButton()
         layoutImagePickButton()
+    }
+
+    private func setupImagePicker() {
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
+    }
+
+    private func setupRecognizers() {
+        tapOnMainViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        self.view.isUserInteractionEnabled = true
+        tapOnMainViewGestureRecognizer.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(tapOnMainViewGestureRecognizer)
+
+        headerView.isUserInteractionEnabled = true
+        tapOnHeaderViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        tapOnHeaderViewGestureRecognizer.numberOfTouchesRequired = 1
+        headerView.addGestureRecognizer(tapOnHeaderViewGestureRecognizer)
     }
 
     private func setupBackground() {
@@ -113,9 +142,10 @@ extension CreateWardrobeViewController {
     // Item name text field
 
     private func setupWardrobeNameTextField() {
-        let textField = UITextField.custonTextField(placeholder: "Название гардероба")
+        let textField = UITextField.customTextField(placeholder: "Название гардероба")
 
         wardrobeNameTextField = textField
+        wardrobeNameTextField.delegate = self
         headerView.addSubview(wardrobeNameTextField)
     }
 
@@ -140,6 +170,8 @@ extension CreateWardrobeViewController {
         wardrobeDescriptionTextView.layer.borderColor = UIColor.white.cgColor
         wardrobeDescriptionTextView.backgroundColor = UIColor.white
         wardrobeDescriptionTextView.font = UIFont(name: "DMSans-Regular", size: 15)
+
+        wardrobeDescriptionTextView.delegate = self
 
         wardrobeDescriptionTextView.text = "Описание"
         wardrobeDescriptionTextView.textColor = UIColor.gray
@@ -196,13 +228,13 @@ extension CreateWardrobeViewController {
         let button = UIButton()
         self.imagePickButton = button
         imagePickButton.setTitle("Выбрать фото", for: .normal)
+        imagePickButton.titleLabel?.font = UIFont(name: "DMSans-Medium", size: 15)
 
         imagePickButton.backgroundColor = GlobalColors.backgroundColor
         imagePickButton.setTitleColor(.black, for: .normal)
         imagePickButton.setTitleColor(.gray, for: .highlighted)
         imagePickButton.isUserInteractionEnabled = true
-
-        imagePickButton.titleLabel?.font = UIFont(name: "DMSans-Regular", size: 15)
+        imagePickButton.addTarget(self, action: #selector(addImageAction(_:)), for: .touchUpInside)
 
         headerView.addSubview(imagePickButton)
     }
@@ -213,8 +245,6 @@ extension CreateWardrobeViewController {
             .right(10%)
             .height(of: imageButton)
             .below(of: wardrobeDescriptionTextView).marginTop(8%)
-
-        imagePickButton.dropShadow()
 
         let width = imagePickButton.frame.width
 
@@ -266,4 +296,57 @@ extension CreateWardrobeViewController: UITextViewDelegate {
             textView.textColor = UIColor.gray
         }
     }
+}
+
+extension CreateWardrobeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+}
+
+extension CreateWardrobeViewController: UIImagePickerControllerDelegate {
+    private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
+               return UIAlertAction(title: title, style: .default) { [unowned self] _ in
+                   pickerController.sourceType = type
+                   present(self.pickerController, animated: true)
+               }
+           }
+
+        private func chooseHowToPickImage() {
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            if let action = self.action(for: .camera, title: "Camera") {
+                       alertController.addAction(action)
+            }
+            if let action = self.action(for: .savedPhotosAlbum, title: "Photo library") {
+                       alertController.addAction(action)
+            }
+
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+
+        private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
+            controller.dismiss(animated: true, completion: nil)
+            guard let img = image else {
+                return
+            }
+            output?.didImageLoaded(image: img)
+            imageButton.imageEdgeInsets = UIEdgeInsets()//UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            imageButton.setImage(img, for: .normal)
+            imageButton.contentMode = .scaleToFill
+            imageButton.clipsToBounds = true
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            pickerController(picker, didSelect: nil)
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            guard let image = info[.editedImage] as? UIImage else {
+                pickerController(picker, didSelect: nil)
+                return
+            }
+            pickerController(picker, didSelect: image)
+        }
 }
