@@ -25,4 +25,9 @@ struct GlobalColors {
                                         green: 98 / 255,
                                         blue: 98 / 255,
                                         alpha: 1)
+
+    static let darkColor = UIColor(red: 10 / 255,
+                                  green: 37 / 255,
+                                  blue: 62 / 255,
+                                  alpha: 1)
 }
