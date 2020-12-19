@@ -266,6 +266,7 @@ final class RegisterViewController: UIViewController {
         userPhotoImageView.backgroundColor = .white
         userPhotoImageView.image = UIImage(systemName: "camera.fill")
         userPhotoImageView.contentMode = .center
+        userPhotoImageView.clipsToBounds = true
         userPhotoImageView.tintColor = .gray
     }
 
@@ -482,19 +483,68 @@ final class RegisterViewController: UIViewController {
 
     @objc
     private func didTapAddPhotoButton() {
-        present(imagePickerController, animated: true, completion: nil)
+        output?.didTapAddPhotoButton()
     }
 }
 
 extension RegisterViewController: RegisterViewInput {
+    func showPickPhotoAlert() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        if let action = alertAction(type: .camera, title: "Camera") {
+            alertController.addAction(action)
+        }
+
+        if let action = alertAction(type: .savedPhotosAlbum, title: "Photo Library") {
+            alertController.addAction(action)
+        }
+
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.modalPresentationStyle = .automatic
+        present(alertController, animated: true, completion: nil)
+    }
+
+    func setUserImage(imageData: Data) {
+        guard let image = UIImage(data: imageData) else {
+            return
+        }
+
+        userPhotoImageView.contentMode = .scaleToFill
+        userPhotoImageView.image = image
+    }
 }
 
-extension RegisterViewController: UIImagePickerControllerDelegate {
+extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    private func alertAction(type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
+        return UIAlertAction(title: title, style: .default) { [unowned self] _ in
+            imagePickerController.sourceType = type
+            present(self.imagePickerController, animated: true)
+        }
+    }
 
-}
+    private func imagePickerController(_ controller: UIImagePickerController, selectedImage: UIImage?) {
+        controller.dismiss(animated: true, completion: nil)
 
-extension RegisterViewController: UINavigationControllerDelegate {
+        guard let image = selectedImage else {
+            return
+        }
 
+        output?.userDidSetImage(imageData: image.pngData())
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            imagePickerController(picker, selectedImage: nil)
+            return
+        }
+
+        imagePickerController(picker, selectedImage: image)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imagePickerController(picker, selectedImage: nil)
+    }
 }
 
 extension RegisterViewController {
