@@ -23,6 +23,7 @@ final class MainScreenViewController: UIViewController {
         setupSettingsButtonLayout()
         setupAvatarViewLayout()
         setupNameLabelLayout()
+        setupSurnameLayout()
     }
 
     // MARK: setup views
@@ -64,13 +65,7 @@ final class MainScreenViewController: UIViewController {
         titleLabel = label
         titleLabel.text = "Гардеробы"
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
-        titleLabel.minimumScaleFactor = 0.2
-        titleLabel.adjustsFontSizeToFitWidth = true
-        titleLabel.lineBreakMode = .byClipping
-        titleLabel.numberOfLines = 0
-        titleLabel.textColor = .white
-        titleLabel.textAlignment = .center
-        titleLabel.clipsToBounds = false
+        titleLabel.textColor = GlobalColors.backgroundColor
         headerView.addSubview(titleLabel)
     }
 
@@ -100,12 +95,6 @@ final class MainScreenViewController: UIViewController {
         nameLabel.text = "Морж"
         nameLabel.textColor = #colorLiteral(red: 0.03921568627, green: 0.1450980392, blue: 0.2431372549, alpha: 1)
         nameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
-        nameLabel.minimumScaleFactor = 0.2
-        nameLabel.adjustsFontSizeToFitWidth = true
-        nameLabel.lineBreakMode = .byClipping
-        nameLabel.numberOfLines = 0
-        nameLabel.textAlignment = .center
-        nameLabel.clipsToBounds = false
         self.view.addSubview(nameLabel)
     }
 
@@ -113,14 +102,8 @@ final class MainScreenViewController: UIViewController {
         let label = UILabel()
         surnameLabel = label
         surnameLabel.text = "Моржов"
+        surnameLabel.textColor = #colorLiteral(red: 0.03921568627, green: 0.1450980392, blue: 0.2431372549, alpha: 1)
         surnameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
-        surnameLabel.minimumScaleFactor = 0.2
-        surnameLabel.adjustsFontSizeToFitWidth = true
-        surnameLabel.lineBreakMode = .byClipping
-        surnameLabel.numberOfLines = 0
-        surnameLabel.textColor = .white
-        surnameLabel.textAlignment = .center
-        surnameLabel.clipsToBounds = false
         self.view.addSubview(surnameLabel)
     }
 
@@ -137,7 +120,7 @@ final class MainScreenViewController: UIViewController {
         titleLabel.pin
             .hCenter()
             .top(38%)
-            .height(17.4%)
+            .height(33)
             .sizeToFit(.height)
     }
 
@@ -150,12 +133,13 @@ final class MainScreenViewController: UIViewController {
     }
 
     private func setupAvatarViewLayout() {
+        let imgRadius = UIScreen.main.bounds.height * 0.1477
         outerImageView.pin
             .below(of: headerView)
-            .margin(-7.38%)
+            .margin(-imgRadius / 2)
             .hCenter()
-            .height(14.77%)
-            .width(32%)
+            .height(imgRadius)
+            .width(imgRadius)
         avatarImageView.pin.all()
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
     }
@@ -164,6 +148,14 @@ final class MainScreenViewController: UIViewController {
         nameLabel.pin
             .below(of: outerImageView, aligned: .center)
             .margin(1.3%)
+            .height(3.4%)
+            .sizeToFit(.height)
+    }
+
+    private func setupSurnameLayout() {
+        surnameLabel.pin
+            .below(of: nameLabel, aligned: .center)
+            .margin(0.5%)
             .height(3.4%)
             .sizeToFit(.height)
     }
