@@ -62,8 +62,8 @@ final class LoginViewController: UIViewController {
         view.addSubview(backgroundView)
 
         backgroundView.backgroundColor = GlobalColors.mainBlueScreen
-
-        backgroundView.layer.cornerRadius = 35
+        backgroundView.dropShadow()
+        backgroundView.roundLowerCorners(35)
     }
 
     private func setupWelcomeLabel() {
@@ -93,6 +93,7 @@ final class LoginViewController: UIViewController {
         loginTextField.layer.borderColor = UIColor.white.cgColor
         loginTextField.backgroundColor = UIColor.white
         loginTextField.font = UIFont(name: "DMSans-Regular", size: 15)
+        loginTextField.textColor = GlobalColors.darkColor
 
         loginTextField.leftView = UIView(frame: CGRect(x: .zero,
                                                       y: .zero,
@@ -116,7 +117,7 @@ final class LoginViewController: UIViewController {
         backgroundView.addSubview(passwordTextField)
 
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Пароль",
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
 
         passwordTextField.clipsToBounds = true
         passwordTextField.layer.cornerRadius = 10
@@ -124,6 +125,7 @@ final class LoginViewController: UIViewController {
         passwordTextField.layer.borderColor = UIColor.white.cgColor
         passwordTextField.backgroundColor = UIColor.white
         passwordTextField.font = UIFont(name: "DMSans-Regular", size: 15)
+        passwordTextField.textColor = GlobalColors.darkColor
 
         passwordTextField.leftView = UIView(frame: CGRect(x: .zero,
                                                       y: .zero,
@@ -138,6 +140,7 @@ final class LoginViewController: UIViewController {
 
         passwordTextField.clearButtonMode = .whileEditing
         passwordTextField.autocorrectionType = .no
+        passwordTextField.isSecureTextEntry = true
     }
 
     private func setupLoginButton() {
@@ -164,7 +167,7 @@ final class LoginViewController: UIViewController {
         accountQuestionLabel.textAlignment = .right
         accountQuestionLabel.text = "Еще нет аккаунта?"
         accountQuestionLabel.font = UIFont(name: "DMSans-Regular", size: 12)
-        accountQuestionLabel.textColor = .gray
+        accountQuestionLabel.textColor = GlobalColors.darkColor
     }
 
     private func setupRegisterLabel() {
@@ -176,7 +179,13 @@ final class LoginViewController: UIViewController {
         registerLabel.textAlignment = .left
         registerLabel.text = "Зарегистрироваться"
         registerLabel.font = UIFont(name: "DMSans-Regular", size: 12)
-        registerLabel.textColor = .gray
+        registerLabel.textColor = GlobalColors.darkColor
+
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapRegisterLabel))
+
+        recognizer.numberOfTapsRequired = 1
+        label.addGestureRecognizer(recognizer)
+        label.isUserInteractionEnabled = true
     }
 
     private func setupUnderscoreView() {
@@ -185,14 +194,14 @@ final class LoginViewController: UIViewController {
         underscoreView = underscore
         view.addSubview(underscoreView)
 
-        underscoreView.backgroundColor = .gray
+        underscoreView.backgroundColor = GlobalColors.darkColor
     }
 
     private func layoutBackgroundView() {
         backgroundView.pin
             .top(.zero)
             .width(100%)
-            .height(Constants.screenHeight * 0.15 + 50 + 70 + 50 + 20 + 50 + 20)
+            .height(Constants.screenHeight * 0.15 + 50 + 70 + 50 + 15 + 50 + 20)
     }
 
     private func layoutWelcomeLabel() {
@@ -213,7 +222,7 @@ final class LoginViewController: UIViewController {
 
     private func layoutPasswordTextField() {
         passwordTextField.pin
-            .top(loginTextField.frame.maxY + 20)
+            .top(loginTextField.frame.maxY + 15)
             .hCenter()
             .width(90%)
             .height(50)
@@ -252,6 +261,11 @@ final class LoginViewController: UIViewController {
             .left(registerLabel.frame.minX)
             .right(Constants.screenWidth - registerLabel.frame.maxX)
     }
+
+    @objc
+    private func didTapRegisterLabel() {
+        output?.didTapRegisterLabel()
+    }
 }
 
 extension LoginViewController: LoginViewInput {
@@ -264,7 +278,7 @@ extension LoginViewController {
         static let screenWidth = UIScreen.main.bounds.width
 
         struct WelcomeLabel {
-            static let text = "Добро пожаловать!"
+            static let text: String = "Добро пожаловать!"
         }
     }
 }

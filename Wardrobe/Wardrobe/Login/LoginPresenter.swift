@@ -4,6 +4,7 @@ final class LoginPresenter {
 	weak var view: LoginViewInput?
 
 	private let router: LoginRouterInput
+
 	private let interactor: LoginInteractorInput
 
     init(router: LoginRouterInput, interactor: LoginInteractorInput) {
@@ -13,6 +14,9 @@ final class LoginPresenter {
 }
 
 extension LoginPresenter: LoginViewOutput {
+    func didTapRegisterLabel() {
+        router.showRegistrationScreen()
+    }
 }
 
 extension LoginPresenter: LoginInteractorOutput {

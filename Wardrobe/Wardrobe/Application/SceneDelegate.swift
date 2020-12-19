@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
-        window?.rootViewController = MainScreenContainer.assemble(with: MainScreenContext()).viewController
+        window?.rootViewController = getInitialViewController()
         window?.makeKeyAndVisible()
     }
 
@@ -42,5 +42,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+}
+
+extension SceneDelegate {
+    func getInitialViewController() -> UIViewController {
+        let loginViewController = LoginContainer.assemble(with: LoginContext()).viewController
+        let navigationVC = UINavigationController(rootViewController: loginViewController)
+
+        navigationVC.navigationBar.isHidden = true
+
+        return navigationVC
     }
 }
