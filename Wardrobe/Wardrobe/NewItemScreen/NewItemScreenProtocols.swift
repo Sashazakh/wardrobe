@@ -1,17 +1,11 @@
-//
-//  NewItemScreenProtocols.swift
-//  Wardrobe
-//
-//  Created by kymblc on 18.12.2020.
-//  
-//
-
 import Foundation
+import UIKit
 
 protocol NewItemScreenViewInput: class {
 }
 
 protocol NewItemScreenViewOutput: class {
+    func didImageLoaded(image: UIImage)
 }
 
 protocol NewItemScreenInteractorInput: class {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class CreateWardrobePresenter {
 	weak var view: CreateWardrobeViewInput?
@@ -21,6 +22,10 @@ final class CreateWardrobePresenter {
 }
 
 extension CreateWardrobePresenter: CreateWardrobeViewOutput {
+    func didImageLoaded(image: UIImage) {
+        debugPrint("Got image \(image.description)")
+    }
+
 }
 
 extension CreateWardrobePresenter: CreateWardrobeInteractorOutput {
