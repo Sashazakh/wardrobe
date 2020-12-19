@@ -229,6 +229,8 @@
 				13A7462A258D0B4600643369 /* MainScreenContainer.swift */,
 			);
 			path = Container;
+            sourceTree = "<group>";
+        };
 		0DE88519258E29B600BFC856 /* CreateWardrobe */ = {
 			isa = PBXGroup;
 			children = (
