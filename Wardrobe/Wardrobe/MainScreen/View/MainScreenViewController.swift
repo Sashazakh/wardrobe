@@ -10,6 +10,11 @@ final class MainScreenViewController: UIViewController {
     private weak var outerImageView: UIView!
     private weak var nameLabel: UILabel!
     private weak var surnameLabel: UILabel!
+    private weak var collectionView: UICollectionView!
+
+    private let screenBounds = UIScreen.main.bounds
+
+    private var countOfCells = 20
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +29,8 @@ final class MainScreenViewController: UIViewController {
         setupAvatarViewLayout()
         setupNameLabelLayout()
         setupSurnameLayout()
+        setupCollectionLayout()
+        setupFlowLayout()
     }
 
     // MARK: setup views
@@ -35,6 +42,7 @@ final class MainScreenViewController: UIViewController {
         setupAvatarView()
         setupNameLabel()
         setupSurnameLabel()
+        setupCollectionView()
     }
 
     private func setupMainView() {
@@ -93,7 +101,7 @@ final class MainScreenViewController: UIViewController {
         let label = UILabel()
         nameLabel = label
         nameLabel.text = "Морж"
-        nameLabel.textColor = #colorLiteral(red: 0.03921568627, green: 0.1450980392, blue: 0.2431372549, alpha: 1)
+        nameLabel.textColor = GlobalColors.darkColor
         nameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
         self.view.addSubview(nameLabel)
     }
@@ -102,11 +110,21 @@ final class MainScreenViewController: UIViewController {
         let label = UILabel()
         surnameLabel = label
         surnameLabel.text = "Моржов"
-        surnameLabel.textColor = #colorLiteral(red: 0.03921568627, green: 0.1450980392, blue: 0.2431372549, alpha: 1)
+        surnameLabel.textColor = GlobalColors.darkColor
         surnameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
         self.view.addSubview(surnameLabel)
     }
 
+    private func setupCollectionView() {
+        let collView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView = collView
+        collectionView.backgroundColor = .white
+        collectionView.register(WardrobeCell.self, forCellWithReuseIdentifier: WardrobeCell.identifier)
+        collectionView.register(AddWardrobeCell.self, forCellWithReuseIdentifier: AddWardrobeCell.identifier)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        view.addSubview(collectionView)
+    }
     // MARK: layout
     private func setupHeaderViewLayout() {
         headerView.pin
@@ -120,14 +138,13 @@ final class MainScreenViewController: UIViewController {
         titleLabel.pin
             .hCenter()
             .top(38%)
-            .height(33)
-            .sizeToFit(.height)
+            .sizeToFit()
     }
 
     private func setupSettingsButtonLayout() {
         settingsButton.pin
             .after(of: titleLabel, aligned: .center)
-            .margin(19%)
+            .margin(17%)
             .width(titleLabel.frame.height * 0.7)
             .height(titleLabel.frame.height * 0.7)
     }
@@ -148,18 +165,63 @@ final class MainScreenViewController: UIViewController {
         nameLabel.pin
             .below(of: outerImageView, aligned: .center)
             .margin(1.3%)
-            .height(3.4%)
-            .sizeToFit(.height)
+            .sizeToFit()
     }
 
     private func setupSurnameLayout() {
         surnameLabel.pin
             .below(of: nameLabel, aligned: .center)
-            .margin(0.5%)
-            .height(3.4%)
-            .sizeToFit(.height)
+            .marginTop(0.5%)
+            .sizeToFit()
+    }
+
+    private func setupCollectionLayout() {
+        collectionView.pin
+            .top(41.871%)
+            .right()
+            .left()
+            .bottom()
+    }
+
+    private func setupFlowLayout() {
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let marginSides = screenBounds.width * 0.069
+            let marginBottom = screenBounds.height * 0.041
+            flowLayout.minimumInteritemSpacing = marginBottom
+            flowLayout.minimumLineSpacing = marginSides
+            flowLayout.scrollDirection = .vertical
+        }
     }
 }
 
 extension MainScreenViewController: MainScreenViewInput {
+}
+
+extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDataSource,
+                                    UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        countOfCells
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WardrobeCell.identifier, for: indexPath)
+        if indexPath.row == countOfCells - 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddWardrobeCell.identifier, for: indexPath)
+            return cell
+        }
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
+    -> CGSize {
+        let cellWidth = screenBounds.width * 0.23
+        let cellHeight = screenBounds.height * 0.15
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int)
+    -> UIEdgeInsets {
+        let marginSides = screenBounds.width * 0.053
+        return UIEdgeInsets(top: 5, left: marginSides, bottom: 5, right: marginSides)
+    }
 }
