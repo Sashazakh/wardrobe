@@ -18,15 +18,28 @@ final class RegisterViewController: UIViewController {
 
     private weak var addPhotoButton: UIButton!
 
+    private weak var userPhotoImageView: UIImageView!
+
+    private weak var checkBoxImageView: UIImageView!
+
+    private weak var conditionsLabel: UILabel!
+
+    private weak var registerButton: UIButton!
+
     private weak var registeredQuestionLabel: UILabel!
 
     private weak var loginLabel: UILabel!
+
+    private weak var underscoreView: UIView!
+
+    private var imagePickerController: UIImagePickerController!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
         setupView()
         setupSubviews()
+        setupImagePicker()
 	}
 
     override func viewDidLayoutSubviews() {
@@ -39,12 +52,22 @@ final class RegisterViewController: UIViewController {
         layoutPasswordTextField()
         layoutRepeatPasswordTextField()
         layoutAddPhotoButton()
+        layoutUserPhotoImageView()
+        layoutCheckBoxImageView()
+        layoutConditionsLabel()
+        layoutRegisterButton()
         layoutRegisteredQuestionLabel()
         layoutLoginLabel()
+        layoutUnderscoreView()
     }
 
     private func setupView() {
         view.backgroundColor = .white
+    }
+
+    private func setupImagePicker() {
+        imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
     }
 
     private func setupSubviews() {
@@ -55,8 +78,13 @@ final class RegisterViewController: UIViewController {
         setupPasswordTextField()
         setupRepeatPasswordTextField()
         setupAddPhotoButton()
+        setupUserPhotoImageView()
+        setupCheckBoxImageView()
+        setupConditionsLabel()
+        setupRegisterButton()
         setupRegisteredQuestionLabel()
         setupLoginLabel()
+        setupUnderscoreView()
     }
 
     private func setupBackgroundView() {
@@ -97,6 +125,7 @@ final class RegisterViewController: UIViewController {
         loginTextField.layer.borderColor = UIColor.white.cgColor
         loginTextField.backgroundColor = UIColor.white
         loginTextField.font = UIFont(name: "DMSans-Regular", size: 15)
+        loginTextField.textColor = GlobalColors.darkColor
 
         loginTextField.leftView = UIView(frame: CGRect(x: .zero,
                                                       y: .zero,
@@ -128,6 +157,7 @@ final class RegisterViewController: UIViewController {
         fioTextField.layer.borderColor = UIColor.white.cgColor
         fioTextField.backgroundColor = UIColor.white
         fioTextField.font = UIFont(name: "DMSans-Regular", size: 15)
+        fioTextField.textColor = GlobalColors.darkColor
 
         fioTextField.leftView = UIView(frame: CGRect(x: .zero,
                                                       y: .zero,
@@ -159,6 +189,7 @@ final class RegisterViewController: UIViewController {
         passwordTextField.layer.borderColor = UIColor.white.cgColor
         passwordTextField.backgroundColor = UIColor.white
         passwordTextField.font = UIFont(name: "DMSans-Regular", size: 15)
+        passwordTextField.textColor = GlobalColors.darkColor
 
         passwordTextField.leftView = UIView(frame: CGRect(x: .zero,
                                                       y: .zero,
@@ -183,7 +214,7 @@ final class RegisterViewController: UIViewController {
         backgroundView.addSubview(repeatPasswordTextField)
 
         repeatPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Повторите пароль (обязательно)",
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+                                                                attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
 
         repeatPasswordTextField.clipsToBounds = true
         repeatPasswordTextField.layer.cornerRadius = 10
@@ -191,6 +222,7 @@ final class RegisterViewController: UIViewController {
         repeatPasswordTextField.layer.borderColor = UIColor.white.cgColor
         repeatPasswordTextField.backgroundColor = UIColor.white
         repeatPasswordTextField.font = UIFont(name: "DMSans-Regular", size: 15)
+        repeatPasswordTextField.textColor = GlobalColors.darkColor
 
         repeatPasswordTextField.leftView = UIView(frame: CGRect(x: .zero,
                                                       y: .zero,
@@ -218,8 +250,67 @@ final class RegisterViewController: UIViewController {
         addPhotoButton.layer.cornerRadius = 20
 
         addPhotoButton.titleLabel?.font = UIFont(name: "DMSans-Medium", size: 15)
-        addPhotoButton.setTitleColor(.black, for: .normal)
-        addPhotoButton.setTitle("Добавить фото", for: .normal)
+        addPhotoButton.setTitleColor(GlobalColors.darkColor, for: .normal)
+        addPhotoButton.setTitle("Выбрать фото", for: .normal)
+
+        addPhotoButton.addTarget(self, action: #selector(didTapAddPhotoButton), for: .touchUpInside)
+    }
+
+    private func setupUserPhotoImageView() {
+        let imageView = UIImageView()
+
+        userPhotoImageView = imageView
+        backgroundView.addSubview(userPhotoImageView)
+
+        userPhotoImageView.layer.cornerRadius = 30
+        userPhotoImageView.backgroundColor = .white
+        userPhotoImageView.image = UIImage(systemName: "camera.fill")
+        userPhotoImageView.contentMode = .center
+        userPhotoImageView.tintColor = .gray
+    }
+
+    private func setupCheckBoxImageView() {
+        let imageView = UIImageView()
+
+        checkBoxImageView = imageView
+        view.addSubview(checkBoxImageView)
+
+        checkBoxImageView.image = UIImage(named: "checkBoxNotChecked")
+
+        let boxTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCheckBox))
+
+        boxTapRecognizer.numberOfTapsRequired = 1
+        checkBoxImageView.addGestureRecognizer(boxTapRecognizer)
+        checkBoxImageView.isUserInteractionEnabled = true
+    }
+
+    private func setupConditionsLabel() {
+        let label = UILabel()
+
+        conditionsLabel = label
+        view.addSubview(conditionsLabel)
+
+        conditionsLabel.lineBreakMode = .byWordWrapping
+        conditionsLabel.font = UIFont(name: "DMSans-Regular", size: 13)
+        conditionsLabel.text = "Создавая аккаунт, вы соглашаетесь с правилами использования."
+        conditionsLabel.textColor = GlobalColors.darkColor
+        conditionsLabel.textAlignment = .left
+        conditionsLabel.numberOfLines = .zero
+    }
+
+    private func setupRegisterButton() {
+        let button = UIButton()
+
+        registerButton = button
+        view.addSubview(registerButton)
+
+        registerButton.backgroundColor = GlobalColors.mainBlueScreen
+        registerButton.layer.cornerRadius = 20
+        registerButton.dropShadow()
+
+        registerButton.titleLabel?.font = UIFont(name: "DMSans-Bold", size: 17)
+        registerButton.setTitleColor(.white, for: .normal)
+        registerButton.setTitle("Зарегистироваться", for: .normal)
     }
 
     private func setupRegisteredQuestionLabel() {
@@ -231,7 +322,7 @@ final class RegisterViewController: UIViewController {
         registeredQuestionLabel.textAlignment = .right
         registeredQuestionLabel.text = "Уже зарегистрированы?"
         registeredQuestionLabel.font = UIFont(name: "DMSans-Regular", size: 12)
-        registeredQuestionLabel.textColor = .gray
+        registeredQuestionLabel.textColor = GlobalColors.darkColor
     }
 
     private func setupLoginLabel() {
@@ -243,7 +334,7 @@ final class RegisterViewController: UIViewController {
         loginLabel.textAlignment = .left
         loginLabel.text = "Войти"
         loginLabel.font = UIFont(name: "DMSans-Regular", size: 12)
-        loginLabel.textColor = .gray
+        loginLabel.textColor = GlobalColors.darkColor
 
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapLoginLabel))
 
@@ -252,16 +343,25 @@ final class RegisterViewController: UIViewController {
         label.isUserInteractionEnabled = true
     }
 
+    private func setupUnderscoreView() {
+        let underscore = UIView()
+
+        underscoreView = underscore
+        view.addSubview(underscoreView)
+
+        underscoreView.backgroundColor = GlobalColors.darkColor
+    }
+
     private func layoutBackgroundView() {
         backgroundView.pin
             .top(.zero)
             .width(100%)
-            .height(Constants.screenHeight * 0.15 + 50 + 70 + 50 + 20 + 50 + 20 + 50 + 20 + 50 + 25 + 36 + 30)
+            .height(Constants.screenHeight * 0.10 + 50 + 50 + 50 + 15 + 50 + 15 + 50 + 15 + 50 + 25 + 36 + 30)
     }
 
     private func layoutWelcomeLabel() {
         welcomeLabel.pin
-            .top(Constants.screenHeight * 0.15)
+            .top(Constants.screenHeight * 0.10)
             .hCenter()
             .width(80%)
             .height(50)
@@ -269,7 +369,7 @@ final class RegisterViewController: UIViewController {
 
     private func layoutLoginTextField() {
         loginTextField.pin
-            .top(welcomeLabel.frame.maxY + 70)
+            .top(welcomeLabel.frame.maxY + 50)
             .hCenter()
             .width(90%)
             .height(50)
@@ -277,7 +377,7 @@ final class RegisterViewController: UIViewController {
 
     private func layoutFioTextField() {
         fioTextField.pin
-            .top(loginTextField.frame.maxY + 20)
+            .top(loginTextField.frame.maxY + 15)
             .hCenter()
             .width(90%)
             .height(50)
@@ -285,7 +385,7 @@ final class RegisterViewController: UIViewController {
 
     private func layoutPasswordTextField() {
         passwordTextField.pin
-            .top(fioTextField.frame.maxY + 20)
+            .top(fioTextField.frame.maxY + 15)
             .hCenter()
             .width(90%)
             .height(50)
@@ -293,7 +393,7 @@ final class RegisterViewController: UIViewController {
 
     private func layoutRepeatPasswordTextField() {
         repeatPasswordTextField.pin
-            .top(passwordTextField.frame.maxY + 20)
+            .top(passwordTextField.frame.maxY + 15)
             .hCenter()
             .width(90%)
             .height(50)
@@ -307,9 +407,46 @@ final class RegisterViewController: UIViewController {
             .height(36)
     }
 
+    private func layoutUserPhotoImageView() {
+        userPhotoImageView.pin
+            .height(60)
+            .width(60)
+
+        userPhotoImageView.pin
+            .top(addPhotoButton.frame.midY - userPhotoImageView.bounds.height / 2)
+            .left(5%)
+    }
+
+    private func layoutCheckBoxImageView() {
+        checkBoxImageView.pin
+            .sizeToFit()
+
+        checkBoxImageView.pin
+            .top(backgroundView.frame.maxY + 25)
+            .left(5%)
+    }
+
+    private func layoutConditionsLabel() {
+        conditionsLabel.pin
+            .height(50)
+
+        conditionsLabel.pin
+            .top(checkBoxImageView.frame.midY - conditionsLabel.bounds.height / 2)
+            .left(checkBoxImageView.frame.maxX + 20)
+            .right(5%)
+    }
+
+    private func layoutRegisterButton() {
+        registerButton.pin
+            .top(conditionsLabel.frame.maxY + 15)
+            .width(90%)
+            .hCenter()
+            .height(50)
+    }
+
     private func layoutRegisteredQuestionLabel() {
         registeredQuestionLabel.pin
-            .top(backgroundView.frame.maxY + 30)
+            .top(registerButton.frame.maxY + 10)
             .left(.zero)
             .width(65%)
             .height(20)
@@ -320,18 +457,44 @@ final class RegisterViewController: UIViewController {
             .sizeToFit()
 
         loginLabel.pin
-            .top(backgroundView.frame.maxY + 30)
+            .top(registerButton.frame.maxY + 10)
             .left(registeredQuestionLabel.frame.maxX + 5)
             .height(20)
+    }
+
+    private func layoutUnderscoreView() {
+        underscoreView.pin
+            .top(loginLabel.frame.maxY - 3)
+            .height(1)
+            .left(loginLabel.frame.minX)
+            .right(Constants.screenWidth - loginLabel.frame.maxX)
     }
 
     @objc
     private func didTapLoginLabel() {
         output?.didTapLoginLabel()
     }
+
+    @objc
+    private func didTapCheckBox() {
+
+    }
+
+    @objc
+    private func didTapAddPhotoButton() {
+        present(imagePickerController, animated: true, completion: nil)
+    }
 }
 
 extension RegisterViewController: RegisterViewInput {
+}
+
+extension RegisterViewController: UIImagePickerControllerDelegate {
+
+}
+
+extension RegisterViewController: UINavigationControllerDelegate {
+
 }
 
 extension RegisterViewController {
@@ -341,7 +504,7 @@ extension RegisterViewController {
         static let screenWidth = UIScreen.main.bounds.width
 
         struct WelcomeLabel {
-            static let text: String = "Добро пожаловать!"
+            static let text: String = "Регистрация"
         }
     }
 }
