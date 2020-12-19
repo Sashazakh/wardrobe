@@ -17,5 +17,3 @@ extension InvitePresenter: InviteViewOutput {
 
 extension InvitePresenter: InviteInteractorOutput {
 }
-
-

@@ -17,5 +17,3 @@ extension SettingsPresenter: SettingsViewOutput {
 
 extension SettingsPresenter: SettingsInteractorOutput {
 }
-
-

@@ -17,5 +17,3 @@ extension AllClothesPresenter: AllClothesViewOutput {
 
 extension AllClothesPresenter: AllClothesInteractorOutput {
 }
-
-

@@ -17,5 +17,3 @@ extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
 
 extension WardrobeUsersPresenter: WardrobeUsersInteractorOutput {
 }
-
-
