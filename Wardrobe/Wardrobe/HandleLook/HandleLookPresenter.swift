@@ -17,5 +17,3 @@ extension HandleLookPresenter: HandleLookViewOutput {
 
 extension HandleLookPresenter: HandleLookInteractorOutput {
 }
-
-

@@ -16,6 +16,18 @@ extension RegisterPresenter: RegisterViewOutput {
     func didTapLoginLabel() {
         router.showLoginScreen()
     }
+
+    func didTapAddPhotoButton() {
+        view?.showPickPhotoAlert()
+    }
+
+    func userDidSetImage(imageData: Data?) {
+        guard let data = imageData else {
+            return
+        }
+
+        view?.setUserImage(imageData: data)
+    }
 }
 
 extension RegisterPresenter: RegisterInteractorOutput {
