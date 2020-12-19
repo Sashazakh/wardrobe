@@ -125,6 +125,7 @@ final class MainScreenViewController: UIViewController {
         collectionView.dataSource = self
         view.addSubview(collectionView)
     }
+
     // MARK: layout
     private func setupHeaderViewLayout() {
         headerView.pin
@@ -223,5 +224,9 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
     -> UIEdgeInsets {
         let marginSides = screenBounds.width * 0.053
         return UIEdgeInsets(top: 5, left: marginSides, bottom: 5, right: marginSides)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        output?.itemDidTap(at: indexPath)
     }
 }
