@@ -8,6 +8,8 @@ final class InviteViewController: UIViewController {
     private weak var pageTitle: UILabel!
     private weak var loginTextField: UITextField!
     private weak var inviteButton: UIButton!
+    private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
+    private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
 
 	var output: InviteViewOutput?
 
@@ -20,6 +22,10 @@ final class InviteViewController: UIViewController {
         super.viewDidLayoutSubviews()
         layoutUI()
     }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension InviteViewController {
@@ -30,6 +36,7 @@ extension InviteViewController {
         setupBackButton()
         setupLoginTextField()
         setupInviteButton()
+        setupRecognizers()
     }
 
     private func layoutUI() {
@@ -38,6 +45,18 @@ extension InviteViewController {
         layoutBackButton()
         layoutLoginTextField()
         layoutInviteButton()
+    }
+
+    private func setupRecognizers() {
+        tapOnMainViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        self.view.isUserInteractionEnabled = true
+        tapOnMainViewGestureRecognizer.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(tapOnMainViewGestureRecognizer)
+
+        headerView.isUserInteractionEnabled = true
+        tapOnHeaderViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        tapOnHeaderViewGestureRecognizer.numberOfTouchesRequired = 1
+        headerView.addGestureRecognizer(tapOnHeaderViewGestureRecognizer)
     }
 
     private func setupBackground() {
@@ -49,6 +68,7 @@ extension InviteViewController {
     private func setupBackButton() {
         let button = UIButton()
         self.backButton = button
+        backButton.isUserInteractionEnabled = true
         headerView.addSubview(backButton)
     }
 
@@ -98,7 +118,7 @@ extension InviteViewController {
     private func layoutPageTitle() {
         pageTitle.textColor = GlobalColors.backgroundColor
         pageTitle.pin
-            .top(10%)
+            .top(20%)
             .hCenter()
             .sizeToFit()
     }
@@ -106,8 +126,9 @@ extension InviteViewController {
     // loginTextField
 
     private func setupLoginTextField() {
-        let textField = UITextField.custonTextField(placeholder: "Логин пользователя")
+        let textField = UITextField.customTextField(placeholder: "Логин пользователя")
         self.loginTextField = textField
+        loginTextField.delegate = self
         headerView.addSubview(loginTextField)
     }
 
@@ -144,4 +165,11 @@ extension InviteViewController {
 }
 
 extension InviteViewController: InviteViewInput {
+}
+
+extension InviteViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }

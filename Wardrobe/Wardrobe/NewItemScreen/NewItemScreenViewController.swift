@@ -9,6 +9,8 @@ final class NewItemScreenViewController: UIViewController, UINavigationControlle
     private weak var imagePickButton: UIButton!
     private weak var addButton: UIButton!
     private let pickerController: UIImagePickerController = UIImagePickerController()
+    private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
+    private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
 
 	var output: NewItemScreenViewOutput?
 
@@ -26,6 +28,10 @@ final class NewItemScreenViewController: UIViewController, UINavigationControlle
         chooseHowToPickImage()
     }
 
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
 }
 
 extension NewItemScreenViewController {
@@ -38,6 +44,7 @@ extension NewItemScreenViewController {
         setupImageButton()
         setupAddButton()
         setupImagePicker()
+        setupRecognizers()
     }
 
     private func layoutUI() {
@@ -49,6 +56,18 @@ extension NewItemScreenViewController {
         layoutAddButton()
     }
 
+    private func setupRecognizers() {
+        tapOnMainViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        self.view.isUserInteractionEnabled = true
+        tapOnMainViewGestureRecognizer.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(tapOnMainViewGestureRecognizer)
+
+        headerView.isUserInteractionEnabled = true
+        tapOnHeaderViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        tapOnHeaderViewGestureRecognizer.numberOfTouchesRequired = 1
+        headerView.addGestureRecognizer(tapOnHeaderViewGestureRecognizer)
+    }
+
     private func setupImagePicker() {
         pickerController.delegate = self
         pickerController.allowsEditing = true
@@ -56,6 +75,7 @@ extension NewItemScreenViewController {
 
     private func setupBackground() {
         self.view.backgroundColor = GlobalColors.backgroundColor
+        self.view.isUserInteractionEnabled = true
     }
 
     // Back Button
@@ -81,6 +101,7 @@ extension NewItemScreenViewController {
     // Header View
 
     private func setupHeaderView() {
+
         let view = UIView()
         self.headerView = view
         self.view.addSubview(headerView)
@@ -118,34 +139,11 @@ extension NewItemScreenViewController {
     // Item name text field
 
     private func setupItemNameTextField() {
-        let textField = UITextField()
+        let textField = UITextField.customTextField(placeholder: "Название")
 
         itemNameTextField = textField
+        itemNameTextField.delegate = self
         headerView.addSubview(itemNameTextField)
-
-        itemNameTextField.attributedPlaceholder = NSAttributedString(string: "Название",
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-
-        itemNameTextField.clipsToBounds = true
-        itemNameTextField.layer.cornerRadius = 10
-        itemNameTextField.layer.borderWidth = 1
-        itemNameTextField.layer.borderColor = UIColor.white.cgColor
-        itemNameTextField.backgroundColor = UIColor.white
-        itemNameTextField.font = UIFont(name: "DMSans-Regular", size: 15)
-
-        itemNameTextField.leftView = UIView(frame: CGRect(x: .zero,
-                                                      y: .zero,
-                                                      width: 10,
-                                                      height: .zero))
-        itemNameTextField.leftViewMode = .always
-        itemNameTextField.rightView = UIView(frame: CGRect(x: .zero,
-                                                       y: .zero,
-                                                       width: 10,
-                                                       height: .zero))
-        itemNameTextField.rightViewMode = .unlessEditing
-
-        itemNameTextField.clearButtonMode = .whileEditing
-        itemNameTextField.autocorrectionType = .no
     }
 
     private func layoutItemNameTextField() {
@@ -258,4 +256,11 @@ extension NewItemScreenViewController: UIImagePickerControllerDelegate {
 
 extension NewItemScreenViewController: NewItemScreenViewInput {
 
+}
+
+extension NewItemScreenViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
