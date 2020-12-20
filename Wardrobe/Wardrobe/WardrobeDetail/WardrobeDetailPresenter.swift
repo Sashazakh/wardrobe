@@ -13,6 +13,9 @@ final class WardrobeDetailPresenter {
 }
 
 extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
+    func personDidTap() {
+        router.showPersons()
+    }
 }
 
 extension WardrobeDetailPresenter: WardrobeDetailInteractorOutput {

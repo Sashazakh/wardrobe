@@ -131,8 +131,8 @@ final class WardrobeDetailViewController: UIViewController {
         personButton.pin
             .after(of: titleLabel, aligned: .top)
             .marginLeft(18.33%)
-            .height(titleLabel.frame.height * 0.4)
-            .width(titleLabel.frame.height * 0.45)
+            .height(titleLabel.frame.height * 0.5)
+            .width(titleLabel.frame.height * 0.5)
     }
 
     private func setupCollectionLayout() {
@@ -156,7 +156,7 @@ final class WardrobeDetailViewController: UIViewController {
     // MARK: Button actions
 
     @objc func didPersonButtonTabbed(_ sender: Any) {
-        // show all persons avaliabled to this wardrope
+        output?.personDidTap()
     }
 
     @objc func didBackButtonTapped(_ sender: Any) {
