@@ -121,7 +121,7 @@ final class WardrobeDetailViewController: UIViewController {
 
     private func setupBackButtonLayout() {
         backButton.pin
-            .height(titleLabel.frame.height * 0.56)
+            .height(titleLabel.frame.height * 0.4)
             .width(5%)
             .before(of: titleLabel, aligned: .top)
             .left(3%)
@@ -160,7 +160,7 @@ final class WardrobeDetailViewController: UIViewController {
     }
 
     @objc func didBackButtonTapped(_ sender: Any) {
-        // pop vc
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

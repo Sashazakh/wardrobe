@@ -164,7 +164,7 @@ extension NewItemScreenViewController {
         imagePickButton.contentVerticalAlignment = .fill
         imagePickButton.contentHorizontalAlignment = .fill
         imagePickButton.imageView?.contentMode = .scaleAspectFit
-        imagePickButton.tintColor = .black//GlobalColors.darkColor
+        imagePickButton.tintColor = .black// GlobalColors.darkColor
         imagePickButton.layer.cornerRadius = 20
         imagePickButton.addTarget(self, action: #selector(addImageAction(_:)), for: .touchUpInside)
 

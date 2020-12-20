@@ -6,9 +6,12 @@ final class MainScreenRouter {
 
 extension MainScreenRouter: MainScreenRouterInput {
     func showDetailWardrope(id: Int) {
-        print(id)
         let vc = WardrobeDetailContainer.assemble(with: WardrobeDetailContext()).viewController
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
+    func showSettings() {
+        let vc = SettingsContainer.assemble(with: SettingsContext()).viewController
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

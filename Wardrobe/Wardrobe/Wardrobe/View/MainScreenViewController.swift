@@ -61,10 +61,13 @@ final class MainScreenViewController: UIViewController {
     private func setupSettingsButton() {
         let button = UIButton()
         settingsButton = button
-        settingsButton.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
+        settingsButton.setImage(UIImage(systemName: "gearshape.fill"),
+                                for: .normal)
         settingsButton.tintColor = GlobalColors.backgroundColor
         settingsButton.contentVerticalAlignment = .fill
         settingsButton.contentHorizontalAlignment = .fill
+        settingsButton.addTarget(self, action: #selector(didSettingsButtonTapped(_:)),
+                                 for: .touchUpInside)
         self.headerView.addSubview(settingsButton)
     }
 
@@ -119,8 +122,10 @@ final class MainScreenViewController: UIViewController {
         let collView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView = collView
         collectionView.backgroundColor = .white
-        collectionView.register(WardrobeCell.self, forCellWithReuseIdentifier: WardrobeCell.identifier)
-        collectionView.register(AddWardrobeCell.self, forCellWithReuseIdentifier: AddWardrobeCell.identifier)
+        collectionView.register(WardrobeCell.self,
+                                forCellWithReuseIdentifier: WardrobeCell.identifier)
+        collectionView.register(AddWardrobeCell.self,
+                                forCellWithReuseIdentifier: AddWardrobeCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
@@ -172,7 +177,7 @@ final class MainScreenViewController: UIViewController {
     private func setupSurnameLayout() {
         surnameLabel.pin
             .below(of: nameLabel, aligned: .center)
-            .marginTop(0.5%)
+            .marginTop(0.6%)
             .sizeToFit()
     }
 
@@ -192,6 +197,12 @@ final class MainScreenViewController: UIViewController {
             flowLayout.minimumLineSpacing = marginSides
             flowLayout.scrollDirection = .vertical
         }
+    }
+
+    // MARK: Button actions
+
+    @objc private func didSettingsButtonTapped(_ sender: Any) {
+        output?.settingsButtonDidTap()
     }
 }
 
