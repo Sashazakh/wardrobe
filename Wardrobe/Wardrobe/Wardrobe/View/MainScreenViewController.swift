@@ -240,4 +240,11 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         output?.itemDidTap(at: indexPath)
     }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            UIView.animate(withDuration: 0.4) {
+                cell.transform = CGAffineTransform.identity
+            }
+    }
 }

@@ -30,6 +30,7 @@
 		13A7462E258D0B4600643369 /* MainScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74628258D0B4600643369 /* MainScreenProtocols.swift */; };
 		13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74629258D0B4600643369 /* MainScreenInteractor.swift */; };
 		13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A7462A258D0B4600643369 /* MainScreenContainer.swift */; };
+		13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */; };
 		31E4EB4F258E6601001AC230 /* EditItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB49258E6601001AC230 /* EditItemPresenter.swift */; };
 		31E4EB50258E6601001AC230 /* EditItemRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4A258E6601001AC230 /* EditItemRouter.swift */; };
 		31E4EB51258E6601001AC230 /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4B258E6601001AC230 /* EditItemViewController.swift */; };
@@ -125,6 +126,7 @@
 		13A74628258D0B4600643369 /* MainScreenProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenProtocols.swift; sourceTree = "<group>"; };
 		13A74629258D0B4600643369 /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
 		13A7462A258D0B4600643369 /* MainScreenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenContainer.swift; sourceTree = "<group>"; };
+		13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		31E4EB49258E6601001AC230 /* EditItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemPresenter.swift; sourceTree = "<group>"; };
 		31E4EB4A258E6601001AC230 /* EditItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemRouter.swift; sourceTree = "<group>"; };
 		31E4EB4B258E6601001AC230 /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
@@ -322,6 +324,14 @@
 			path = Container;
 			sourceTree = "<group>";
 		};
+		13EF8DD6258F8DEB0081FBE6 /* SettingsCell */ = {
+			isa = PBXGroup;
+			children = (
+				13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */,
+			);
+			path = SettingsCell;
+			sourceTree = "<group>";
+		};
 		13F520C8258EA0CC00043148 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +418,7 @@
 		31E4EBB4258E6A37001AC230 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				13EF8DD6258F8DEB0081FBE6 /* SettingsCell */,
 				31E4EBB5258E6A45001AC230 /* SettingsPresenter.swift */,
 				31E4EBB6258E6A45001AC230 /* SettingsRouter.swift */,
 				31E4EBB7258E6A45001AC230 /* SettingsViewController.swift */,
@@ -767,6 +778,7 @@
 				31E4EB53258E6601001AC230 /* EditItemInteractor.swift in Sources */,
 				31E4EBC0258E6A45001AC230 /* SettingsContainer.swift in Sources */,
 				31E4EBA3258E69C6001AC230 /* HandleLookInteractor.swift in Sources */,
+				13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */,
 				13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */,
 				0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */,
 				31E4EBBF258E6A45001AC230 /* SettingsInteractor.swift in Sources */,

@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 final class SettingsPresenter {
 	weak var view: SettingsViewInput?
@@ -13,6 +14,9 @@ final class SettingsPresenter {
 }
 
 extension SettingsPresenter: SettingsViewOutput {
+    func didImageLoaded(image: UIImage) {
+
+    }
 }
 
 extension SettingsPresenter: SettingsInteractorOutput {
