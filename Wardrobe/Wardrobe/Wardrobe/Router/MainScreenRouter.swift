@@ -13,5 +13,6 @@ extension MainScreenRouter: MainScreenRouterInput {
     func showSettings() {
         let vc = SettingsContainer.assemble(with: SettingsContext()).viewController
         viewController?.navigationController?.pushViewController(vc, animated: true)
+
     }
 }

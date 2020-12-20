@@ -221,6 +221,7 @@ final class SettingsViewController: UIViewController {
             .right()
             .bottom()
     }
+
     // MARK: Button actions
 
     @objc func didBackButtonTapped(_ sender: Any) {
