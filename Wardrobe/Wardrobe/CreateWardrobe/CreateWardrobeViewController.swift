@@ -175,6 +175,7 @@ extension CreateWardrobeViewController {
 
         wardrobeDescriptionTextView.text = "Описание"
         wardrobeDescriptionTextView.textColor = UIColor.gray
+        wardrobeDescriptionTextView.autocorrectionType = .no
 
         wardrobeDescriptionTextView.textContainer.lineFragmentPadding = 10
 
