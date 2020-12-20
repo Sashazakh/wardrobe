@@ -79,6 +79,7 @@
 		31E4EBDC258E6CA4001AC230 /* AllClothesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EBD6258E6CA4001AC230 /* AllClothesProtocols.swift */; };
 		31E4EBDD258E6CA4001AC230 /* AllClothesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EBD7258E6CA4001AC230 /* AllClothesInteractor.swift */; };
 		31E4EBDE258E6CA4001AC230 /* AllClothesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EBD8258E6CA4001AC230 /* AllClothesContainer.swift */; };
+		31E4EC35258FF7BE001AC230 /* LookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EC34258FF7BE001AC230 /* LookTableViewCell.swift */; };
 		31E6E6C8258BFD3700591F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E6C7258BFD3700591F72 /* AppDelegate.swift */; };
 		31E6E6CA258BFD3700591F72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */; };
 		31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E6E6D0258BFD3900591F72 /* Assets.xcassets */; };
@@ -175,6 +176,7 @@
 		31E4EBD6258E6CA4001AC230 /* AllClothesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllClothesProtocols.swift; sourceTree = "<group>"; };
 		31E4EBD7258E6CA4001AC230 /* AllClothesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllClothesInteractor.swift; sourceTree = "<group>"; };
 		31E4EBD8258E6CA4001AC230 /* AllClothesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllClothesContainer.swift; sourceTree = "<group>"; };
+		31E4EC34258FF7BE001AC230 /* LookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookTableViewCell.swift; sourceTree = "<group>"; };
 		31E6E6C4258BFD3700591F72 /* Wardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E6E6C7258BFD3700591F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 		31E4EC1C258FE1F9001AC230 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				31E4EC33258FF79B001AC230 /* Cells */,
 				31E4EB7A258E679B001AC230 /* LookViewController.swift */,
 			);
 			path = View;
@@ -604,6 +607,14 @@
 				31E6E774258D2CE500591F72 /* RegisterContainer.swift */,
 			);
 			path = Container;
+			sourceTree = "<group>";
+		};
+		31E4EC33258FF79B001AC230 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EC34258FF7BE001AC230 /* LookTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		31E6E6BB258BFD3700591F72 = {
@@ -902,6 +913,7 @@
 				31E4EBAE258E6A19001AC230 /* WardrobeUsersRouter.swift in Sources */,
 				31E4EB51258E6601001AC230 /* EditItemViewController.swift in Sources */,
 				31E6E727258CE33C00591F72 /* LoginViewController.swift in Sources */,
+				31E4EC35258FF7BE001AC230 /* LookTableViewCell.swift in Sources */,
 				31E6E779258D2CE500591F72 /* RegisterInteractor.swift in Sources */,
 				31E4EBB2258E6A19001AC230 /* WardrobeUsersContainer.swift in Sources */,
 				0DE88524258E29CE00BFC856 /* CreateWardrobeInteractor.swift in Sources */,

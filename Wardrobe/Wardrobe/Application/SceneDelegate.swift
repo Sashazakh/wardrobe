@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
-        let vc = getInitalViewController(isAuthorized: true)
+        let vc = getInitalViewController(isAuthorized: false)
 
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
