@@ -261,22 +261,6 @@
 			path = CreateWardrobe;
 			sourceTree = "<group>";
 		};
-		136EFEC8258E5E970041B9D5 /* AddWardrobeCell */ = {
-			isa = PBXGroup;
-			children = (
-				136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */,
-			);
-			path = AddWardrobeCell;
-			sourceTree = "<group>";
-		};
-		139EF326258E3DA400A9435B /* WardrobeCell */ = {
-			isa = PBXGroup;
-			children = (
-				139EF327258E3DC900A9435B /* WardrobeCell.swift */,
-			);
-			path = WardrobeCell;
-			sourceTree = "<group>";
-		};
 		13A74624258D0B3000643369 /* Wardrobe */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,8 +293,6 @@
 		13A74635258D0B8A00643369 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				136EFEC8258E5E970041B9D5 /* AddWardrobeCell */,
-				139EF326258E3DA400A9435B /* WardrobeCell */,
 				13A74627258D0B4600643369 /* MainScreenViewController.swift */,
 			);
 			path = View;
@@ -340,6 +322,15 @@
 			path = Container;
 			sourceTree = "<group>";
 		};
+		13F520C8258EA0CC00043148 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */,
+				139EF327258E3DC900A9435B /* WardrobeCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		243842AD100A2AB562BEB8F4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,11 +357,11 @@
 			isa = PBXGroup;
 			children = (
 				31E4EB69258E673D001AC230 /* WardrobeDetailPresenter.swift */,
-				31E4EB6A258E673D001AC230 /* WardrobeDetailRouter.swift */,
 				31E4EB6B258E673D001AC230 /* WardrobeDetailViewController.swift */,
-				31E4EB6C258E673D001AC230 /* WardrobeDetailProtocols.swift */,
 				31E4EB6D258E673D001AC230 /* WardrobeDetailInteractor.swift */,
 				31E4EB6E258E673D001AC230 /* WardrobeDetailContainer.swift */,
+				31E4EB6C258E673D001AC230 /* WardrobeDetailProtocols.swift */,
+				31E4EB6A258E673D001AC230 /* WardrobeDetailRouter.swift */,
 			);
 			path = WardrobeDetail;
 			sourceTree = "<group>";
@@ -520,6 +511,7 @@
 		31E6E6EC258C03EA00591F72 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				13F520C8258EA0CC00043148 /* Cells */,
 				0D6E18A0258D02B5008273C8 /* Colors */,
 				0D6E189B258D0240008273C8 /* Extensions */,
 				31E6E760258CF45000591F72 /* Fonts */,

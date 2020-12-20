@@ -21,6 +21,10 @@ final class MainScreenPresenter {
 }
 
 extension MainScreenPresenter: MainScreenViewOutput {
+    func itemDidTap(at indexPath: IndexPath) {
+        router.showDetailWardrope(id: indexPath.row)
+    }
+
 }
 
 extension MainScreenPresenter: MainScreenInteractorOutput {

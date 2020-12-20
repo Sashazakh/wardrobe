@@ -13,6 +13,7 @@ final class MainScreenContainer {
         viewController.output = presenter
 		presenter.view = viewController
 		interactor.output = presenter
+        router.viewController = viewController
 
         return MainScreenContainer(view: viewController, router: router)
 	}

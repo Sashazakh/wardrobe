@@ -333,7 +333,7 @@ extension CreateWardrobeViewController: UIImagePickerControllerDelegate {
                 return
             }
             output?.didImageLoaded(image: img)
-            imageButton.imageEdgeInsets = UIEdgeInsets()//UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            imageButton.imageEdgeInsets = UIEdgeInsets()// UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             imageButton.setImage(img, for: .normal)
             imageButton.contentMode = .scaleToFill
             imageButton.clipsToBounds = true

@@ -12,6 +12,7 @@ protocol MainScreenViewInput: class {
 }
 
 protocol MainScreenViewOutput: class {
+    func itemDidTap(at indexPath: IndexPath)
 }
 
 protocol MainScreenInteractorInput: class {
@@ -21,4 +22,5 @@ protocol MainScreenInteractorOutput: class {
 }
 
 protocol MainScreenRouterInput: class {
+    func showDetailWardrope(id: Int)
 }
