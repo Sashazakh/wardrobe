@@ -79,67 +79,18 @@ final class LoginViewController: UIViewController {
     }
 
     private func setupLoginTextField() {
-        let textField = UITextField()
+        let textField = UITextField.customTextField(placeholder: "Логин")
 
         loginTextField = textField
         backgroundView.addSubview(loginTextField)
-
-        loginTextField.attributedPlaceholder = NSAttributedString(string: "Логин",
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-
-        loginTextField.clipsToBounds = true
-        loginTextField.layer.cornerRadius = 10
-        loginTextField.layer.borderWidth = 1
-        loginTextField.layer.borderColor = UIColor.white.cgColor
-        loginTextField.backgroundColor = UIColor.white
-        loginTextField.font = UIFont(name: "DMSans-Regular", size: 15)
-        loginTextField.textColor = GlobalColors.darkColor
-
-        loginTextField.leftView = UIView(frame: CGRect(x: .zero,
-                                                      y: .zero,
-                                                      width: 10,
-                                                      height: .zero))
-        loginTextField.leftViewMode = .always
-        loginTextField.rightView = UIView(frame: CGRect(x: .zero,
-                                                       y: .zero,
-                                                       width: 10,
-                                                       height: .zero))
-        loginTextField.rightViewMode = .unlessEditing
-
-        loginTextField.clearButtonMode = .whileEditing
-        loginTextField.autocorrectionType = .no
     }
 
     private func setupPasswordTextField() {
-        let textField = UITextField()
+        let textField = UITextField.customTextField(placeholder: "Пароль")
 
         passwordTextField = textField
         backgroundView.addSubview(passwordTextField)
 
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Пароль",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-
-        passwordTextField.clipsToBounds = true
-        passwordTextField.layer.cornerRadius = 10
-        passwordTextField.layer.borderWidth = 1
-        passwordTextField.layer.borderColor = UIColor.white.cgColor
-        passwordTextField.backgroundColor = UIColor.white
-        passwordTextField.font = UIFont(name: "DMSans-Regular", size: 15)
-        passwordTextField.textColor = GlobalColors.darkColor
-
-        passwordTextField.leftView = UIView(frame: CGRect(x: .zero,
-                                                      y: .zero,
-                                                      width: 10,
-                                                      height: .zero))
-        passwordTextField.leftViewMode = .always
-        passwordTextField.rightView = UIView(frame: CGRect(x: .zero,
-                                                       y: .zero,
-                                                       width: 10,
-                                                       height: .zero))
-        passwordTextField.rightViewMode = .unlessEditing
-
-        passwordTextField.clearButtonMode = .whileEditing
-        passwordTextField.autocorrectionType = .no
         passwordTextField.isSecureTextEntry = true
     }
 
@@ -156,6 +107,8 @@ final class LoginViewController: UIViewController {
         loginButton.titleLabel?.font = UIFont(name: "DMSans-Bold", size: 17)
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.setTitle("Войти", for: .normal)
+
+        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
 
     private func setupAccountQuestionLabel() {
@@ -265,6 +218,11 @@ final class LoginViewController: UIViewController {
     @objc
     private func didTapRegisterLabel() {
         output?.didTapRegisterLabel()
+    }
+
+    @objc
+    private func didTapLoginButton() {
+        output?.didTapLoginButton()
     }
 }
 

@@ -111,132 +111,34 @@ final class RegisterViewController: UIViewController {
     }
 
     private func setupLoginTextField() {
-        let textField = UITextField()
+        let textField = UITextField.customTextField(placeholder: "Логин (обязательно)")
 
         loginTextField = textField
         backgroundView.addSubview(loginTextField)
-
-        loginTextField.attributedPlaceholder = NSAttributedString(string: "Логин (обязательно)",
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-
-        loginTextField.clipsToBounds = true
-        loginTextField.layer.cornerRadius = 10
-        loginTextField.layer.borderWidth = 1
-        loginTextField.layer.borderColor = UIColor.white.cgColor
-        loginTextField.backgroundColor = UIColor.white
-        loginTextField.font = UIFont(name: "DMSans-Regular", size: 15)
-        loginTextField.textColor = GlobalColors.darkColor
-
-        loginTextField.leftView = UIView(frame: CGRect(x: .zero,
-                                                      y: .zero,
-                                                      width: 10,
-                                                      height: .zero))
-        loginTextField.leftViewMode = .always
-        loginTextField.rightView = UIView(frame: CGRect(x: .zero,
-                                                       y: .zero,
-                                                       width: 10,
-                                                       height: .zero))
-        loginTextField.rightViewMode = .unlessEditing
-
-        loginTextField.clearButtonMode = .whileEditing
-        loginTextField.autocorrectionType = .no
     }
 
     private func setupFioTextField() {
-        let textField = UITextField()
+        let textField = UITextField.customTextField(placeholder: "ФИО (обязательно)")
 
         fioTextField = textField
         backgroundView.addSubview(fioTextField)
-
-        fioTextField.attributedPlaceholder = NSAttributedString(string: "ФИО (обязательно)",
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-
-        fioTextField.clipsToBounds = true
-        fioTextField.layer.cornerRadius = 10
-        fioTextField.layer.borderWidth = 1
-        fioTextField.layer.borderColor = UIColor.white.cgColor
-        fioTextField.backgroundColor = UIColor.white
-        fioTextField.font = UIFont(name: "DMSans-Regular", size: 15)
-        fioTextField.textColor = GlobalColors.darkColor
-
-        fioTextField.leftView = UIView(frame: CGRect(x: .zero,
-                                                      y: .zero,
-                                                      width: 10,
-                                                      height: .zero))
-        fioTextField.leftViewMode = .always
-        fioTextField.rightView = UIView(frame: CGRect(x: .zero,
-                                                       y: .zero,
-                                                       width: 10,
-                                                       height: .zero))
-        fioTextField.rightViewMode = .unlessEditing
-
-        fioTextField.clearButtonMode = .whileEditing
-        fioTextField.autocorrectionType = .no
     }
 
     private func setupPasswordTextField() {
-        let textField = UITextField()
+        let textField = UITextField.customTextField(placeholder: "Пароль (обязательно)")
 
         passwordTextField = textField
         backgroundView.addSubview(passwordTextField)
 
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Пароль (обязательно)",
-                                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-
-        passwordTextField.clipsToBounds = true
-        passwordTextField.layer.cornerRadius = 10
-        passwordTextField.layer.borderWidth = 1
-        passwordTextField.layer.borderColor = UIColor.white.cgColor
-        passwordTextField.backgroundColor = UIColor.white
-        passwordTextField.font = UIFont(name: "DMSans-Regular", size: 15)
-        passwordTextField.textColor = GlobalColors.darkColor
-
-        passwordTextField.leftView = UIView(frame: CGRect(x: .zero,
-                                                      y: .zero,
-                                                      width: 10,
-                                                      height: .zero))
-        passwordTextField.leftViewMode = .always
-        passwordTextField.rightView = UIView(frame: CGRect(x: .zero,
-                                                       y: .zero,
-                                                       width: 10,
-                                                       height: .zero))
-        passwordTextField.rightViewMode = .unlessEditing
-
-        passwordTextField.clearButtonMode = .whileEditing
-        passwordTextField.autocorrectionType = .no
         passwordTextField.isSecureTextEntry = true
     }
 
     private func setupRepeatPasswordTextField() {
-        let textField = UITextField()
+        let textField = UITextField.customTextField(placeholder: "Повторите пароль (обязательно)")
 
         repeatPasswordTextField = textField
         backgroundView.addSubview(repeatPasswordTextField)
 
-        repeatPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Повторите пароль (обязательно)",
-                                                                attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-
-        repeatPasswordTextField.clipsToBounds = true
-        repeatPasswordTextField.layer.cornerRadius = 10
-        repeatPasswordTextField.layer.borderWidth = 1
-        repeatPasswordTextField.layer.borderColor = UIColor.white.cgColor
-        repeatPasswordTextField.backgroundColor = UIColor.white
-        repeatPasswordTextField.font = UIFont(name: "DMSans-Regular", size: 15)
-        repeatPasswordTextField.textColor = GlobalColors.darkColor
-
-        repeatPasswordTextField.leftView = UIView(frame: CGRect(x: .zero,
-                                                      y: .zero,
-                                                      width: 10,
-                                                      height: .zero))
-        repeatPasswordTextField.leftViewMode = .always
-        repeatPasswordTextField.rightView = UIView(frame: CGRect(x: .zero,
-                                                       y: .zero,
-                                                       width: 10,
-                                                       height: .zero))
-        repeatPasswordTextField.rightViewMode = .unlessEditing
-
-        repeatPasswordTextField.clearButtonMode = .whileEditing
-        repeatPasswordTextField.autocorrectionType = .no
         repeatPasswordTextField.isSecureTextEntry = true
     }
 
@@ -312,6 +214,8 @@ final class RegisterViewController: UIViewController {
         registerButton.titleLabel?.font = UIFont(name: "DMSans-Bold", size: 17)
         registerButton.setTitleColor(.white, for: .normal)
         registerButton.setTitle("Зарегистироваться", for: .normal)
+
+        registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
     }
 
     private func setupRegisteredQuestionLabel() {
@@ -479,6 +383,11 @@ final class RegisterViewController: UIViewController {
     @objc
     private func didTapCheckBox() {
 
+    }
+
+    @objc
+    private func didTapRegisterButton() {
+        output?.didTapRegisterButton()
     }
 
     @objc

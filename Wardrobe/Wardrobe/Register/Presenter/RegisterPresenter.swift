@@ -21,6 +21,10 @@ extension RegisterPresenter: RegisterViewOutput {
         view?.showPickPhotoAlert()
     }
 
+    func didTapRegisterButton() {
+
+    }
+
     func userDidSetImage(imageData: Data?) {
         guard let data = imageData else {
             return

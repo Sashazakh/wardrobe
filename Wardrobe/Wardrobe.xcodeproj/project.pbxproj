@@ -379,12 +379,12 @@
 		31E4EB77258E678C001AC230 /* Look */ = {
 			isa = PBXGroup;
 			children = (
-				31E4EB78258E679B001AC230 /* LookPresenter.swift */,
-				31E4EB79258E679B001AC230 /* LookRouter.swift */,
-				31E4EB7A258E679B001AC230 /* LookViewController.swift */,
-				31E4EB7B258E679B001AC230 /* LookProtocols.swift */,
-				31E4EB7C258E679B001AC230 /* LookInteractor.swift */,
-				31E4EB7D258E679B001AC230 /* LookContainer.swift */,
+				31E4EC1E258FE218001AC230 /* Interactor */,
+				31E4EC1D258FE20E001AC230 /* Presenter */,
+				31E4EC1C258FE1F9001AC230 /* View */,
+				31E4EC1B258FE1F1001AC230 /* Protocols */,
+				31E4EC1A258FE1E8001AC230 /* Router */,
+				31E4EC19258FE1D8001AC230 /* Container */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -455,6 +455,150 @@
 			path = AllClothes;
 			sourceTree = "<group>";
 		};
+		31E4EC19258FE1D8001AC230 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB7D258E679B001AC230 /* LookContainer.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		31E4EC1A258FE1E8001AC230 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB79258E679B001AC230 /* LookRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		31E4EC1B258FE1F1001AC230 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB7B258E679B001AC230 /* LookProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		31E4EC1C258FE1F9001AC230 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB7A258E679B001AC230 /* LookViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31E4EC1D258FE20E001AC230 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB78258E679B001AC230 /* LookPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		31E4EC1E258FE218001AC230 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB7C258E679B001AC230 /* LookInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		31E4EC1F258FE256001AC230 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E720258CE33C00591F72 /* LoginRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		31E4EC20258FE25E001AC230 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E71F258CE33C00591F72 /* LoginPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		31E4EC21258FE265001AC230 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E722258CE33C00591F72 /* LoginProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		31E4EC22258FE26D001AC230 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E723258CE33C00591F72 /* LoginInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		31E4EC23258FE287001AC230 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E721258CE33C00591F72 /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31E4EC24258FE293001AC230 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E724258CE33C00591F72 /* LoginContainer.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		31E4EC25258FE2B3001AC230 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E76F258D2CE500591F72 /* RegisterPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		31E4EC26258FE2BE001AC230 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E770258D2CE500591F72 /* RegisterRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		31E4EC27258FE2C5001AC230 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E773258D2CE500591F72 /* RegisterInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		31E4EC28258FE30A001AC230 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E771258D2CE500591F72 /* RegisterViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31E4EC29258FE311001AC230 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E772258D2CE500591F72 /* RegisterProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		31E4EC2A258FE31B001AC230 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				31E6E774258D2CE500591F72 /* RegisterContainer.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
 		31E6E6BB258BFD3700591F72 = {
 			isa = PBXGroup;
 			children = (
@@ -498,12 +642,12 @@
 		31E6E6DE258BFE8C00591F72 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				31E6E76F258D2CE500591F72 /* RegisterPresenter.swift */,
-				31E6E770258D2CE500591F72 /* RegisterRouter.swift */,
-				31E6E771258D2CE500591F72 /* RegisterViewController.swift */,
-				31E6E772258D2CE500591F72 /* RegisterProtocols.swift */,
-				31E6E773258D2CE500591F72 /* RegisterInteractor.swift */,
-				31E6E774258D2CE500591F72 /* RegisterContainer.swift */,
+				31E4EC2A258FE31B001AC230 /* Container */,
+				31E4EC29258FE311001AC230 /* Protocols */,
+				31E4EC28258FE30A001AC230 /* View */,
+				31E4EC27258FE2C5001AC230 /* Interactor */,
+				31E4EC26258FE2BE001AC230 /* Router */,
+				31E4EC25258FE2B3001AC230 /* Presenter */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -542,12 +686,12 @@
 		31E6E71E258CE32900591F72 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				31E6E71F258CE33C00591F72 /* LoginPresenter.swift */,
-				31E6E720258CE33C00591F72 /* LoginRouter.swift */,
-				31E6E721258CE33C00591F72 /* LoginViewController.swift */,
-				31E6E722258CE33C00591F72 /* LoginProtocols.swift */,
-				31E6E723258CE33C00591F72 /* LoginInteractor.swift */,
-				31E6E724258CE33C00591F72 /* LoginContainer.swift */,
+				31E4EC24258FE293001AC230 /* Container */,
+				31E4EC23258FE287001AC230 /* View */,
+				31E4EC22258FE26D001AC230 /* Interactor */,
+				31E4EC21258FE265001AC230 /* Protocols */,
+				31E4EC20258FE25E001AC230 /* Presenter */,
+				31E4EC1F258FE256001AC230 /* Router */,
 			);
 			path = Login;
 			sourceTree = "<group>";
