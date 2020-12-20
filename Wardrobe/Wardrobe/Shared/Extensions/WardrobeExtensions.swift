@@ -1,15 +1,12 @@
 import UIKit
 import Foundation
 
-
 // MARK: UITableViewCell
 extension UITableViewCell {
     var reuseIdentifier: String {
         return String(describing: Self.self)
     }
 }
-
-
 
 // MARK: UITextField
 extension UITextField {
@@ -58,10 +55,9 @@ extension UIView {
     }
 }
 
-
 // MARK: UIImage
 extension UIImage {
-    
+
     // MARK: Make image opacity
     func alpha(_ value: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)

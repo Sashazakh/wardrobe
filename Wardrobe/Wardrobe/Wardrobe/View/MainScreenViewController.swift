@@ -23,17 +23,10 @@ final class MainScreenViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupHeaderViewLayout()
-        setupTitleLabelLayout()
-        setupSettingsButtonLayout()
-        setupAvatarViewLayout()
-        setupNameLabelLayout()
-        setupSurnameLayout()
-        setupCollectionLayout()
-        setupFlowLayout()
+
+        setupViewsLayout()
     }
 
-    // MARK: setup views
     private func setupViews() {
         setupMainView()
         setupHeaderView()
@@ -44,6 +37,18 @@ final class MainScreenViewController: UIViewController {
         setupSurnameLabel()
         setupCollectionView()
     }
+
+    private func setupViewsLayout() {
+        setupHeaderViewLayout()
+        setupTitleLabelLayout()
+        setupSettingsButtonLayout()
+        setupAvatarViewLayout()
+        setupNameLabelLayout()
+        setupSurnameLayout()
+        setupCollectionLayout()
+        setupFlowLayout()
+    }
+    // MARK: setup views
 
     private func setupMainView() {
         view.backgroundColor = GlobalColors.backgroundColor
