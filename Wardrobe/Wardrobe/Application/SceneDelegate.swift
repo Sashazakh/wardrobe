@@ -12,11 +12,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
+        let vc = getInitalViewController(isAuthorized: true)
 
-        let navigationVC = UINavigationController(rootViewController: MainScreenContainer.assemble(with: MainScreenContext()).viewController)
-
-        navigationVC.navigationBar.isHidden = true
-        window?.rootViewController = navigationVC
+        window?.rootViewController = vc
         window?.makeKeyAndVisible()
     }
 
@@ -50,12 +48,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 extension SceneDelegate {
-    func getInitialViewController() -> UIViewController {
-        let loginViewController = LoginContainer.assemble(with: LoginContext()).viewController
-        let navigationVC = UINavigationController(rootViewController: loginViewController)
+    func getInitalViewController(isAuthorized: Bool) -> UIViewController {
+        if isAuthorized {
+            let tabBarVC = MainTabBar()
 
-        navigationVC.navigationBar.isHidden = true
+            tabBarVC.modalPresentationStyle = .fullScreen
 
-        return navigationVC
+            return tabBarVC
+        } else {
+            let loginViewController = LoginContainer.assemble(with: LoginContext()).viewController
+            let navigationVC = UINavigationController(rootViewController: loginViewController)
+
+            navigationVC.navigationBar.isHidden = true
+
+            return navigationVC
+        }
     }
 }
