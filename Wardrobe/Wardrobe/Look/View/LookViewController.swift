@@ -195,7 +195,7 @@ extension LookViewController: LookViewInput {
 
 extension LookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return tableView.bounds.height / 3
     }
 }
 
@@ -208,6 +208,10 @@ extension LookViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "LookTableViewCell", for: indexPath) as? LookTableViewCell else {
             return UITableViewCell()
         }
+
+        cell.selectionStyle = .none
+        cell.clipsToBounds = false
+        cell.contentView.clipsToBounds = false
 
         return cell
     }
