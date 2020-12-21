@@ -118,14 +118,14 @@ final class LookViewController: UIViewController {
         lookTableView = tableView
         view.addSubview(tableView)
 
-        tableView.register(LookTableViewCell.self, forCellReuseIdentifier: "LookTableViewCell")
+        lookTableView.register(LookTableViewCell.self, forCellReuseIdentifier: "LookTableViewCell")
 
-        tableView.delegate = self
-        tableView.dataSource = self
+        lookTableView.delegate = self
+        lookTableView.dataSource = self
 
-        tableView.showsVerticalScrollIndicator = false
-        tableView.showsHorizontalScrollIndicator = false
-        tableView.separatorStyle = .none
+        lookTableView.showsVerticalScrollIndicator = false
+        lookTableView.showsHorizontalScrollIndicator = false
+        lookTableView.separatorStyle = .none
     }
 
     private func layoutBackgroundView() {
@@ -177,6 +177,26 @@ final class LookViewController: UIViewController {
             .hCenter()
             .width(100%)
             .bottom(10%)
+
+        let gradientLayerUp = CAGradientLayer()
+
+        gradientLayerUp.frame = CGRect(x: .zero,
+                                     y: lookTableView.frame.minY,
+                                     width: lookTableView.bounds.width,
+                                     height: 7)
+        gradientLayerUp.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor,
+                                  UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
+        view.layer.addSublayer(gradientLayerUp)
+
+        let gradientLayerDown = CAGradientLayer()
+
+        gradientLayerDown.frame = CGRect(x: .zero,
+                                     y: lookTableView.frame.maxY - 7,
+                                     width: lookTableView.bounds.width,
+                                     height: 7)
+        gradientLayerDown.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
+                                    UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
+        view.layer.addSublayer(gradientLayerDown)
     }
 
     @objc
@@ -210,8 +230,6 @@ extension LookViewController: UITableViewDataSource {
         }
 
         cell.selectionStyle = .none
-        cell.clipsToBounds = false
-        cell.contentView.clipsToBounds = false
 
         return cell
     }
