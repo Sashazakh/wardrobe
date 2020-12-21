@@ -159,6 +159,7 @@ final class SettingsViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         tableView.isScrollEnabled = false
+        tableView.tableFooterView = UIView(frame: .zero)
         view.addSubview(tableView)
     }
 

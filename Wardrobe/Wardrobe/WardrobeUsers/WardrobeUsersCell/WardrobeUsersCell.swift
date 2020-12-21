@@ -42,6 +42,7 @@ class WardrobeUsersCell: UICollectionViewCell {
 
     private func setupMainView() {
         contentView.backgroundColor = GlobalColors.backgroundColor
+        contentView.layer.masksToBounds = true
     }
 
     private func setupOuterView() {
@@ -49,8 +50,6 @@ class WardrobeUsersCell: UICollectionViewCell {
         outerView = out
         outerView.dropShadow()
         outerView.clipsToBounds = false
-        outerView.layer.borderWidth = 4
-        outerView.layer.borderColor = GlobalColors.backgroundColor.cgColor
         contentView.addSubview(outerView)
     }
 
@@ -62,14 +61,16 @@ class WardrobeUsersCell: UICollectionViewCell {
         imageView.contentMode = .scaleToFill
         imageView.dropShadow()
         imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 4
+        imageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
         outerView.addSubview(imageView)
     }
 
     private func setupNameLabel() {
         let name = UILabel()
         nameLabel = name
-        nameLabel.numberOfLines = 2
-        nameLabel.text = "Морж \nМоржов Моржович"
+        nameLabel.numberOfLines = 0
+        nameLabel.text = "Морж \nМоржов"
         nameLabel.textColor = GlobalColors.darkColor
         nameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
         nameLabel.adjustsFontSizeToFitWidth = true
@@ -83,24 +84,23 @@ class WardrobeUsersCell: UICollectionViewCell {
     // MARK: Setup layout
 
     private func setupImageViewLayout() {
+        let imgRadius = contentView.frame.height * 0.31
         outerView.pin
-            .top()
-            .right()
-            .left()
-            .height(66%)
+            .top(5%)
+            .hCenter()
+            .height(imgRadius * 2)
+            .width(imgRadius * 2)
 
-        imageView.pin
-            .center()
-            .height(outerView.frame.height)
-            .width(outerView.frame.width)
-        outerView.layer.cornerRadius = outerView.frame.height / 2
+        imageView.pin.all()
         imageView.layer.cornerRadius = outerView.frame.height / 2
     }
 
     private func setupNameLabelLayout() {
         nameLabel.pin
-            .below(of: outerView, aligned: .center)
-            .marginTop(7%)
-            .sizeToFit()
+            .below(of: outerView)
+            .marginTop(4%)
+            .right()
+            .left()
+            .height(20%)
     }
 }

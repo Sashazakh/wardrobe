@@ -64,6 +64,11 @@ final class WardrobeUsersViewController: UIViewController {
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = GlobalColors.backgroundColor
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.1
+        titleLabel.numberOfLines = 0
+        titleLabel.sizeToFit()
+        titleLabel.textAlignment = .center
         headerView.addSubview(titleLabel)
     }
 
@@ -71,6 +76,7 @@ final class WardrobeUsersViewController: UIViewController {
         let btn = UIButton()
         backButton = btn
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
@@ -114,15 +120,15 @@ final class WardrobeUsersViewController: UIViewController {
     private func setupTitleLableLayout() {
         titleLabel.pin
             .hCenter()
-            .top(38%)
-            .sizeToFit()
+            .vCenter()
+            .height(52.3%)
     }
 
     private func setupBackButtonLayout() {
         backButton.pin
+            .vCenter(-titleLabel.frame.height / 4)
             .height(titleLabel.frame.height * 0.265)
             .width(5%)
-            .before(of: titleLabel, aligned: .top)
             .left(3%)
     }
 
@@ -136,11 +142,12 @@ final class WardrobeUsersViewController: UIViewController {
 
     private func setupEditButtonLayout() {
         editButton.pin
-                    .after(of: titleLabel, aligned: .top)
-                    .marginLeft(12%)
-                    .width(titleLabel.frame.height * 0.344)
-                    .height(titleLabel.frame.height * 0.344)
+            .vCenter(-(titleLabel.frame.height / 4))
+            .right(4.25%)
+            .width(titleLabel.frame.height * 0.344)
+            .height(titleLabel.frame.height * 0.344)
     }
+
     // MARK: Button actions
 
     @objc func didBackButtonTapped(_ sender: Any) {
@@ -164,8 +171,8 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
     -> CGSize {
-        let cellWidth = screenBounds.width * 0.32
-        let cellHeight = screenBounds.height * 0.2216
+        let cellWidth = screenBounds.width * 0.314
+        let cellHeight = screenBounds.height * 0.2158
         return CGSize(width: cellWidth, height: cellHeight)
     }
 

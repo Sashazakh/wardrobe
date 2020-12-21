@@ -58,8 +58,8 @@ final class MainScreenViewController: UIViewController {
         let view = UIView()
         headerView = view
         headerView.backgroundColor = GlobalColors.mainBlueScreen
-        headerView.dropShadow()
-        headerView.roundLowerCorners(40)
+//        headerView.dropShadow()
+//        headerView.roundLowerCorners(40)
         self.view.addSubview(headerView)
     }
 
@@ -188,7 +188,7 @@ final class MainScreenViewController: UIViewController {
 
     private func setupCollectionLayout() {
         collectionView.pin
-            .top(41.871%)
+            .below(of: [nameLabel, surnameLabel])
             .right()
             .left()
             .bottom()
