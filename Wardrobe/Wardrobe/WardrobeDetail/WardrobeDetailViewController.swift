@@ -53,8 +53,8 @@ final class WardrobeDetailViewController: UIViewController {
         let viewHeader = UIView()
         headerView = viewHeader
         headerView.backgroundColor = GlobalColors.mainBlueScreen
-        headerView.dropShadow()
-        headerView.roundLowerCorners(40)
+//        headerView.dropShadow()
+//        headerView.roundLowerCorners(40)
         view.addSubview(headerView)
     }
 
@@ -66,12 +66,19 @@ final class WardrobeDetailViewController: UIViewController {
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = GlobalColors.backgroundColor
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.1
+        titleLabel.numberOfLines = 0
+        titleLabel.sizeToFit()
+        titleLabel.textAlignment = .center
         headerView.addSubview(titleLabel)
     }
 
     private func setupBackButton() {
         let btn = UIButton()
         backButton = btn
+        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
+        backButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
@@ -83,6 +90,8 @@ final class WardrobeDetailViewController: UIViewController {
     private func setupPersonButton() {
         let btn = UIButton()
         personButton = btn
+        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
+        backButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         personButton.setImage(UIImage(systemName: "person.3.fill"), for: .normal)
         personButton.tintColor = GlobalColors.backgroundColor
         personButton.contentVerticalAlignment = .fill
@@ -109,35 +118,36 @@ final class WardrobeDetailViewController: UIViewController {
             .top()
             .right()
             .left()
-            .height(23.275%)
+            .height(18%)
     }
 
     private func setupTitleLableLayout() {
         titleLabel.pin
             .hCenter()
             .top(38%)
-            .sizeToFit()
+            .height(50%)
     }
 
     private func setupBackButtonLayout() {
         backButton.pin
-            .height(titleLabel.frame.height * 0.4)
-            .width(5%)
-            .before(of: titleLabel, aligned: .top)
+            .height(18.6%)
+            .width(4%)
+            .vCenter(titleLabel.frame.height * 0.15)
             .left(3%)
     }
 
     private func setupPersonButtonLayout() {
+        personButton.sizeToFit()
         personButton.pin
-            .after(of: titleLabel, aligned: .top)
-            .marginLeft(18.33%)
-            .height(titleLabel.frame.height * 0.4)
-            .width(titleLabel.frame.height * 0.45)
+            .vCenter(titleLabel.frame.height * 0.15)
+            .right(8.5%)
+            .height(28)
+            .width(31)
     }
 
     private func setupCollectionLayout() {
         collectionView.pin
-            .top(27.83%)
+            .below(of: headerView)
             .right()
             .left()
             .bottom()
@@ -156,7 +166,7 @@ final class WardrobeDetailViewController: UIViewController {
     // MARK: Button actions
 
     @objc func didPersonButtonTabbed(_ sender: Any) {
-        // show all persons avaliabled to this wardrope
+        output?.personDidTap()
     }
 
     @objc func didBackButtonTapped(_ sender: Any) {
@@ -192,7 +202,8 @@ extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int)
     -> UIEdgeInsets {
         let marginSides = screenBounds.width * 0.053
-        return UIEdgeInsets(top: 5, left: marginSides, bottom: 5, right: marginSides)
+        let marginTop = screenBounds.height * 0.05
+        return UIEdgeInsets(top: marginTop, left: marginSides, bottom: 5, right: marginSides)
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

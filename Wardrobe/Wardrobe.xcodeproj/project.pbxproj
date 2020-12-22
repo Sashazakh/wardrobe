@@ -16,12 +16,15 @@
 		0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */; };
 		0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E18A1258D02C8008273C8 /* Colors.swift */; };
 		0D95F20F258FE15B00E26D25 /* WardrobeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95F20E258FE15B00E26D25 /* WardrobeExtensions.swift */; };
+		0D95F215258FED2A00E26D25 /* ItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95F214258FED2A00E26D25 /* ItemCollectionCell.swift */; };
 		0DE88520258E29CE00BFC856 /* CreateWardrobePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851A258E29CE00BFC856 /* CreateWardrobePresenter.swift */; };
 		0DE88521258E29CE00BFC856 /* CreateWardrobeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851B258E29CE00BFC856 /* CreateWardrobeRouter.swift */; };
 		0DE88522258E29CE00BFC856 /* CreateWardrobeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851C258E29CE00BFC856 /* CreateWardrobeViewController.swift */; };
 		0DE88523258E29CE00BFC856 /* CreateWardrobeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851D258E29CE00BFC856 /* CreateWardrobeProtocols.swift */; };
 		0DE88524258E29CE00BFC856 /* CreateWardrobeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851E258E29CE00BFC856 /* CreateWardrobeInteractor.swift */; };
 		0DE88525258E29CE00BFC856 /* CreateWardrobeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */; };
+		1306220F2591F7290019E704 /* AddUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1306220E2591F7290019E704 /* AddUserCell.swift */; };
+		135D7BE8258FE9210020DB1C /* WardrobeUsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */; };
 		136EFECA258E5EB60041B9D5 /* AddWardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */; };
 		139EF328258E3DC900A9435B /* WardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139EF327258E3DC900A9435B /* WardrobeCell.swift */; };
 		13A7462B258D0B4600643369 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74625258D0B4600643369 /* MainScreenPresenter.swift */; };
@@ -30,6 +33,7 @@
 		13A7462E258D0B4600643369 /* MainScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74628258D0B4600643369 /* MainScreenProtocols.swift */; };
 		13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74629258D0B4600643369 /* MainScreenInteractor.swift */; };
 		13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A7462A258D0B4600643369 /* MainScreenContainer.swift */; };
+		13C5594A259207EF00BA3A6A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C55949259207EF00BA3A6A /* Storyboard.storyboard */; };
 		13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */; };
 		31E4EB4F258E6601001AC230 /* EditItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB49258E6601001AC230 /* EditItemPresenter.swift */; };
 		31E4EB50258E6601001AC230 /* EditItemRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4A258E6601001AC230 /* EditItemRouter.swift */; };
@@ -120,12 +124,15 @@
 		0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenContainer.swift; sourceTree = "<group>"; };
 		0D6E18A1258D02C8008273C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0D95F20E258FE15B00E26D25 /* WardrobeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeExtensions.swift; sourceTree = "<group>"; };
+		0D95F214258FED2A00E26D25 /* ItemCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionCell.swift; sourceTree = "<group>"; };
 		0DE8851A258E29CE00BFC856 /* CreateWardrobePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobePresenter.swift; sourceTree = "<group>"; };
 		0DE8851B258E29CE00BFC856 /* CreateWardrobeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeRouter.swift; sourceTree = "<group>"; };
 		0DE8851C258E29CE00BFC856 /* CreateWardrobeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeViewController.swift; sourceTree = "<group>"; };
 		0DE8851D258E29CE00BFC856 /* CreateWardrobeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeProtocols.swift; sourceTree = "<group>"; };
 		0DE8851E258E29CE00BFC856 /* CreateWardrobeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeInteractor.swift; sourceTree = "<group>"; };
 		0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeContainer.swift; sourceTree = "<group>"; };
+		1306220E2591F7290019E704 /* AddUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserCell.swift; sourceTree = "<group>"; };
+		135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeUsersCell.swift; sourceTree = "<group>"; };
 		136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWardrobeCell.swift; sourceTree = "<group>"; };
 		139EF327258E3DC900A9435B /* WardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeCell.swift; sourceTree = "<group>"; };
 		13A74625258D0B4600643369 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
@@ -134,6 +141,7 @@
 		13A74628258D0B4600643369 /* MainScreenProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenProtocols.swift; sourceTree = "<group>"; };
 		13A74629258D0B4600643369 /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
 		13A7462A258D0B4600643369 /* MainScreenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenContainer.swift; sourceTree = "<group>"; };
+		13C55949259207EF00BA3A6A /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		31E4EB49258E6601001AC230 /* EditItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemPresenter.swift; sourceTree = "<group>"; };
 		31E4EB4A258E6601001AC230 /* EditItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemRouter.swift; sourceTree = "<group>"; };
@@ -286,6 +294,15 @@
 			path = CreateWardrobe;
 			sourceTree = "<group>";
 		};
+		135D7BE6258FE9080020DB1C /* WardrobeUsersCell */ = {
+			isa = PBXGroup;
+			children = (
+				135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */,
+				1306220E2591F7290019E704 /* AddUserCell.swift */,
+			);
+			path = WardrobeUsersCell;
+			sourceTree = "<group>";
+		};
 		13A74624258D0B3000643369 /* Wardrobe */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +377,7 @@
 			children = (
 				136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */,
 				139EF327258E3DC900A9435B /* WardrobeCell.swift */,
+				0D95F214258FED2A00E26D25 /* ItemCollectionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -468,12 +486,14 @@
 		31E4EBA6258E6A08001AC230 /* WardrobeUsers */ = {
 			isa = PBXGroup;
 			children = (
+				135D7BE6258FE9080020DB1C /* WardrobeUsersCell */,
 				31E4EBA7258E6A19001AC230 /* WardrobeUsersPresenter.swift */,
 				31E4EBA8258E6A19001AC230 /* WardrobeUsersRouter.swift */,
 				31E4EBA9258E6A19001AC230 /* WardrobeUsersViewController.swift */,
 				31E4EBAA258E6A19001AC230 /* WardrobeUsersProtocols.swift */,
 				31E4EBAB258E6A19001AC230 /* WardrobeUsersInteractor.swift */,
 				31E4EBAC258E6A19001AC230 /* WardrobeUsersContainer.swift */,
+				13C55949259207EF00BA3A6A /* Storyboard.storyboard */,
 			);
 			path = WardrobeUsers;
 			sourceTree = "<group>";
@@ -875,6 +895,7 @@
 				31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */,
 				31E6E764258CF47800591F72 /* DMSans-Medium.ttf in Resources */,
 				31E6E765258CF47800591F72 /* DMSans-Bold.ttf in Resources */,
+				13C5594A259207EF00BA3A6A /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,8 +978,10 @@
 				31E4EBAF258E6A19001AC230 /* WardrobeUsersViewController.swift in Sources */,
 				31E4EBDD258E6CA4001AC230 /* AllClothesInteractor.swift in Sources */,
 				31E6E729258CE33C00591F72 /* LoginInteractor.swift in Sources */,
+				1306220F2591F7290019E704 /* AddUserCell.swift in Sources */,
 				31E4EBB1258E6A19001AC230 /* WardrobeUsersInteractor.swift in Sources */,
 				31E6E777258D2CE500591F72 /* RegisterViewController.swift in Sources */,
+				0D95F215258FED2A00E26D25 /* ItemCollectionCell.swift in Sources */,
 				31E4EBAD258E6A19001AC230 /* WardrobeUsersPresenter.swift in Sources */,
 				31E4EB71258E673D001AC230 /* WardrobeDetailViewController.swift in Sources */,
 				31E6E775258D2CE500591F72 /* RegisterPresenter.swift in Sources */,
@@ -999,6 +1022,7 @@
 				0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */,
 				0DE88523258E29CE00BFC856 /* CreateWardrobeProtocols.swift in Sources */,
 				31E4EBCC258E6A59001AC230 /* InviteViewController.swift in Sources */,
+				135D7BE8258FE9210020DB1C /* WardrobeUsersCell.swift in Sources */,
 				0DE88522258E29CE00BFC856 /* CreateWardrobeViewController.swift in Sources */,
 				31E4EBAE258E6A19001AC230 /* WardrobeUsersRouter.swift in Sources */,
 				31E4EB51258E6601001AC230 /* EditItemViewController.swift in Sources */,
