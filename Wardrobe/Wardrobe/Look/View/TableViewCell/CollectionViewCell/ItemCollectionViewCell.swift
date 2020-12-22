@@ -47,6 +47,7 @@ final class LookCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(itemImageView)
 
         itemImageView.image = UIImage(named: "morz")
+        itemImageView.isUserInteractionEnabled = true
     }
 
     private func setupItemLabel() {

@@ -25,6 +25,10 @@ extension LookPresenter: LookViewOutput {
     func didTapBackToWardrobeButton() {
         router.showWardrobeScreen()
     }
+
+    func didTapAddItemsButton() {
+        router.showAllItemsScreen()
+    }
 }
 
 extension LookPresenter: LookInteractorOutput {
