@@ -75,8 +75,8 @@ final class SettingsViewController: UIViewController {
         let viewHeader = UIView()
         headerView = viewHeader
         headerView.backgroundColor = GlobalColors.mainBlueScreen
-        headerView.dropShadow()
-        headerView.roundLowerCorners(40)
+//        headerView.dropShadow()
+//        headerView.roundLowerCorners(40)
         view.addSubview(headerView)
     }
 
@@ -94,6 +94,8 @@ final class SettingsViewController: UIViewController {
     private func setupBackButton() {
         let btn = UIButton()
         backButton = btn
+        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
+        backButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill

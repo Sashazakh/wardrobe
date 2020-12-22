@@ -90,6 +90,8 @@ final class WardrobeDetailViewController: UIViewController {
     private func setupPersonButton() {
         let btn = UIButton()
         personButton = btn
+        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
+        backButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         personButton.setImage(UIImage(systemName: "person.3.fill"), for: .normal)
         personButton.tintColor = GlobalColors.backgroundColor
         personButton.contentVerticalAlignment = .fill
@@ -135,11 +137,12 @@ final class WardrobeDetailViewController: UIViewController {
     }
 
     private func setupPersonButtonLayout() {
+        personButton.sizeToFit()
         personButton.pin
             .vCenter(titleLabel.frame.height * 0.15)
             .right(8.5%)
-            .height(20%)
-            .width(8%)
+            .height(28)
+            .width(31)
     }
 
     private func setupCollectionLayout() {
@@ -199,7 +202,7 @@ extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int)
     -> UIEdgeInsets {
         let marginSides = screenBounds.width * 0.053
-        let marginTop = screenBounds.height * 0.08
+        let marginTop = screenBounds.height * 0.05
         return UIEdgeInsets(top: marginTop, left: marginSides, bottom: 5, right: marginSides)
     }
 

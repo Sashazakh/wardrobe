@@ -192,6 +192,26 @@ final class MainScreenViewController: UIViewController {
             .right()
             .left()
             .bottom()
+
+        let gradientLayerUp = CAGradientLayer()
+
+        gradientLayerUp.frame = CGRect(x: .zero,
+                                       y: collectionView.frame.minY,
+                                       width: collectionView.bounds.width,
+                                       height: 10)
+        gradientLayerUp.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor,
+                                          UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
+        view.layer.addSublayer(gradientLayerUp)
+
+        let gradientLayerDown = CAGradientLayer()
+
+        gradientLayerDown.frame = CGRect(x: .zero,
+                                         y: collectionView.frame.maxY - 10,
+                                         width: collectionView.bounds.width,
+                                         height: 10)
+        gradientLayerDown.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
+                                        UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
+        view.layer.addSublayer(gradientLayerDown)
     }
 
     private func setupFlowLayout() {

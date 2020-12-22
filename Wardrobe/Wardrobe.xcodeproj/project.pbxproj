@@ -22,6 +22,7 @@
 		0DE88523258E29CE00BFC856 /* CreateWardrobeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851D258E29CE00BFC856 /* CreateWardrobeProtocols.swift */; };
 		0DE88524258E29CE00BFC856 /* CreateWardrobeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851E258E29CE00BFC856 /* CreateWardrobeInteractor.swift */; };
 		0DE88525258E29CE00BFC856 /* CreateWardrobeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */; };
+		1306220F2591F7290019E704 /* AddUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1306220E2591F7290019E704 /* AddUserCell.swift */; };
 		135D7BE8258FE9210020DB1C /* WardrobeUsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */; };
 		136EFECA258E5EB60041B9D5 /* AddWardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */; };
 		139EF328258E3DC900A9435B /* WardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139EF327258E3DC900A9435B /* WardrobeCell.swift */; };
@@ -31,6 +32,7 @@
 		13A7462E258D0B4600643369 /* MainScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74628258D0B4600643369 /* MainScreenProtocols.swift */; };
 		13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74629258D0B4600643369 /* MainScreenInteractor.swift */; };
 		13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A7462A258D0B4600643369 /* MainScreenContainer.swift */; };
+		13C5594A259207EF00BA3A6A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C55949259207EF00BA3A6A /* Storyboard.storyboard */; };
 		13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */; };
 		31E4EB4F258E6601001AC230 /* EditItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB49258E6601001AC230 /* EditItemPresenter.swift */; };
 		31E4EB50258E6601001AC230 /* EditItemRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4A258E6601001AC230 /* EditItemRouter.swift */; };
@@ -119,6 +121,7 @@
 		0DE8851D258E29CE00BFC856 /* CreateWardrobeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeProtocols.swift; sourceTree = "<group>"; };
 		0DE8851E258E29CE00BFC856 /* CreateWardrobeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeInteractor.swift; sourceTree = "<group>"; };
 		0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeContainer.swift; sourceTree = "<group>"; };
+		1306220E2591F7290019E704 /* AddUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserCell.swift; sourceTree = "<group>"; };
 		135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeUsersCell.swift; sourceTree = "<group>"; };
 		136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWardrobeCell.swift; sourceTree = "<group>"; };
 		139EF327258E3DC900A9435B /* WardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeCell.swift; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		13A74628258D0B4600643369 /* MainScreenProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenProtocols.swift; sourceTree = "<group>"; };
 		13A74629258D0B4600643369 /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
 		13A7462A258D0B4600643369 /* MainScreenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenContainer.swift; sourceTree = "<group>"; };
+		13C55949259207EF00BA3A6A /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		31E4EB49258E6601001AC230 /* EditItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemPresenter.swift; sourceTree = "<group>"; };
 		31E4EB4A258E6601001AC230 /* EditItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemRouter.swift; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */,
+				1306220E2591F7290019E704 /* AddUserCell.swift */,
 			);
 			path = WardrobeUsersCell;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 				31E4EBAA258E6A19001AC230 /* WardrobeUsersProtocols.swift */,
 				31E4EBAB258E6A19001AC230 /* WardrobeUsersInteractor.swift */,
 				31E4EBAC258E6A19001AC230 /* WardrobeUsersContainer.swift */,
+				13C55949259207EF00BA3A6A /* Storyboard.storyboard */,
 			);
 			path = WardrobeUsers;
 			sourceTree = "<group>";
@@ -646,6 +652,7 @@
 				31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */,
 				31E6E764258CF47800591F72 /* DMSans-Medium.ttf in Resources */,
 				31E6E765258CF47800591F72 /* DMSans-Bold.ttf in Resources */,
+				13C5594A259207EF00BA3A6A /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +734,7 @@
 				31E4EBAF258E6A19001AC230 /* WardrobeUsersViewController.swift in Sources */,
 				31E4EBDD258E6CA4001AC230 /* AllClothesInteractor.swift in Sources */,
 				31E6E729258CE33C00591F72 /* LoginInteractor.swift in Sources */,
+				1306220F2591F7290019E704 /* AddUserCell.swift in Sources */,
 				31E4EBB1258E6A19001AC230 /* WardrobeUsersInteractor.swift in Sources */,
 				31E6E777258D2CE500591F72 /* RegisterViewController.swift in Sources */,
 				31E4EBAD258E6A19001AC230 /* WardrobeUsersPresenter.swift in Sources */,
