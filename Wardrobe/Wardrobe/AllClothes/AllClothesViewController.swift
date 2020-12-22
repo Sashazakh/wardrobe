@@ -151,7 +151,7 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return screenBounds.width * 0.37 * 0.9 * 2 * 1.45
+        return screenBounds.width * 0.37 * 0.9 * 2 * 1.3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
