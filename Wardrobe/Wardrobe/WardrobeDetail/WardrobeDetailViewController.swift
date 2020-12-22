@@ -211,6 +211,10 @@ extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        output?.didTapLook()
+        if indexPath.row == countOfCells - 1 {
+            output?.didTapCreateLookCell()
+        } else {
+            output?.didTapLook()
+        }
     }
 }

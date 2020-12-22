@@ -261,7 +261,7 @@ final class RegisterViewController: UIViewController {
         backgroundView.pin
             .top(.zero)
             .width(100%)
-            .height(Constants.screenHeight * 0.10 + 50 + 50 + 50 + 15 + 50 + 15 + 50 + 15 + 50 + 25 + 36 + 30)
+            .height(34%.of(Constants.screenHeight) + 15 + 15 + 50 + 15 + 50 + 25 + 36 + 30)
     }
 
     private func layoutWelcomeLabel() {
@@ -277,7 +277,7 @@ final class RegisterViewController: UIViewController {
             .top(welcomeLabel.frame.maxY + 50)
             .hCenter()
             .width(90%)
-            .height(50)
+            .height(6%.of(Constants.screenHeight))
     }
 
     private func layoutFioTextField() {
@@ -285,7 +285,7 @@ final class RegisterViewController: UIViewController {
             .top(loginTextField.frame.maxY + 15)
             .hCenter()
             .width(90%)
-            .height(50)
+            .height(6%.of(Constants.screenHeight))
     }
 
     private func layoutPasswordTextField() {
@@ -293,7 +293,7 @@ final class RegisterViewController: UIViewController {
             .top(fioTextField.frame.maxY + 15)
             .hCenter()
             .width(90%)
-            .height(50)
+            .height(6%.of(Constants.screenHeight))
     }
 
     private func layoutRepeatPasswordTextField() {
@@ -301,7 +301,7 @@ final class RegisterViewController: UIViewController {
             .top(passwordTextField.frame.maxY + 15)
             .hCenter()
             .width(90%)
-            .height(50)
+            .height(6%.of(Constants.screenHeight))
     }
 
     private func layoutAddPhotoButton() {
@@ -324,7 +324,8 @@ final class RegisterViewController: UIViewController {
 
     private func layoutCheckBoxImageView() {
         checkBoxImageView.pin
-            .sizeToFit()
+            .height(20)
+            .width(20)
 
         checkBoxImageView.pin
             .top(backgroundView.frame.maxY + 25)
@@ -333,7 +334,7 @@ final class RegisterViewController: UIViewController {
 
     private func layoutConditionsLabel() {
         conditionsLabel.pin
-            .height(50)
+            .height(40)
 
         conditionsLabel.pin
             .top(checkBoxImageView.frame.midY - conditionsLabel.bounds.height / 2)
@@ -346,7 +347,7 @@ final class RegisterViewController: UIViewController {
             .top(conditionsLabel.frame.maxY + 15)
             .width(90%)
             .hCenter()
-            .height(50)
+            .height(6%.of(Constants.screenHeight))
     }
 
     private func layoutRegisteredQuestionLabel() {

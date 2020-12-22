@@ -6,9 +6,7 @@ final class LookViewController: UIViewController {
 
     private weak var backgroundView: UIView!
 
-    private weak var lookNameUp: UILabel!
-
-    private weak var lookNameDown: UILabel!
+    private weak var lookName: UILabel!
 
     private weak var backToWardrobe: UIButton!
 
@@ -31,8 +29,7 @@ final class LookViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
         layoutBackgroundView()
-        layoutLookNameUp()
-        layoutLookNameDown()
+        layoutLookName()
         layoutBackToWardrobe()
         layoutEditLookButton()
         layoutLookTableView()
@@ -45,8 +42,7 @@ final class LookViewController: UIViewController {
 
     private func setupSubviews() {
         setupBackgroundView()
-        setupLookNameUp()
-        setupLookNameDown()
+        setupLookName()
         setupBackToWardrobe()
         setupEditLookButton()
         setupLookTableView()
@@ -62,28 +58,20 @@ final class LookViewController: UIViewController {
         backgroundView.backgroundColor = GlobalColors.mainBlueScreen
     }
 
-    private func setupLookNameUp() {
+    private func setupLookName() {
         let label = UILabel()
 
-        lookNameUp = label
-        backgroundView.addSubview(lookNameUp)
+        lookName = label
+        backgroundView.addSubview(lookName)
 
-        lookNameUp.font = UIFont(name: "DMSans-Bold", size: 25)
-        lookNameUp.textColor = .white
-        lookNameUp.textAlignment = .center
-        lookNameUp.text = "Набор"
-    }
+        lookName.font = UIFont(name: "DMSans-Bold", size: 25)
+        lookName.textColor = .white
+        lookName.textAlignment = .center
+        lookName.text = "Набор\n\"Гулянка\""
+        lookName.adjustsFontSizeToFitWidth = true
+        lookName.minimumScaleFactor = 0.1
+        lookName.numberOfLines = 0
 
-    private func setupLookNameDown() {
-        let label = UILabel()
-
-        lookNameDown = label
-        backgroundView.addSubview(lookNameDown)
-
-        lookNameDown.font = UIFont(name: "DMSans-Bold", size: 25)
-        lookNameDown.textColor = .white
-        lookNameDown.textAlignment = .center
-        lookNameDown.text = "\"Корпоратив\""
     }
 
     private func setupBackToWardrobe() {
@@ -162,20 +150,12 @@ final class LookViewController: UIViewController {
             .height(Constants.screenHeight * 0.07 + 30 + 5 + 30 + 15)
     }
 
-    private func layoutLookNameUp() {
-        lookNameUp.pin
-            .top(Constants.screenHeight * 0.07)
+    private func layoutLookName() {
+        lookName.pin
+            .top(40%)
             .hCenter()
             .width(50%)
-            .height(30)
-    }
-
-    private func layoutLookNameDown() {
-        lookNameDown.pin
-            .top(lookNameUp.frame.maxY + 5)
-            .hCenter()
-            .width(50%)
-            .height(30)
+            .height(50)
     }
 
     private func layoutBackToWardrobe() {
@@ -184,7 +164,7 @@ final class LookViewController: UIViewController {
             .width(20)
 
         backToWardrobe.pin
-            .top(backgroundView.bounds.height * 0.6 - backToWardrobe.bounds.height / 2)
+            .top(lookName.frame.midY - backToWardrobe.bounds.height / 2)
             .left(5%)
     }
 
@@ -194,7 +174,7 @@ final class LookViewController: UIViewController {
             .width(25)
 
         editLookButton.pin
-            .top(backgroundView.bounds.height * 0.6 - editLookButton.bounds.height / 2)
+            .top(lookName.frame.midY - editLookButton.bounds.height / 2)
             .right(5%)
     }
 

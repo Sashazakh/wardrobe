@@ -1,20 +1,18 @@
 import UIKit
 import PinLayout
 
-final class AllItemsViewController: UIViewController {
-    var output: AllItemsViewOutput?
+final class CreateLookViewController: UIViewController {
+    var output: CreateLookViewOutput?
 
     private weak var backgroundView: UIView!
 
     private weak var titleLabel: UILabel!
 
-    private weak var backToLookButton: UIButton!
+    private weak var backToWardrobeDetailButton: UIButton!
 
     private weak var confirmButton: UIButton!
 
     private weak var allItemsTableView: UITableView!
-
-    private var lookIsEditing: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +26,7 @@ final class AllItemsViewController: UIViewController {
 
         layoutBackgroundView()
         layoutTitleLabel()
-        layoutBackToLookButton()
+        layoutBackToWardrobeDetailButton()
         layoutConfirmButton()
         layoutLookTableView()
     }
@@ -40,7 +38,7 @@ final class AllItemsViewController: UIViewController {
     private func setupSubviews() {
         setupBackgroundView()
         setupTitleLabel()
-        setupBackToLookButton()
+        setupBackToWardrobeDetailButton()
         setupConfirmButton()
         setupLookTableView()
     }
@@ -63,25 +61,25 @@ final class AllItemsViewController: UIViewController {
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
-        titleLabel.text = "Мои предметы"
+        titleLabel.text = "Добавить набор"
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.1
         titleLabel.numberOfLines = 0
     }
 
-    private func setupBackToLookButton() {
+    private func setupBackToWardrobeDetailButton() {
         let button = UIButton()
 
-        backToLookButton = button
-        backgroundView.addSubview(backToLookButton)
+        backToWardrobeDetailButton = button
+        backgroundView.addSubview(backToWardrobeDetailButton)
 
-        backToLookButton.setImage(UIImage(systemName: "chevron.backward",
+        backToWardrobeDetailButton.setImage(UIImage(systemName: "chevron.backward",
                                         withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
                                         for: .normal)
-        backToLookButton.tintColor = GlobalColors.backgroundColor
-        backToLookButton.contentVerticalAlignment = .fill
-        backToLookButton.contentHorizontalAlignment = .fill
-        backToLookButton.addTarget(self, action: #selector(didTapBackToLookButton), for: .touchUpInside)
+        backToWardrobeDetailButton.tintColor = GlobalColors.backgroundColor
+        backToWardrobeDetailButton.contentVerticalAlignment = .fill
+        backToWardrobeDetailButton.contentHorizontalAlignment = .fill
+        backToWardrobeDetailButton.addTarget(self, action: #selector(didTapBackToWardrobeDetailButton), for: .touchUpInside)
     }
 
     private func setupConfirmButton() {
@@ -90,7 +88,7 @@ final class AllItemsViewController: UIViewController {
         confirmButton = button
         backgroundView.addSubview(confirmButton)
 
-        confirmButton.setImage(UIImage(systemName: "square.and.pencil",
+        confirmButton.setImage(UIImage(systemName: "checkmark",
                                         withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
                                         for: .normal)
         confirmButton.tintColor = GlobalColors.backgroundColor
@@ -131,17 +129,17 @@ final class AllItemsViewController: UIViewController {
         titleLabel.pin
             .top(50%)
             .hCenter()
-            .width(40%)
+            .width(50%)
             .height(30)
     }
 
-    private func layoutBackToLookButton() {
-        backToLookButton.pin
-            .height(25)
-            .width(20)
+    private func layoutBackToWardrobeDetailButton() {
+        backToWardrobeDetailButton.pin
+            .height(25) // 29
+            .width(20) // 5%
 
-        backToLookButton.pin
-            .top(backgroundView.bounds.height * 0.6 - backToLookButton.bounds.height / 2)
+        backToWardrobeDetailButton.pin
+            .top(backgroundView.bounds.height * 0.6 - backToWardrobeDetailButton.bounds.height / 2)
             .left(5%)
     }
 
@@ -184,8 +182,8 @@ final class AllItemsViewController: UIViewController {
     }
 
     @objc
-    private func didTapBackToLookButton() {
-        output?.didTapBackToLookButton()
+    private func didTapBackToWardrobeDetailButton() {
+        output?.didTapBackToWardrobeDetailButton()
     }
 
     @objc
@@ -194,32 +192,31 @@ final class AllItemsViewController: UIViewController {
     }
 }
 
-extension AllItemsViewController: AllItemsViewInput {
-    func showEditLayout() {
-        confirmButton.setImage(UIImage(systemName: "checkmark",
-                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
-                                        for: .normal)
-    }
+extension CreateLookViewController: CreateLookViewInput {
+    func showSetupLookNameAlert() {
+        let alert = UIAlertController(title: "Новый набор", message: "Введите название", preferredStyle: .alert)
 
-    func hideEditLayout() {
-        confirmButton.setImage(UIImage(systemName: "square.and.pencil",
-                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
-                                        for: .normal)
-    }
+        let create = UIAlertAction(title: "Создать", style: .default, handler: nil)
+        let cancel = UIAlertAction(title: "Отмена", style: .default, handler: nil)
 
-    func setLookIsEditing(isEditing: Bool) {
-        lookIsEditing = isEditing
-        allItemsTableView.reloadData()
+        alert.addAction(create)
+        alert.addAction(cancel)
+
+        alert.addTextField { (textField) in
+            textField.placeholder = "Название"
+        }
+
+        present(alert, animated: true, completion: nil)
     }
 }
 
-extension AllItemsViewController: UITableViewDelegate {
+extension CreateLookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return GlobalConstants.cellSize.height * 1.3
     }
 }
 
-extension AllItemsViewController: UITableViewDataSource {
+extension CreateLookViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -229,14 +226,13 @@ extension AllItemsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        cell.setIsEditing(isEditing: lookIsEditing)
         cell.selectionStyle = .none
 
         return cell
     }
 }
 
-extension AllItemsViewController {
+extension CreateLookViewController {
     private struct Constants {
         static let screenHeight: CGFloat = UIScreen.main.bounds.height
 
