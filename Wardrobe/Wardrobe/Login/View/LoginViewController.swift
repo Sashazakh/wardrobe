@@ -76,6 +76,9 @@ final class LoginViewController: UIViewController {
         welcomeLabel.textColor = .white
         welcomeLabel.textAlignment = .center
         welcomeLabel.text = Constants.WelcomeLabel.text
+        welcomeLabel.adjustsFontSizeToFitWidth = true
+        welcomeLabel.minimumScaleFactor = 0.1
+        welcomeLabel.numberOfLines = 0
     }
 
     private func setupLoginTextField() {

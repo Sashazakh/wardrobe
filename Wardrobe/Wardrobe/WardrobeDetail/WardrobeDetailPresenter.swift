@@ -20,6 +20,10 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
     func didTapLook() {
         router.showLookScreen()
     }
+
+    func didTapCreateLookCell() {
+        router.showCreateLookScreen()
+    }
 }
 
 extension WardrobeDetailPresenter: WardrobeDetailInteractorOutput {

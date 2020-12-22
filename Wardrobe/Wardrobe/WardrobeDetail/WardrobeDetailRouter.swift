@@ -18,4 +18,12 @@ extension WardrobeDetailRouter: WardrobeDetailRouterInput {
 
         viewController?.navigationController?.pushViewController(lookVC, animated: true)
     }
+
+    func showCreateLookScreen() {
+        let createLookVC = CreateLookContainer.assemble(with: CreateLookContext()).viewController
+
+        createLookVC.modalPresentationStyle = .fullScreen
+
+        viewController?.navigationController?.pushViewController(createLookVC, animated: true)
+    }
 }

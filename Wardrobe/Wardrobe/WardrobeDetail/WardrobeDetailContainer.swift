@@ -8,12 +8,12 @@ final class WardrobeDetailContainer {
         let router = WardrobeDetailRouter()
         let interactor = WardrobeDetailInteractor()
         let presenter = WardrobeDetailPresenter(router: router, interactor: interactor)
-	let viewController = WardrobeDetailViewController()
+        let viewController = WardrobeDetailViewController()
 
         viewController.output = presenter
-	presenter.view = viewController
-	interactor.output = presenter
-	router.viewController = viewController
+        presenter.view = viewController
+        interactor.output = presenter
+        router.viewController = viewController
 
         return WardrobeDetailContainer(view: viewController, router: router)
 	}
