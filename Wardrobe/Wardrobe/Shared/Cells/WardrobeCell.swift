@@ -51,7 +51,7 @@ class WardrobeCell: UICollectionViewCell {
     private func setupTitleLabel() {
         let label = UILabel()
         titleLable = label
-        titleLable.text = "Переговоры с боссом"
+        titleLable.text = "Тест"
         titleLable.textColor = GlobalColors.darkColor
         titleLable.font = UIFont(name: "DMSans-Bold", size: 15)
         titleLable.adjustsFontSizeToFitWidth = true

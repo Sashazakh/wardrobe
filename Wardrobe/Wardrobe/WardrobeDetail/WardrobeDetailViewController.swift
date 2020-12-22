@@ -61,7 +61,7 @@ final class WardrobeDetailViewController: UIViewController {
     private func setupTitleLabel() {
         let title = UILabel()
         titleLabel = title
-        titleLabel.text = "Гардероб" + "\n\"Работа\""
+        titleLabel.text = "Гардероб \n \"Работа\""
         titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
@@ -155,7 +155,7 @@ final class WardrobeDetailViewController: UIViewController {
 
     private func setupFlowLayout() {
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let marginSides = screenBounds.width * 0.069
+            let marginSides = screenBounds.width * 0.1
             let marginBottom = screenBounds.height * 0.041
             flowLayout.minimumInteritemSpacing = marginBottom
             flowLayout.minimumLineSpacing = marginSides
@@ -194,14 +194,12 @@ extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
     -> CGSize {
-        let cellWidth = screenBounds.width * 0.23
-        let cellHeight = screenBounds.height * 0.15
-        return CGSize(width: cellWidth, height: cellHeight)
+        return GlobalConstants.cellSize
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int)
     -> UIEdgeInsets {
-        let marginSides = screenBounds.width * 0.053
+        let marginSides = screenBounds.width * 0.1
         let marginTop = screenBounds.height * 0.05
         return UIEdgeInsets(top: marginTop, left: marginSides, bottom: 5, right: marginSides)
     }
