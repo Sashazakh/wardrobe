@@ -113,7 +113,7 @@ extension ItemCollectionCell {
         self.pin
 //            .left(10)
 //            .right(10)
-        //self.dropShadow()
+        // self.dropShadow()
     }
 
 }
@@ -126,7 +126,7 @@ extension ItemCollectionCell: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
         -> CGSize {
         let cellWidth = screenBounds.width * 0.32
-        let cellHeight = cellWidth * 1.072//self.bounds.height * 0.7//screenBounds.height * 0.2216
+        let cellHeight = cellWidth * 1.072// self.bounds.height * 0.7//screenBounds.height * 0.2216
         return CGSize(width: cellWidth, height: cellHeight)
     }
 

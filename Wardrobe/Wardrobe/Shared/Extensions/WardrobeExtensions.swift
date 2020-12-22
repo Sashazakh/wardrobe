@@ -1,7 +1,6 @@
 import UIKit
 import Foundation
 
-
 protocol ClassName {
     static func className() -> String
 }

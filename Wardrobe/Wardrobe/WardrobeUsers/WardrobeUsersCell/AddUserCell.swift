@@ -63,7 +63,7 @@ class AddUserCell: UICollectionViewCell {
     // MARK: Setup layout
 
     private func setupImageViewLayout() {
-        let imgRadius = contentView.frame.height * 0.31
+        let imgRadius = contentView.frame.height * 0.27
         outerView.pin
             .top(5%)
             .hCenter()
