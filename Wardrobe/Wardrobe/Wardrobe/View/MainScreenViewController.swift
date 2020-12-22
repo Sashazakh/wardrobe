@@ -133,6 +133,7 @@ final class MainScreenViewController: UIViewController {
                                 forCellWithReuseIdentifier: AddWardrobeCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.showsVerticalScrollIndicator = false
         view.addSubview(collectionView)
     }
 

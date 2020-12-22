@@ -28,6 +28,10 @@ extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
     func isEditButtonTapped() -> Bool {
         return isUserEditButtonTapped
     }
+
+    func didInivteUserButtonTapped() {
+        router.showInviteUser()
+    }
 }
 
 extension WardrobeUsersPresenter: WardrobeUsersInteractorOutput {

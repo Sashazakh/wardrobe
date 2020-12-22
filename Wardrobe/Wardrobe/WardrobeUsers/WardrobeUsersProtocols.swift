@@ -8,6 +8,7 @@ protocol WardrobeUsersViewInput: class {
 protocol WardrobeUsersViewOutput: class {
     func didEditButtonTap()
     func isEditButtonTapped() -> Bool
+    func didInivteUserButtonTapped()
 }
 
 protocol WardrobeUsersInteractorInput: class {
@@ -17,4 +18,5 @@ protocol WardrobeUsersInteractorOutput: class {
 }
 
 protocol WardrobeUsersRouterInput: class {
+    func showInviteUser()
 }

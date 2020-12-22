@@ -77,6 +77,7 @@ extension InviteViewController {
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
+        backButton.addTarget(self, action: #selector(didBackButtonTapped(_:)), for: .touchUpInside)
         backButton.pin
             .height(pageTitle.frame.height * 0.45)
             .width(5%)
@@ -164,6 +165,11 @@ extension InviteViewController {
     }
 }
 
+extension InviteViewController {
+    @objc func didBackButtonTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+}
 extension InviteViewController: InviteViewInput {
 }
 

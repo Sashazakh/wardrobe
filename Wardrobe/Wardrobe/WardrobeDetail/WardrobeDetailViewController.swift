@@ -77,8 +77,6 @@ final class WardrobeDetailViewController: UIViewController {
     private func setupBackButton() {
         let btn = UIButton()
         backButton = btn
-        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
-        backButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
@@ -91,7 +89,7 @@ final class WardrobeDetailViewController: UIViewController {
         let btn = UIButton()
         personButton = btn
         let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
-        backButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
+        personButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         personButton.setImage(UIImage(systemName: "person.3.fill"), for: .normal)
         personButton.tintColor = GlobalColors.backgroundColor
         personButton.contentVerticalAlignment = .fill
@@ -108,6 +106,7 @@ final class WardrobeDetailViewController: UIViewController {
         collectionView.register(AddWardrobeCell.self, forCellWithReuseIdentifier: AddWardrobeCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.showsVerticalScrollIndicator = false
         view.addSubview(collectionView)
     }
 
@@ -130,17 +129,17 @@ final class WardrobeDetailViewController: UIViewController {
 
     private func setupBackButtonLayout() {
         backButton.pin
-            .height(18.6%)
-            .width(4%)
-            .vCenter(titleLabel.frame.height * 0.15)
+            .height(titleLabel.frame.height * 0.364)
+            .width(5%)
+            .vCenter()
             .left(3%)
     }
 
     private func setupPersonButtonLayout() {
         personButton.sizeToFit()
         personButton.pin
-            .vCenter(titleLabel.frame.height * 0.15)
-            .right(8.5%)
+            .vCenter()
+            .right(4.8%)
             .height(28)
             .width(31)
     }
@@ -205,7 +204,7 @@ extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        cell.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             UIView.animate(withDuration: 0.4) {
                 cell.transform = CGAffineTransform.identity
             }

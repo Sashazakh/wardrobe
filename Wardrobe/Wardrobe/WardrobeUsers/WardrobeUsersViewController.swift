@@ -16,7 +16,9 @@ final class WardrobeUsersViewController: UIViewController {
 
     private let screenBounds = UIScreen.main.bounds
 
-    private var countOfCells = 19
+    private var countOfCells = 20
+
+    private var isReloadDataNeed: Bool = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -45,6 +47,7 @@ final class WardrobeUsersViewController: UIViewController {
         setupBackButtonLayout()
         setupCollectionViewLayout()
         setupEditButtonLayout()
+
     }
 
     // MARK: Setup views
@@ -82,8 +85,6 @@ final class WardrobeUsersViewController: UIViewController {
         let btn = UIButton()
         backButton = btn
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
-        backButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
@@ -101,6 +102,7 @@ final class WardrobeUsersViewController: UIViewController {
         collectionView.register(WardrobeUsersCell.self, forCellWithReuseIdentifier: WardrobeUsersCell.identifier)
         collectionView.register(AddUserCell.self, forCellWithReuseIdentifier: AddUserCell.identifier)
         collectionView.backgroundColor = GlobalColors.backgroundColor
+        collectionView.showsVerticalScrollIndicator = false
         view.addSubview(collectionView)
     }
 
@@ -136,8 +138,8 @@ final class WardrobeUsersViewController: UIViewController {
 
     private func setupBackButtonLayout() {
         backButton.pin
-            .vCenter(-titleLabel.frame.height / 4)
-            .height(titleLabel.frame.height * 0.365)
+            .vCenter()
+            .height(titleLabel.frame.height * 0.3)
             .width(5%)
             .left(3%)
     }
@@ -152,8 +154,8 @@ final class WardrobeUsersViewController: UIViewController {
 
     private func setupEditButtonLayout() {
         editButton.pin
-            .vCenter(-(titleLabel.frame.height / 4))
-            .right(4.25%)
+            .vCenter(-2%)
+            .right(3%)
             .width(titleLabel.frame.height * 0.344)
             .height(titleLabel.frame.height * 0.344)
     }
@@ -165,7 +167,7 @@ final class WardrobeUsersViewController: UIViewController {
     }
 
     @objc func didEditButtonTapped(_ sender: Any) {
-
+        isReloadDataNeed = !isReloadDataNeed
         output?.didEditButtonTap()
     }
 }
@@ -231,9 +233,26 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-            UIView.animate(withDuration: 0.4) {
-                cell.transform = CGAffineTransform.identity
+        if isReloadDataNeed {
+            if indexPath.row != countOfCells - 1 {
+                cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                    UIView.animate(withDuration: 0.3) {
+                        cell.transform = CGAffineTransform.identity
+                    }
+            } else {
+                isReloadDataNeed = !isReloadDataNeed
             }
+        } else {
+            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                UIView.animate(withDuration: 0.4) {
+                    cell.transform = CGAffineTransform.identity
+                }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == countOfCells - 1 {
+            output?.didInivteUserButtonTapped()
+        }
     }
 }
