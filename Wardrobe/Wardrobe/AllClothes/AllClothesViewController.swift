@@ -70,8 +70,8 @@ extension AllClothesViewController {
                 .right()
                 .height(14%)
         }
-        //headerView.roundLowerCorners(40)
-        //headerView.dropShadow()
+        // headerView.roundLowerCorners(40)
+        // headerView.dropShadow()
     }
 
     // MARK: Page Title
@@ -131,7 +131,7 @@ extension AllClothesViewController {
     private func layoutCategoriesTableView() {
         if let tabbar = tabBarController?.tabBar {
             categoriesTableView.pin
-                .below(of: headerView)//.marginTop(8)
+                .below(of: headerView)// .marginTop(8)
                 .left()
                 .right()
                 .above(of: tabbar)

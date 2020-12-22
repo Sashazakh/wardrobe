@@ -51,7 +51,7 @@ class SettingsTableViewCell: UITableViewCell {
     private func setupTitleLabel() {
         let title = UILabel()
         titleLabel = title
-        titleLabel.font = UIFont(name: "DMSans-Bold", size: 20)
+        titleLabel.font = UIFont(name: "DMSans-Regular", size: 20)
         titleLabel.textColor = GlobalColors.backgroundColor
         mainView.addSubview(titleLabel)
     }

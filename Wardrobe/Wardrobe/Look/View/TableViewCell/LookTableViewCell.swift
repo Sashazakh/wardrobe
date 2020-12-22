@@ -83,7 +83,7 @@ final class LookTableViewCell: UITableViewCell {
 
         if let flowLayout = itemCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 20 - 10) / 3,
-                                         height: itemCollectionView.bounds.height - 25)
+                                         height: (UIScreen.main.bounds.width - 20 - 10) / 3)
             flowLayout.sectionInset = UIEdgeInsets(top: .zero,
                                                    left: 5,
                                                    bottom: .zero,
@@ -100,7 +100,14 @@ final class LookTableViewCell: UITableViewCell {
 }
 
 extension LookTableViewCell: UICollectionViewDelegate {
-
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        UIView.animate(withDuration: 0.4) {
+            cell.transform = CGAffineTransform.identity
+        }
+    }
 }
 
 extension LookTableViewCell: UICollectionViewDataSource {

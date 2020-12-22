@@ -113,7 +113,7 @@ extension ItemCollectionCell {
         self.pin
 //            .left(10)
 //            .right(10)
-        //self.dropShadow()
+        // self.dropShadow()
     }
 
 }

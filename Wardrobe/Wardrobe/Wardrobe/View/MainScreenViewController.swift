@@ -23,17 +23,10 @@ final class MainScreenViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupHeaderViewLayout()
-        setupTitleLabelLayout()
-        setupSettingsButtonLayout()
-        setupAvatarViewLayout()
-        setupNameLabelLayout()
-        setupSurnameLayout()
-        setupCollectionLayout()
-        setupFlowLayout()
+
+        setupViewsLayout()
     }
 
-    // MARK: setup views
     private func setupViews() {
         setupMainView()
         setupHeaderView()
@@ -45,6 +38,18 @@ final class MainScreenViewController: UIViewController {
         setupCollectionView()
     }
 
+    private func setupViewsLayout() {
+        setupHeaderViewLayout()
+        setupTitleLabelLayout()
+        setupSettingsButtonLayout()
+        setupAvatarViewLayout()
+        setupNameLabelLayout()
+        setupSurnameLayout()
+        setupCollectionLayout()
+        setupFlowLayout()
+    }
+    // MARK: setup views
+
     private func setupMainView() {
         view.backgroundColor = GlobalColors.backgroundColor
     }
@@ -53,8 +58,8 @@ final class MainScreenViewController: UIViewController {
         let view = UIView()
         headerView = view
         headerView.backgroundColor = GlobalColors.mainBlueScreen
-        headerView.dropShadow()
-        headerView.roundLowerCorners(40)
+//        headerView.dropShadow()
+//        headerView.roundLowerCorners(40)
         self.view.addSubview(headerView)
     }
 
@@ -183,10 +188,30 @@ final class MainScreenViewController: UIViewController {
 
     private func setupCollectionLayout() {
         collectionView.pin
-            .top(41.871%)
+            .below(of: [nameLabel, surnameLabel])
             .right()
             .left()
             .bottom()
+
+        let gradientLayerUp = CAGradientLayer()
+
+        gradientLayerUp.frame = CGRect(x: .zero,
+                                       y: collectionView.frame.minY,
+                                       width: collectionView.bounds.width,
+                                       height: 10)
+        gradientLayerUp.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor,
+                                          UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
+        view.layer.addSublayer(gradientLayerUp)
+
+        let gradientLayerDown = CAGradientLayer()
+
+        gradientLayerDown.frame = CGRect(x: .zero,
+                                         y: collectionView.frame.maxY - 10,
+                                         width: collectionView.bounds.width,
+                                         height: 10)
+        gradientLayerDown.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
+                                        UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
+        view.layer.addSublayer(gradientLayerDown)
     }
 
     private func setupFlowLayout() {
