@@ -17,6 +17,10 @@ extension LoginPresenter: LoginViewOutput {
     func didTapRegisterLabel() {
         router.showRegistrationScreen()
     }
+
+    func didTapLoginButton() {
+        router.showWardrobeScreen()
+    }
 }
 
 extension LoginPresenter: LoginInteractorOutput {

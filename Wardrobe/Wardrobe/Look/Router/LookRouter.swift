@@ -5,4 +5,7 @@ final class LookRouter {
 }
 
 extension LookRouter: LookRouterInput {
+    func showWardrobeScreen() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
 }

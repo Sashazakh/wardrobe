@@ -11,4 +11,11 @@ extension WardrobeDetailRouter: WardrobeDetailRouterInput {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
+    func showLookScreen() {
+        let lookVC = LookContainer.assemble(with: LookContext()).viewController
+
+        lookVC.modalPresentationStyle = .fullScreen
+
+        viewController?.navigationController?.pushViewController(lookVC, animated: true)
+    }
 }

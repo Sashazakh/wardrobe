@@ -1,10 +1,29 @@
 import UIKit
 import Foundation
 
+
+protocol ClassName {
+    static func className() -> String
+}
+
+extension ClassName {
+    static func className() -> String {
+        return String(describing: self)
+    }
+}
+
 // MARK: UITableViewCell
+extension UITableViewCell: ClassName {}
 extension UITableViewCell {
-    var reuseIdentifier: String {
-        return String(describing: Self.self)
+    public static var reuseIdentifier: String {
+        return className()
+    }
+}
+
+extension UICollectionViewCell: ClassName {}
+extension UICollectionViewCell {
+    public static var reuseIdentifier: String {
+            return className()
     }
 }
 
@@ -65,5 +84,18 @@ extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage ?? UIImage()
+    }
+}
+
+// MARK: UITableView
+extension UITableView {
+    static func customTableView() -> UITableView {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.clipsToBounds = true
+        return tableView
     }
 }
