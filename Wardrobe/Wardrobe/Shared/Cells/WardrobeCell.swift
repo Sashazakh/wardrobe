@@ -42,7 +42,7 @@ class WardrobeCell: UICollectionViewCell {
         let imgView = UIImageView()
         imageView = imgView
         imageView.image = UIImage(named: "morz")
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill//.scaleAspectFill
         imageView.clipsToBounds = true
         contentView.addSubview(imageView)
     }
@@ -68,7 +68,7 @@ class WardrobeCell: UICollectionViewCell {
             .top()
             .left()
             .right()
-            .height(56.6%)
+            .height(66%)
     }
 
     private func setupTitleLabelLayout() {
@@ -76,7 +76,8 @@ class WardrobeCell: UICollectionViewCell {
             .below(of: imageView)
             .left()
             .right()
-            .marginTop(5%)
-            .height(33.3%)
+            .margin(5%)
+            .bottom()
+            //.marginBottom(5%)
     }
 }
