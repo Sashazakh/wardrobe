@@ -201,4 +201,8 @@ extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionVi
                 cell.transform = CGAffineTransform.identity
             }
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        output?.didTapLook()
+    }
 }

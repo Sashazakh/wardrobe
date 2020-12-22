@@ -8,6 +8,7 @@ protocol LookViewInput: AnyObject {
 
 protocol LookViewOutput: AnyObject {
     func didTapEditLookButton()
+    func didTapBackToWardrobeButton()
 }
 
 protocol LookInteractorInput: AnyObject {
@@ -17,4 +18,5 @@ protocol LookInteractorOutput: AnyObject {
 }
 
 protocol LookRouterInput: AnyObject {
+    func showWardrobeScreen()
 }

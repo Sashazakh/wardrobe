@@ -21,6 +21,10 @@ extension LookPresenter: LookViewOutput {
         isEditing = !isEditing
         view?.setLookIsEditing(isEditing: isEditing)
     }
+
+    func didTapBackToWardrobeButton() {
+        router.showWardrobeScreen()
+    }
 }
 
 extension LookPresenter: LookInteractorOutput {

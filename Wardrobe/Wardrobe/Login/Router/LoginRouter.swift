@@ -13,9 +13,14 @@ extension LoginRouter: LoginRouterInput {
     }
 
     func showWardrobeScreen() {
-        let lookVC = LookContainer.assemble(with: LookContext()).viewController
+        let tabBarVC = MainTabBar()
 
-        lookVC.modalPresentationStyle = .fullScreen
-        viewController?.present(lookVC, animated: true, completion: nil)
+        tabBarVC.modalPresentationStyle = .fullScreen
+
+        guard let sceneDelegate = viewController?.view.window?.windowScene?.delegate as? SceneDelegate else {
+            return
+        }
+
+        sceneDelegate.setRootViewController(controller: tabBarVC)
     }
 }

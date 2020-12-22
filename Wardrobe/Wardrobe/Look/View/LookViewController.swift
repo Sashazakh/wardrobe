@@ -203,7 +203,7 @@ final class LookViewController: UIViewController {
             .below(of: backgroundView)
             .hCenter()
             .width(100%)
-            .bottom(Constants.screenHeight * 0.1 + 50)
+            .bottom((tabBarController?.tabBar.frame.height ?? 0) + 55)
 
         let gradientLayerUp = CAGradientLayer()
 
@@ -236,7 +236,7 @@ final class LookViewController: UIViewController {
 
     @objc
     private func didTapBackToWardrobeButton() {
-
+        output?.didTapBackToWardrobeButton()
     }
 
     @objc

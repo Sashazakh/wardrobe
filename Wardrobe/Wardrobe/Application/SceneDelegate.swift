@@ -64,4 +64,8 @@ extension SceneDelegate {
             return navigationVC
         }
     }
+
+    func setRootViewController(controller: UIViewController) {
+        window?.rootViewController = controller
+    }
 }
