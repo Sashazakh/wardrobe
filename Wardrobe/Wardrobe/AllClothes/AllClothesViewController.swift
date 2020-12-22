@@ -7,6 +7,7 @@ final class AllClothesViewController: UIViewController {
     private weak var editButton: UIButton!
     private weak var pageTitle: UILabel!
     private weak var categoriesTableView: UITableView!
+    private let screenBounds = UIScreen.main.bounds
 
 	var output: AllClothesViewOutput?
 
@@ -69,8 +70,8 @@ extension AllClothesViewController {
                 .right()
                 .height(14%)
         }
-        headerView.roundLowerCorners(40)
-        headerView.dropShadow()
+        //headerView.roundLowerCorners(40)
+        //headerView.dropShadow()
     }
 
     // MARK: Page Title
@@ -130,7 +131,7 @@ extension AllClothesViewController {
     private func layoutCategoriesTableView() {
         if let tabbar = tabBarController?.tabBar {
             categoriesTableView.pin
-                .below(of: headerView).marginTop(8)
+                .below(of: headerView)//.marginTop(8)
                 .left()
                 .right()
                 .above(of: tabbar)
@@ -150,7 +151,7 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return screenBounds.width * 0.32 * 1.072 * 1.45
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -53,7 +53,8 @@ extension ItemCollectionCell {
 
     private func layoutCollectionLabel() {
         collectionLabel.pin
-            .topLeft()
+            .top()
+            .left(10)
             .sizeToFit()
     }
 
@@ -63,6 +64,8 @@ extension ItemCollectionCell {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         itemCollectionView = collectionView
         itemCollectionView.backgroundColor = .clear
+        itemCollectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        itemCollectionView.showsHorizontalScrollIndicator = false
         itemCollectionView.register(WardrobeCell.self, forCellWithReuseIdentifier: WardrobeCell.identifier)
         if let flowLayout = itemCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let marginSides = screenBounds.width * 0.069
@@ -86,18 +89,30 @@ extension ItemCollectionCell {
     // MARK: addButton
 
     private func setupAddButton() {
-
+        let button = UIButton()
+        addButton = button
+        addButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        addButton.tintColor = GlobalColors.backgroundColor
+        addButton.backgroundColor = GlobalColors.mainBlueScreen
+        contentView.addSubview(addButton)
     }
 
     private func layoutAddButton() {
+        let square = collectionLabel.frame.height * 0.6
+        addButton.pin
+            .after(of: collectionLabel, aligned: .center).marginLeft(5)
+            .height(square)
+            .width(square)
 
+        addButton.layer.cornerRadius = addButton.frame.width / 2
     }
 
     // MARK: Hacker techniques
     private func layoutView() {
         self.pin
-            .left(10)
-//        self.dropShadow()
+//            .left(10)
+//            .right(10)
+        //self.dropShadow()
     }
 
 }
@@ -110,19 +125,20 @@ extension ItemCollectionCell: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
         -> CGSize {
         let cellWidth = screenBounds.width * 0.32
-        let cellHeight = screenBounds.height * 0.2216
+        let cellHeight = cellWidth * 1.072//self.bounds.height * 0.7//screenBounds.height * 0.2216
         return CGSize(width: cellWidth, height: cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                UIView.animate(withDuration: 0.4) {
-                    cell.transform = CGAffineTransform.identity
-                }
-        }
+            UIView.animate(withDuration: 0.4) {
+                cell.transform = CGAffineTransform.identity
+            }
+    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WardrobeCell.identifier, for: indexPath)
         return cell
     }
+
 }
