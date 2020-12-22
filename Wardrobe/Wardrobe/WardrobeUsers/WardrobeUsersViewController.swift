@@ -124,14 +124,14 @@ final class WardrobeUsersViewController: UIViewController {
             .top()
             .right()
             .left()
-            .height(19.275%)
+            .height(18%)
     }
 
     private func setupTitleLableLayout() {
         titleLabel.pin
             .hCenter()
-            .vCenter()
-            .height(52.3%)
+            .vCenter(5%)
+            .height(60.3%)
     }
 
     private func setupBackButtonLayout() {
