@@ -4,8 +4,8 @@ import PinLayout
 class WardrobeCell: UICollectionViewCell {
     static let identifier = "WardrobeCell"
 
-    private weak var imageView: UIImageView!
-    private weak var titleLable: UILabel!
+    internal weak var imageView: UIImageView!
+    internal weak var titleLable: UILabel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,6 +44,7 @@ class WardrobeCell: UICollectionViewCell {
         imageView.image = UIImage(named: "morz")
         imageView.contentMode = .scaleToFill// .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         contentView.addSubview(imageView)
     }
 

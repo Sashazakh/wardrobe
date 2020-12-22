@@ -12,7 +12,7 @@ final class AllItemsViewController: UIViewController {
 
     private weak var confirmButton: UIButton!
 
-    private weak var lookTableView: UITableView!
+    private weak var allItemsTableView: UITableView!
 
     private var lookIsEditing: Bool = false
 
@@ -99,22 +99,22 @@ final class AllItemsViewController: UIViewController {
     private func setupLookTableView() {
         let tableView = UITableView()
 
-        lookTableView = tableView
+        allItemsTableView = tableView
         view.addSubview(tableView)
 
-        lookTableView.register(LookTableViewCell.self, forCellReuseIdentifier: "LookTableViewCell")
+        allItemsTableView.register(AllItemsTableViewCell.self, forCellReuseIdentifier: "AllItemsTableViewCell")
 
-        lookTableView.delegate = self
-        lookTableView.dataSource = self
+        allItemsTableView.delegate = self
+        allItemsTableView.dataSource = self
 
-        lookTableView.showsVerticalScrollIndicator = false
-        lookTableView.showsHorizontalScrollIndicator = false
-        lookTableView.separatorStyle = .none
-        lookTableView.contentInset = UIEdgeInsets(top: 10,
+        allItemsTableView.showsVerticalScrollIndicator = false
+        allItemsTableView.showsHorizontalScrollIndicator = false
+        allItemsTableView.separatorStyle = .none
+        allItemsTableView.contentInset = UIEdgeInsets(top: 10,
                                                   left: 0,
                                                   bottom: 0,
                                                   right: 0)
-        lookTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
+        allItemsTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
     }
 
     private func layoutBackgroundView() {
@@ -153,17 +153,17 @@ final class AllItemsViewController: UIViewController {
     }
 
     private func layoutLookTableView() {
-        lookTableView.pin
+        allItemsTableView.pin
             .below(of: backgroundView)
             .hCenter()
             .width(100%)
-            .bottom((tabBarController?.tabBar.frame.height ?? 0) + 55)
+            .bottom(tabBarController?.tabBar.frame.height ?? 0)
 
         let gradientLayerUp = CAGradientLayer()
 
         gradientLayerUp.frame = CGRect(x: .zero,
-                                     y: lookTableView.frame.minY,
-                                     width: lookTableView.bounds.width,
+                                     y: allItemsTableView.frame.minY,
+                                     width: allItemsTableView.bounds.width,
                                      height: 4)
         gradientLayerUp.colors = [GlobalColors.mainBlueScreen.cgColor,
                                   UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
@@ -172,8 +172,8 @@ final class AllItemsViewController: UIViewController {
         let gradientLayerDown = CAGradientLayer()
 
         gradientLayerDown.frame = CGRect(x: .zero,
-                                     y: lookTableView.frame.maxY - 4,
-                                     width: lookTableView.bounds.width,
+                                     y: allItemsTableView.frame.maxY - 4,
+                                     width: allItemsTableView.bounds.width,
                                      height: 4)
         gradientLayerDown.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
                                     UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
@@ -206,13 +206,13 @@ extension AllItemsViewController: AllItemsViewInput {
 
     func setLookIsEditing(isEditing: Bool) {
         lookIsEditing = isEditing
-        lookTableView.reloadData()
+        allItemsTableView.reloadData()
     }
 }
 
 extension AllItemsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (tableView.bounds.height - 10) / 3
+        return GlobalConstants.cellSize.height * 1.3
     }
 }
 
@@ -222,7 +222,7 @@ extension AllItemsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LookTableViewCell", for: indexPath) as? LookTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AllItemsTableViewCell", for: indexPath) as? LookTableViewCell else {
             return UITableViewCell()
         }
 
