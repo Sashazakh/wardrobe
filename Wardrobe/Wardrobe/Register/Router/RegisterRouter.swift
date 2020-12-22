@@ -11,4 +11,8 @@ extension RegisterRouter: RegisterRouterInput {
         loginVC.modalPresentationStyle = .fullScreen
         viewController?.navigationController?.setViewControllers([loginVC], animated: true)
     }
+
+    func showWardrobeScreen() {
+
+    }
 }

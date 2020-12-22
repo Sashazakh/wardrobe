@@ -105,6 +105,7 @@ extension ItemCollectionCell {
             .width(square)
 
         addButton.layer.cornerRadius = addButton.frame.width / 2
+        addButton.dropShadow(offset: CGSize(width: 0, height: 2), radius: 2, opacity: 0.4)
     }
 
     // MARK: Hacker techniques

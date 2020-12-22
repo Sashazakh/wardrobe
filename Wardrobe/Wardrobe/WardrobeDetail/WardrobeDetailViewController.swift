@@ -121,7 +121,7 @@ final class WardrobeDetailViewController: UIViewController {
 
     private func setupBackButtonLayout() {
         backButton.pin
-            .height(titleLabel.frame.height * 0.56)
+            .height(titleLabel.frame.height * 0.4)
             .width(5%)
             .before(of: titleLabel, aligned: .top)
             .left(3%)
@@ -131,8 +131,8 @@ final class WardrobeDetailViewController: UIViewController {
         personButton.pin
             .after(of: titleLabel, aligned: .top)
             .marginLeft(18.33%)
-            .height(titleLabel.frame.height * 0.5)
-            .width(titleLabel.frame.height * 0.56)
+            .height(titleLabel.frame.height * 0.4)
+            .width(titleLabel.frame.height * 0.45)
     }
 
     private func setupCollectionLayout() {
@@ -160,7 +160,7 @@ final class WardrobeDetailViewController: UIViewController {
     }
 
     @objc func didBackButtonTapped(_ sender: Any) {
-        // pop vc
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -193,5 +193,16 @@ extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionVi
     -> UIEdgeInsets {
         let marginSides = screenBounds.width * 0.053
         return UIEdgeInsets(top: 5, left: marginSides, bottom: 5, right: marginSides)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            UIView.animate(withDuration: 0.4) {
+                cell.transform = CGAffineTransform.identity
+            }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        output?.didTapLook()
     }
 }

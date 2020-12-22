@@ -25,6 +25,9 @@ extension MainScreenPresenter: MainScreenViewOutput {
         router.showDetailWardrope(id: indexPath.row)
     }
 
+    func settingsButtonDidTap() {
+        router.showSettings()
+    }
 }
 
 extension MainScreenPresenter: MainScreenInteractorOutput {

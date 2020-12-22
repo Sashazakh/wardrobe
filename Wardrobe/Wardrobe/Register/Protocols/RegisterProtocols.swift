@@ -11,6 +11,8 @@ protocol RegisterViewOutput: AnyObject {
 
     func didTapAddPhotoButton()
 
+    func didTapRegisterButton()
+
     func userDidSetImage(imageData: Data?)
 }
 
@@ -22,4 +24,6 @@ protocol RegisterInteractorOutput: AnyObject {
 
 protocol RegisterRouterInput: AnyObject {
     func showLoginScreen()
+
+    func showWardrobeScreen()
 }
