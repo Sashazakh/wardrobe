@@ -5,6 +5,8 @@ final class LookCollectionViewCell: UICollectionViewCell {
 
     private weak var itemImageView: UIImageView!
 
+    private weak var deleteMarkButton: UIButton!
+
     private weak var itemLabel: UILabel!
 
     override init(frame: CGRect) {
@@ -12,6 +14,7 @@ final class LookCollectionViewCell: UICollectionViewCell {
 
         setupCell()
         setupSubviews()
+        setupDeleteMarkImageView()
     }
 
     required init?(coder: NSCoder) {
@@ -23,6 +26,7 @@ final class LookCollectionViewCell: UICollectionViewCell {
 
         layoutItemImageView()
         layoutItemLabel()
+        layoutDeleteMarkImageView()
     }
 
     private func setupCell() {
@@ -56,6 +60,25 @@ final class LookCollectionViewCell: UICollectionViewCell {
         itemLabel.text = "Adidas"
     }
 
+    private func setupDeleteMarkImageView() {
+        let button = UIButton()
+
+        deleteMarkButton = button
+        itemImageView.addSubview(deleteMarkButton)
+
+        // deleteMarkButton.isHidden = true
+        deleteMarkButton.setImage(UIImage(systemName: "minus",
+                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                                        for: .normal)
+        deleteMarkButton.tintColor = GlobalColors.backgroundColor
+        deleteMarkButton.addTarget(self, action: #selector(didTapDeleteMarkButton), for: .touchUpInside)
+        deleteMarkButton.backgroundColor = UIColor(red: 240 / 255,
+                                                   green: 98 / 255,
+                                                   blue: 98 / 255,
+                                                   alpha: 1)
+        deleteMarkButton.layer.cornerRadius = 10
+    }
+
     private func layoutItemImageView() {
         itemImageView.pin
             .top(.zero)
@@ -70,5 +93,26 @@ final class LookCollectionViewCell: UICollectionViewCell {
             .bottom(.zero)
             .width(90%)
             .hCenter()
+    }
+
+    private func layoutDeleteMarkImageView() {
+        deleteMarkButton.pin
+            .top(3%)
+            .right(3%)
+            .width(20)
+            .height(20)
+    }
+
+    public func setIsEditing(isEditing: Bool) {
+        if isEditing {
+            deleteMarkButton.isHidden = false
+        } else {
+            deleteMarkButton.isHidden = true
+        }
+    }
+
+    @objc
+    private func didTapDeleteMarkButton() {
+
     }
 }

@@ -16,6 +16,10 @@ final class LookViewController: UIViewController {
 
     private weak var lookTableView: UITableView!
 
+    private weak var addItemsButton: UIButton!
+
+    private var lookIsEditing: Bool = false
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -32,6 +36,7 @@ final class LookViewController: UIViewController {
         layoutBackToWardrobe()
         layoutEditLookButton()
         layoutLookTableView()
+        layoutAddItemsButton()
     }
 
     private func setupView() {
@@ -45,6 +50,7 @@ final class LookViewController: UIViewController {
         setupBackToWardrobe()
         setupEditLookButton()
         setupLookTableView()
+        setupAddItemsButton()
     }
 
     private func setupBackgroundView() {
@@ -54,8 +60,6 @@ final class LookViewController: UIViewController {
         view.addSubview(backgroundView)
 
         backgroundView.backgroundColor = GlobalColors.mainBlueScreen
-        backgroundView.dropShadow()
-        backgroundView.roundLowerCorners(35)
     }
 
     private func setupLookNameUp() {
@@ -126,6 +130,29 @@ final class LookViewController: UIViewController {
         lookTableView.showsVerticalScrollIndicator = false
         lookTableView.showsHorizontalScrollIndicator = false
         lookTableView.separatorStyle = .none
+        lookTableView.contentInset = UIEdgeInsets(top: 10,
+                                                  left: 0,
+                                                  bottom: 0,
+                                                  right: 0)
+        lookTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
+    }
+
+    private func setupAddItemsButton() {
+        let button = UIButton()
+
+        addItemsButton = button
+        view.addSubview(addItemsButton)
+
+        addItemsButton.isHidden = true
+        addItemsButton.backgroundColor = GlobalColors.mainBlueScreen
+        addItemsButton.layer.cornerRadius = 10
+        addItemsButton.dropShadow()
+
+        addItemsButton.titleLabel?.font = UIFont(name: "DMSans-Regular", size: 15)
+        addItemsButton.setTitleColor(.white, for: .normal)
+        addItemsButton.setTitle("Добавить предметы", for: .normal)
+
+        addItemsButton.addTarget(self, action: #selector(didTapAddItemsButton), for: .touchUpInside)
     }
 
     private func layoutBackgroundView() {
@@ -173,30 +200,38 @@ final class LookViewController: UIViewController {
 
     private func layoutLookTableView() {
         lookTableView.pin
-            .top(backgroundView.frame.maxY + 10)
+            .below(of: backgroundView)
             .hCenter()
             .width(100%)
-            .bottom(10%)
+            .bottom(Constants.screenHeight * 0.1 + 50)
 
         let gradientLayerUp = CAGradientLayer()
 
         gradientLayerUp.frame = CGRect(x: .zero,
                                      y: lookTableView.frame.minY,
                                      width: lookTableView.bounds.width,
-                                     height: 7)
-        gradientLayerUp.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor,
+                                     height: 4)
+        gradientLayerUp.colors = [GlobalColors.mainBlueScreen.cgColor,
                                   UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
         view.layer.addSublayer(gradientLayerUp)
 
         let gradientLayerDown = CAGradientLayer()
 
         gradientLayerDown.frame = CGRect(x: .zero,
-                                     y: lookTableView.frame.maxY - 7,
+                                     y: lookTableView.frame.maxY - 4,
                                      width: lookTableView.bounds.width,
-                                     height: 7)
+                                     height: 4)
         gradientLayerDown.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
                                     UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
         view.layer.addSublayer(gradientLayerDown)
+    }
+
+    private func layoutAddItemsButton() {
+        addItemsButton.pin
+            .top(lookTableView.frame.maxY + 5)
+            .hCenter()
+            .width(96%)
+            .height(44)
     }
 
     @objc
@@ -206,16 +241,39 @@ final class LookViewController: UIViewController {
 
     @objc
     private func didTapEditLookButton() {
+        output?.didTapEditLookButton()
+    }
+
+    @objc
+    private func didTapAddItemsButton() {
 
     }
 }
 
 extension LookViewController: LookViewInput {
+    func showEditLayout() {
+        editLookButton.setImage(UIImage(systemName: "checkmark",
+                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                                        for: .normal)
+        addItemsButton.isHidden = false
+    }
+
+    func hideEditLayout() {
+        editLookButton.setImage(UIImage(systemName: "square.and.pencil",
+                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                                        for: .normal)
+        addItemsButton.isHidden = true
+    }
+
+    func setLookIsEditing(isEditing: Bool) {
+        lookIsEditing = isEditing
+        lookTableView.reloadData()
+    }
 }
 
 extension LookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.bounds.height / 3
+        return (tableView.bounds.height - 10) / 3
     }
 }
 
@@ -229,6 +287,7 @@ extension LookViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
+        cell.setIsEditing(isEditing: lookIsEditing)
         cell.selectionStyle = .none
 
         return cell

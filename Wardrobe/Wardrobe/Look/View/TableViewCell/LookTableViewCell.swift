@@ -7,6 +7,8 @@ final class LookTableViewCell: UITableViewCell {
 
     private weak var itemCollectionView: UICollectionView!
 
+    private var itemsAreEditing: Bool = false
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -88,6 +90,13 @@ final class LookTableViewCell: UITableViewCell {
                                                    right: 5)
         }
     }
+
+    public func setIsEditing(isEditing: Bool) {
+        if isEditing != itemsAreEditing {
+            itemsAreEditing = isEditing
+            itemCollectionView.reloadData()
+        }
+    }
 }
 
 extension LookTableViewCell: UICollectionViewDelegate {
@@ -104,6 +113,7 @@ extension LookTableViewCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
+        cell.setIsEditing(isEditing: itemsAreEditing)
         cell.dropShadow()
 
         return cell

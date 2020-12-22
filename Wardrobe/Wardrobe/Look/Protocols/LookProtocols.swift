@@ -1,16 +1,20 @@
 import Foundation
 
-protocol LookViewInput: class {
+protocol LookViewInput: AnyObject {
+    func showEditLayout()
+    func hideEditLayout()
+    func setLookIsEditing(isEditing: Bool)
 }
 
-protocol LookViewOutput: class {
+protocol LookViewOutput: AnyObject {
+    func didTapEditLookButton()
 }
 
-protocol LookInteractorInput: class {
+protocol LookInteractorInput: AnyObject {
 }
 
-protocol LookInteractorOutput: class {
+protocol LookInteractorOutput: AnyObject {
 }
 
-protocol LookRouterInput: class {
+protocol LookRouterInput: AnyObject {
 }
