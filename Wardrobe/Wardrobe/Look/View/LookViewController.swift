@@ -273,7 +273,7 @@ extension LookViewController: LookViewInput {
 
 extension LookViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (tableView.bounds.height - 10) / 3
+        return GlobalConstants.cellSize.height * 1.3
     }
 }
 

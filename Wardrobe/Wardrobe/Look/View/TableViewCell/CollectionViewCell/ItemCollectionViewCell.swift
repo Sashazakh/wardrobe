@@ -1,20 +1,14 @@
 import UIKit
 import PinLayout
 
-final class LookCollectionViewCell: UICollectionViewCell {
-
-    private weak var itemImageView: UIImageView!
+final class LookCollectionViewCell: WardrobeCell {
 
     private weak var deleteMarkButton: UIButton!
-
-    private weak var itemLabel: UILabel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        setupCell()
         setupSubviews()
-        setupDeleteMarkImageView()
     }
 
     required init?(coder: NSCoder) {
@@ -24,50 +18,19 @@ final class LookCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        layoutItemImageView()
-        layoutItemLabel()
         layoutDeleteMarkImageView()
     }
 
-    private func setupCell() {
-        contentView.layer.cornerRadius = 5
-        contentView.clipsToBounds = true
-        contentView.backgroundColor = .white
-    }
-
     private func setupSubviews() {
-        setupItemImageView()
-        setupItemLabel()
-    }
-
-    private func setupItemImageView() {
-        let imageView = UIImageView()
-
-        itemImageView = imageView
-        contentView.addSubview(itemImageView)
-
-        itemImageView.image = UIImage(named: "morz")
-        itemImageView.isUserInteractionEnabled = true
-    }
-
-    private func setupItemLabel() {
-        let label = UILabel()
-
-        itemLabel = label
-        contentView.addSubview(itemLabel)
-
-        itemLabel.textAlignment = .center
-        itemLabel.font = UIFont(name: "DMSans-Regular", size: 10)
-        itemLabel.text = "Adidas"
+        setupDeleteMarkImageView()
     }
 
     private func setupDeleteMarkImageView() {
         let button = UIButton()
 
         deleteMarkButton = button
-        itemImageView.addSubview(deleteMarkButton)
+        imageView.addSubview(deleteMarkButton)
 
-        // deleteMarkButton.isHidden = true
         deleteMarkButton.setImage(UIImage(systemName: "minus",
                                         withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
                                         for: .normal)
@@ -78,22 +41,6 @@ final class LookCollectionViewCell: UICollectionViewCell {
                                                    blue: 98 / 255,
                                                    alpha: 1)
         deleteMarkButton.layer.cornerRadius = 10
-    }
-
-    private func layoutItemImageView() {
-        itemImageView.pin
-            .top(.zero)
-            .left(.zero)
-            .right(.zero)
-            .bottom(50%)
-    }
-
-    private func layoutItemLabel() {
-        itemLabel.pin
-            .top(50%)
-            .bottom(.zero)
-            .width(90%)
-            .hCenter()
     }
 
     private func layoutDeleteMarkImageView() {

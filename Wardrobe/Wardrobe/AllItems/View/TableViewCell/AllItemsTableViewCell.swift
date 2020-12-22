@@ -1,13 +1,11 @@
 import UIKit
 import PinLayout
 
-final class LookTableViewCell: UITableViewCell {
+final class AllItemsTableViewCell: UITableViewCell {
 
     private weak var sectionNameLabel: UILabel!
 
     private weak var itemCollectionView: UICollectionView!
-
-    private var itemsAreEditing: Bool = false
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,7 +41,7 @@ final class LookTableViewCell: UITableViewCell {
 
         sectionNameLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         sectionNameLabel.textAlignment = .left
-        sectionNameLabel.text = "Тапки"
+        sectionNameLabel.text = "Гучи Тапки"
     }
 
     private func setupCollectionView() {
@@ -60,7 +58,7 @@ final class LookTableViewCell: UITableViewCell {
         itemCollectionView.delegate = self
         itemCollectionView.dataSource = self
 
-        itemCollectionView.register(LookCollectionViewCell.self, forCellWithReuseIdentifier: "itemCell")
+        itemCollectionView.register(AllItemsCollectionViewCell.self, forCellWithReuseIdentifier: "allItemsCell")
 
         itemCollectionView.backgroundColor = .white
         itemCollectionView.showsHorizontalScrollIndicator = false
@@ -88,19 +86,10 @@ final class LookTableViewCell: UITableViewCell {
                                                    bottom: .zero,
                                                    right: 5)
         }
-
-        itemCollectionView.reloadData()
-    }
-
-    public func setIsEditing(isEditing: Bool) {
-        if isEditing != itemsAreEditing {
-            itemsAreEditing = isEditing
-            itemCollectionView.reloadData()
-        }
     }
 }
 
-extension LookTableViewCell: UICollectionViewDelegate {
+extension AllItemsTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
@@ -111,17 +100,17 @@ extension LookTableViewCell: UICollectionViewDelegate {
     }
 }
 
-extension LookTableViewCell: UICollectionViewDataSource {
+extension AllItemsTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? LookCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "allItemsCell", for: indexPath) as? AllItemsCollectionViewCell else {
             return UICollectionViewCell()
         }
 
-        cell.setIsEditing(isEditing: itemsAreEditing)
+        cell.configure(text: String(indexPath.row))
         cell.dropShadow()
 
         return cell
