@@ -174,6 +174,7 @@ final class WardrobeUsersViewController: UIViewController {
 
 extension WardrobeUsersViewController: WardrobeUsersViewInput {
     func reloadCollectionView() {
+        isReloadDataNeed = true
         collectionView.reloadData()
     }
 
