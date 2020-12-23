@@ -53,13 +53,6 @@ class NetworkService {
 }
 
 extension NetworkService {
-    struct Result<DataType, ErrorType> {
-        var data: DataType?
-        var error: ErrorType?
-    }
-}
-
-extension NetworkService {
     private struct Constants {
         static let securePlistFilename: String = "Wardrobe-Info"
 

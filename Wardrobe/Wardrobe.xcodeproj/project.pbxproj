@@ -45,6 +45,8 @@
 		31467C452592813A00B785FF /* CreateLookProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C3F2592813A00B785FF /* CreateLookProtocols.swift */; };
 		31467C462592813A00B785FF /* CreateLookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C402592813A00B785FF /* CreateLookInteractor.swift */; };
 		31467C472592813A00B785FF /* CreateLookContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C412592813A00B785FF /* CreateLookContainer.swift */; };
+		3180ECE32593DBF400A046E5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECE22593DBF400A046E5 /* Result.swift */; };
+		3180ECE82593DC7300A046E5 /* LoginRawModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECE72593DC7300A046E5 /* LoginRawModels.swift */; };
 		31E4EB4F258E6601001AC230 /* EditItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB49258E6601001AC230 /* EditItemPresenter.swift */; };
 		31E4EB50258E6601001AC230 /* EditItemRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4A258E6601001AC230 /* EditItemRouter.swift */; };
 		31E4EB51258E6601001AC230 /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4B258E6601001AC230 /* EditItemViewController.swift */; };
@@ -162,6 +164,8 @@
 		31467C3F2592813A00B785FF /* CreateLookProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookProtocols.swift; sourceTree = "<group>"; };
 		31467C402592813A00B785FF /* CreateLookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookInteractor.swift; sourceTree = "<group>"; };
 		31467C412592813A00B785FF /* CreateLookContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookContainer.swift; sourceTree = "<group>"; };
+		3180ECE22593DBF400A046E5 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		3180ECE72593DC7300A046E5 /* LoginRawModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRawModels.swift; sourceTree = "<group>"; };
 		31E4EB49258E6601001AC230 /* EditItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemPresenter.swift; sourceTree = "<group>"; };
 		31E4EB4A258E6601001AC230 /* EditItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemRouter.swift; sourceTree = "<group>"; };
 		31E4EB4B258E6601001AC230 /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
@@ -543,6 +547,22 @@
 				31467C412592813A00B785FF /* CreateLookContainer.swift */,
 			);
 			path = Container;
+			sourceTree = "<group>";
+		};
+		3180ECE12593DBA600A046E5 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				3180ECE22593DBF400A046E5 /* Result.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		3180ECE62593DC5F00A046E5 /* RawModels */ = {
+			isa = PBXGroup;
+			children = (
+				3180ECE72593DC7300A046E5 /* LoginRawModels.swift */,
+			);
+			path = RawModels;
 			sourceTree = "<group>";
 		};
 		31E4EB48258E65F3001AC230 /* EditItem */ = {
@@ -944,6 +964,7 @@
 		31F8C509259373E5003BB6E0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				3180ECE62593DC5F00A046E5 /* RawModels */,
 				31F8C50C25937429003BB6E0 /* AuthService.swift */,
 			);
 			path = Auth;
@@ -980,6 +1001,7 @@
 		31F8C51E2593A770003BB6E0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3180ECE12593DBA600A046E5 /* Result */,
 				31F8C51F2593A78A003BB6E0 /* NetworkService.swift */,
 			);
 			path = Common;
@@ -1194,6 +1216,7 @@
 				31E4EB83258E679B001AC230 /* LookContainer.swift in Sources */,
 				31E4EBDA258E6CA4001AC230 /* AllClothesRouter.swift in Sources */,
 				31E4EC66259231FC001AC230 /* AllItemsRouter.swift in Sources */,
+				3180ECE32593DBF400A046E5 /* Result.swift in Sources */,
 				31E4EB72258E673D001AC230 /* WardrobeDetailProtocols.swift in Sources */,
 				31E4EB6F258E673D001AC230 /* WardrobeDetailPresenter.swift in Sources */,
 				31E4EBCF258E6A59001AC230 /* InviteContainer.swift in Sources */,
@@ -1222,6 +1245,7 @@
 				31E4EBC0258E6A45001AC230 /* SettingsContainer.swift in Sources */,
 				13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */,
 				13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */,
+				3180ECE82593DC7300A046E5 /* LoginRawModels.swift in Sources */,
 				0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */,
 				31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */,
 				31467C472592813A00B785FF /* CreateLookContainer.swift in Sources */,
