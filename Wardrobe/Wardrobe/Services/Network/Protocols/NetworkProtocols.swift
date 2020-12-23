@@ -1,0 +1,7 @@
+protocol AuthServiceInput {
+    
+}
+
+protocol DataServiceInput {
+    
+}

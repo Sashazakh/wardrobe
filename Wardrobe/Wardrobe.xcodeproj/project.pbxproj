@@ -113,6 +113,9 @@
 		31E6E778258D2CE500591F72 /* RegisterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E772258D2CE500591F72 /* RegisterProtocols.swift */; };
 		31E6E779258D2CE500591F72 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E773258D2CE500591F72 /* RegisterInteractor.swift */; };
 		31E6E77A258D2CE500591F72 /* RegisterContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E774258D2CE500591F72 /* RegisterContainer.swift */; };
+		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
+		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
+		31F8C5152593754A003BB6E0 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C5142593754A003BB6E0 /* DataService.swift */; };
 		D01532F399E202C2F1464915 /* Pods_Wardrobe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1B9047E3A9526460D1CD4 /* Pods_Wardrobe.framework */; };
 /* End PBXBuildFile section */
 
@@ -226,6 +229,9 @@
 		31E6E772258D2CE500591F72 /* RegisterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProtocols.swift; sourceTree = "<group>"; };
 		31E6E773258D2CE500591F72 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		31E6E774258D2CE500591F72 /* RegisterContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContainer.swift; sourceTree = "<group>"; };
+		31F8C50C25937429003BB6E0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		31F8C51125937519003BB6E0 /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
+		31F8C5142593754A003BB6E0 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		7868A0E5AC4E3FEEEEB60FFD /* Pods-Wardrobe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.release.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.release.xcconfig"; sourceTree = "<group>"; };
 		8E628020EFEE71A0D3856E4A /* Pods-Wardrobe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.debug.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -830,6 +836,7 @@
 		31E6E6C6258BFD3700591F72 /* Wardrobe */ = {
 			isa = PBXGroup;
 			children = (
+				31F8C508259373C9003BB6E0 /* Services */,
 				31467C3B2592812100B785FF /* CreateLook */,
 				31E4EC5E259231DE001AC230 /* AllItems */,
 				0D193173258F90E50001529B /* TabBar */,
@@ -917,6 +924,48 @@
 				31E6E763258CF47800591F72 /* DMSans-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		31F8C508259373C9003BB6E0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				31F8C50B2593740F003BB6E0 /* Network */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		31F8C509259373E5003BB6E0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				31F8C50C25937429003BB6E0 /* AuthService.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		31F8C50A259373F4003BB6E0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				31F8C5142593754A003BB6E0 /* DataService.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		31F8C50B2593740F003BB6E0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				31F8C51025937504003BB6E0 /* Protocols */,
+				31F8C509259373E5003BB6E0 /* Auth */,
+				31F8C50A259373F4003BB6E0 /* Data */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		31F8C51025937504003BB6E0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				31F8C51125937519003BB6E0 /* NetworkProtocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1132,6 +1181,7 @@
 				0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */,
 				31E4EB81258E679B001AC230 /* LookProtocols.swift in Sources */,
 				31E4EB7E258E679B001AC230 /* LookPresenter.swift in Sources */,
+				31F8C5152593754A003BB6E0 /* DataService.swift in Sources */,
 				31467C2925926E4B00B785FF /* AllItemsCollectionViewCell.swift in Sources */,
 				0D63E793258CF8550031AE6F /* NewItemScreenProtocols.swift in Sources */,
 				13A7462B258D0B4600643369 /* MainScreenPresenter.swift in Sources */,
@@ -1146,12 +1196,14 @@
 				31E4EBB0258E6A19001AC230 /* WardrobeUsersProtocols.swift in Sources */,
 				31E4EC68259231FC001AC230 /* AllItemsProtocols.swift in Sources */,
 				31E4EB7F258E679B001AC230 /* LookRouter.swift in Sources */,
+				31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */,
 				0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */,
 				31E4EB53258E6601001AC230 /* EditItemInteractor.swift in Sources */,
 				31E4EBC0258E6A45001AC230 /* SettingsContainer.swift in Sources */,
 				13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */,
 				13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */,
 				0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */,
+				31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */,
 				31467C472592813A00B785FF /* CreateLookContainer.swift in Sources */,
 				31E4EBBF258E6A45001AC230 /* SettingsInteractor.swift in Sources */,
 			);
