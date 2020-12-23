@@ -230,6 +230,10 @@ final class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewInput {
+    func getUserCredentials() {
+
+    }
+
 }
 
 extension LoginViewController {

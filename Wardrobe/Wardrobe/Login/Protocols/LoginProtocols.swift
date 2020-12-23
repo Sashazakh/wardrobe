@@ -1,6 +1,7 @@
 import Foundation
 
 protocol LoginViewInput: AnyObject {
+    func getUserCredentials()
 }
 
 protocol LoginViewOutput: AnyObject {

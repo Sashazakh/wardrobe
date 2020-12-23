@@ -24,7 +24,7 @@ class NetworkService {
         apiKey = value
     }
 
-    private func getApiKey() -> String {
+    func getApiKey() -> String {
         return apiKey ?? Constants.suckBigBlackMambaDick
     }
 }

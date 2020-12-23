@@ -19,6 +19,7 @@ extension LoginPresenter: LoginViewOutput {
     }
 
     func didTapLoginButton() {
+
         router.showWardrobeScreen()
     }
 }
