@@ -13,4 +13,8 @@ final class MainScreenInteractor {
 }
 
 extension MainScreenInteractor: MainScreenInteractorInput {
+    func loadUserWardobes() {
+        DataService.
+    }
+    
 }
