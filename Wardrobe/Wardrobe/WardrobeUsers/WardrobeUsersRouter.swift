@@ -5,4 +5,10 @@ final class WardrobeUsersRouter {
 }
 
 extension WardrobeUsersRouter: WardrobeUsersRouterInput {
+    func showInviteUser() {
+        let vc = InviteContainer.assemble(with: InviteContext()).viewController
+
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
+
 }
