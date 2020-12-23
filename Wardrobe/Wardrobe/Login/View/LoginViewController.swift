@@ -230,8 +230,13 @@ final class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewInput {
-    func getUserCredentials() {
+    func getUserCredentials() -> [String: String?] {
+        var credentials: [String: String?] = [:]
 
+        credentials["login"] = loginTextField.text
+        credentials["password"] = passwordTextField.text
+
+        return credentials
     }
 
 }

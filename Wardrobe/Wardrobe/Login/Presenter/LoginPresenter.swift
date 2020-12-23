@@ -19,10 +19,26 @@ extension LoginPresenter: LoginViewOutput {
     }
 
     func didTapLoginButton() {
+        guard let userCredentials = view?.getUserCredentials() else {
+            return
+        }
 
-        router.showWardrobeScreen()
+        guard let login = (userCredentials["login"] ?? ""),
+              !login.isEmpty else {
+            return
+        }
+
+        guard let password = (userCredentials["password"] ?? ""),
+              !password.isEmpty else {
+            return
+        }
+
+        interactor.login(login: login, password: password)
     }
 }
 
 extension LoginPresenter: LoginInteractorOutput {
+    func userSuccesfullyLogin() {
+        router.showWardrobeScreen()
+    }
 }

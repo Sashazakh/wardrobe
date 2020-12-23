@@ -1,7 +1,7 @@
 import Foundation
 
 protocol LoginViewInput: AnyObject {
-    func getUserCredentials()
+    func getUserCredentials() -> [String: String?]
 }
 
 protocol LoginViewOutput: AnyObject {
@@ -11,9 +11,11 @@ protocol LoginViewOutput: AnyObject {
 }
 
 protocol LoginInteractorInput: AnyObject {
+    func login(login: String, password: String)
 }
 
 protocol LoginInteractorOutput: AnyObject {
+    func userSuccesfullyLogin()
 }
 
 protocol LoginRouterInput: AnyObject {

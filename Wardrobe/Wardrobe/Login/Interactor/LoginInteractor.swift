@@ -5,4 +5,9 @@ final class LoginInteractor {
 }
 
 extension LoginInteractor: LoginInteractorInput {
+    func login(login: String, password: String) {
+        AuthService.shared.login(login: login, password: password) { [weak self] in
+
+        }
+    }
 }
