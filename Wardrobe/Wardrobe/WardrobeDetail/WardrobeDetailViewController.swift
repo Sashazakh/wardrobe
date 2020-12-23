@@ -70,7 +70,6 @@ final class WardrobeDetailViewController: UIViewController {
         titleLabel.minimumScaleFactor = 0.1
         titleLabel.numberOfLines = 0
         titleLabel.sizeToFit()
-        titleLabel.textAlignment = .center
         headerView.addSubview(titleLabel)
     }
 
