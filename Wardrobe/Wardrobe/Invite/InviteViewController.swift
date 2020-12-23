@@ -113,6 +113,10 @@ extension InviteViewController {
         pageTitle.textAlignment = .center
         pageTitle.text = "Пригласить\nпользователя"
         pageTitle.font = UIFont(name: "DMSans-Bold", size: 25)
+        pageTitle.adjustsFontSizeToFitWidth = true
+        pageTitle.minimumScaleFactor = 0.1
+        pageTitle.numberOfLines = 0
+        pageTitle.sizeToFit()
         headerView.addSubview(pageTitle)
     }
 
@@ -121,7 +125,7 @@ extension InviteViewController {
         pageTitle.pin
             .top(20%)
             .hCenter()
-            .sizeToFit()
+            .height(28%)
     }
 
     // loginTextField
