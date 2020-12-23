@@ -16,6 +16,8 @@ protocol LoginInteractorInput: AnyObject {
 
 protocol LoginInteractorOutput: AnyObject {
     func userSuccesfullyLogin()
+
+    func showAlert(title: String, message: String)
 }
 
 protocol LoginRouterInput: AnyObject {

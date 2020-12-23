@@ -41,4 +41,16 @@ extension LoginPresenter: LoginInteractorOutput {
     func userSuccesfullyLogin() {
         router.showWardrobeScreen()
     }
+
+    func showAlert(title: String, message: String) {
+
+    }
+}
+
+extension LoginPresenter {
+    struct LoginData {
+        var userName: String
+
+        var imageURL: String?
+    }
 }

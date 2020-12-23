@@ -6,8 +6,17 @@ final class LoginInteractor {
 
 extension LoginInteractor: LoginInteractorInput {
     func login(login: String, password: String) {
-        AuthService.shared.login(login: login, password: password) { [weak self] in
+        AuthService.shared.login(login: login, password: password) { result in
+            if let error = result.error {
+                debugPrint(error)
+                return
+            }
 
+            guard let data = result.data else {
+                return
+            }
+
+            output?.userSuccesfullyLogin()
         }
     }
 }
