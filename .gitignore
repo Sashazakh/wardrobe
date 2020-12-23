@@ -92,3 +92,5 @@ iOSInjectionProject/
 .DS_Store
 Wardrobe/Podfile.lock
 
+# SecureData
+Wardrobe/Wardrobe/Application/Wardrobe-Info.plist

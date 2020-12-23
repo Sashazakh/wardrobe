@@ -116,6 +116,8 @@
 		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
 		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
 		31F8C5152593754A003BB6E0 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C5142593754A003BB6E0 /* DataService.swift */; };
+		31F8C51C2593A609003BB6E0 /* Wardrobe-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31F8C51B2593A609003BB6E0 /* Wardrobe-Info.plist */; };
+		31F8C5202593A78A003BB6E0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51F2593A78A003BB6E0 /* NetworkService.swift */; };
 		D01532F399E202C2F1464915 /* Pods_Wardrobe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1B9047E3A9526460D1CD4 /* Pods_Wardrobe.framework */; };
 /* End PBXBuildFile section */
 
@@ -232,6 +234,8 @@
 		31F8C50C25937429003BB6E0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		31F8C51125937519003BB6E0 /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
 		31F8C5142593754A003BB6E0 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		31F8C51B2593A609003BB6E0 /* Wardrobe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wardrobe-Info.plist"; sourceTree = "<group>"; };
+		31F8C51F2593A78A003BB6E0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7868A0E5AC4E3FEEEEB60FFD /* Pods-Wardrobe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.release.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.release.xcconfig"; sourceTree = "<group>"; };
 		8E628020EFEE71A0D3856E4A /* Pods-Wardrobe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.debug.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -878,6 +882,7 @@
 				31E6E6C7258BFD3700591F72 /* AppDelegate.swift */,
 				31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */,
 				31E6E6D5258BFD3900591F72 /* Info.plist */,
+				31F8C51B2593A609003BB6E0 /* Wardrobe-Info.plist */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -953,6 +958,7 @@
 		31F8C50B2593740F003BB6E0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				31F8C51E2593A770003BB6E0 /* Common */,
 				31F8C51025937504003BB6E0 /* Protocols */,
 				31F8C509259373E5003BB6E0 /* Auth */,
 				31F8C50A259373F4003BB6E0 /* Data */,
@@ -966,6 +972,14 @@
 				31F8C51125937519003BB6E0 /* NetworkProtocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		31F8C51E2593A770003BB6E0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				31F8C51F2593A78A003BB6E0 /* NetworkService.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1028,6 +1042,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31F8C51C2593A609003BB6E0 /* Wardrobe-Info.plist in Resources */,
 				31E6E766258CF47800591F72 /* DMSans-Regular.ttf in Resources */,
 				31E6E700258C093300591F72 /* SplashScreen.xib in Resources */,
 				31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */,
@@ -1157,6 +1172,7 @@
 				13A7462C258D0B4600643369 /* MainScreenRouter.swift in Sources */,
 				31467C2E25927BD900B785FF /* AllItemsCollectionViewPresenter.swift in Sources */,
 				139EF328258E3DC900A9435B /* WardrobeCell.swift in Sources */,
+				31F8C5202593A78A003BB6E0 /* NetworkService.swift in Sources */,
 				31E4EC3925909E6B001AC230 /* ItemCollectionViewCell.swift in Sources */,
 				13A7462D258D0B4600643369 /* MainScreenViewController.swift in Sources */,
 				0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */,

@@ -1,13 +1,14 @@
 import Alamofire
 
-final class DataService {
+final class DataService: NetworkService {
+
     static let shared = DataService()
-    
-    private init() {
-        
+
+    private override init() {
+        super.init()
     }
 }
 
 extension DataService: DataServiceInput {
-    
+
 }
