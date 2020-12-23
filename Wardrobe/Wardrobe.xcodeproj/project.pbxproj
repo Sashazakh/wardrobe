@@ -46,6 +46,7 @@
 		31467C472592813A00B785FF /* CreateLookContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C412592813A00B785FF /* CreateLookContainer.swift */; };
 		3180ECE32593DBF400A046E5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECE22593DBF400A046E5 /* Result.swift */; };
 		3180ECE82593DC7300A046E5 /* LoginRawModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECE72593DC7300A046E5 /* LoginRawModels.swift */; };
+		3180ECEE2593E03D00A046E5 /* LoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECED2593E03D00A046E5 /* LoginModels.swift */; };
 		31E4EB4F258E6601001AC230 /* EditItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB49258E6601001AC230 /* EditItemPresenter.swift */; };
 		31E4EB50258E6601001AC230 /* EditItemRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4A258E6601001AC230 /* EditItemRouter.swift */; };
 		31E4EB51258E6601001AC230 /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4B258E6601001AC230 /* EditItemViewController.swift */; };
@@ -164,6 +165,7 @@
 		31467C412592813A00B785FF /* CreateLookContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookContainer.swift; sourceTree = "<group>"; };
 		3180ECE22593DBF400A046E5 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		3180ECE72593DC7300A046E5 /* LoginRawModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRawModels.swift; sourceTree = "<group>"; };
+		3180ECED2593E03D00A046E5 /* LoginModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModels.swift; sourceTree = "<group>"; };
 		31E4EB49258E6601001AC230 /* EditItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemPresenter.swift; sourceTree = "<group>"; };
 		31E4EB4A258E6601001AC230 /* EditItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemRouter.swift; sourceTree = "<group>"; };
 		31E4EB4B258E6601001AC230 /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
@@ -563,6 +565,14 @@
 			path = RawModels;
 			sourceTree = "<group>";
 		};
+		3180ECEC2593DFF100A046E5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3180ECED2593E03D00A046E5 /* LoginModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		31E4EB48258E65F3001AC230 /* EditItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -931,6 +941,7 @@
 		31E6E71E258CE32900591F72 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				3180ECEC2593DFF100A046E5 /* Models */,
 				31E4EC24258FE293001AC230 /* Container */,
 				31E4EC23258FE287001AC230 /* View */,
 				31E4EC22258FE26D001AC230 /* Interactor */,
@@ -1172,6 +1183,7 @@
 				0DE88520258E29CE00BFC856 /* CreateWardrobePresenter.swift in Sources */,
 				0DE97FC32592567A00903CE1 /* GlobalConstants.swift in Sources */,
 				31467C452592813A00B785FF /* CreateLookProtocols.swift in Sources */,
+				3180ECEE2593E03D00A046E5 /* LoginModels.swift in Sources */,
 				31467C442592813A00B785FF /* CreateLookViewController.swift in Sources */,
 				31E4EC6A259231FC001AC230 /* AllItemsContainer.swift in Sources */,
 				31E4EB70258E673D001AC230 /* WardrobeDetailRouter.swift in Sources */,

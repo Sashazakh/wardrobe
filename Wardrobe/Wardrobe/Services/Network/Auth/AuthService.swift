@@ -10,11 +10,26 @@ final class AuthService: NetworkService {
 }
 
 extension AuthService: AuthServiceInput {
-    func login(login: String, password: String, completion: (Result<LoginResponse, Error>) -> Void) {
+    func login(login: String, password: String, completion: @escaping (Result<LoginResponse, Error>) -> Void) {
         let request = AF.request("\(getBaseURL())login?login=\(login)&password=\(password)&apikey=\(getApiKey())")
 
-        request.response { (response) in
-            debugPrint(response)
+        request.responseDecodable(of: [LoginResponse].self) { (response) in
+            var result = Result<LoginResponse, Error>()
+
+            switch response.result {
+            case .success(let data):
+                guard response.response?.statusCode == 200 else {
+                    result.error = NSError()
+                    completion(result)
+                    return
+                }
+
+                result.data = data.first
+            case .failure(let error):
+                result.error = error
+            }
+
+            completion(result)
         }
     }
 

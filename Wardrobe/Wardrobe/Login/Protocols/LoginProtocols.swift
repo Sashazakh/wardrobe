@@ -2,6 +2,8 @@ import Foundation
 
 protocol LoginViewInput: AnyObject {
     func getUserCredentials() -> [String: String?]
+
+    func showAlert(title: String, message: String)
 }
 
 protocol LoginViewOutput: AnyObject {
@@ -15,6 +17,8 @@ protocol LoginInteractorInput: AnyObject {
 }
 
 protocol LoginInteractorOutput: AnyObject {
+    func updateModel(model: LoginData)
+
     func userSuccesfullyLogin()
 
     func showAlert(title: String, message: String)
