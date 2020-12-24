@@ -26,17 +26,29 @@ extension DataService: DataServiceInput {
 
     // MARK: Wardrobe
 
-    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], Error>) -> Void) {
-        let request = AF.request(getBaseURL())
+    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
+        let url = getBaseURL() + "getWardrobes?login=Sashazak&apikey=\(getApiKey())"
+
+        let request = AF.request(url)
+
+        var result = Result<[WardrobeRaw], NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
 
         request.responseDecodable(of: [WardrobeRaw].self) { response in
-            var result = Result<[WardrobeRaw], Error>()
-
             switch response.result {
             case .success(let wardrobe):
                 result.data = wardrobe
             case .failure(let error):
-                result.error = error
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
             }
 
             completion(result)

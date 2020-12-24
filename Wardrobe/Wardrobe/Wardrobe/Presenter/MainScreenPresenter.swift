@@ -14,6 +14,14 @@ final class MainScreenPresenter {
 	private let router: MainScreenRouterInput
 	private let interactor: MainScreenInteractorInput
 
+    private var userWardrobes: [WardrobeData] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.view?.reloadData()
+            }
+        }
+    }
+
     init(router: MainScreenRouterInput, interactor: MainScreenInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -25,14 +33,30 @@ extension MainScreenPresenter: MainScreenViewOutput {
         interactor.loadUserWardobes()
     }
 
-    func itemDidTap(at indexPath: IndexPath) {
+    func addWardrobeDidTap() {
+        router.showAddWardobeScreen()
+    }
+
+    func showDetailDidTap(at indexPath: IndexPath) {
         router.showDetailWardrope(id: indexPath.row)
     }
 
     func settingsButtonDidTap() {
         router.showSettings()
     }
+
+    func getNumberOfWardrobes() -> Int {
+        return userWardrobes.count
+    }
+
+    func wardrobe(at indexPath: IndexPath) -> WardrobeData? {
+        return userWardrobes[indexPath.row]
+    }
 }
 
 extension MainScreenPresenter: MainScreenInteractorOutput {
+    func didReceive(with wardrobes: [WardrobeData]) {
+        self.userWardrobes = wardrobes
+    }
+
 }

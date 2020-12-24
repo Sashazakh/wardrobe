@@ -9,12 +9,16 @@
 import Foundation
 
 protocol MainScreenViewInput: class {
+    func reloadData()
 }
 
 protocol MainScreenViewOutput: class {
-    func itemDidTap(at indexPath: IndexPath)
+    func showDetailDidTap(at indexPath: IndexPath)
+    func addWardrobeDidTap()
     func settingsButtonDidTap()
     func didLoadView()
+    func getNumberOfWardrobes() -> Int
+    func wardrobe(at indexPath: IndexPath) -> WardrobeData?
 }
 
 protocol MainScreenInteractorInput: class {
@@ -22,10 +26,11 @@ protocol MainScreenInteractorInput: class {
 }
 
 protocol MainScreenInteractorOutput: class {
-
+    func didReceive(with wardrobes: [WardrobeData])
 }
 
 protocol MainScreenRouterInput: class {
     func showDetailWardrope(id: Int)
     func showSettings()
+    func showAddWardobeScreen()
 }

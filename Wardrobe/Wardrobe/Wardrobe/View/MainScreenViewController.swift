@@ -14,8 +14,6 @@ final class MainScreenViewController: UIViewController {
 
     private let screenBounds = UIScreen.main.bounds
 
-    private var countOfCells = 20
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -129,8 +127,8 @@ final class MainScreenViewController: UIViewController {
         let collView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView = collView
         collectionView.backgroundColor = .white
-        collectionView.register(WardrobeCell.self,
-                                forCellWithReuseIdentifier: WardrobeCell.identifier)
+        collectionView.register(MainScreenCell.self,
+                                forCellWithReuseIdentifier: "MainScreenCell")
         collectionView.register(AddWardrobeCell.self,
                                 forCellWithReuseIdentifier: AddWardrobeCell.identifier)
         collectionView.delegate = self
@@ -235,21 +233,38 @@ final class MainScreenViewController: UIViewController {
 }
 
 extension MainScreenViewController: MainScreenViewInput {
+    func reloadData() {
+        collectionView.reloadData()
+    }
+
 }
 
 extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                                     UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        countOfCells
+        var totalNumberOfCells = output?.getNumberOfWardrobes() ?? 0
+        totalNumberOfCells += 1
+        return totalNumberOfCells
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WardrobeCell.identifier, for: indexPath)
-        if indexPath.row == countOfCells - 1 {
+        var numberOfWardobes = output?.getNumberOfWardrobes() ?? 0
+        numberOfWardobes += 1
+        if indexPath.row == numberOfWardobes - 1 || numberOfWardobes == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddWardrobeCell.identifier, for: indexPath)
             return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainScreenCell", for: indexPath) as? MainScreenCell else {
+                return UICollectionViewCell()
+            }
+
+            guard let wardobe = output?.wardrobe(at: indexPath) else {
+                return UICollectionViewCell()
+            }
+
+            cell.configureCell(with: wardobe)
+            return cell
         }
-        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
@@ -264,7 +279,13 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        output?.itemDidTap(at: indexPath)
+        var numberOfWardobes = output?.getNumberOfWardrobes() ?? 0
+        numberOfWardobes += 1
+        if indexPath.row == numberOfWardobes - 1 || numberOfWardobes == 0 {
+            output?.addWardrobeDidTap()
+        } else {
+            output?.showDetailDidTap(at: indexPath)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

@@ -12,11 +12,13 @@ final class MainScreenInteractor {
 	weak var output: MainScreenInteractorOutput?
 
     private func handleError(with error: Error) {
+        print(error)
 
     }
 
     private func handleWardrobes(with wardrobeRaw: [WardrobeRaw]) {
-
+        let wardobes: [WardrobeData] = wardrobeRaw.map({ WardrobeData(with: $0) })
+        output?.didReceive(with: wardobes)
     }
 }
 

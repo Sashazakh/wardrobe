@@ -12,5 +12,5 @@ protocol AuthServiceInput {
 }
 
 protocol DataServiceInput {
-    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], Error>) -> Void)
+    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void)
 }
