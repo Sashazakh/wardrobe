@@ -65,3 +65,27 @@ extension NetworkService {
         static let suckBigBlackMambaDick: String = "blowjob"
     }
 }
+
+enum ResponseCode {
+    case success
+    case error
+}
+
+extension ResponseCode {
+    var code: Int {
+        switch self {
+        case .success:
+            return Codes.successCode
+        case .error:
+            return Codes.errorCode
+        }
+    }
+}
+
+extension ResponseCode {
+    private struct Codes {
+        static let successCode: Int = 200
+
+        static let errorCode: Int = 404
+    }
+}

@@ -27,11 +27,13 @@ extension LoginPresenter: LoginViewOutput {
 
         guard let login = (userCredentials["login"] ?? ""),
               !login.isEmpty else {
+            view?.showAlert(title: "Ошибка", message: "Введите Ваш логин")
             return
         }
 
         guard let password = (userCredentials["password"] ?? ""),
               !password.isEmpty else {
+            view?.showAlert(title: "Ошибка", message: "Введите Ваш пароль")
             return
         }
 
