@@ -47,6 +47,9 @@
 		31467C472592813A00B785FF /* CreateLookContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C412592813A00B785FF /* CreateLookContainer.swift */; };
 		3180ECE32593DBF400A046E5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECE22593DBF400A046E5 /* Result.swift */; };
 		3180ECE82593DC7300A046E5 /* LoginRawModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECE72593DC7300A046E5 /* LoginRawModels.swift */; };
+		3180ECEE2593E03D00A046E5 /* LoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECED2593E03D00A046E5 /* LoginModels.swift */; };
+		3180ECFF2593FA8400A046E5 /* RegisterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECFE2593FA8400A046E5 /* RegisterModels.swift */; };
+		3180ED0425949F3400A046E5 /* NetworkServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ED0325949F3400A046E5 /* NetworkServiceErrors.swift */; };
 		31E4EB4F258E6601001AC230 /* EditItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB49258E6601001AC230 /* EditItemPresenter.swift */; };
 		31E4EB50258E6601001AC230 /* EditItemRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4A258E6601001AC230 /* EditItemRouter.swift */; };
 		31E4EB51258E6601001AC230 /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4B258E6601001AC230 /* EditItemViewController.swift */; };
@@ -166,6 +169,9 @@
 		31467C412592813A00B785FF /* CreateLookContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookContainer.swift; sourceTree = "<group>"; };
 		3180ECE22593DBF400A046E5 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		3180ECE72593DC7300A046E5 /* LoginRawModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRawModels.swift; sourceTree = "<group>"; };
+		3180ECED2593E03D00A046E5 /* LoginModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModels.swift; sourceTree = "<group>"; };
+		3180ECFE2593FA8400A046E5 /* RegisterModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModels.swift; sourceTree = "<group>"; };
+		3180ED0325949F3400A046E5 /* NetworkServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceErrors.swift; sourceTree = "<group>"; };
 		31E4EB49258E6601001AC230 /* EditItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemPresenter.swift; sourceTree = "<group>"; };
 		31E4EB4A258E6601001AC230 /* EditItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemRouter.swift; sourceTree = "<group>"; };
 		31E4EB4B258E6601001AC230 /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
@@ -565,6 +571,30 @@
 			path = RawModels;
 			sourceTree = "<group>";
 		};
+		3180ECEC2593DFF100A046E5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3180ECED2593E03D00A046E5 /* LoginModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3180ECFD2593FA6700A046E5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3180ECFE2593FA8400A046E5 /* RegisterModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3180ED0225949F2300A046E5 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				3180ED0325949F3400A046E5 /* NetworkServiceErrors.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		31E4EB48258E65F3001AC230 /* EditItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -887,6 +917,7 @@
 		31E6E6DE258BFE8C00591F72 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				3180ECFD2593FA6700A046E5 /* Models */,
 				31E4EC2A258FE31B001AC230 /* Container */,
 				31E4EC29258FE311001AC230 /* Protocols */,
 				31E4EC28258FE30A001AC230 /* View */,
@@ -933,6 +964,7 @@
 		31E6E71E258CE32900591F72 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				3180ECEC2593DFF100A046E5 /* Models */,
 				31E4EC24258FE293001AC230 /* Container */,
 				31E4EC23258FE287001AC230 /* View */,
 				31E4EC22258FE26D001AC230 /* Interactor */,
@@ -1001,6 +1033,7 @@
 		31F8C51E2593A770003BB6E0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3180ED0225949F2300A046E5 /* Errors */,
 				3180ECE12593DBA600A046E5 /* Result */,
 				31F8C51F2593A78A003BB6E0 /* NetworkService.swift */,
 			);
@@ -1151,6 +1184,7 @@
 				31E6E6C8258BFD3700591F72 /* AppDelegate.swift in Sources */,
 				31E4EB50258E6601001AC230 /* EditItemRouter.swift in Sources */,
 				31E4EBAF258E6A19001AC230 /* WardrobeUsersViewController.swift in Sources */,
+				3180ECFF2593FA8400A046E5 /* RegisterModels.swift in Sources */,
 				31E4EBDD258E6CA4001AC230 /* AllClothesInteractor.swift in Sources */,
 				31E6E729258CE33C00591F72 /* LoginInteractor.swift in Sources */,
 				1306220F2591F7290019E704 /* AddUserCell.swift in Sources */,
@@ -1175,6 +1209,7 @@
 				0DE88520258E29CE00BFC856 /* CreateWardrobePresenter.swift in Sources */,
 				0DE97FC32592567A00903CE1 /* GlobalConstants.swift in Sources */,
 				31467C452592813A00B785FF /* CreateLookProtocols.swift in Sources */,
+				3180ECEE2593E03D00A046E5 /* LoginModels.swift in Sources */,
 				31467C442592813A00B785FF /* CreateLookViewController.swift in Sources */,
 				31E4EC6A259231FC001AC230 /* AllItemsContainer.swift in Sources */,
 				31E4EB70258E673D001AC230 /* WardrobeDetailRouter.swift in Sources */,
@@ -1248,6 +1283,7 @@
 				3180ECE82593DC7300A046E5 /* LoginRawModels.swift in Sources */,
 				0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */,
 				31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */,
+				3180ED0425949F3400A046E5 /* NetworkServiceErrors.swift in Sources */,
 				31467C472592813A00B785FF /* CreateLookContainer.swift in Sources */,
 				31E4EBBF258E6A45001AC230 /* SettingsInteractor.swift in Sources */,
 			);

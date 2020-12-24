@@ -13,6 +13,14 @@ extension RegisterRouter: RegisterRouterInput {
     }
 
     func showWardrobeScreen() {
+        let tabBarVC = MainTabBar()
 
+        tabBarVC.modalPresentationStyle = .fullScreen
+
+        guard let sceneDelegate = viewController?.view.window?.windowScene?.delegate as? SceneDelegate else {
+            return
+        }
+
+        sceneDelegate.setRootViewController(controller: tabBarVC)
     }
 }

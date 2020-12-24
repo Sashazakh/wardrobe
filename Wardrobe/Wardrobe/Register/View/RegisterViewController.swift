@@ -422,6 +422,26 @@ extension RegisterViewController: RegisterViewInput {
         userPhotoImageView.contentMode = .scaleToFill
         userPhotoImageView.image = image
     }
+
+    func getNewUserCredentials() -> [String: String?] {
+        var credentials: [String: String?] = [:]
+
+        credentials["login"] = loginTextField.text
+        credentials["fio"] = fioTextField.text
+        credentials["password"] = passwordTextField.text
+        credentials["repeatPassword"] = repeatPasswordTextField.text
+
+        return credentials
+    }
+
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -7,6 +7,8 @@ final class LoginPresenter {
 
 	private let interactor: LoginInteractorInput
 
+    private var model: LoginData?
+
     init(router: LoginRouterInput, interactor: LoginInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -25,11 +27,13 @@ extension LoginPresenter: LoginViewOutput {
 
         guard let login = (userCredentials["login"] ?? ""),
               !login.isEmpty else {
+            view?.showAlert(title: "Ошибка", message: "Введите Ваш логин")
             return
         }
 
         guard let password = (userCredentials["password"] ?? ""),
               !password.isEmpty else {
+            view?.showAlert(title: "Ошибка", message: "Введите Ваш пароль")
             return
         }
 
@@ -38,19 +42,15 @@ extension LoginPresenter: LoginViewOutput {
 }
 
 extension LoginPresenter: LoginInteractorOutput {
+    func updateModel(model: LoginData) {
+        self.model = model
+    }
+
     func userSuccesfullyLogin() {
         router.showWardrobeScreen()
     }
 
     func showAlert(title: String, message: String) {
-
-    }
-}
-
-extension LoginPresenter {
-    struct LoginData {
-        var userName: String
-
-        var imageURL: String?
+        view?.showAlert(title: title, message: message)
     }
 }
