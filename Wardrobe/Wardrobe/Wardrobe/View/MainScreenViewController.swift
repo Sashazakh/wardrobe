@@ -18,7 +18,7 @@ final class MainScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupViews()
         output?.didLoadView()
     }

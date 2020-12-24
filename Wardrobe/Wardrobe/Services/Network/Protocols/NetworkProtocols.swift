@@ -7,11 +7,5 @@ protocol AuthServiceInput {
 }
 
 protocol DataServiceInput {
-    func changeName(newName: String)
-
-    func changePassword(newPassword: Int)
-
-    func changePhoto(newPhoto: UIImage)
-    
-    func getUserWardrobes(completion: @escaping (Result<WardrobeRaw, Error>) -> Void)
+    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], Error>) -> Void)
 }

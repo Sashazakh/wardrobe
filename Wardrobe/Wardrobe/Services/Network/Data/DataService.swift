@@ -11,11 +11,6 @@ final class DataService: NetworkService {
 }
 
 extension DataService: DataServiceInput {
-    func getUserWardrobes(completion: @escaping (Result<WardrobeRaw, Error>) -> Void) {
-        <#code#>
-    }
-
-    
     // MARK: Settings
     func changeName(newName: String) {
 
@@ -31,7 +26,23 @@ extension DataService: DataServiceInput {
 
     // MARK: Wardrobe
 
-    
+    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], Error>) -> Void) {
+        let request = AF.request(getBaseURL())
+
+        request.responseDecodable(of: [WardrobeRaw].self) { response in
+            var result = Result<[WardrobeRaw], Error>()
+
+            switch response.result {
+            case .success(let wardrobe):
+                result.data = wardrobe
+            case .failure(let error):
+                result.error = error
+            }
+
+            completion(result)
+        }
+    }
+
     func addWardrobe(name: String, description: String, image: UIImage) {
 
     }
@@ -80,7 +91,7 @@ extension DataService: DataServiceInput {
 
     }
 
-    // MARK: CLothes
+    // MARK: Clothes
 
     // Можно передавать модель вещи
     func newItem() {
@@ -94,5 +105,3 @@ extension DataService: DataServiceInput {
     func deleteItem(with id: Int) {
     }
 }
-
-

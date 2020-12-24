@@ -24,7 +24,7 @@ extension MainScreenPresenter: MainScreenViewOutput {
     func didLoadView() {
         interactor.loadUserWardobes()
     }
-    
+
     func itemDidTap(at indexPath: IndexPath) {
         router.showDetailWardrope(id: indexPath.row)
     }

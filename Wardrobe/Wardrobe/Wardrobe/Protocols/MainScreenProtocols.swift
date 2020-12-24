@@ -22,7 +22,7 @@ protocol MainScreenInteractorInput: class {
 }
 
 protocol MainScreenInteractorOutput: class {
-    
+
 }
 
 protocol MainScreenRouterInput: class {
