@@ -383,7 +383,7 @@ final class RegisterViewController: UIViewController {
 
     @objc
     private func didTapCheckBox() {
-
+        output?.didTapCheckBox()
     }
 
     @objc
@@ -436,6 +436,14 @@ extension RegisterViewController: RegisterViewInput {
 
     func getUserImage() -> Data? {
         return userPhotoImageView.image?.jpegData(compressionQuality: Constants.UserPhotoImageView.compression)
+    }
+
+    func setCheckBoxChecked() {
+        checkBoxImageView.image = UIImage(named: "checkBoxChecked")
+    }
+
+    func setCheckBoxUnchecked() {
+        checkBoxImageView.image = UIImage(named: "checkBoxNotChecked")
     }
 
     func showAlert(title: String, message: String) {

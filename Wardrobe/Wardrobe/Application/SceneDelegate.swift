@@ -12,10 +12,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
-        let vc = getInitalViewController(isAuthorized: false)
 
-        window?.rootViewController = vc
+        let initialVC = getInitalViewController(isAuthorized: false)
+        setRootViewController(controller: initialVC)
         window?.makeKeyAndVisible()
+
+        guard let navigationVC = initialVC as? UINavigationController,
+              let loginVC = navigationVC.viewControllers.first as? LoginViewController else {
+            return
+        }
+
+        AuthService.shared.isAuthorized { [unowned loginVC] (result) in
+            guard result.error == nil else {
+                guard let networkError = result.error else {
+                    return
+                }
+
+                switch networkError {
+                case .networkNotReachable:
+                    loginVC.showAlert(title: "Ошибка", message: "Не удается подключиться")
+                case .userNotExist:
+                    loginVC.showAlert(title: "Ошибка", message: "Время сессии истекло")
+                default:
+                    loginVC.showAlert(title: "Ошибка", message: "Мы скоро все починим")
+                }
+
+                return
+            }
+
+            guard let data = result.data else {
+                return
+            }
+
+            if data {
+                self.setRootViewController(controller: self.getInitalViewController(isAuthorized: true))
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -50,11 +82,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate {
     func getInitalViewController(isAuthorized: Bool) -> UIViewController {
         if isAuthorized {
-            let tabBarVC = MainTabBar()
+            let wardrobeContext = MainScreenContext(login: "Temp",
+                                                    userName: "Temp",
+                                                    umageURL: "Temp")
 
-            tabBarVC.modalPresentationStyle = .fullScreen
+            let allClothesContext = AllClothesContext(login: "Temp",
+                                                      userName: "Temp",
+                                                      imageURL: "Temp")
 
-            return tabBarVC
+            let tabBar = MainTabBarContainer.assemble(wardrobeContext: wardrobeContext,
+                                                      allClothContext: allClothesContext).viewController
+
+            tabBar.modalPresentationStyle = .fullScreen
+
+            return tabBar
         } else {
             let loginViewController = LoginContainer.assemble(with: LoginContext()).viewController
             let navigationVC = UINavigationController(rootViewController: loginViewController)

@@ -6,7 +6,7 @@ final class LoginRouter {
 
 extension LoginRouter: LoginRouterInput {
     func showRegistrationScreen() {
-        let registerVC = RegisterContainer.assemble(with: RegisterContext()).viewController
+        let registerVC = RegisterContainer.assemble(with: RegisterContext(termsAccepted: false)).viewController
 
         registerVC.modalPresentationStyle = .fullScreen
         viewController?.navigationController?.setViewControllers([registerVC], animated: true)

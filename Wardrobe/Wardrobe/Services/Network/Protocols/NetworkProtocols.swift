@@ -10,6 +10,8 @@ protocol AuthServiceInput {
     func login(login: String,
                password: String,
                completion: @escaping (Result<LoginResponse, NetworkError>) -> Void)
+
+    func isAuthorized(completion: @escaping (Result<Bool, NetworkError>) -> Void)
 }
 
 protocol DataServiceInput {

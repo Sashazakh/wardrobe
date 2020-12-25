@@ -10,6 +10,10 @@ protocol RegisterViewInput: AnyObject {
     func getUserImage() -> Data?
 
     func showAlert(title: String, message: String)
+
+    func setCheckBoxChecked()
+
+    func setCheckBoxUnchecked()
 }
 
 protocol RegisterViewOutput: AnyObject {
@@ -19,6 +23,8 @@ protocol RegisterViewOutput: AnyObject {
 
     func didTapRegisterButton()
 
+    func didTapCheckBox()
+
     func userDidSetImage(imageData: Data?)
 }
 
@@ -27,6 +33,10 @@ protocol RegisterInteractorInput: AnyObject {
                   fio: String,
                   password: String,
                   imageData: Data?)
+
+    func toggleTermsState()
+
+    func termsAreAccepted() -> Bool
 }
 
 protocol RegisterInteractorOutput: AnyObject {
