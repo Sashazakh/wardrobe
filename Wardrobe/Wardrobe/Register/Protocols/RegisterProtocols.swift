@@ -7,6 +7,8 @@ protocol RegisterViewInput: AnyObject {
 
     func getNewUserCredentials() -> [String: String?]
 
+    func getUserImage() -> Data?
+
     func showAlert(title: String, message: String)
 }
 
@@ -23,7 +25,8 @@ protocol RegisterViewOutput: AnyObject {
 protocol RegisterInteractorInput: AnyObject {
     func register(login: String,
                   fio: String,
-                  password: String)
+                  password: String,
+                  imageData: Data?)
 }
 
 protocol RegisterInteractorOutput: AnyObject {
@@ -37,5 +40,5 @@ protocol RegisterInteractorOutput: AnyObject {
 protocol RegisterRouterInput: AnyObject {
     func showLoginScreen()
 
-    func showWardrobeScreen()
+    func showWardrobeScreen(model: RegisterData)
 }

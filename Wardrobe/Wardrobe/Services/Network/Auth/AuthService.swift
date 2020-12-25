@@ -59,12 +59,14 @@ extension AuthService: AuthServiceInput {
     func register(login: String,
                   fio: String,
                   password: String,
+                  imageData: Data?,
                   completion: @escaping (Result<LoginResponse, NetworkError>) -> Void) {
+
         let parameters: [String: String] = [
             "login": login,
             "username": fio,
             "password": password,
-            "image": "temp",
+            "image": imageData?.base64EncodedString(options: .lineLength64Characters) ?? "null",
             "apikey": "\(getApiKey())"
         ]
 

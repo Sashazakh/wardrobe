@@ -12,8 +12,17 @@ extension LoginRouter: LoginRouterInput {
         viewController?.navigationController?.setViewControllers([registerVC], animated: true)
     }
 
-    func showWardrobeScreen() {
-        let tabBarVC = MainTabBar()
+    func showWardrobeScreen(model: LoginData) {
+        let wardrobeContext = MainScreenContext(login: model.login,
+                                                userName: model.userName,
+                                                umageURL: model.imageURL)
+
+        let allClothesContext = AllClothesContext(login: model.login,
+                                                  userName: model.userName,
+                                                  imageURL: model.imageURL)
+
+        let tabBarVC = MainTabBarContainer.assemble(wardrobeContext: wardrobeContext,
+                                                    allClothContext: allClothesContext).viewController
 
         tabBarVC.modalPresentationStyle = .fullScreen
 

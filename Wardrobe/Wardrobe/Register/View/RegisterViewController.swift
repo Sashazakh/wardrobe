@@ -434,6 +434,10 @@ extension RegisterViewController: RegisterViewInput {
         return credentials
     }
 
+    func getUserImage() -> Data? {
+        return userPhotoImageView.image?.jpegData(compressionQuality: Constants.UserPhotoImageView.compression)
+    }
+
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
@@ -485,6 +489,10 @@ extension RegisterViewController {
 
         struct WelcomeLabel {
             static let text: String = "Регистрация"
+        }
+
+        struct UserPhotoImageView {
+            static let compression: CGFloat = 0.1
         }
     }
 }

@@ -4,6 +4,7 @@ protocol AuthServiceInput {
     func register(login: String,
                   fio: String,
                   password: String,
+                  imageData: Data?,
                   completion: @escaping (Result<LoginResponse, NetworkError>) -> Void)
 
     func login(login: String,
