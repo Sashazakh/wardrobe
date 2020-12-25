@@ -13,16 +13,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
 
-        let initialVC = getInitalViewController(isAuthorized: false)
+        let initialVC = SplashScreenViewController()
         setRootViewController(controller: initialVC)
         window?.makeKeyAndVisible()
 
-        guard let navigationVC = initialVC as? UINavigationController,
-              let loginVC = navigationVC.viewControllers.first as? LoginViewController else {
-            return
-        }
-
-        AuthService.shared.isAuthorized { [unowned loginVC] (result) in
+        AuthService.shared.isAuthorized { (result) in
             guard result.error == nil else {
                 guard let networkError = result.error else {
                     return
@@ -30,11 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
                 switch networkError {
                 case .networkNotReachable:
-                    loginVC.showAlert(title: "Ошибка", message: "Не удается подключиться")
+                    initialVC.showAlert(title: "Ошибка", message: "Не удается подключиться")
                 case .userNotExist:
-                    loginVC.showAlert(title: "Ошибка", message: "Время сессии истекло")
+                    initialVC.showAlert(title: "Ошибка", message: "Время сессии истекло")
                 default:
-                    loginVC.showAlert(title: "Ошибка", message: "Мы скоро все починим")
+                    initialVC.showAlert(title: "Ошибка", message: "Мы скоро все починим")
                 }
 
                 return
@@ -44,9 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return
             }
 
-            if data {
-                self.setRootViewController(controller: self.getInitalViewController(isAuthorized: true))
-            }
+            self.setRootViewController(controller: self.getInitalViewController(isAuthorized: data))
         }
     }
 

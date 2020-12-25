@@ -121,6 +121,7 @@
 		31E6E778258D2CE500591F72 /* RegisterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E772258D2CE500591F72 /* RegisterProtocols.swift */; };
 		31E6E779258D2CE500591F72 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E773258D2CE500591F72 /* RegisterInteractor.swift */; };
 		31E6E77A258D2CE500591F72 /* RegisterContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E774258D2CE500591F72 /* RegisterContainer.swift */; };
+		31EB193A259694AF00621DDF /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EB1939259694AF00621DDF /* SplashScreenViewController.swift */; };
 		31F798F8259617C200DBDC2E /* MainTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */; };
 		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
 		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
@@ -248,6 +249,7 @@
 		31E6E772258D2CE500591F72 /* RegisterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProtocols.swift; sourceTree = "<group>"; };
 		31E6E773258D2CE500591F72 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		31E6E774258D2CE500591F72 /* RegisterContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContainer.swift; sourceTree = "<group>"; };
+		31EB1939259694AF00621DDF /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarContainer.swift; sourceTree = "<group>"; };
 		31F8C50C25937429003BB6E0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		31F8C51125937519003BB6E0 /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
@@ -982,6 +984,7 @@
 			isa = PBXGroup;
 			children = (
 				31E6E6FF258C093300591F72 /* SplashScreen.xib */,
+				31EB1939259694AF00621DDF /* SplashScreenViewController.swift */,
 			);
 			path = SplashScreen;
 			sourceTree = "<group>";
@@ -1211,6 +1214,7 @@
 				31E4EC69259231FC001AC230 /* AllItemsInteractor.swift in Sources */,
 				31E6E778258D2CE500591F72 /* RegisterProtocols.swift in Sources */,
 				31E4EB4F258E6601001AC230 /* EditItemPresenter.swift in Sources */,
+				31EB193A259694AF00621DDF /* SplashScreenViewController.swift in Sources */,
 				31E4EBBB258E6A45001AC230 /* SettingsPresenter.swift in Sources */,
 				0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */,
 				31E6E725258CE33C00591F72 /* LoginPresenter.swift in Sources */,
