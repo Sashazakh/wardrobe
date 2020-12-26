@@ -12,7 +12,7 @@ extension WardrobeDetailRouter: WardrobeDetailRouterInput {
     }
 
     func showLookScreen() {
-        let lookVC = LookContainer.assemble(with: LookContext()).viewController
+        let lookVC = LookContainer.assemble(with: LookContext(lookID: 1)).viewController
 
         lookVC.modalPresentationStyle = .fullScreen
 

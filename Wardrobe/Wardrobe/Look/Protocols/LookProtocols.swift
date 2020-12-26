@@ -6,6 +6,10 @@ protocol LookViewInput: AnyObject {
     func hideEditLayout()
 
     func setLookIsEditing(isEditing: Bool)
+
+    func loadData()
+
+    func showAlert(title: String, message: String)
 }
 
 protocol LookViewOutput: AnyObject {
@@ -14,12 +18,24 @@ protocol LookViewOutput: AnyObject {
     func didTapBackToWardrobeButton()
 
     func didTapAddItemsButton()
+
+    func didLoadView()
+
+    func getRowsCount() -> Int
+
+    func viewModel(index: Int) -> LookTableViewCellViewModel
 }
 
 protocol LookInteractorInput: AnyObject {
+    func fetchLook()
 }
 
 protocol LookInteractorOutput: AnyObject {
+    func lookDidReceived()
+
+    func updateModel(model: LookData)
+
+    func showAlert(title: String, message: String)
 }
 
 protocol LookRouterInput: AnyObject {

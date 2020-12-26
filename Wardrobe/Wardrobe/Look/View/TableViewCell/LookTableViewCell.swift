@@ -43,7 +43,6 @@ final class LookTableViewCell: UITableViewCell {
 
         sectionNameLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         sectionNameLabel.textAlignment = .left
-        sectionNameLabel.text = "Тапки"
     }
 
     private func setupCollectionView() {
@@ -97,6 +96,10 @@ final class LookTableViewCell: UITableViewCell {
             itemsAreEditing = isEditing
             itemCollectionView.reloadData()
         }
+    }
+
+    public func configure(viewModel: LookTableViewCellViewModel) {
+        sectionNameLabel.text = viewModel.sectionName
     }
 }
 

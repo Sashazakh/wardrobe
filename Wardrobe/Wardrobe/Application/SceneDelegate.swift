@@ -75,13 +75,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate {
     func getInitalViewController(isAuthorized: Bool) -> UIViewController {
         if isAuthorized {
-            let wardrobeContext = MainScreenContext(login: "Temp",
-                                                    userName: "Temp",
-                                                    umageURL: "Temp")
+            guard let login = AuthService.shared.getUserLogin(),
+                  let userName = AuthService.shared.getUserName() else {
+                return UINavigationController(rootViewController: LoginContainer.assemble(with: LoginContext()).viewController)
+            }
 
-            let allClothesContext = AllClothesContext(login: "Temp",
-                                                      userName: "Temp",
-                                                      imageURL: "Temp")
+            let imageURL = AuthService.shared.getUserImageURL()
+
+            let wardrobeContext = MainScreenContext(login: login,
+                                                    userName: userName,
+                                                    umageURL: imageURL)
+
+            let allClothesContext = AllClothesContext(login: login,
+                                                      userName: userName,
+                                                      imageURL: imageURL)
 
             let tabBar = MainTabBarContainer.assemble(wardrobeContext: wardrobeContext,
                                                       allClothContext: allClothesContext).viewController

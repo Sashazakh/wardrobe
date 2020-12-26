@@ -12,8 +12,16 @@ protocol AuthServiceInput {
                completion: @escaping (Result<LoginResponse, NetworkError>) -> Void)
 
     func isAuthorized(completion: @escaping (Result<Bool, NetworkError>) -> Void)
+
+    func getUserLogin() -> String?
+
+    func getUserName() -> String?
+
+    func getUserImageURL() -> String?
 }
 
 protocol DataServiceInput {
     func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void)
+
+    func getAllLookClothes(with id: Int, completion: @escaping (Result<LookRaw, NetworkError>) -> Void)
 }

@@ -182,6 +182,18 @@ extension AuthService: AuthServiceInput {
             completion(result)
         }
     }
+
+    func getUserLogin() -> String? {
+        return UserDefaults.standard.string(forKey: Constants.loginKey)
+    }
+
+    func getUserName() -> String? {
+        return UserDefaults.standard.string(forKey: Constants.userNameKey)
+    }
+
+    func getUserImageURL() -> String? {
+        return UserDefaults.standard.string(forKey: Constants.imageURLKey)
+    }
 }
 
 extension AuthService {

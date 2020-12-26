@@ -7,6 +7,8 @@ enum NetworkError: Error {
 
     case userAlreadyExist
 
+    case lookNotExist
+
     case unknownError
 }
 
@@ -21,6 +23,8 @@ extension NetworkError {
             return ErrorDescription.userNotExist
         case .userAlreadyExist:
             return ErrorDescription.userAlreadyExist
+        case .lookNotExist:
+            return ErrorDescription.lookNotExist
         case .unknownError:
             return ErrorDescription.unknownError
         }
@@ -36,6 +40,8 @@ extension NetworkError {
         static let userNotExist: String = "User not exist"
 
         static let userAlreadyExist: String = "User already exist"
+
+        static let lookNotExist: String = "No such look"
 
         static let unknownError: String = "UnknownError"
     }

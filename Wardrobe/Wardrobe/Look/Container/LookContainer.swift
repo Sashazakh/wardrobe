@@ -6,7 +6,7 @@ final class LookContainer {
 
 	class func assemble(with context: LookContext) -> LookContainer {
         let router = LookRouter()
-        let interactor = LookInteractor()
+        let interactor = LookInteractor(lookID: context.lookID)
         let presenter = LookPresenter(router: router, interactor: interactor)
 	let viewController = LookViewController()
 
@@ -25,4 +25,5 @@ final class LookContainer {
 }
 
 struct LookContext {
+    var lookID: Int
 }

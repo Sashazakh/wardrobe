@@ -23,6 +23,8 @@ final class LookViewController: UIViewController {
 
         setupView()
         setupSubviews()
+
+        output?.didLoadView()
 	}
 
     override func viewDidLayoutSubviews() {
@@ -249,6 +251,19 @@ extension LookViewController: LookViewInput {
         lookIsEditing = isEditing
         lookTableView.reloadData()
     }
+
+    func loadData() {
+        lookTableView.reloadData()
+    }
+
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension LookViewController: UITableViewDelegate {
@@ -259,7 +274,7 @@ extension LookViewController: UITableViewDelegate {
 
 extension LookViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return output?.getRowsCount() ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
