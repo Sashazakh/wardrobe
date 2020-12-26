@@ -9,6 +9,7 @@
 import UIKit
 
 final class CreateWardrobeRouter {
+    weak var viewController: UIViewController?
 }
 
 extension CreateWardrobeRouter: CreateWardrobeRouterInput {

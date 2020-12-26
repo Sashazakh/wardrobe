@@ -30,6 +30,7 @@
 		136649B5259528C1008C13EF /* WardrobeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136649B4259528C1008C13EF /* WardrobeData.swift */; };
 		136649C8259540AF008C13EF /* MainScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136649C7259540AF008C13EF /* MainScreenCell.swift */; };
 		136EFECA258E5EB60041B9D5 /* AddWardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */; };
+		1386DE09259773DD003D0174 /* CreateWardobeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1386DE08259773DD003D0174 /* CreateWardobeData.swift */; };
 		139EF328258E3DC900A9435B /* WardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139EF327258E3DC900A9435B /* WardrobeCell.swift */; };
 		13A7462B258D0B4600643369 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74625258D0B4600643369 /* MainScreenPresenter.swift */; };
 		13A7462C258D0B4600643369 /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74626258D0B4600643369 /* MainScreenRouter.swift */; };
@@ -154,6 +155,7 @@
 		136649B4259528C1008C13EF /* WardrobeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeData.swift; sourceTree = "<group>"; };
 		136649C7259540AF008C13EF /* MainScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCell.swift; sourceTree = "<group>"; };
 		136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWardrobeCell.swift; sourceTree = "<group>"; };
+		1386DE08259773DD003D0174 /* CreateWardobeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardobeData.swift; sourceTree = "<group>"; };
 		139EF327258E3DC900A9435B /* WardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeCell.swift; sourceTree = "<group>"; };
 		13A74625258D0B4600643369 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		13A74626258D0B4600643369 /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				0DE8851D258E29CE00BFC856 /* CreateWardrobeProtocols.swift */,
 				0DE8851E258E29CE00BFC856 /* CreateWardrobeInteractor.swift */,
 				0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */,
+				1386DE08259773DD003D0174 /* CreateWardobeData.swift */,
 			);
 			path = CreateWardrobe;
 			sourceTree = "<group>";
@@ -1248,6 +1251,7 @@
 				31E4EBCD258E6A59001AC230 /* InviteProtocols.swift in Sources */,
 				31E4EC67259231FC001AC230 /* AllItemsViewController.swift in Sources */,
 				0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */,
+				1386DE09259773DD003D0174 /* CreateWardobeData.swift in Sources */,
 				31E4EB54258E6601001AC230 /* EditItemContainer.swift in Sources */,
 				31E4EBDB258E6CA4001AC230 /* AllClothesViewController.swift in Sources */,
 				31E4EC65259231FC001AC230 /* AllItemsPresenter.swift in Sources */,

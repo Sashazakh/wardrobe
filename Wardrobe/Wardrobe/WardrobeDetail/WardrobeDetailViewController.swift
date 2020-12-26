@@ -62,7 +62,6 @@ final class WardrobeDetailViewController: UIViewController {
         let title = UILabel()
         titleLabel = title
         titleLabel.text = "Гардероб \n \"Работа\""
-        titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = GlobalColors.backgroundColor

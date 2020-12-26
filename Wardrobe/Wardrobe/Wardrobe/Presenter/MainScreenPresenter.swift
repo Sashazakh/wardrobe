@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import UIKit
 
 final class MainScreenPresenter {
 	weak var view: MainScreenViewInput?
@@ -22,19 +22,28 @@ final class MainScreenPresenter {
         }
     }
 
+    var userName: String?
+    var userLogin: String?
+    var imageUrlString: String?
+
     init(router: MainScreenRouterInput, interactor: MainScreenInteractorInput) {
         self.router = router
         self.interactor = interactor
+    }
+
+    private func setUserData() {
+        view?.setUserData(name: userName, imageUrl: URL(string: imageUrlString ?? ""))
     }
 }
 
 extension MainScreenPresenter: MainScreenViewOutput {
     func didLoadView() {
+        setUserData()
         interactor.loadUserWardobes()
     }
 
     func addWardrobeDidTap() {
-        router.showAddWardobeScreen()
+        router.showAddWardobeScreen(for: userName ?? "")
     }
 
     func showDetailDidTap(at indexPath: IndexPath) {

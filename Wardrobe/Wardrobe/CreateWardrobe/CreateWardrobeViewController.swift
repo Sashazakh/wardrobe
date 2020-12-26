@@ -95,6 +95,8 @@ extension CreateWardrobeViewController {
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
+        backButton.addTarget(self, action: #selector(didBackButtonTap(_:)),
+                             for: .touchUpInside)
         backButton.pin
             .height(pageTitle.frame.height * 0.85)
             .width(5%)
@@ -263,6 +265,7 @@ extension CreateWardrobeViewController {
         addButton.backgroundColor = GlobalColors.mainBlueScreen
         addButton.dropShadow()
         addButton.setTitleColor(.gray, for: .highlighted)
+        addButton.addTarget(self, action: #selector(didAddButtonTap(_:)), for: .touchUpInside)
 
         view.addSubview(addButton)
     }
@@ -278,9 +281,34 @@ extension CreateWardrobeViewController {
 
         addButton.layer.cornerRadius = width * 0.08
     }
+
+    // MARK: : User actions
+
+    @objc private func didAddButtonTap(_ sender: Any) {
+        guard let wardrobeName = wardrobeNameTextField.text,
+              let wardrobeDescription = wardrobeDescriptionTextView.text else { return }
+        output?.addWardrobe(name: wardrobeName, description: wardrobeDescription)
+    }
+
+    @objc private func didBackButtonTap(_ sender: Any) {
+        popView()
+    }
 }
 
 extension CreateWardrobeViewController: CreateWardrobeViewInput {
+    func popView() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    func showALert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+
 }
 
 extension CreateWardrobeViewController: UITextViewDelegate {
@@ -332,11 +360,14 @@ extension CreateWardrobeViewController: UIImagePickerControllerDelegate {
             guard let img = image else {
                 return
             }
-            output?.didImageLoaded(image: img)
-            imageButton.imageEdgeInsets = UIEdgeInsets()// UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            imageButton.setImage(img, for: .normal)
-            imageButton.contentMode = .scaleToFill
-            imageButton.clipsToBounds = true
+            if let imgData = img.jpegData(compressionQuality: 0.1) {
+                output?.didImageLoaded(image: imgData)
+                imageButton.imageEdgeInsets = UIEdgeInsets()// UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                imageButton.setImage(img, for: .normal)
+                imageButton.contentMode = .scaleToFill
+                imageButton.clipsToBounds = true
+            }
+
         }
 
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

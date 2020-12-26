@@ -15,8 +15,8 @@ extension MainScreenRouter: MainScreenRouterInput {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
-    func showAddWardobeScreen() {
-        let vc = CreateWardrobeContainer.assemble(with: CreateWardrobeContext()).viewController
+    func showAddWardobeScreen(for user: String) {
+        let vc = CreateWardrobeContainer.assemble(with: CreateWardrobeContext(login: user)).viewController
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -27,6 +27,7 @@ extension DataService: DataServiceInput {
     // MARK: Wardrobe
 
     func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
+
         let url = getBaseURL() + "getWardrobes?login=Sashazak&apikey=\(getApiKey())"
 
         let request = AF.request(url)
@@ -55,8 +56,58 @@ extension DataService: DataServiceInput {
         }
     }
 
-    func addWardrobe(name: String, description: String, image: UIImage) {
+    func addWardrobe(name: String,
+                     description: String,
+                     imageData: Data?,
+                     completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        guard let data = imageData else { return }
+        let parameters: [String: String] = [
+            "login": "Sashazak",
+            "wardrobe_name": "\(name)",
+            "wardrobe_description": "\(description)",
+            "image": String(decoding: data, as: UTF8.self) ,
+            "apikey": "\(getApiKey())"
+        ]
 
+        let url = getBaseURL() + "createWardrobe"
+        let request = AF.request(url, method: .post, parameters: parameters)
+        var result = SingleResult<NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.response(completionHandler: { (response) in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+        })
     }
 
     // MARK: Wardrobe detail

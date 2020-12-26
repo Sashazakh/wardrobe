@@ -15,6 +15,9 @@ final class MainScreenContainer {
 		interactor.output = presenter
         router.viewController = viewController
 
+        presenter.userLogin = context.login
+        presenter.userName = context.userName
+        presenter.imageUrlString = context.umageURL
         return MainScreenContainer(view: viewController, router: router)
 	}
 

@@ -16,6 +16,39 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
+<<<<<<< Updated upstream
+=======
+
+//        if let imgData = UIImage(named: "morz")?.jpegData(compressionQuality: 0.1) {
+//            DataService.shared.addWardrobe(name: "Sashazak", description: "Test", image: imgData) { (response) in
+//                print(response)
+//            }
+//        }
+        AuthService.shared.isAuthorized { (result) in
+            guard result.error == nil else {
+                guard let networkError = result.error else {
+                    return
+                }
+
+                switch networkError {
+                case .networkNotReachable:
+                    initialVC.showAlert(title: "Ошибка", message: "Не удается подключиться")
+                case .userNotExist:
+                    initialVC.showAlert(title: "Ошибка", message: "Время сессии истекло")
+                default:
+                    initialVC.showAlert(title: "Ошибка", message: "Мы скоро все починим")
+                }
+
+                return
+            }
+
+            guard let data = result.data else {
+                return
+            }
+
+            self.setRootViewController(controller: self.getInitalViewController(isAuthorized: data))
+        }
+>>>>>>> Stashed changes
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

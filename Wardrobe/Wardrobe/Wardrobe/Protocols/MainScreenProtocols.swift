@@ -10,6 +10,7 @@ import Foundation
 
 protocol MainScreenViewInput: class {
     func reloadData()
+    func setUserData(name: String?, imageUrl: URL?)
 }
 
 protocol MainScreenViewOutput: class {
@@ -32,5 +33,5 @@ protocol MainScreenInteractorOutput: class {
 protocol MainScreenRouterInput: class {
     func showDetailWardrope(id: Int)
     func showSettings()
-    func showAddWardobeScreen()
+    func showAddWardobeScreen(for user: String)
 }

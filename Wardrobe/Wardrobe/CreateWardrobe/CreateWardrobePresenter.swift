@@ -15,6 +15,10 @@ final class CreateWardrobePresenter {
 	private let router: CreateWardrobeRouterInput
 	private let interactor: CreateWardrobeInteractorInput
 
+    private var imgData: Data?
+
+    var userLogin: String?
+
     init(router: CreateWardrobeRouterInput, interactor: CreateWardrobeInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -22,11 +26,27 @@ final class CreateWardrobePresenter {
 }
 
 extension CreateWardrobePresenter: CreateWardrobeViewOutput {
-    func didImageLoaded(image: UIImage) {
-        debugPrint("Got image \(image.description)")
+    func addWardrobe(name: String, description: String) {
+        interactor.addWardrobe(with:
+                                CreateWardobeData(name: name,
+                                                  description: description,
+                                                  imageData: imgData),
+                               for: userLogin ?? "")
+    }
+
+    func didImageLoaded(image: Data) {
+        imgData = image
     }
 
 }
 
 extension CreateWardrobePresenter: CreateWardrobeInteractorOutput {
+    func successLoadWardobe() {
+        view?.popView()
+    }
+
+    func showAlert(title: String, message: String) {
+        view?.showALert(title: title, message: message)
+    }
+
 }

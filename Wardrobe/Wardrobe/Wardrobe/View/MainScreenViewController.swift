@@ -9,22 +9,28 @@ final class MainScreenViewController: UIViewController {
     private weak var avatarImageView: UIImageView!
     private weak var outerImageView: UIView!
     private weak var nameLabel: UILabel!
-    private weak var surnameLabel: UILabel!
     private weak var collectionView: UICollectionView!
 
     private let screenBounds = UIScreen.main.bounds
+
+    // MARK: Vc lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupViews()
-        output?.didLoadView()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         setupViewsLayout()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        output?.didLoadView()
     }
 
     private func setupViews() {
@@ -34,7 +40,6 @@ final class MainScreenViewController: UIViewController {
         setupSettingsButton()
         setupAvatarView()
         setupNameLabel()
-        setupSurnameLabel()
         setupCollectionView()
     }
 
@@ -44,7 +49,6 @@ final class MainScreenViewController: UIViewController {
         setupSettingsButtonLayout()
         setupAvatarViewLayout()
         setupNameLabelLayout()
-        setupSurnameLayout()
         setupCollectionLayout()
         setupFlowLayout()
     }
@@ -108,19 +112,12 @@ final class MainScreenViewController: UIViewController {
     private func setupNameLabel() {
         let label = UILabel()
         nameLabel = label
+        nameLabel.textAlignment = .center
+        nameLabel.numberOfLines = 2
         nameLabel.text = "Морж"
         nameLabel.textColor = GlobalColors.darkColor
         nameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
         self.view.addSubview(nameLabel)
-    }
-
-    private func setupSurnameLabel() {
-        let label = UILabel()
-        surnameLabel = label
-        surnameLabel.text = "Моржов"
-        surnameLabel.textColor = GlobalColors.darkColor
-        surnameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
-        self.view.addSubview(surnameLabel)
     }
 
     private func setupCollectionView() {
@@ -176,20 +173,14 @@ final class MainScreenViewController: UIViewController {
     private func setupNameLabelLayout() {
         nameLabel.pin
             .below(of: outerImageView, aligned: .center)
-            .margin(1.3%)
-            .sizeToFit()
-    }
-
-    private func setupSurnameLayout() {
-        surnameLabel.pin
-            .below(of: nameLabel, aligned: .center)
-            .marginTop(0.6%)
+            .marginTop(1.3%)
+            .height(4.7%)
             .sizeToFit()
     }
 
     private func setupCollectionLayout() {
         collectionView.pin
-            .below(of: [nameLabel, surnameLabel])
+            .below(of: [nameLabel])
             .right()
             .left()
             .bottom()
@@ -233,6 +224,16 @@ final class MainScreenViewController: UIViewController {
 }
 
 extension MainScreenViewController: MainScreenViewInput {
+    func setUserData(name: String?, imageUrl: URL?) {
+        if let name = name {
+            let text = name.split(separator: " ")
+            nameLabel.text = text.joined(separator: "\n")
+        }
+        if let imageUrl = imageUrl {
+            avatarImageView.kf.setImage(with: imageUrl)
+        }
+    }
+
     func reloadData() {
         collectionView.reloadData()
     }
