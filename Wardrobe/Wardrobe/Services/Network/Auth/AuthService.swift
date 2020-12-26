@@ -177,8 +177,14 @@ extension AuthService: AuthServiceInput {
                 } else {
                     result.error = .unknownError
                 }
+
+                completion(result)
             }
 
+            self.saveUser(login: login,
+                          password: password,
+                          userName: result.data?.userName,
+                          imageURL: result.data?.imageURL)
             completion(result)
         }
     }
