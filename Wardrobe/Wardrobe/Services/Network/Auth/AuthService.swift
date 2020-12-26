@@ -7,9 +7,75 @@ final class AuthService: NetworkService {
     private override init() {
         super.init()
     }
+
+    private func saveUser(login: String,
+                          password: String,
+                          userName: String?,
+                          imageURL: String?) {
+
+        UserDefaults.standard.setValue(true, forKey: Constants.authKey)
+
+        UserDefaults.standard.setValue(login, forKey: Constants.loginKey)
+        UserDefaults.standard.setValue(password, forKey: Constants.passwordKey)
+
+        guard let userName = userName else {
+            return
+        }
+
+        UserDefaults.standard.setValue(userName, forKey: Constants.userNameKey)
+
+        guard let imageURL = imageURL else {
+            return
+        }
+
+        UserDefaults.standard.setValue(imageURL, forKey: Constants.imageURLKey)
+    }
 }
 
 extension AuthService: AuthServiceInput {
+    func isAuthorized(completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        var result = Result<Bool, NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        guard UserDefaults.standard.bool(forKey: Constants.authKey) == true else {
+            result.data = false
+            completion(result)
+            return
+        }
+
+        guard let login = UserDefaults.standard.string(forKey: Constants.loginKey),
+              let password = UserDefaults.standard.string(forKey: Constants.passwordKey) else {
+            result.data = false
+            completion(result)
+            return
+        }
+
+        self.login(login: login,
+                   password: password) { (loginResult) in
+            guard loginResult.error == nil else {
+                guard let networkError = loginResult.error else {
+                    return
+                }
+
+                result.error = networkError
+                completion(result)
+                return
+            }
+
+            guard loginResult.data != nil else {
+                return
+            }
+
+            result.data = true
+            completion(result)
+        }
+    }
+
     func login(login: String,
                password: String,
                completion: @escaping (Result<LoginResponse, NetworkError>) -> Void) {
@@ -50,8 +116,13 @@ extension AuthService: AuthServiceInput {
                     result.error = .unknownError
                 }
 
+                completion(result)
             }
 
+            self.saveUser(login: login,
+                          password: password,
+                          userName: result.data?.userName,
+                          imageURL: result.data?.imageURL)
             completion(result)
         }
     }
@@ -59,12 +130,14 @@ extension AuthService: AuthServiceInput {
     func register(login: String,
                   fio: String,
                   password: String,
+                  imageData: Data?,
                   completion: @escaping (Result<LoginResponse, NetworkError>) -> Void) {
+
         let parameters: [String: String] = [
             "login": login,
             "username": fio,
             "password": password,
-            "image": "temp",
+            "image": imageData?.base64EncodedString(options: .lineLength64Characters) ?? "null",
             "apikey": "\(getApiKey())"
         ]
 
@@ -108,5 +181,31 @@ extension AuthService: AuthServiceInput {
 
             completion(result)
         }
+    }
+
+    func getUserLogin() -> String? {
+        return UserDefaults.standard.string(forKey: Constants.loginKey)
+    }
+
+    func getUserName() -> String? {
+        return UserDefaults.standard.string(forKey: Constants.userNameKey)
+    }
+
+    func getUserImageURL() -> String? {
+        return UserDefaults.standard.string(forKey: Constants.imageURLKey)
+    }
+}
+
+extension AuthService {
+    struct Constants {
+        static let authKey: String = "isAuthorized"
+
+        static let loginKey: String = "login"
+
+        static let userNameKey: String = "username"
+
+        static let passwordKey: String = "password"
+
+        static let imageURLKey: String = "imageURL"
     }
 }

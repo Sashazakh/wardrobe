@@ -4,7 +4,9 @@ final class LoginInteractor {
 	weak var output: LoginInteractorOutput?
 
     private func convertToLoginData(with rawData: LoginResponse) -> LoginData {
-        return LoginData(userName: rawData.userName, imageURL: rawData.imageURL)
+        return LoginData(login: rawData.login,
+                         userName: rawData.userName,
+                         imageURL: rawData.imageURL)
     }
 }
 

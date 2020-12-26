@@ -383,7 +383,7 @@ final class RegisterViewController: UIViewController {
 
     @objc
     private func didTapCheckBox() {
-
+        output?.didTapCheckBox()
     }
 
     @objc
@@ -432,6 +432,18 @@ extension RegisterViewController: RegisterViewInput {
         credentials["repeatPassword"] = repeatPasswordTextField.text
 
         return credentials
+    }
+
+    func getUserImage() -> Data? {
+        return userPhotoImageView.image?.jpegData(compressionQuality: Constants.UserPhotoImageView.compression)
+    }
+
+    func setCheckBoxChecked() {
+        checkBoxImageView.image = UIImage(named: "checkBoxChecked")
+    }
+
+    func setCheckBoxUnchecked() {
+        checkBoxImageView.image = UIImage(named: "checkBoxNotChecked")
     }
 
     func showAlert(title: String, message: String) {
@@ -485,6 +497,10 @@ extension RegisterViewController {
 
         struct WelcomeLabel {
             static let text: String = "Регистрация"
+        }
+
+        struct UserPhotoImageView {
+            static let compression: CGFloat = 0.1
         }
     }
 }

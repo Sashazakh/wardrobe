@@ -47,7 +47,11 @@ extension LoginPresenter: LoginInteractorOutput {
     }
 
     func userSuccesfullyLogin() {
-        router.showWardrobeScreen()
+        guard let model = model else {
+            return
+        }
+
+        router.showWardrobeScreen(model: model)
     }
 
     func showAlert(title: String, message: String) {

@@ -6,7 +6,7 @@ final class RegisterContainer {
 
 	class func assemble(with context: RegisterContext) -> RegisterContainer {
         let router = RegisterRouter()
-        let interactor = RegisterInteractor()
+        let interactor = RegisterInteractor(termsAccepted: context.termsAccepted)
         let presenter = RegisterPresenter(router: router, interactor: interactor)
 		let viewController = RegisterViewController()
 
@@ -25,4 +25,5 @@ final class RegisterContainer {
 }
 
 struct RegisterContext {
+    var termsAccepted: Bool
 }

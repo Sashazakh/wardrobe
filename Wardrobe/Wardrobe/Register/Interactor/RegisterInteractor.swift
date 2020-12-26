@@ -3,19 +3,41 @@ import Foundation
 final class RegisterInteractor {
 	weak var output: RegisterInteractorOutput?
 
+    private var termsAccepted: Bool
+
+    init(termsAccepted: Bool) {
+        self.termsAccepted = termsAccepted
+    }
+
     private func convertToRegisterData(with rawData: LoginResponse) -> RegisterData {
-        return RegisterData(userName: rawData.userName, imageURL: rawData.imageURL)
+        return RegisterData(login: rawData.login, userName: rawData.userName, imageURL: rawData.imageURL)
     }
 }
 
 extension RegisterInteractor: RegisterInteractorInput {
-    func register(login: String, fio: String, password: String) {
+    func toggleTermsState() {
+            termsAccepted = !termsAccepted
+        }
+
+    func termsAreAccepted() -> Bool {
+        return termsAccepted
+    }
+
+    func register(login: String, fio: String, password: String, imageData: Data?) {
+        guard termsAccepted else {
+            output?.showAlert(title: "Ошибка", message: "Примите пользовательское соглашение")
+            return
+        }
+
         guard password.count >= Constants.minPasswordSymbs else {
             output?.showAlert(title: "Ошибка", message: "Пароль должен содержать не менее 8 символов")
             return
         }
 
-        AuthService.shared.register(login: login, fio: fio, password: password) { [weak self] result in
+        AuthService.shared.register(login: login,
+                                    fio: fio,
+                                    password: password,
+                                    imageData: imageData) { [weak self] result in
             guard result.error == nil else {
                 guard let networkError = result.error else {
                     return

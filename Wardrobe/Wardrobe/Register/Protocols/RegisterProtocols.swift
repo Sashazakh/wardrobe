@@ -7,7 +7,13 @@ protocol RegisterViewInput: AnyObject {
 
     func getNewUserCredentials() -> [String: String?]
 
+    func getUserImage() -> Data?
+
     func showAlert(title: String, message: String)
+
+    func setCheckBoxChecked()
+
+    func setCheckBoxUnchecked()
 }
 
 protocol RegisterViewOutput: AnyObject {
@@ -17,13 +23,20 @@ protocol RegisterViewOutput: AnyObject {
 
     func didTapRegisterButton()
 
+    func didTapCheckBox()
+
     func userDidSetImage(imageData: Data?)
 }
 
 protocol RegisterInteractorInput: AnyObject {
     func register(login: String,
                   fio: String,
-                  password: String)
+                  password: String,
+                  imageData: Data?)
+
+    func toggleTermsState()
+
+    func termsAreAccepted() -> Bool
 }
 
 protocol RegisterInteractorOutput: AnyObject {
@@ -37,5 +50,5 @@ protocol RegisterInteractorOutput: AnyObject {
 protocol RegisterRouterInput: AnyObject {
     func showLoginScreen()
 
-    func showWardrobeScreen()
+    func showWardrobeScreen(model: RegisterData)
 }

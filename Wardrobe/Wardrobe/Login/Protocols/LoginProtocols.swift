@@ -27,5 +27,5 @@ protocol LoginInteractorOutput: AnyObject {
 protocol LoginRouterInput: AnyObject {
     func showRegistrationScreen()
 
-    func showWardrobeScreen()
+    func showWardrobeScreen(model: LoginData)
 }

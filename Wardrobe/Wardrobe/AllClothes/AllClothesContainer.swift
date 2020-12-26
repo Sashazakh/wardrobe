@@ -8,12 +8,12 @@ final class AllClothesContainer {
         let router = AllClothesRouter()
         let interactor = AllClothesInteractor()
         let presenter = AllClothesPresenter(router: router, interactor: interactor)
-	let viewController = AllClothesViewController()
+        let viewController = AllClothesViewController()
 
         viewController.output = presenter
-	presenter.view = viewController
-	interactor.output = presenter
-	router.viewController = viewController
+        presenter.view = viewController
+        interactor.output = presenter
+        router.viewController = viewController
 
         return AllClothesContainer(view: viewController, router: router)
 	}
@@ -25,4 +25,9 @@ final class AllClothesContainer {
 }
 
 struct AllClothesContext {
+    var login: String
+
+    var userName: String
+
+    var imageURL: String?
 }

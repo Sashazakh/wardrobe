@@ -123,8 +123,47 @@ extension DataService: DataServiceInput {
 
     // MARK: Look screen
 
-    func getAllLookClothes(with id: Int) {
+    func getAllLookClothes(with id: Int, completion: @escaping (Result<LookRaw, NetworkError>) -> Void) {
+        let request = AF.request(getBaseURL() + "getLook?" + "look_id=\(id)" + "&apikey=\(getApiKey())")
+        var result = Result<LookRaw, NetworkError>()
 
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.responseDecodable(of: [LookRaw].self) { (response) in
+            switch response.result {
+            case .success(let data):
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    result.data = data.first
+                case ResponseCode.error.code:
+                    result.error = .lookNotExist
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+
+            completion(result)
+        }
     }
 
     func deleItemFormLook(with id: Int) {

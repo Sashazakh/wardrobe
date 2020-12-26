@@ -16,6 +16,11 @@ final class RegisterPresenter {
 }
 
 extension RegisterPresenter: RegisterViewOutput {
+    func didTapCheckBox() {
+        interactor.toggleTermsState()
+        interactor.termsAreAccepted() ? view?.setCheckBoxChecked() : view?.setCheckBoxUnchecked()
+    }
+
     func didTapLoginLabel() {
         router.showLoginScreen()
     }
@@ -58,9 +63,12 @@ extension RegisterPresenter: RegisterViewOutput {
             return
         }
 
+        let imageData = view?.getUserImage()
+
         interactor.register(login: login,
                             fio: fio,
-                            password: password)
+                            password: password,
+                            imageData: imageData)
     }
 
     func userDidSetImage(imageData: Data?) {
@@ -78,7 +86,11 @@ extension RegisterPresenter: RegisterInteractorOutput {
     }
 
     func userSuccesfullyRegistered() {
-        router.showWardrobeScreen()
+        guard let model = model else {
+            return
+        }
+
+        router.showWardrobeScreen(model: model)
     }
 
     func updateModel(model: RegisterData) {

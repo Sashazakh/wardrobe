@@ -12,18 +12,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
-        let vc = getInitalViewController(isAuthorized: false)
 
-        window?.rootViewController = vc
+        let initialVC = SplashScreenViewController()
+        setRootViewController(controller: initialVC)
         window?.makeKeyAndVisible()
-<<<<<<< Updated upstream
-=======
 
-//        if let imgData = UIImage(named: "morz")?.jpegData(compressionQuality: 0.1) {
-//            DataService.shared.addWardrobe(name: "Sashazak", description: "Test", image: imgData) { (response) in
-//                print(response)
-//            }
-//        }
         AuthService.shared.isAuthorized { (result) in
             guard result.error == nil else {
                 guard let networkError = result.error else {
@@ -48,7 +41,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             self.setRootViewController(controller: self.getInitalViewController(isAuthorized: data))
         }
->>>>>>> Stashed changes
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -83,11 +75,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate {
     func getInitalViewController(isAuthorized: Bool) -> UIViewController {
         if isAuthorized {
-            let tabBarVC = MainTabBar()
+            guard let login = AuthService.shared.getUserLogin(),
+                  let userName = AuthService.shared.getUserName() else {
+                return UINavigationController(rootViewController: LoginContainer.assemble(with: LoginContext()).viewController)
+            }
 
-            tabBarVC.modalPresentationStyle = .fullScreen
+            let imageURL = AuthService.shared.getUserImageURL()
 
-            return tabBarVC
+            let wardrobeContext = MainScreenContext(login: login,
+                                                    userName: userName,
+                                                    umageURL: imageURL)
+
+            let allClothesContext = AllClothesContext(login: login,
+                                                      userName: userName,
+                                                      imageURL: imageURL)
+
+            let tabBar = MainTabBarContainer.assemble(wardrobeContext: wardrobeContext,
+                                                      allClothContext: allClothesContext).viewController
+
+            tabBar.modalPresentationStyle = .fullScreen
+
+            return tabBar
         } else {
             let loginViewController = LoginContainer.assemble(with: LoginContext()).viewController
             let navigationVC = UINavigationController(rootViewController: loginViewController)

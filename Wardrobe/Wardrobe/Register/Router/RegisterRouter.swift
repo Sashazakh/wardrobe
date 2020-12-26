@@ -12,8 +12,17 @@ extension RegisterRouter: RegisterRouterInput {
         viewController?.navigationController?.setViewControllers([loginVC], animated: true)
     }
 
-    func showWardrobeScreen() {
-        let tabBarVC = MainTabBar()
+    func showWardrobeScreen(model: RegisterData) {
+        let wardrobeContext = MainScreenContext(login: model.login,
+                                                userName: model.userName,
+                                                umageURL: model.imageURL)
+
+        let allClothesContext = AllClothesContext(login: model.login,
+                                                  userName: model.userName,
+                                                  imageURL: model.imageURL)
+
+        let tabBarVC = MainTabBarContainer.assemble(wardrobeContext: wardrobeContext,
+                                                    allClothContext: allClothesContext).viewController
 
         tabBarVC.modalPresentationStyle = .fullScreen
 

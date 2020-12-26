@@ -15,23 +15,23 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="rbP-yU-lqZ">
-                    <rect key="frame" x="0.0" y="-2" width="414" height="898"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wardrobe" translatesAutoresizingMaskIntoConstraints="NO" id="rbP-yU-lqZ">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="rbP-yU-lqZ" secondAttribute="bottom" id="8kI-Dq-5aM"/>
-                <constraint firstItem="rbP-yU-lqZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AyE-cz-Abq"/>
-                <constraint firstAttribute="trailing" secondItem="rbP-yU-lqZ" secondAttribute="trailing" id="qbb-Ge-t7c"/>
-                <constraint firstItem="rbP-yU-lqZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-2" id="t1J-OY-LXb"/>
+                <constraint firstItem="rbP-yU-lqZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="h9z-3o-tMF"/>
+                <constraint firstItem="rbP-yU-lqZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="n5j-wd-OuG"/>
+                <constraint firstAttribute="trailing" secondItem="rbP-yU-lqZ" secondAttribute="trailing" id="td1-I6-4fJ"/>
+                <constraint firstAttribute="bottom" secondItem="rbP-yU-lqZ" secondAttribute="bottom" id="zR8-X8-Tfb"/>
             </constraints>
             <point key="canvasLocation" x="44.927536231884062" y="103.79464285714285"/>
         </view>
     </objects>
     <resources>
-        <image name="wardrobe" width="375" height="812"/>
+        <image name="wardrobe" width="562.5" height="1218"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
