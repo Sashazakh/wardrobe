@@ -285,6 +285,12 @@ extension LookViewController: UITableViewDataSource {
         cell.setIsEditing(isEditing: lookIsEditing)
         cell.selectionStyle = .none
 
+        guard let model = output?.viewModel(index: indexPath.row) else {
+            return cell
+        }
+
+        cell.configure(viewModel: model)
+
         return cell
     }
 }

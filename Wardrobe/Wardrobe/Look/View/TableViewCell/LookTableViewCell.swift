@@ -9,6 +9,8 @@ final class LookTableViewCell: UITableViewCell {
 
     private var itemsAreEditing: Bool = false
 
+    private var itemModels: [ItemCollectionViewCellViewModel]?
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -100,6 +102,8 @@ final class LookTableViewCell: UITableViewCell {
 
     public func configure(viewModel: LookTableViewCellViewModel) {
         sectionNameLabel.text = viewModel.sectionName
+        itemModels = viewModel.itemModels
+        itemCollectionView.reloadData()
     }
 }
 
@@ -116,7 +120,7 @@ extension LookTableViewCell: UICollectionViewDelegate {
 
 extension LookTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return itemModels?.count ?? .zero
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -126,6 +130,12 @@ extension LookTableViewCell: UICollectionViewDataSource {
 
         cell.setIsEditing(isEditing: itemsAreEditing)
         cell.dropShadow()
+
+        guard let models = itemModels else {
+            return cell
+        }
+
+        cell.configure(model: models[indexPath.row].item)
 
         return cell
     }

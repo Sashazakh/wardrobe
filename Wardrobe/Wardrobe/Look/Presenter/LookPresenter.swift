@@ -45,11 +45,11 @@ extension LookPresenter: LookViewOutput {
             return LookTableViewCellViewModel(sectionName: "Default", itemModels: [])
         }
 
-        let itemModels = model.categories.map {
-            return ItemCollectionViewCellViewModel(items: $0.items)
+        let itemModels = model.categories[index].items.map { item in
+            return ItemCollectionViewCellViewModel(item: item)
         }
 
-        return LookTableViewCellViewModel(sectionName: model.lookName,
+        return LookTableViewCellViewModel(sectionName: model.categories[index].categoryName,
                                           itemModels: itemModels)
     }
 }

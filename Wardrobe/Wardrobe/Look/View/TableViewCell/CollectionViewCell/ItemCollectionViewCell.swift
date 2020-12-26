@@ -1,5 +1,6 @@
 import UIKit
 import PinLayout
+import Kingfisher
 
 final class LookCollectionViewCell: WardrobeCell {
 
@@ -57,6 +58,15 @@ final class LookCollectionViewCell: WardrobeCell {
         } else {
             deleteMarkButton.isHidden = true
         }
+    }
+
+    public func configure(model: ItemData) {
+        titleLable.text = model.clothesName
+        guard let url = URL(string: "http://194.58.123.93:3000/getImage?id=7&apikey=be3380626a9d5a44c3ef2737717d4e64") else {
+            return
+        }
+
+        self.imageView.kf.setImage(with: url)
     }
 
     @objc

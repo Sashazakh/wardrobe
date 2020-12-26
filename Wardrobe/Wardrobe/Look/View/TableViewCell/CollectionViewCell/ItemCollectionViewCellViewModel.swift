@@ -1,3 +1,3 @@
 struct ItemCollectionViewCellViewModel {
-    var items: [ItemData]
+    var item: ItemData
 }
