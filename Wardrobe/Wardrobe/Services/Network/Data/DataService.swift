@@ -26,9 +26,9 @@ extension DataService: DataServiceInput {
 
     // MARK: Wardrobe
 
-    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
+    func getUserWardrobes(for user: String, completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
 
-        let url = getBaseURL() + "getWardrobes?login=Sashazak&apikey=\(getApiKey())"
+        let url = getBaseURL() + "getWardrobes?login=\(user)&apikey=\(getApiKey())"
 
         let request = AF.request(url)
 
@@ -56,13 +56,14 @@ extension DataService: DataServiceInput {
         }
     }
 
-    func addWardrobe(name: String,
+    func addWardrobe(login: String,
+                     name: String,
                      description: String,
                      imageData: Data?,
                      completion: @escaping (SingleResult<NetworkError>) -> Void) {
         guard let data = imageData else { return }
         let parameters: [String: String] = [
-            "login": "Sashazak",
+            "login": "\(login)",
             "wardrobe_name": "\(name)",
             "wardrobe_description": "\(description)",
             "image": String(decoding: data, as: UTF8.self) ,

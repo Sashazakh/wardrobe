@@ -39,7 +39,7 @@ final class MainScreenPresenter {
 extension MainScreenPresenter: MainScreenViewOutput {
     func didLoadView() {
         setUserData()
-        interactor.loadUserWardobes()
+        interactor.loadUserWardobes(for: userLogin ?? "")
     }
 
     func addWardrobeDidTap() {

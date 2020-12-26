@@ -23,7 +23,7 @@ protocol MainScreenViewOutput: class {
 }
 
 protocol MainScreenInteractorInput: class {
-    func loadUserWardobes()
+    func loadUserWardobes(for user: String)
 }
 
 protocol MainScreenInteractorOutput: class {
