@@ -6,6 +6,8 @@ final class LookCollectionViewCell: WardrobeCell {
 
     private weak var deleteMarkButton: UIButton!
 
+    var output: ItemCollectionViewCellPresenter?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -62,7 +64,7 @@ final class LookCollectionViewCell: WardrobeCell {
 
     public func configure(model: ItemData) {
         titleLable.text = model.clothesName
-        guard let url = URL(string: model.imageURL ?? String()) else {
+        guard let url = URL(string: (model.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
             return
         }
 
@@ -71,6 +73,6 @@ final class LookCollectionViewCell: WardrobeCell {
 
     @objc
     private func didTapDeleteMarkButton() {
-
+        output?.didDeleteItem()
     }
 }

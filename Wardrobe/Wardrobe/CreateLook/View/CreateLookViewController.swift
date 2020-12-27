@@ -193,21 +193,6 @@ final class CreateLookViewController: UIViewController {
 }
 
 extension CreateLookViewController: CreateLookViewInput {
-    func showSetupLookNameAlert() {
-        let alert = UIAlertController(title: "Новый набор", message: "Введите название", preferredStyle: .alert)
-
-        let create = UIAlertAction(title: "Создать", style: .default, handler: nil)
-        let cancel = UIAlertAction(title: "Отмена", style: .default, handler: nil)
-
-        alert.addAction(create)
-        alert.addAction(cancel)
-
-        alert.addTextField { (textField) in
-            textField.placeholder = "Название"
-        }
-
-        present(alert, animated: true, completion: nil)
-    }
 }
 
 extension CreateLookViewController: UITableViewDelegate {

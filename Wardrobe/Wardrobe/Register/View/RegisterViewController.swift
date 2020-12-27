@@ -68,6 +68,7 @@ final class RegisterViewController: UIViewController {
     private func setupImagePicker() {
         imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
     }
 
     private func setupSubviews() {
@@ -401,15 +402,15 @@ extension RegisterViewController: RegisterViewInput {
     func showPickPhotoAlert() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        if let action = alertAction(type: .camera, title: "Camera") {
+        if let action = alertAction(type: .camera, title: "Камера") {
             alertController.addAction(action)
         }
 
-        if let action = alertAction(type: .savedPhotosAlbum, title: "Photo Library") {
+        if let action = alertAction(type: .savedPhotosAlbum, title: "Галерея") {
             alertController.addAction(action)
         }
 
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         alertController.modalPresentationStyle = .automatic
         present(alertController, animated: true, completion: nil)
     }
@@ -435,7 +436,7 @@ extension RegisterViewController: RegisterViewInput {
     }
 
     func getUserImage() -> Data? {
-        return userPhotoImageView.image?.jpegData(compressionQuality: Constants.UserPhotoImageView.compression)
+        return userPhotoImageView.image?.jpegData(compressionQuality: 1)
     }
 
     func setCheckBoxChecked() {
@@ -471,12 +472,12 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
             return
         }
 
-        output?.userDidSetImage(imageData: image.pngData())
+        output?.userDidSetImage(imageData: image.jpegData(compressionQuality: Constants.UserPhotoImageView.compression))
     }
 
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        guard let image = info[.originalImage] as? UIImage else {
+        guard let image = info[.editedImage] as? UIImage else {
             imagePickerController(picker, selectedImage: nil)
             return
         }

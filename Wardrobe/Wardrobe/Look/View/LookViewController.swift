@@ -264,6 +264,10 @@ extension LookViewController: LookViewInput {
 
         present(alert, animated: true, completion: nil)
     }
+
+    func setLookTitle(with text: String) {
+        lookName.text = "Набор\n\"\(text)\""
+    }
 }
 
 extension LookViewController: UITableViewDelegate {
@@ -289,6 +293,11 @@ extension LookViewController: UITableViewDataSource {
             return cell
         }
 
+        let cellPresenter = LookTableViewCellPresenter(index: indexPath.row)
+
+        cellPresenter.output = output
+        cellPresenter.cell = cell
+        cell.output = cellPresenter
         cell.configure(viewModel: model)
 
         return cell

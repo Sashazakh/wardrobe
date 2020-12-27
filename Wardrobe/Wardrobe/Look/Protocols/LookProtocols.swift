@@ -10,6 +10,8 @@ protocol LookViewInput: AnyObject {
     func loadData()
 
     func showAlert(title: String, message: String)
+
+    func setLookTitle(with: String)
 }
 
 protocol LookViewOutput: AnyObject {
@@ -24,6 +26,8 @@ protocol LookViewOutput: AnyObject {
     func getRowsCount() -> Int
 
     func viewModel(index: Int) -> LookTableViewCellViewModel
+
+    func deleteViewModel(tableCellIndex: Int, collectionCellIndex: Int)
 }
 
 protocol LookInteractorInput: AnyObject {

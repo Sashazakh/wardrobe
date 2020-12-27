@@ -1,7 +1,6 @@
 import Foundation
 
 protocol CreateLookViewInput: AnyObject {
-    func showSetupLookNameAlert()
 }
 
 protocol CreateLookViewOutput: AnyObject {
@@ -18,4 +17,6 @@ protocol CreateLookInteractorOutput: AnyObject {
 
 protocol CreateLookRouterInput: AnyObject {
     func showWardrobeDetailScreen()
+
+    func showSetupLookScreen()
 }
