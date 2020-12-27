@@ -35,6 +35,7 @@ final class SettingsViewController: UIViewController {
 		super.viewDidLoad()
 
         setupViews()
+        output?.didLoadView()
 	}
 
     override func viewDidLayoutSubviews() {
@@ -235,6 +236,12 @@ final class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewInput {
+    func setUserData(name: String?, imageUrl: URL?) {
+        if let name = name {
+            fullNameLabel.text = name
+        }
+        avatarImageView.kf.setImage(with: imageUrl)
+    }
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {

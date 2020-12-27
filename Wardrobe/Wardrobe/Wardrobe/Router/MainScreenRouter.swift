@@ -10,8 +10,10 @@ extension MainScreenRouter: MainScreenRouterInput {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
-    func showSettings() {
-        let vc = SettingsContainer.assemble(with: SettingsContext()).viewController
+    func showSettings(login: String, name: String, imageUrl: String) {
+        let vc = SettingsContainer.assemble(with: SettingsContext(login: login,
+                                                                  name: name,
+                                                                  imageUrl: imageUrl)).viewController
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 

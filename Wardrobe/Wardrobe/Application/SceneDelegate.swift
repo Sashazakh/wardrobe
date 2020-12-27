@@ -16,38 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let initialVC = SplashScreenViewController()
         setRootViewController(controller: initialVC)
         window?.makeKeyAndVisible()
-
-        AuthService.shared.isAuthorized { (result) in
-            guard result.error == nil else {
-                guard let networkError = result.error else {
-                    return
-                }
-
-                let rootVC = self.getInitalViewController(isAuthorized: false)
-                self.setRootViewController(controller: rootVC)
-
-                guard let firstResponder = (rootVC as? UINavigationController)?.viewControllers.first as? LoginViewController else {
-                    return
-                }
-
-                switch networkError {
-                case .networkNotReachable:
-                    firstResponder.showAlert(title: "Ошибка", message: "Не удается подключиться")
-                case .userNotExist:
-                    firstResponder.showAlert(title: "Ошибка", message: "Время сессии истекло")
-                default:
-                    firstResponder.showAlert(title: "Ошибка", message: "Мы скоро все починим")
-                }
-
-                return
-            }
-
-            guard let data = result.data else {
-                return
-            }
-
-            self.setRootViewController(controller: self.getInitalViewController(isAuthorized: data))
-        }
+        authorize()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -115,5 +84,45 @@ extension SceneDelegate {
 
     func setRootViewController(controller: UIViewController) {
         window?.rootViewController = controller
+    }
+}
+
+extension SceneDelegate {
+    func authorize() {
+        AuthService.shared.isAuthorized { (result) in
+            guard result.error == nil else {
+                guard let networkError = result.error else {
+                    return
+                }
+
+                let rootVC = self.getInitalViewController(isAuthorized: false)
+                self.setRootViewController(controller: rootVC)
+
+                guard let firstResponder = (rootVC as? UINavigationController)?.viewControllers.first as? LoginViewController else {
+                    return
+                }
+
+                switch networkError {
+                case .networkNotReachable:
+                    firstResponder.showAlert(title: "Ошибка", message: "Не удается подключиться")
+                case .userNotExist:
+                    firstResponder.showAlert(title: "Ошибка", message: "Время сессии истекло")
+                default:
+                    firstResponder.showAlert(title: "Ошибка", message: "Мы скоро все починим")
+                }
+
+                return
+            }
+
+            guard let data = result.data else {
+                return
+            }
+
+            self.setRootViewController(controller: self.getInitalViewController(isAuthorized: data))
+        }
+    }
+
+    func logout() {
+        authorize()
     }
 }

@@ -8,12 +8,16 @@ final class SettingsContainer {
         let router = SettingsRouter()
         let interactor = SettingsInteractor()
         let presenter = SettingsPresenter(router: router, interactor: interactor)
-	let viewController = SettingsViewController()
+        let viewController = SettingsViewController()
 
         viewController.output = presenter
-	presenter.view = viewController
-	interactor.output = presenter
-	router.viewController = viewController
+        presenter.view = viewController
+        interactor.output = presenter
+        router.viewController = viewController
+
+        presenter.userLogin = context.login
+        presenter.userName = context.name
+        presenter.imageUrl = context.imageUrl
 
         return SettingsContainer(view: viewController, router: router)
 	}
@@ -25,4 +29,7 @@ final class SettingsContainer {
 }
 
 struct SettingsContext {
+    let login: String
+    let name: String
+    let imageUrl: String
 }
