@@ -9,6 +9,8 @@ final class RegisterPresenter {
 
     private var model: RegisterData?
 
+    private var userImageIsSet = false
+
     init(router: RegisterRouterInput, interactor: RegisterInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -63,7 +65,7 @@ extension RegisterPresenter: RegisterViewOutput {
             return
         }
 
-        let imageData = view?.getUserImage()
+        let imageData = userImageIsSet ? view?.getUserImage() : nil
 
         interactor.register(login: login,
                             fio: fio,
@@ -76,6 +78,7 @@ extension RegisterPresenter: RegisterViewOutput {
             return
         }
 
+        userImageIsSet = true
         view?.setUserImage(imageData: data)
     }
 }
