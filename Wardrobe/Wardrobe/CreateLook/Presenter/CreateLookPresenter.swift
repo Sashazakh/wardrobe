@@ -21,7 +21,7 @@ extension CreateLookPresenter: CreateLookViewOutput {
     }
 
     func didTapConfirmButton() {
-        view?.showSetupLookNameAlert()
+        router.showSetupLookScreen()
     }
 }
 

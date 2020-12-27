@@ -289,6 +289,11 @@ extension LookViewController: UITableViewDataSource {
             return cell
         }
 
+        let cellPresenter = LookTableViewCellPresenter(index: indexPath.row)
+
+        cellPresenter.output = output
+        cellPresenter.cell = cell
+        cell.output = cellPresenter
         cell.configure(viewModel: model)
 
         return cell

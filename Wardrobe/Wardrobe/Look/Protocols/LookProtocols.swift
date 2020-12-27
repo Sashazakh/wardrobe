@@ -24,6 +24,8 @@ protocol LookViewOutput: AnyObject {
     func getRowsCount() -> Int
 
     func viewModel(index: Int) -> LookTableViewCellViewModel
+
+    func deleteViewModel(tableCellIndex: Int, collectionCellIndex: Int)
 }
 
 protocol LookInteractorInput: AnyObject {

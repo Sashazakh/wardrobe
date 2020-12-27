@@ -18,6 +18,8 @@ protocol AuthServiceInput {
     func getUserName() -> String?
 
     func getUserImageURL() -> String?
+
+    func dropUser()
 }
 
 protocol DataServiceInput {

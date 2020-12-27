@@ -206,6 +206,14 @@ extension AuthService: AuthServiceInput {
     func getUserImageURL() -> String? {
         return UserDefaults.standard.string(forKey: Constants.imageURLKey)
     }
+
+    func dropUser() {
+        UserDefaults.standard.removeObject(forKey: Constants.authKey)
+        UserDefaults.standard.removeObject(forKey: Constants.loginKey)
+        UserDefaults.standard.removeObject(forKey: Constants.userNameKey)
+        UserDefaults.standard.removeObject(forKey: Constants.passwordKey)
+        UserDefaults.standard.removeObject(forKey: Constants.imageURLKey)
+    }
 }
 
 extension AuthService {

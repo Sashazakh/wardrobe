@@ -52,6 +52,10 @@ extension LookPresenter: LookViewOutput {
         return LookTableViewCellViewModel(sectionName: model.categories[index].categoryName,
                                           itemModels: itemModels)
     }
+
+    func deleteViewModel(tableCellIndex: Int, collectionCellIndex: Int) {
+        model?.categories[tableCellIndex].items.remove(at: collectionCellIndex)
+    }
 }
 
 extension LookPresenter: LookInteractorOutput {

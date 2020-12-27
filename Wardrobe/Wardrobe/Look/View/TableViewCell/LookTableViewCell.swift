@@ -7,6 +7,8 @@ final class LookTableViewCell: UITableViewCell {
 
     private weak var itemCollectionView: UICollectionView!
 
+    var output: LookTableViewCellPresenter?
+
     private var itemsAreEditing: Bool = false
 
     private var itemModels: [ItemCollectionViewCellViewModel]?
@@ -105,6 +107,13 @@ final class LookTableViewCell: UITableViewCell {
         itemModels = viewModel.itemModels
         itemCollectionView.reloadData()
     }
+
+    public func deleteCollectionViewCell(index: Int) {
+        let indexPath = IndexPath(row: index, section: .zero)
+
+        itemCollectionView.deleteItems(at: [indexPath])
+        itemModels?.remove(at: index)
+    }
 }
 
 extension LookTableViewCell: UICollectionViewDelegate {
@@ -135,6 +144,11 @@ extension LookTableViewCell: UICollectionViewDataSource {
             return cell
         }
 
+        let cellPresenter = ItemCollectionViewCellPresenter(index: indexPath.row)
+
+        cellPresenter.cell = cell
+        cellPresenter.output = output
+        cell.output = cellPresenter
         cell.configure(model: models[indexPath.row].item)
 
         return cell

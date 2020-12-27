@@ -53,11 +53,17 @@
 		3180ECEE2593E03D00A046E5 /* LoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECED2593E03D00A046E5 /* LoginModels.swift */; };
 		3180ECFF2593FA8400A046E5 /* RegisterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ECFE2593FA8400A046E5 /* RegisterModels.swift */; };
 		3180ED0425949F3400A046E5 /* NetworkServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180ED0325949F3400A046E5 /* NetworkServiceErrors.swift */; };
+		318122BA2598B67500009886 /* SetupLookPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122B42598B67500009886 /* SetupLookPresenter.swift */; };
+		318122BB2598B67500009886 /* SetupLookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122B52598B67500009886 /* SetupLookRouter.swift */; };
+		318122BC2598B67500009886 /* SetupLookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122B62598B67500009886 /* SetupLookViewController.swift */; };
+		318122BD2598B67500009886 /* SetupLookProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122B72598B67500009886 /* SetupLookProtocols.swift */; };
+		318122BE2598B67500009886 /* SetupLookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122B82598B67500009886 /* SetupLookInteractor.swift */; };
+		318122BF2598B67500009886 /* SetupLookContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122B92598B67500009886 /* SetupLookContainer.swift */; };
 		31DD94A82597915600D2390C /* LookModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94A72597915500D2390C /* LookModels.swift */; };
-		31DD94AD2597A09B00D2390C /* LookTableViewCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94AC2597A09B00D2390C /* LookTableViewCellPresenter.swift */; };
 		31DD94B02597A0B800D2390C /* LookTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94AF2597A0B800D2390C /* LookTableViewCellViewModel.swift */; };
 		31DD94B32597A13600D2390C /* ItemCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94B22597A13600D2390C /* ItemCollectionViewCellViewModel.swift */; };
 		31DD94B72597A1C200D2390C /* ItemCollectionVIewCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94B62597A1C200D2390C /* ItemCollectionVIewCellPresenter.swift */; };
+		31DD94C62598A60E00D2390C /* LookTableViewCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94C52598A60E00D2390C /* LookTableViewCellPresenter.swift */; };
 		31E4EB4F258E6601001AC230 /* EditItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB49258E6601001AC230 /* EditItemPresenter.swift */; };
 		31E4EB50258E6601001AC230 /* EditItemRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4A258E6601001AC230 /* EditItemRouter.swift */; };
 		31E4EB51258E6601001AC230 /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E4EB4B258E6601001AC230 /* EditItemViewController.swift */; };
@@ -185,11 +191,17 @@
 		3180ECED2593E03D00A046E5 /* LoginModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModels.swift; sourceTree = "<group>"; };
 		3180ECFE2593FA8400A046E5 /* RegisterModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModels.swift; sourceTree = "<group>"; };
 		3180ED0325949F3400A046E5 /* NetworkServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceErrors.swift; sourceTree = "<group>"; };
+		318122B42598B67500009886 /* SetupLookPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLookPresenter.swift; sourceTree = "<group>"; };
+		318122B52598B67500009886 /* SetupLookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLookRouter.swift; sourceTree = "<group>"; };
+		318122B62598B67500009886 /* SetupLookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLookViewController.swift; sourceTree = "<group>"; };
+		318122B72598B67500009886 /* SetupLookProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLookProtocols.swift; sourceTree = "<group>"; };
+		318122B82598B67500009886 /* SetupLookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLookInteractor.swift; sourceTree = "<group>"; };
+		318122B92598B67500009886 /* SetupLookContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLookContainer.swift; sourceTree = "<group>"; };
 		31DD94A72597915500D2390C /* LookModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookModels.swift; sourceTree = "<group>"; };
-		31DD94AC2597A09B00D2390C /* LookTableViewCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookTableViewCellPresenter.swift; sourceTree = "<group>"; };
 		31DD94AF2597A0B800D2390C /* LookTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		31DD94B22597A13600D2390C /* ItemCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		31DD94B62597A1C200D2390C /* ItemCollectionVIewCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionVIewCellPresenter.swift; sourceTree = "<group>"; };
+		31DD94C52598A60E00D2390C /* LookTableViewCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookTableViewCellPresenter.swift; sourceTree = "<group>"; };
 		31E4EB49258E6601001AC230 /* EditItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemPresenter.swift; sourceTree = "<group>"; };
 		31E4EB4A258E6601001AC230 /* EditItemRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemRouter.swift; sourceTree = "<group>"; };
 		31E4EB4B258E6601001AC230 /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
@@ -537,6 +549,7 @@
 		31467C3B2592812100B785FF /* CreateLook */ = {
 			isa = PBXGroup;
 			children = (
+				318122B32598B65400009886 /* SetupLook */,
 				31467C4E2592818200B785FF /* Container */,
 				31467C4D2592815D00B785FF /* View */,
 				31467C4C2592815700B785FF /* Protocols */,
@@ -633,6 +646,67 @@
 				3180ED0325949F3400A046E5 /* NetworkServiceErrors.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		318122B32598B65400009886 /* SetupLook */ = {
+			isa = PBXGroup;
+			children = (
+				318122C62598B6AD00009886 /* Protocols */,
+				318122C52598B6A700009886 /* View */,
+				318122C42598B69D00009886 /* Router */,
+				318122C32598B69500009886 /* Interactor */,
+				318122C22598B68900009886 /* Presenter */,
+				318122C12598B68000009886 /* Container */,
+			);
+			path = SetupLook;
+			sourceTree = "<group>";
+		};
+		318122C12598B68000009886 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				318122B92598B67500009886 /* SetupLookContainer.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		318122C22598B68900009886 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				318122B42598B67500009886 /* SetupLookPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		318122C32598B69500009886 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				318122B82598B67500009886 /* SetupLookInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		318122C42598B69D00009886 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				318122B52598B67500009886 /* SetupLookRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		318122C52598B6A700009886 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				318122B62598B67500009886 /* SetupLookViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		318122C62598B6AD00009886 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				318122B72598B67500009886 /* SetupLookProtocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		31DD94A62597914300D2390C /* Models */ = {
@@ -887,8 +961,8 @@
 			children = (
 				31E4EC3C25909E7B001AC230 /* CollectionViewCell */,
 				31E4EC34258FF7BE001AC230 /* LookTableViewCell.swift */,
-				31DD94AC2597A09B00D2390C /* LookTableViewCellPresenter.swift */,
 				31DD94AF2597A0B800D2390C /* LookTableViewCellViewModel.swift */,
+				31DD94C52598A60E00D2390C /* LookTableViewCellPresenter.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1237,11 +1311,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				318122BD2598B67500009886 /* SetupLookProtocols.swift in Sources */,
 				31E4EC69259231FC001AC230 /* AllItemsInteractor.swift in Sources */,
-				31DD94AD2597A09B00D2390C /* LookTableViewCellPresenter.swift in Sources */,
 				31E6E778258D2CE500591F72 /* RegisterProtocols.swift in Sources */,
 				31E4EB4F258E6601001AC230 /* EditItemPresenter.swift in Sources */,
 				31EB193A259694AF00621DDF /* SplashScreenViewController.swift in Sources */,
+				318122BB2598B67500009886 /* SetupLookRouter.swift in Sources */,
+				318122BC2598B67500009886 /* SetupLookViewController.swift in Sources */,
 				31DD94A82597915600D2390C /* LookModels.swift in Sources */,
 				31E4EBBB258E6A45001AC230 /* SettingsPresenter.swift in Sources */,
 				0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */,
@@ -1260,7 +1336,9 @@
 				31E4EB71258E673D001AC230 /* WardrobeDetailViewController.swift in Sources */,
 				31467C462592813A00B785FF /* CreateLookInteractor.swift in Sources */,
 				31DD94B02597A0B800D2390C /* LookTableViewCellViewModel.swift in Sources */,
+				318122BE2598B67500009886 /* SetupLookInteractor.swift in Sources */,
 				31E6E775258D2CE500591F72 /* RegisterPresenter.swift in Sources */,
+				318122BF2598B67500009886 /* SetupLookContainer.swift in Sources */,
 				31E6E776258D2CE500591F72 /* RegisterRouter.swift in Sources */,
 				31E6E77A258D2CE500591F72 /* RegisterContainer.swift in Sources */,
 				31E4EB73258E673D001AC230 /* WardrobeDetailInteractor.swift in Sources */,
@@ -1277,6 +1355,7 @@
 				0DE97FC32592567A00903CE1 /* GlobalConstants.swift in Sources */,
 				31467C452592813A00B785FF /* CreateLookProtocols.swift in Sources */,
 				3180ECEE2593E03D00A046E5 /* LoginModels.swift in Sources */,
+				31DD94C62598A60E00D2390C /* LookTableViewCellPresenter.swift in Sources */,
 				31467C442592813A00B785FF /* CreateLookViewController.swift in Sources */,
 				31E4EC6A259231FC001AC230 /* AllItemsContainer.swift in Sources */,
 				31E4EB70258E673D001AC230 /* WardrobeDetailRouter.swift in Sources */,
@@ -1342,6 +1421,7 @@
 				31467C422592813A00B785FF /* CreateLookPresenter.swift in Sources */,
 				31E4EBB0258E6A19001AC230 /* WardrobeUsersProtocols.swift in Sources */,
 				31E4EC68259231FC001AC230 /* AllItemsProtocols.swift in Sources */,
+				318122BA2598B67500009886 /* SetupLookPresenter.swift in Sources */,
 				31E4EB7F258E679B001AC230 /* LookRouter.swift in Sources */,
 				31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */,
 				136649752593DC51008C13EF /* DataServiceRawModels.swift in Sources */,
