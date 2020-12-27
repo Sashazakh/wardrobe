@@ -56,9 +56,9 @@ extension CreateWardrobeViewController {
         layoutBackButton()
         layoutWardrobeNameTextField()
         layoutWardrobeDescription()
+        layoutImagePickButton()
         layoutImageButton()
         layoutAddButton()
-        layoutImagePickButton()
     }
 
     private func setupImagePicker() {
@@ -118,7 +118,7 @@ extension CreateWardrobeViewController {
             .top()
             .left()
             .right()
-            .height(61%)
+            .height(50%)
         headerView.roundLowerCorners(40)
         headerView.dropShadow()
     }
@@ -130,6 +130,8 @@ extension CreateWardrobeViewController {
         self.pageTitle = label
         pageTitle.text = "Создать гардероб"
         pageTitle.font = UIFont(name: "DMSans-Bold", size: 25)
+        pageTitle.adjustsFontSizeToFitWidth = true
+        pageTitle.minimumScaleFactor = 0.1
         headerView.addSubview(pageTitle)
     }
 
@@ -138,7 +140,8 @@ extension CreateWardrobeViewController {
         pageTitle.pin
             .top(11%)
             .hCenter()
-            .sizeToFit()
+            .width(50%)
+            .height(7%)
     }
 
     // Item name text field
@@ -154,10 +157,10 @@ extension CreateWardrobeViewController {
     private func layoutWardrobeNameTextField() {
         wardrobeNameTextField.pin
             .below(of: pageTitle)
-            .marginTop(8%)
-            .left(10%)
-            .right(10%)
-            .height(8%)
+            .marginTop(5%)
+            .hCenter()
+            .width(90%)
+            .height(10%)
     }
 
     // Wardrobe description
@@ -188,7 +191,7 @@ extension CreateWardrobeViewController {
         wardrobeDescriptionTextView.pin
             .width(of: wardrobeNameTextField)
             .height(30%)
-            .below(of: wardrobeNameTextField).marginTop(3%)
+            .below(of: wardrobeNameTextField).marginTop(5%)
             .hCenter()
     }
 
@@ -213,10 +216,11 @@ extension CreateWardrobeViewController {
 
         let size = view.frame.height * 0.06
         imageButton.pin
-            .below(of: wardrobeDescriptionTextView, aligned: .end)
-            .marginTop(8%)
+            .below(of: wardrobeDescriptionTextView, aligned: .start)
             .size(size)
-            .left(10%)
+
+        imageButton.pin
+            .top(imagePickButton.frame.midY - imageButton.bounds.height / 2)
 
         imageButton.layer.cornerRadius = size / 2
 
@@ -244,14 +248,14 @@ extension CreateWardrobeViewController {
 
     private func layoutImagePickButton() {
         imagePickButton.pin
-            .after(of: imageButton).marginLeft(10%)
-            .right(10%)
-            .height(of: imageButton)
-            .below(of: wardrobeDescriptionTextView).marginTop(8%)
+            .width(65%)
+            .right(5%)
+            .height(9%)
+            .below(of: wardrobeDescriptionTextView).marginTop(11%)
 
-        let width = imagePickButton.frame.width
+        let height = imagePickButton.frame.height
 
-        imagePickButton.layer.cornerRadius = width * 0.090
+        imagePickButton.layer.cornerRadius = height / 2
 
     }
 
@@ -272,14 +276,12 @@ extension CreateWardrobeViewController {
 
     private func layoutAddButton() {
         addButton.pin
-            .below(of: headerView).margin(10%)
-            .width(80%)
-            .height(7%)
+            .below(of: headerView).marginTop(5%)
+            .width(90%)
+            .height(6%)
             .hCenter()
 
-        let width = addButton.frame.width
-
-        addButton.layer.cornerRadius = width * 0.08
+        addButton.layer.cornerRadius = 20
     }
 
     // MARK: : User actions
