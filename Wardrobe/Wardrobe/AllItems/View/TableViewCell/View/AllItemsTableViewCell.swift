@@ -93,6 +93,7 @@ final class AllItemsTableViewCell: UITableViewCell {
     public func configure(model: AllItemsTableViewCellViewModel) {
         sectionNameLabel.text = model.sectionName
         itemModels = model.itemModels
+        itemCollectionView.reloadData()
     }
 }
 
