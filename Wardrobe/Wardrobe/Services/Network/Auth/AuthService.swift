@@ -132,16 +132,6 @@ extension AuthService: AuthServiceInput {
                   password: String,
                   imageData: Data?,
                   completion: @escaping (Result<LoginResponse, NetworkError>) -> Void) {
-
-        let parameters: [String: String] = [
-            "login": login,
-            "username": fio,
-            "password": password,
-            "image": imageData?.base64EncodedString(options: .lineLength64Characters) ?? "null",
-            "apikey": "\(getApiKey())"
-        ]
-
-        let request = AF.request("\(getBaseURL())register", method: .post, parameters: parameters)
         var result = Result<LoginResponse, NetworkError>()
 
         guard NetworkReachabilityManager()?.isReachable ?? false else {
@@ -150,44 +140,59 @@ extension AuthService: AuthServiceInput {
             return
         }
 
-        request.responseDecodable(of: [LoginResponse].self) { (response) in
-            switch response.result {
-            case .success(let data):
-                guard let statusCode = response.response?.statusCode else {
-                    result.error = .unknownError
-                    completion(result)
-                    return
-                }
+        let parameters = ["login": login,
+                          "username": fio,
+                          "password": password] // Optional for extra parameter
 
-                switch statusCode {
-                case ResponseCode.success.code:
-                    result.data = data.first
-                case ResponseCode.error.code:
-                    result.error = .userAlreadyExist
-                    completion(result)
-                    return
-                default:
-                    result.error = .unknownError
-                    completion(result)
-                    return
+       _ = AF.upload(multipartFormData: { multipartFormData in
+        if let data = imageData {
+            multipartFormData.append(data, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+                   for (key, value) in parameters {
+                    if let valueData = value.data(using: String.Encoding.utf8) {
+                        multipartFormData.append(valueData, withName: key)
+                    }
                 }
-            case .failure(let error):
-                if error.isInvalidURLError {
-                    result.error = .connectionToServerError
-                } else {
-                    result.error = .unknownError
-                }
-
+        }// Optional for extra parameters
+           },
+       to: "\(getBaseURL())" + "register").responseDecodable(of: [LoginResponse].self) { (response) in
+        switch response.result {
+        case .success(let data):
+            guard let statusCode = response.response?.statusCode else {
+                result.error = .unknownError
                 completion(result)
+                return
             }
 
-            self.saveUser(login: login,
-                          password: password,
-                          userName: result.data?.userName,
-                          imageURL: result.data?.imageURL)
+            switch statusCode {
+            case ResponseCode.success.code:
+                result.data = data.first
+            case ResponseCode.error.code:
+                result.error = .userAlreadyExist
+                completion(result)
+                return
+            default:
+                result.error = .unknownError
+                completion(result)
+                return
+            }
+        case .failure(let error):
+            if error.isInvalidURLError {
+                result.error = .connectionToServerError
+            } else {
+                result.error = .unknownError
+            }
+
             completion(result)
         }
-    }
+
+        self.saveUser(login: login,
+                      password: password,
+                      userName: result.data?.userName,
+                      imageURL: result.data?.imageURL)
+        completion(result)
+       }
+
+        }
 
     func getUserLogin() -> String? {
         return UserDefaults.standard.string(forKey: Constants.loginKey)

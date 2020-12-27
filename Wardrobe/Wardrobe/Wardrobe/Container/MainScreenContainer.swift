@@ -17,7 +17,7 @@ final class MainScreenContainer {
 
         presenter.userLogin = context.login
         presenter.userName = context.userName
-        presenter.imageUrlString = context.umageURL
+        presenter.imageUrlString = (context.umageURL ?? "") + "&apikey=" + DataService.shared.getApiKey()
         return MainScreenContainer(view: viewController, router: router)
 	}
 
