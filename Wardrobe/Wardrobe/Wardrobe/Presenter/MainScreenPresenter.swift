@@ -51,7 +51,7 @@ extension MainScreenPresenter: MainScreenViewOutput {
     }
 
     func settingsButtonDidTap() {
-        router.showSettings()
+        router.showSettings(login: userLogin ?? "", name: userName ?? "", imageUrl: imageUrlString ?? "")
     }
 
     func getNumberOfWardrobes() -> Int {
