@@ -41,6 +41,7 @@
 		13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */; };
 		31467C1D25926B9500B785FF /* AllItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C1C25926B9400B785FF /* AllItemsTableViewCell.swift */; };
 		31467C2925926E4B00B785FF /* AllItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C2825926E4B00B785FF /* AllItemsCollectionViewCell.swift */; };
+		31467C2E25927BD900B785FF /* AllItemsCollectionViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C2D25927BD900B785FF /* AllItemsCollectionViewPresenter.swift */; };
 		31467C422592813A00B785FF /* CreateLookPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C3C2592813A00B785FF /* CreateLookPresenter.swift */; };
 		31467C432592813A00B785FF /* CreateLookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C3D2592813A00B785FF /* CreateLookRouter.swift */; };
 		31467C442592813A00B785FF /* CreateLookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C3E2592813A00B785FF /* CreateLookViewController.swift */; };
@@ -58,9 +59,6 @@
 		318122BD2598B67500009886 /* SetupLookProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122B72598B67500009886 /* SetupLookProtocols.swift */; };
 		318122BE2598B67500009886 /* SetupLookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122B82598B67500009886 /* SetupLookInteractor.swift */; };
 		318122BF2598B67500009886 /* SetupLookContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122B92598B67500009886 /* SetupLookContainer.swift */; };
-		318122DB25991D0800009886 /* AllItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122DA25991D0800009886 /* AllItemsModel.swift */; };
-		318122DF2599271D00009886 /* AllItemsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122DE2599271D00009886 /* AllItemsTableViewCellViewModel.swift */; };
-		318122E22599279700009886 /* AllItemsCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122E12599279700009886 /* AllItemsCollectionViewCellViewModel.swift */; };
 		31DD94A82597915600D2390C /* LookModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94A72597915500D2390C /* LookModels.swift */; };
 		31DD94B02597A0B800D2390C /* LookTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94AF2597A0B800D2390C /* LookTableViewCellViewModel.swift */; };
 		31DD94B32597A13600D2390C /* ItemCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94B22597A13600D2390C /* ItemCollectionViewCellViewModel.swift */; };
@@ -181,6 +179,7 @@
 		13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		31467C1C25926B9400B785FF /* AllItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsTableViewCell.swift; sourceTree = "<group>"; };
 		31467C2825926E4B00B785FF /* AllItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsCollectionViewCell.swift; sourceTree = "<group>"; };
+		31467C2D25927BD900B785FF /* AllItemsCollectionViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsCollectionViewPresenter.swift; sourceTree = "<group>"; };
 		31467C3C2592813A00B785FF /* CreateLookPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookPresenter.swift; sourceTree = "<group>"; };
 		31467C3D2592813A00B785FF /* CreateLookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookRouter.swift; sourceTree = "<group>"; };
 		31467C3E2592813A00B785FF /* CreateLookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookViewController.swift; sourceTree = "<group>"; };
@@ -198,9 +197,6 @@
 		318122B72598B67500009886 /* SetupLookProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLookProtocols.swift; sourceTree = "<group>"; };
 		318122B82598B67500009886 /* SetupLookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLookInteractor.swift; sourceTree = "<group>"; };
 		318122B92598B67500009886 /* SetupLookContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupLookContainer.swift; sourceTree = "<group>"; };
-		318122DA25991D0800009886 /* AllItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsModel.swift; sourceTree = "<group>"; };
-		318122DE2599271D00009886 /* AllItemsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsTableViewCellViewModel.swift; sourceTree = "<group>"; };
-		318122E12599279700009886 /* AllItemsCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		31DD94A72597915500D2390C /* LookModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookModels.swift; sourceTree = "<group>"; };
 		31DD94AF2597A0B800D2390C /* LookTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		31DD94B22597A13600D2390C /* ItemCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -527,10 +523,8 @@
 		31467C2025926BD400B785FF /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				318122D7259915F100009886 /* ViewModel */,
-				318122D6259915EB00009886 /* Presenter */,
-				318122D5259915E000009886 /* View */,
 				31467C2725926E3B00B785FF /* CollectionViewCell */,
+				31467C1C25926B9400B785FF /* AllItemsTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -538,11 +532,18 @@
 		31467C2725926E3B00B785FF /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				318122D4259915B100009886 /* ViewModel */,
-				318122D3259915AA00009886 /* Presenter */,
-				318122D22599159600009886 /* View */,
+				31467C2C25927B3A00B785FF /* Presenter */,
+				31467C2825926E4B00B785FF /* AllItemsCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		31467C2C25927B3A00B785FF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				31467C2D25927BD900B785FF /* AllItemsCollectionViewPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		31467C3B2592812100B785FF /* CreateLook */ = {
@@ -706,108 +707,6 @@
 				318122B72598B67500009886 /* SetupLookProtocols.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		318122CB259914A700009886 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				31E4EC34258FF7BE001AC230 /* LookTableViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		318122CC259914C600009886 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				31DD94C52598A60E00D2390C /* LookTableViewCellPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		318122CD259914DB00009886 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				31DD94AF2597A0B800D2390C /* LookTableViewCellViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		318122CE259914FF00009886 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				31DD94B22597A13600D2390C /* ItemCollectionViewCellViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		318122CF2599150500009886 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				31DD94B62597A1C200D2390C /* ItemCollectionVIewCellPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		318122D02599150E00009886 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				31E4EC3825909E6B001AC230 /* ItemCollectionViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		318122D22599159600009886 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				31467C2825926E4B00B785FF /* AllItemsCollectionViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		318122D3259915AA00009886 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		318122D4259915B100009886 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				318122E12599279700009886 /* AllItemsCollectionViewCellViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		318122D5259915E000009886 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				31467C1C25926B9400B785FF /* AllItemsTableViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		318122D6259915EB00009886 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		318122D7259915F100009886 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				318122DE2599271D00009886 /* AllItemsTableViewCellViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		318122D925991CF200009886 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				318122DA25991D0800009886 /* AllItemsModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		31DD94A62597914300D2390C /* Models */ = {
@@ -1060,10 +959,10 @@
 		31E4EC33258FF79B001AC230 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				318122CD259914DB00009886 /* ViewModel */,
-				318122CC259914C600009886 /* Presenter */,
-				318122CB259914A700009886 /* View */,
 				31E4EC3C25909E7B001AC230 /* CollectionViewCell */,
+				31E4EC34258FF7BE001AC230 /* LookTableViewCell.swift */,
+				31DD94AF2597A0B800D2390C /* LookTableViewCellViewModel.swift */,
+				31DD94C52598A60E00D2390C /* LookTableViewCellPresenter.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1071,9 +970,9 @@
 		31E4EC3C25909E7B001AC230 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				318122D02599150E00009886 /* View */,
-				318122CF2599150500009886 /* Presenter */,
-				318122CE259914FF00009886 /* ViewModel */,
+				31E4EC3825909E6B001AC230 /* ItemCollectionViewCell.swift */,
+				31DD94B22597A13600D2390C /* ItemCollectionViewCellViewModel.swift */,
+				31DD94B62597A1C200D2390C /* ItemCollectionVIewCellPresenter.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -1081,7 +980,6 @@
 		31E4EC5E259231DE001AC230 /* AllItems */ = {
 			isa = PBXGroup;
 			children = (
-				318122D925991CF200009886 /* Models */,
 				31467C0D2592328C00B785FF /* Container */,
 				31467C0C2592328600B785FF /* Protocols */,
 				31467C0B2592328000B785FF /* Interactor */,
@@ -1434,7 +1332,6 @@
 				31E4EBB1258E6A19001AC230 /* WardrobeUsersInteractor.swift in Sources */,
 				31E6E777258D2CE500591F72 /* RegisterViewController.swift in Sources */,
 				0D95F215258FED2A00E26D25 /* ItemCollectionCell.swift in Sources */,
-				318122DB25991D0800009886 /* AllItemsModel.swift in Sources */,
 				31E4EBAD258E6A19001AC230 /* WardrobeUsersPresenter.swift in Sources */,
 				31E4EB71258E673D001AC230 /* WardrobeDetailViewController.swift in Sources */,
 				31467C462592813A00B785FF /* CreateLookInteractor.swift in Sources */,
@@ -1470,7 +1367,6 @@
 				31E6E728258CE33C00591F72 /* LoginProtocols.swift in Sources */,
 				31467C432592813A00B785FF /* CreateLookRouter.swift in Sources */,
 				31E4EBCB258E6A59001AC230 /* InviteRouter.swift in Sources */,
-				318122DF2599271D00009886 /* AllItemsTableViewCellViewModel.swift in Sources */,
 				13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */,
 				31E4EBCD258E6A59001AC230 /* InviteProtocols.swift in Sources */,
 				31E4EC67259231FC001AC230 /* AllItemsViewController.swift in Sources */,
@@ -1482,6 +1378,7 @@
 				31F798F8259617C200DBDC2E /* MainTabBarContainer.swift in Sources */,
 				31E4EBCA258E6A59001AC230 /* InvitePresenter.swift in Sources */,
 				13A7462C258D0B4600643369 /* MainScreenRouter.swift in Sources */,
+				31467C2E25927BD900B785FF /* AllItemsCollectionViewPresenter.swift in Sources */,
 				139EF328258E3DC900A9435B /* WardrobeCell.swift in Sources */,
 				31F8C5202593A78A003BB6E0 /* NetworkService.swift in Sources */,
 				31E4EC3925909E6B001AC230 /* ItemCollectionViewCell.swift in Sources */,
@@ -1537,7 +1434,6 @@
 				3180ECE82593DC7300A046E5 /* LoginRawModels.swift in Sources */,
 				0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */,
 				31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */,
-				318122E22599279700009886 /* AllItemsCollectionViewCellViewModel.swift in Sources */,
 				3180ED0425949F3400A046E5 /* NetworkServiceErrors.swift in Sources */,
 				31467C472592813A00B785FF /* CreateLookContainer.swift in Sources */,
 				31E4EBBF258E6A45001AC230 /* SettingsInteractor.swift in Sources */,

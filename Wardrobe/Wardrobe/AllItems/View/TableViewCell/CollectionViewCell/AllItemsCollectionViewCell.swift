@@ -42,14 +42,8 @@ final class AllItemsCollectionViewCell: WardrobeCell {
         stateButton.layer.cornerRadius = 10
     }
 
-    func configure(model: AllItemsCollectionViewCellViewModel) {
-        titleLable.text = model.item.clothesName
-
-        guard let url = URL(string: (model.item.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
-            return
-        }
-
-        imageView.kf.setImage(with: url)
+    func configure(text: String) {
+        titleLable.text = text
     }
 
     private func layoutDeleteMarkImageView() {

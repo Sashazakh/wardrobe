@@ -26,6 +26,4 @@ protocol DataServiceInput {
     func getUserWardrobes(for user: String, completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void)
 
     func getAllLookClothes(with id: Int, completion: @escaping (Result<LookRaw, NetworkError>) -> Void)
-
-    func getAllItems(for login: String, completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void)
 }

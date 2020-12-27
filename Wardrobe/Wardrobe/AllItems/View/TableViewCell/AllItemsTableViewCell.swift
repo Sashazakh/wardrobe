@@ -7,8 +7,6 @@ final class AllItemsTableViewCell: UITableViewCell {
 
     private weak var itemCollectionView: UICollectionView!
 
-    private var itemModels: [AllItemsCollectionViewCellViewModel]?
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -72,7 +70,7 @@ final class AllItemsTableViewCell: UITableViewCell {
             .top(1%)
             .left(2%)
             .height(30)
-            .width(80%)
+            .width(50%)
     }
 
     private func layoutCollectionView() {
@@ -89,11 +87,6 @@ final class AllItemsTableViewCell: UITableViewCell {
                                                    right: 5)
         }
     }
-
-    public func configure(model: AllItemsTableViewCellViewModel) {
-        sectionNameLabel.text = model.sectionName
-        itemModels = model.itemModels
-    }
 }
 
 extension AllItemsTableViewCell: UICollectionViewDelegate {
@@ -109,7 +102,7 @@ extension AllItemsTableViewCell: UICollectionViewDelegate {
 
 extension AllItemsTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemModels?.count ?? .zero
+        return 10
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,13 +110,8 @@ extension AllItemsTableViewCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
+        cell.configure(text: String(indexPath.row))
         cell.dropShadow()
-
-        guard let model = itemModels else {
-            return cell
-        }
-
-        cell.configure(model: model[indexPath.row])
 
         return cell
     }
