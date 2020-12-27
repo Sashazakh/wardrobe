@@ -5,6 +5,8 @@ protocol SetupLookViewInput: AnyObject {
 
 protocol SetupLookViewOutput: AnyObject {
     func didTapBackToCreateWardrobeButton()
+
+    func didTapAddLookPhotoButton()
 }
 
 protocol SetupLookInteractorInput: AnyObject {

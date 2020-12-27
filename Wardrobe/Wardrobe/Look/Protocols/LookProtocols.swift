@@ -10,6 +10,8 @@ protocol LookViewInput: AnyObject {
     func loadData()
 
     func showAlert(title: String, message: String)
+
+    func setLookTitle(with: String)
 }
 
 protocol LookViewOutput: AnyObject {

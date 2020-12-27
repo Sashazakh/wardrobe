@@ -64,6 +64,7 @@ extension LookPresenter: LookInteractorOutput {
     }
 
     func lookDidReceived() {
+        view?.setLookTitle(with: model?.lookName ?? String())
         view?.loadData()
     }
 

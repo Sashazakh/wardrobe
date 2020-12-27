@@ -264,6 +264,10 @@ extension LookViewController: LookViewInput {
 
         present(alert, animated: true, completion: nil)
     }
+
+    func setLookTitle(with text: String) {
+        lookName.text = "Набор\n\"\(text)\""
+    }
 }
 
 extension LookViewController: UITableViewDelegate {

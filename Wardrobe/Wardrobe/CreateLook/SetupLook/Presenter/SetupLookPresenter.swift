@@ -16,6 +16,10 @@ extension SetupLookPresenter: SetupLookViewOutput {
     func didTapBackToCreateWardrobeButton() {
         router.backToCreateLookScreen()
     }
+
+    func didTapAddLookPhotoButton() {
+
+    }
 }
 
 extension SetupLookPresenter: SetupLookInteractorOutput {
