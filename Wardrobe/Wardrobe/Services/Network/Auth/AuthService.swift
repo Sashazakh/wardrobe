@@ -142,57 +142,58 @@ extension AuthService: AuthServiceInput {
 
         let parameters = ["login": login,
                           "username": fio,
-                          "password": password] // Optional for extra parameter
+                          "password": password]
 
-       _ = AF.upload(multipartFormData: { multipartFormData in
-        if let data = imageData {
-            multipartFormData.append(data, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
-                   for (key, value) in parameters {
-                    if let valueData = value.data(using: String.Encoding.utf8) {
-                        multipartFormData.append(valueData, withName: key)
-                    }
+        _ = AF.upload(multipartFormData: { multipartFormData in
+            for (key, value) in parameters {
+                if let valueData = value.data(using: String.Encoding.utf8) {
+                    multipartFormData.append(valueData, withName: key)
                 }
-        }// Optional for extra parameters
+            }
+
+            if let data = imageData {
+                multipartFormData.append(data, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+            }
+
            },
-       to: "\(getBaseURL())" + "register").responseDecodable(of: [LoginResponse].self) { (response) in
-        switch response.result {
-        case .success(let data):
-            guard let statusCode = response.response?.statusCode else {
-                result.error = .unknownError
+        to: "\(getBaseURL())" + "register").responseDecodable(of: [LoginResponse].self) { (response) in
+            switch response.result {
+            case .success(let data):
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    result.data = data.first
+                case ResponseCode.error.code:
+                    result.error = .userAlreadyExist
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+
                 completion(result)
-                return
             }
 
-            switch statusCode {
-            case ResponseCode.success.code:
-                result.data = data.first
-            case ResponseCode.error.code:
-                result.error = .userAlreadyExist
-                completion(result)
-                return
-            default:
-                result.error = .unknownError
-                completion(result)
-                return
-            }
-        case .failure(let error):
-            if error.isInvalidURLError {
-                result.error = .connectionToServerError
-            } else {
-                result.error = .unknownError
-            }
-
+            self.saveUser(login: login,
+                          password: password,
+                          userName: result.data?.userName,
+                          imageURL: result.data?.imageURL)
             completion(result)
         }
-
-        self.saveUser(login: login,
-                      password: password,
-                      userName: result.data?.userName,
-                      imageURL: result.data?.imageURL)
-        completion(result)
-       }
-
-        }
+    }
 
     func getUserLogin() -> String? {
         return UserDefaults.standard.string(forKey: Constants.loginKey)
