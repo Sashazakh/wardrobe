@@ -23,13 +23,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     return
                 }
 
+                let rootVC = self.getInitalViewController(isAuthorized: false)
+                self.setRootViewController(controller: rootVC)
+
+                guard let firstResponder = (rootVC as? UINavigationController)?.viewControllers.first as? LoginViewController else {
+                    return
+                }
+
                 switch networkError {
                 case .networkNotReachable:
-                    initialVC.showAlert(title: "Ошибка", message: "Не удается подключиться")
+                    firstResponder.showAlert(title: "Ошибка", message: "Не удается подключиться")
                 case .userNotExist:
-                    initialVC.showAlert(title: "Ошибка", message: "Время сессии истекло")
+                    firstResponder.showAlert(title: "Ошибка", message: "Время сессии истекло")
                 default:
-                    initialVC.showAlert(title: "Ошибка", message: "Мы скоро все починим")
+                    firstResponder.showAlert(title: "Ошибка", message: "Мы скоро все починим")
                 }
 
                 return

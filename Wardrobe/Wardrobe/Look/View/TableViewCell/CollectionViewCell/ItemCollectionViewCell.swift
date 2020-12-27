@@ -62,7 +62,7 @@ final class LookCollectionViewCell: WardrobeCell {
 
     public func configure(model: ItemData) {
         titleLable.text = model.clothesName
-        guard let url = URL(string: "http://194.58.123.93:3000/getImage?id=7&apikey=be3380626a9d5a44c3ef2737717d4e64") else {
+        guard let url = URL(string: model.imageURL ?? String()) else {
             return
         }
 
