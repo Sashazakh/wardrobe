@@ -5,4 +5,8 @@ final class SettingsInteractor {
 }
 
 extension SettingsInteractor: SettingsInteractorInput {
+    func logout() {
+        AuthService.shared.dropUser()
+        output?.didAllKeysDeleted()
+    }
 }

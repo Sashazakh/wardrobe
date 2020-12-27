@@ -207,12 +207,12 @@ extension AuthService: AuthServiceInput {
         return UserDefaults.standard.string(forKey: Constants.imageURLKey)
     }
 
-    func deAuth() {
+    func dropUser() {
+        UserDefaults.standard.removeObject(forKey: Constants.authKey)
         UserDefaults.standard.removeObject(forKey: Constants.loginKey)
         UserDefaults.standard.removeObject(forKey: Constants.userNameKey)
         UserDefaults.standard.removeObject(forKey: Constants.passwordKey)
         UserDefaults.standard.removeObject(forKey: Constants.imageURLKey)
-        g
     }
 }
 

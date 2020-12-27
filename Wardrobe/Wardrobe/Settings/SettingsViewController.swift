@@ -2,12 +2,10 @@ import UIKit
 import PinLayout
 
 enum SettingsSections: Int, CaseIterable {
-    case changeLogin = 0, changeName, logout
+    case  changeName = 0, logout = 1
 
     var info: String {
         switch self {
-        case .changeLogin:
-            return "Изменить логин"
         case .changeName:
             return "Изменить имя"
         case .logout:
@@ -262,6 +260,17 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = screenBounds.height * 0.0881
         return height
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch SettingsSections(rawValue: indexPath.row) {
+        case .changeName:
+            output?.didChangeNameTapped()
+        case .logout:
+            output?.didLogoutTapped()
+        case .none:
+            break
+        }
     }
 }
 

@@ -28,7 +28,21 @@ extension SettingsPresenter: SettingsViewOutput {
     func didImageLoaded(image: UIImage) {
 
     }
+
+    func didChangeNameTapped() {
+
+    }
+
+    func didLogoutTapped() {
+        interactor.logout()
+    }
 }
 
 extension SettingsPresenter: SettingsInteractorOutput {
+    func didAllKeysDeleted() {
+        let scene = UIApplication.shared.connectedScenes.first
+        if let sceneDelegate: SceneDelegate = (scene?.delegate as? SceneDelegate) {
+            sceneDelegate.logout()
+        }
+    }
 }

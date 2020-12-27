@@ -8,12 +8,16 @@ protocol SettingsViewInput: class {
 protocol SettingsViewOutput: class {
     func didImageLoaded(image: UIImage)
     func didLoadView()
+    func didChangeNameTapped()
+    func didLogoutTapped()
 }
 
 protocol SettingsInteractorInput: class {
+    func logout()
 }
 
 protocol SettingsInteractorOutput: class {
+    func didAllKeysDeleted()
 }
 
 protocol SettingsRouterInput: class {
