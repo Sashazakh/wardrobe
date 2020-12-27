@@ -142,7 +142,7 @@ extension AuthService: AuthServiceInput {
 
         let parameters = ["login": login,
                           "username": fio,
-                          "password": password] // Optional for extra parameter
+                          "password": password]
 
        _ = AF.upload(multipartFormData: { multipartFormData in
         if let data = imageData {
@@ -152,7 +152,7 @@ extension AuthService: AuthServiceInput {
                         multipartFormData.append(valueData, withName: key)
                     }
                 }
-        }// Optional for extra parameters
+        }
            },
        to: "\(getBaseURL())" + "register").responseDecodable(of: [LoginResponse].self) { (response) in
         switch response.result {
@@ -191,8 +191,7 @@ extension AuthService: AuthServiceInput {
                       imageURL: result.data?.imageURL)
         completion(result)
        }
-
-        }
+    }
 
     func getUserLogin() -> String? {
         return UserDefaults.standard.string(forKey: Constants.loginKey)

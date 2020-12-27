@@ -43,7 +43,7 @@ extension MainScreenPresenter: MainScreenViewOutput {
     }
 
     func addWardrobeDidTap() {
-        router.showAddWardobeScreen(for: userName ?? "")
+        router.showAddWardobeScreen(for: userLogin ?? "")
     }
 
     func showDetailDidTap(at indexPath: IndexPath) {

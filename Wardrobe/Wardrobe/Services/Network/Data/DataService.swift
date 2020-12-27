@@ -61,17 +61,14 @@ extension DataService: DataServiceInput {
                      description: String,
                      imageData: Data?,
                      completion: @escaping (SingleResult<NetworkError>) -> Void) {
-        guard let data = imageData else { return }
         let parameters: [String: String] = [
             "login": "\(login)",
             "wardrobe_name": "\(name)",
             "wardrobe_description": "\(description)",
-            "image": String(decoding: data, as: UTF8.self) ,
             "apikey": "\(getApiKey())"
         ]
 
         let url = getBaseURL() + "createWardrobe"
-        let request = AF.request(url, method: .post, parameters: parameters)
         var result = SingleResult<NetworkError>()
 
         guard NetworkReachabilityManager()?.isReachable ?? false else {
@@ -80,7 +77,16 @@ extension DataService: DataServiceInput {
             return
         }
 
-        request.response(completionHandler: { (response) in
+        _ = AF.upload(multipartFormData: { multipartFormData in
+            if let data = imageData {
+                multipartFormData.append(data, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+            }
+                for (key, value) in parameters {
+                     if let valueData = value.data(using: String.Encoding.utf8) {
+                         multipartFormData.append(valueData, withName: key)
+                     }
+                }
+        }, to: url).response(completionHandler: { (response) in
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else {
