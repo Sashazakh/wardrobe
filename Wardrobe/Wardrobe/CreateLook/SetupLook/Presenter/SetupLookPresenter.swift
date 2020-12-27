@@ -18,7 +18,15 @@ extension SetupLookPresenter: SetupLookViewOutput {
     }
 
     func didTapAddLookPhotoButton() {
+        view?.showPickPhotoAlert()
+    }
 
+    func userDidSetImage(imageData: Data?) {
+        guard let data = imageData else {
+            return
+        }
+
+        view?.setLookImage(imageData: data)
     }
 }
 

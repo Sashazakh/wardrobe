@@ -39,6 +39,7 @@ final class SetupLookViewController: UIViewController {
         setupAddLookPhotoButton()
         setupLookPhotoImageView()
         setupSetupLookButton()
+        setupImagePicker()
     }
 
     private func setupBackroundView() {
@@ -135,6 +136,13 @@ final class SetupLookViewController: UIViewController {
         setupLookButton.addTarget(self, action: #selector(didTapSetupLookButton), for: .touchUpInside)
     }
 
+    private func setupImagePicker() {
+        imagePickerController = UIImagePickerController()
+
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+    }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
@@ -227,4 +235,65 @@ final class SetupLookViewController: UIViewController {
 }
 
 extension SetupLookViewController: SetupLookViewInput {
+    func setLookImage(imageData: Data) {
+        lookPhotoImageView.contentMode = .scaleToFill
+        lookPhotoImageView.image = UIImage(data: imageData)
+    }
+
+    func showPickPhotoAlert() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        if let action = alertAction(type: .camera, title: "Камера") {
+            alertController.addAction(action)
+        }
+
+        if let action = alertAction(type: .savedPhotosAlbum, title: "Галерея") {
+            alertController.addAction(action)
+        }
+
+        alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        alertController.modalPresentationStyle = .automatic
+        present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension SetupLookViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    private func alertAction(type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
+        return UIAlertAction(title: title, style: .default) { [unowned self] _ in
+            imagePickerController.sourceType = type
+            present(self.imagePickerController, animated: true)
+        }
+    }
+
+    private func imagePickerController(_ controller: UIImagePickerController, selectedImage: UIImage?) {
+        controller.dismiss(animated: true, completion: nil)
+
+        guard let image = selectedImage else {
+            return
+        }
+
+        output?.userDidSetImage(imageData: image.jpegData(compressionQuality: Constants.LookPhotoImageView.compression))
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            imagePickerController(picker, selectedImage: nil)
+            return
+        }
+
+        imagePickerController(picker, selectedImage: image)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imagePickerController(picker, selectedImage: nil)
+    }
+}
+
+extension SetupLookViewController {
+    private struct Constants {
+        struct LookPhotoImageView {
+            static let compression: CGFloat = 0.1
+        }
+    }
 }

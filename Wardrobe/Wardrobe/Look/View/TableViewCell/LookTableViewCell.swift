@@ -75,7 +75,7 @@ final class LookTableViewCell: UITableViewCell {
             .top(1%)
             .left(2%)
             .height(30)
-            .width(50%)
+            .width(80%)
     }
 
     private func layoutCollectionView() {
