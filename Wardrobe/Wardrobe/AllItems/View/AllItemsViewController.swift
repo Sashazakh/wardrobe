@@ -14,13 +14,13 @@ final class AllItemsViewController: UIViewController {
 
     private weak var allItemsTableView: UITableView!
 
-    private var lookIsEditing: Bool = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
         setupSubviews()
+
+        output?.didLoadView()
     }
 
     override func viewDidLayoutSubviews() {
@@ -207,9 +207,17 @@ extension AllItemsViewController: AllItemsViewInput {
                                         for: .normal)
     }
 
-    func setLookIsEditing(isEditing: Bool) {
-        lookIsEditing = isEditing
+    func loadData() {
         allItemsTableView.reloadData()
+    }
+
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -221,16 +229,21 @@ extension AllItemsViewController: UITableViewDelegate {
 
 extension AllItemsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return output?.getRowsCount() ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AllItemsTableViewCell", for: indexPath) as? LookTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AllItemsTableViewCell", for: indexPath) as? AllItemsTableViewCell else {
             return UITableViewCell()
         }
 
-        cell.setIsEditing(isEditing: lookIsEditing)
         cell.selectionStyle = .none
+
+        guard let model = output?.viewModel(index: indexPath.row) else {
+            return cell
+        }
+
+        cell.configure(model: model)
 
         return cell
     }
