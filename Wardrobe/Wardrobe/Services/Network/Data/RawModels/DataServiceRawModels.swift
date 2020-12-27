@@ -43,3 +43,8 @@ struct ItemRaw: Decodable {
         case imageURL = "image_url"
     }
 }
+
+struct AllItemsRaw: Decodable {
+    let categories: [String]
+    let clothes: [ItemRaw]
+}
