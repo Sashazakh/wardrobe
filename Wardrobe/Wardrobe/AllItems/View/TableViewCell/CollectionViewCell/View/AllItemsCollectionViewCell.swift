@@ -5,6 +5,8 @@ final class AllItemsCollectionViewCell: WardrobeCell {
 
     private weak var stateButton: UIButton!
 
+    var output: AllItemsCollectionViewCellPresenter?
+
     private var isAdding: Bool = false
 
     override init(frame: CGRect) {
@@ -45,6 +47,10 @@ final class AllItemsCollectionViewCell: WardrobeCell {
     func configure(model: AllItemsCollectionViewCellViewModel) {
         titleLable.text = model.item.clothesName
 
+        isAdding = model.isSelected
+
+        setCellStyle(isAdding: isAdding)
+
         guard let url = URL(string: (model.item.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
             return
         }
@@ -60,9 +66,8 @@ final class AllItemsCollectionViewCell: WardrobeCell {
             .height(20)
     }
 
-    @objc
-    private func didTapStateButton() {
-        if isAdding {
+    private func setCellStyle(isAdding: Bool) {
+        if !isAdding {
             stateButton.setImage(UIImage(systemName: "plus",
                                             withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
                                             for: .normal)
@@ -84,7 +89,12 @@ final class AllItemsCollectionViewCell: WardrobeCell {
                 self.transform = CGAffineTransform.identity
             }
         }
+    }
 
+    @objc
+    private func didTapStateButton() {
         isAdding = !isAdding
+        setCellStyle(isAdding: isAdding)
+        output?.changeSelection(isSelected: isAdding)
     }
 }

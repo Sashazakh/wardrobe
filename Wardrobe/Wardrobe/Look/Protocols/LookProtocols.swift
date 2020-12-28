@@ -32,6 +32,8 @@ protocol LookViewOutput: AnyObject {
 
 protocol LookInteractorInput: AnyObject {
     func fetchLook()
+
+    func getLookID() -> Int
 }
 
 protocol LookInteractorOutput: AnyObject {
@@ -45,5 +47,5 @@ protocol LookInteractorOutput: AnyObject {
 protocol LookRouterInput: AnyObject {
     func showWardrobeScreen()
 
-    func showAllItemsScreen()
+    func showAllItemsScreen(lookID: Int)
 }

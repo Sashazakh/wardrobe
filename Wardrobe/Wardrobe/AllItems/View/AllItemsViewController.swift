@@ -90,7 +90,7 @@ final class AllItemsViewController: UIViewController {
         confirmButton = button
         backgroundView.addSubview(confirmButton)
 
-        confirmButton.setImage(UIImage(systemName: "square.and.pencil",
+        confirmButton.setImage(UIImage(systemName: "checkmark",
                                         withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
                                         for: .normal)
         confirmButton.tintColor = GlobalColors.backgroundColor
@@ -195,18 +195,6 @@ final class AllItemsViewController: UIViewController {
 }
 
 extension AllItemsViewController: AllItemsViewInput {
-    func showEditLayout() {
-        confirmButton.setImage(UIImage(systemName: "checkmark",
-                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
-                                        for: .normal)
-    }
-
-    func hideEditLayout() {
-        confirmButton.setImage(UIImage(systemName: "square.and.pencil",
-                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
-                                        for: .normal)
-    }
-
     func loadData() {
         allItemsTableView.reloadData()
     }
@@ -243,6 +231,11 @@ extension AllItemsViewController: UITableViewDataSource {
             return cell
         }
 
+        let cellPresenter = AllItemsTableViewCellPresenter(index: indexPath.row)
+
+        cellPresenter.output = output
+        cellPresenter.cell = cell
+        cell.output = cellPresenter
         cell.configure(model: model)
 
         return cell

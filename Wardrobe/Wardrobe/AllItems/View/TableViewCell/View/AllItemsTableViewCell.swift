@@ -7,6 +7,8 @@ final class AllItemsTableViewCell: UITableViewCell {
 
     private weak var itemCollectionView: UICollectionView!
 
+    var output: AllItemsTableViewCellPresenter?
+
     private var itemModels: [AllItemsCollectionViewCellViewModel]?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -93,6 +95,7 @@ final class AllItemsTableViewCell: UITableViewCell {
     public func configure(model: AllItemsTableViewCellViewModel) {
         sectionNameLabel.text = model.sectionName
         itemModels = model.itemModels
+        itemCollectionView.reloadData()
     }
 }
 
@@ -119,11 +122,16 @@ extension AllItemsTableViewCell: UICollectionViewDataSource {
 
         cell.dropShadow()
 
-        guard let model = itemModels else {
+        guard let models = itemModels else {
             return cell
         }
 
-        cell.configure(model: model[indexPath.row])
+        let cellPresenter = AllItemsCollectionViewCellPresenter(index: indexPath.row)
+
+        cellPresenter.cell = cell
+        cellPresenter.output = output
+        cell.output = cellPresenter
+        cell.configure(model: models[indexPath.row])
 
         return cell
     }

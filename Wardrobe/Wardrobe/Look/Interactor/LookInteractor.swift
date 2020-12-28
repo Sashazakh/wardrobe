@@ -61,4 +61,8 @@ extension LookInteractor: LookInteractorInput {
             self.output?.lookDidReceived()
         }
     }
+
+    func getLookID() -> Int {
+        return lookID
+    }
 }

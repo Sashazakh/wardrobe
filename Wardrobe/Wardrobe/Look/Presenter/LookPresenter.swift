@@ -29,7 +29,7 @@ extension LookPresenter: LookViewOutput {
     }
 
     func didTapAddItemsButton() {
-        router.showAllItemsScreen()
+        router.showAllItemsScreen(lookID: interactor.getLookID())
     }
 
     func didLoadView() {

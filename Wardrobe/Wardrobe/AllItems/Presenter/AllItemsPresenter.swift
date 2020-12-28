@@ -9,7 +9,7 @@ final class AllItemsPresenter {
 
     private var model: AllItemsData?
 
-    private var isEditing: Bool = false
+    private var isSelected: [[Bool]]?
 
     init(router: AllItemsRouterInput, interactor: AllItemsInteractorInput) {
         self.router = router
@@ -27,7 +27,7 @@ extension AllItemsPresenter: AllItemsViewOutput {
     }
 
     func didLoadView() {
-        interactor.fetchAllItems()
+        interactor.fetchUserItems()
     }
 
     func getRowsCount() -> Int {
@@ -39,25 +39,38 @@ extension AllItemsPresenter: AllItemsViewOutput {
             return AllItemsTableViewCellViewModel(sectionName: "Default", itemModels: [])
         }
 
-        let itemModels = model.categories[index].items.map { item in
-            return AllItemsCollectionViewCellViewModel(item: item)
+        var itemModels: [AllItemsCollectionViewCellViewModel] = []
+
+        for i in .zero..<model.categories[index].items.count {
+            itemModels.append(AllItemsCollectionViewCellViewModel(isSelected: isSelected?[index][i] ?? false,
+                                                                  item: model.categories[index].items[i]))
         }
 
         return AllItemsTableViewCellViewModel(sectionName: model.categories[index].categoryName,
-                                          itemModels: itemModels)
+                                              itemModels: itemModels)
+    }
+
+    func setSelection(categoryIndex: Int, itemIndex: Int, isSelected: Bool) {
+        self.isSelected?[categoryIndex][itemIndex] = isSelected
+        view?.loadData()
     }
 }
 
 extension AllItemsPresenter: AllItemsInteractorOutput {
+    func userItemsDidReceived() {
+        view?.loadData()
+    }
+
     func showAlert(title: String, message: String) {
         view?.showAlert(title: title, message: message)
     }
 
     func updateModel(model: AllItemsData) {
         self.model = model
-    }
+        self.isSelected = [[Bool]](repeating: [], count: model.categories.count)
 
-    func allItemsDidReceived() {
-        view?.loadData()
+        for i in .zero..<model.categories.count {
+            self.isSelected?[i] = [Bool](repeating: false, count: model.categories[i].items.count)
+        }
     }
 }

@@ -3,6 +3,16 @@ import Foundation
 final class AllItemsInteractor {
 	weak var output: AllItemsInteractorOutput?
 
+    private var lookID: Int
+
+    private var allUserItems: AllItemsData?
+
+    private var look: LookData?
+
+    init(lookID: Int) {
+        self.lookID = lookID
+    }
+
     private func convertToAllItemsData(model: [ItemRaw]) -> AllItemsData {
         var uniqueCategories: [String: [ItemData]] = [:]
 
@@ -24,10 +34,89 @@ final class AllItemsInteractor {
             return CategoryData(categoryName: cortege.key, items: cortege.value)
         })
     }
+
+    private func convertToLookData(model: LookRaw) -> LookData {
+        var categories: [String: [ItemData]] = [:]
+
+        model.categories.forEach { categoryName in
+            categories[categoryName] = []
+        }
+
+        model.items.forEach { item in
+            let itemData = ItemData(clothesID: item.clothesID,
+                                    category: item.category,
+                                    clothesName: item.clothesName,
+                                    imageURL: item.imageURL)
+            categories[item.category]?.append(itemData)
+        }
+
+        return LookData(lookName: model.lookName,
+                        categories: categories.map {
+                            return CategoryData(categoryName: $0.key,
+                                                items: $0.value)
+                        })
+    }
+
+    private func filterItems() {
+        guard var allItems = allUserItems,
+              let lookItems = look else {
+            return
+        }
+
+        var uniqueClothIDs: Set<Int> = []
+
+        for i in .zero..<lookItems.categories.count {
+            for j in .zero..<lookItems.categories[i].items.count {
+                uniqueClothIDs.insert(lookItems.categories[i].items[j].clothesID)
+            }
+        }
+
+        for i in .zero..<allItems.categories.count {
+            for var j in .zero..<allItems.categories[i].items.count {
+                if j < allItems.categories[i].items.count &&
+                    uniqueClothIDs.contains(allItems.categories[i].items[j].clothesID) {
+                    allItems.categories[i].items.remove(at: j)
+                    j -= 1
+                }
+            }
+        }
+
+        output?.updateModel(model: allItems)
+        output?.userItemsDidReceived()
+    }
+
+    private func fetchLook(lookID: Int) {
+        DataService.shared.getAllLookClothes(with: lookID) { [weak self] result in
+            guard result.error == nil else {
+                guard let networkError = result.error else {
+                    return
+                }
+
+                switch networkError {
+                case .networkNotReachable:
+                    self?.output?.showAlert(title: "Ошибка", message: "Не удается подключиться")
+                case .lookNotExist:
+                    self?.output?.showAlert(title: "Ошибка", message: "Набор не найден")
+                default:
+                    self?.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
+                }
+
+                return
+            }
+
+            guard let data = result.data,
+                  let self = self else {
+                return
+            }
+
+            self.look = self.convertToLookData(model: data)
+            self.filterItems()
+        }
+    }
 }
 
 extension AllItemsInteractor: AllItemsInteractorInput {
-    func fetchAllItems() {
+    func fetchUserItems() {
         guard let login = AuthService.shared.getUserLogin() else {
             return
         }
@@ -55,8 +144,9 @@ extension AllItemsInteractor: AllItemsInteractorInput {
                 return
             }
 
-            self.output?.updateModel(model: self.convertToAllItemsData(model: data.clothes))
-            self.output?.allItemsDidReceived()
+            self.allUserItems = self.convertToAllItemsData(model: data.clothes)
+            self.fetchLook(lookID: self.lookID)
         }
     }
+
 }
