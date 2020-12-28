@@ -23,9 +23,15 @@ protocol AuthServiceInput {
 }
 
 protocol DataServiceInput {
-    func getUserWardrobes(for user: String, completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void)
+    func getUserWardrobes(for user: String,
+                          completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void)
 
-    func getAllLookClothes(with id: Int, completion: @escaping (Result<LookRaw, NetworkError>) -> Void)
+    func getAllLookClothes(with id: Int,
+                           completion: @escaping (Result<LookRaw, NetworkError>) -> Void)
 
-    func getAllItems(for login: String, completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void)
+    func getAllItems(for login: String,
+                     completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void)
+
+    func changeName(newName: String,
+                    completion: @escaping (Result<String, NetworkError>) -> Void)
 }

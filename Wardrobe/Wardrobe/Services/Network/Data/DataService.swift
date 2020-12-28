@@ -12,21 +12,101 @@ final class DataService: NetworkService {
 
 extension DataService: DataServiceInput {
     // MARK: Settings
-    func changeName(newName: String) {
+    func changeName(newName: String,
+                    completion: @escaping (Result<String, NetworkError>) -> Void) {
+        let parametrs: [String: String] =
+            ["login": "\(String(describing: getlogin()))",
+             "newName": newName]
+        let url = "joap"
 
+        var result = Result<String, NetworkError>()
+        let request = AF.request(url, method: .post, parameters: parametrs)
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.responseDecodable(of: String.self) { response in
+            switch response.result {
+            case .success(let newName):
+                result.data = newName
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+
+            completion(result)
+        }
     }
 
     func changePassword(newPassword: Int) {
 
     }
 
-    func changePhoto(newPhoto: UIImage) {
+    func changePhoto(newPhotoData: Data,
+                     completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        let parameters: [String: String] = [
+            "login": "\(String(describing: getlogin()))"
+        ]
 
+        var result = SingleResult<NetworkError>()
+        let url = "jopa"
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        _ = AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(newPhotoData, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+                for (key, value) in parameters {
+                     if let valueData = value.data(using: String.Encoding.utf8) {
+                         multipartFormData.append(valueData, withName: key)
+                     }
+                }
+        },
+        to: url).response(completionHandler: { (response) in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+            completion(result)
+        })
     }
 
     // MARK: Wardrobe
 
-    func getUserWardrobes(for user: String, completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
+    func getUserWardrobes(for user: String,
+                          completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
 
         let url = getBaseURL() + "getWardrobes?login=\(user)&apikey=\(getApiKey())"
 
@@ -130,7 +210,8 @@ extension DataService: DataServiceInput {
 
     // MARK: Look screen
 
-    func getAllLookClothes(with id: Int, completion: @escaping (Result<LookRaw, NetworkError>) -> Void) {
+    func getAllLookClothes(with id: Int,
+                           completion: @escaping (Result<LookRaw, NetworkError>) -> Void) {
         let request = AF.request(getBaseURL() + "getLook?" + "look_id=\(id)" + "&apikey=\(getApiKey())")
         var result = Result<LookRaw, NetworkError>()
 
@@ -207,7 +288,8 @@ extension DataService: DataServiceInput {
 
     }
 
-    func getAllItems(for login: String, completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void) {
+    func getAllItems(for login: String,
+                     completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void) {
         let request = AF.request(getBaseURL() + "getAllItems?login=\(login)&apikey=\(getApiKey())")
         var result = Result<AllItemsRaw, NetworkError>()
 

@@ -234,11 +234,18 @@ final class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewInput {
-    func setUserData(name: String?, imageUrl: URL?) {
+    func setUserName(name: String?) {
         if let name = name {
             fullNameLabel.text = name
         }
+    }
+
+    func setUserImage(with imageUrl: URL?) {
         avatarImageView.kf.setImage(with: imageUrl)
+    }
+
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -300,12 +307,12 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
             guard let img = image else {
                 return
             }
-            output?.didImageLoaded(image: img)
-            imageButton.imageEdgeInsets = UIEdgeInsets()
-            avatarImageView.image = img
-            imageButton.contentMode = .scaleToFill
-            imageButton.clipsToBounds = true
-            setupAvatarViewLayout()
+            output?.didImageLoaded(imageData: img.jpegData(compressionQuality: 0.1))
+//            imageButton.imageEdgeInsets = UIEdgeInsets()
+//            avatarImageView.image = img
+//            imageButton.contentMode = .scaleToFill
+//            imageButton.clipsToBounds = true
+//            setupAvatarViewLayout()
         }
 
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
