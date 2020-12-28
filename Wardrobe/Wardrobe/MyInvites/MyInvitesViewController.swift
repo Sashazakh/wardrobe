@@ -18,6 +18,7 @@ final class MyInvitesViewController: UIViewController {
     private weak var tableView: UITableView!
 
     private let screenBounds = UIScreen.main.bounds
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -42,6 +43,7 @@ final class MyInvitesViewController: UIViewController {
         setupTitleLableLayout()
         setupBackButtonLayout()
         setupTitleLableLayout()
+        setupTableViewLayout()
     }
 
     // MARK: Setup views
@@ -80,10 +82,11 @@ final class MyInvitesViewController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = GlobalColors.backgroundColor
         tableView.separatorStyle = .none
-        tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
+        tableView.register(MyInvitesCell.self, forCellReuseIdentifier: MyInvitesCell.identifier)
         tableView.tableFooterView = UIView(frame: .zero)
         view.addSubview(tableView)
     }
+
     private func setupBackButton() {
         let btn = UIButton()
         backButton = btn
@@ -121,7 +124,6 @@ final class MyInvitesViewController: UIViewController {
     }
 
     private func setupTableViewLayout() {
-        tableView.backgroundColor = .red
         tableView.pin
             .below(of: headerView)
             .marginTop(5)
@@ -140,13 +142,21 @@ extension MyInvitesViewController: MyInvitesViewInput {
 
 extension MyInvitesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyInvitesCell.identifier, for: indexPath) as? MyInvitesCell
+        else {
+            return UITableViewCell()
+        }
+        cell.configureCell(userLogin: "Sashazak", wardrobeName: "Суббота", imageUrl: nil)
+        return cell
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return screenBounds.height * 0.156
+    }
 }
 extension MyInvitesViewController {
     struct Constants {

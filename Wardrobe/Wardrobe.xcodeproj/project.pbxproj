@@ -38,6 +38,7 @@
 		13A15A56259A3F8700B271B0 /* MyInvitesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15A50259A3F8700B271B0 /* MyInvitesProtocols.swift */; };
 		13A15A57259A3F8700B271B0 /* MyInvitesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15A51259A3F8700B271B0 /* MyInvitesInteractor.swift */; };
 		13A15A58259A3F8700B271B0 /* MyInvitesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15A52259A3F8700B271B0 /* MyInvitesContainer.swift */; };
+		13A15A5E259A51CE00B271B0 /* MyInvitesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15A5D259A51CE00B271B0 /* MyInvitesCell.swift */; };
 		13A7462B258D0B4600643369 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74625258D0B4600643369 /* MainScreenPresenter.swift */; };
 		13A7462C258D0B4600643369 /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74626258D0B4600643369 /* MainScreenRouter.swift */; };
 		13A7462D258D0B4600643369 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74627258D0B4600643369 /* MainScreenViewController.swift */; };
@@ -184,6 +185,7 @@
 		13A15A50259A3F8700B271B0 /* MyInvitesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesProtocols.swift; sourceTree = "<group>"; };
 		13A15A51259A3F8700B271B0 /* MyInvitesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesInteractor.swift; sourceTree = "<group>"; };
 		13A15A52259A3F8700B271B0 /* MyInvitesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesContainer.swift; sourceTree = "<group>"; };
+		13A15A5D259A51CE00B271B0 /* MyInvitesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesCell.swift; sourceTree = "<group>"; };
 		13A74625258D0B4600643369 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		13A74626258D0B4600643369 /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
 		13A74627258D0B4600643369 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 		13A15A4C259A3EC300B271B0 /* MyInvites */ = {
 			isa = PBXGroup;
 			children = (
+				13A15A5C259A51B300B271B0 /* MyInvitesCell */,
 				13A15A4D259A3F8700B271B0 /* MyInvitesPresenter.swift */,
 				13A15A4E259A3F8700B271B0 /* MyInvitesRouter.swift */,
 				13A15A4F259A3F8700B271B0 /* MyInvitesViewController.swift */,
@@ -416,6 +419,14 @@
 				13A15A52259A3F8700B271B0 /* MyInvitesContainer.swift */,
 			);
 			path = MyInvites;
+			sourceTree = "<group>";
+		};
+		13A15A5C259A51B300B271B0 /* MyInvitesCell */ = {
+			isa = PBXGroup;
+			children = (
+				13A15A5D259A51CE00B271B0 /* MyInvitesCell.swift */,
+			);
+			path = MyInvitesCell;
 			sourceTree = "<group>";
 		};
 		13A74624258D0B3000643369 /* Wardrobe */ = {
@@ -1501,6 +1512,7 @@
 				31E4EBCB258E6A59001AC230 /* InviteRouter.swift in Sources */,
 				318122DF2599271D00009886 /* AllItemsTableViewCellViewModel.swift in Sources */,
 				13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */,
+				13A15A5E259A51CE00B271B0 /* MyInvitesCell.swift in Sources */,
 				31E4EBCD258E6A59001AC230 /* InviteProtocols.swift in Sources */,
 				31E4EC67259231FC001AC230 /* AllItemsViewController.swift in Sources */,
 				0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */,
