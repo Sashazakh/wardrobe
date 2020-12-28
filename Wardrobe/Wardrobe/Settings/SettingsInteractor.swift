@@ -59,5 +59,4 @@ extension SettingsInteractor: SettingsInteractorInput {
         AuthService.shared.dropUser()
         output?.didAllKeysDeleted()
     }
-
 }

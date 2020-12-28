@@ -12,6 +12,7 @@ protocol SettingsViewOutput: class {
     func didLoadView()
     func didChangeNameTapped()
     func didLogoutTapped()
+    func didmyInvitesButtonTap()
 }
 
 protocol SettingsInteractorInput: class {
@@ -28,4 +29,5 @@ protocol SettingsInteractorOutput: class {
 }
 
 protocol SettingsRouterInput: class {
+    func showMyInvites()
 }

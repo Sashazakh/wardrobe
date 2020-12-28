@@ -76,7 +76,11 @@ extension SettingsPresenter: SettingsViewOutput {
     }
 
     func didImageLoaded(imageData: Data) {
+        interactor.saveNewUserImage(with: imageData)
+    }
 
+    func didmyInvitesButtonTap() {
+        router.showMyInvites()
     }
 }
 
