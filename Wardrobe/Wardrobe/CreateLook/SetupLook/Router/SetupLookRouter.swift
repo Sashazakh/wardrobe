@@ -6,6 +6,11 @@ final class SetupLookRouter {
 
 extension SetupLookRouter: SetupLookRouterInput {
     func backToCreateLookScreen() {
-        viewController?.navigationController?.popViewController(animated: true)
+        guard let viewControllers = viewController?.navigationController?.viewControllers else {
+            return
+        }
+
+        viewController?.navigationController?.popToViewController(viewControllers[viewControllers.count - 3],
+                                                                  animated: true)
     }
 }

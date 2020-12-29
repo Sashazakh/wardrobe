@@ -230,7 +230,7 @@ final class SetupLookViewController: UIViewController {
 
     @objc
     private func didTapSetupLookButton() {
-        output?.didTapBackToCreateWardrobeButton()
+        output?.didTapSetupLookButton()
     }
 }
 
@@ -254,6 +254,23 @@ extension SetupLookViewController: SetupLookViewInput {
         alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         alertController.modalPresentationStyle = .automatic
         present(alertController, animated: true, completion: nil)
+    }
+
+    func getLookName() -> String? {
+        return lookNameTextField.text
+    }
+
+    func getLookImage() -> Data? {
+        return lookPhotoImageView.image?.jpegData(compressionQuality: 1)
+    }
+
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
     }
 }
 

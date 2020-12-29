@@ -5,4 +5,7 @@ final class SetupLookInteractor {
 }
 
 extension SetupLookInteractor: SetupLookInteractorInput {
+    func createLook(name: String, imageData: Data?) {
+
+    }
 }

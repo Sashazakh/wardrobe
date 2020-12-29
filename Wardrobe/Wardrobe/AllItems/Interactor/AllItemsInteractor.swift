@@ -72,13 +72,13 @@ final class AllItemsInteractor {
         }
 
         for i in .zero..<allItems.categories.count {
-            for var j in .zero..<allItems.categories[i].items.count {
-                if j < allItems.categories[i].items.count &&
-                    uniqueClothIDs.contains(allItems.categories[i].items[j].clothesID) {
-                    allItems.categories[i].items.remove(at: j)
-                    j -= 1
-                }
+            allItems.categories[i].items = allItems.categories[i].items.filter { item in
+                return !uniqueClothIDs.contains(item.clothesID)
             }
+        }
+
+        allItems.categories = allItems.categories.filter { category in
+            return category.items.count > .zero
         }
 
         output?.updateModel(model: allItems)
