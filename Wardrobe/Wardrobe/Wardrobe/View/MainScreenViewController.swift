@@ -114,7 +114,6 @@ final class MainScreenViewController: UIViewController {
         nameLabel = label
         nameLabel.textAlignment = .center
         nameLabel.numberOfLines = 2
-        nameLabel.text = "Морж"
         nameLabel.textColor = GlobalColors.darkColor
         nameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
         self.view.addSubview(nameLabel)
