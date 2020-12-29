@@ -15,6 +15,16 @@ final class MyInvitesPresenter {
 	private let router: MyInvitesRouterInput
 	private let interactor: MyInvitesInteractorInput
 
+    private var invites: [MyInvitesData] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.view?.reloadData()
+            }
+        }
+    }
+
+    private var tappedWardobe: IndexPath?
+
     init(router: MyInvitesRouterInput, interactor: MyInvitesInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -22,15 +32,22 @@ final class MyInvitesPresenter {
 }
 
 extension MyInvitesPresenter: MyInvitesViewOutput {
+    func didLoadView() {
+        interactor.loadInvites()
+    }
+
     func didInviteButtonTapped(at indexPath: IndexPath) {
         let alert = UIAlertController(title: Constants.inviteTitle,
                                       message: Constants.inviteMessage,
                                       preferredStyle: UIAlertController.Style.alert )
         let reset = UIAlertAction(title: "Принять", style: .default) { [self] (_) in
+            guard let invite = getInvite(at: indexPath) else { return }
+            interactor.didUserAcceptWardrobe(with: invite.id)
         }
         alert.addAction(reset)
         let splitOff = UIAlertAction(title: "Отклонить", style: .default) { [self] (_) in
-
+            guard let invite = getInvite(at: indexPath) else { return }
+            interactor.didUserDenyWardrobe(with: invite.id)
         }
         alert.addAction(splitOff)
         let cancel = UIAlertAction(title: "Отмена", style: .cancel)
@@ -38,9 +55,28 @@ extension MyInvitesPresenter: MyInvitesViewOutput {
         view?.showAlert(alert: alert)
     }
 
+    func getInvite(at indexPath: IndexPath) -> MyInvitesData? {
+        return invites[indexPath.row]
+    }
 }
 
 extension MyInvitesPresenter: MyInvitesInteractorOutput {
+    func removeWardrobe() {
+        guard let tappedWardrobe = tappedWardobe else { return }
+        invites.remove(at: tappedWardrobe.row)
+    }
+
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
+
+        alert.addAction(okAction)
+        view?.showAlert(alert: alert)
+    }
+
+    func didReceive(with invites: [MyInvitesData]) {
+        self.invites = invites
+    }
 }
 
 extension MyInvitesPresenter {

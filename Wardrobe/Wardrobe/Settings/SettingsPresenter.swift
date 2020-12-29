@@ -11,6 +11,8 @@ final class SettingsPresenter {
     var userName: String?
     var imageUrl: String?
 
+    private var newUserName: String?
+
     init(router: SettingsRouterInput, interactor: SettingsInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -63,7 +65,8 @@ extension SettingsPresenter: SettingsViewOutput {
                         }
                     }
                 }
-                self.saveName(name: correctName)
+            self.newUserName = correctName
+            self.saveName(name: correctName)
         }
             alert.addTextField { (textField) in
                 textField.placeholder = "Новое имя"
@@ -93,7 +96,8 @@ extension SettingsPresenter: SettingsInteractorOutput {
         view?.showAlert(alert: alert)
     }
 
-    func didReceive(with name: String) {
+    func didNameChanged() {
+        guard let name = newUserName else { return }
         view?.setUserName(name: name)
     }
 

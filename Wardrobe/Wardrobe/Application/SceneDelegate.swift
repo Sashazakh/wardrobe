@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func getInitalViewController(isAuthorized: Bool) -> UIViewController {
-        if true {
+        if isAuthorized {
             guard let login = AuthService.shared.getUserLogin(),
                   let userName = AuthService.shared.getUserName() else {
                 return UINavigationController(rootViewController: LoginContainer.assemble(with: LoginContext()).viewController)

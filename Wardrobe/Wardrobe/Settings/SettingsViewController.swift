@@ -85,7 +85,7 @@ final class SettingsViewController: UIViewController {
         let title = UILabel()
         titleLabel = title
         titleLabel.text = "Настройки"
-        titleLabel.numberOfLines = 2
+        titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = GlobalColors.backgroundColor
@@ -145,8 +145,8 @@ final class SettingsViewController: UIViewController {
     private func setupFullNameLabel() {
         let lbl = UILabel()
         fullNameLabel = lbl
-        fullNameLabel.text = "Морж Моржов"
         fullNameLabel.textColor = GlobalColors.darkColor
+        fullNameLabel.textAlignment = .center
         fullNameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
         self.view.addSubview(fullNameLabel)
     }
@@ -158,7 +158,8 @@ final class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = GlobalColors.backgroundColor
         tableView.separatorStyle = .none
-        tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
+        tableView.register(SettingsTableViewCell.self,
+                           forCellReuseIdentifier: SettingsTableViewCell.identifier)
         tableView.isScrollEnabled = false
         tableView.tableFooterView = UIView(frame: .zero)
         view.addSubview(tableView)
@@ -206,14 +207,18 @@ final class SettingsViewController: UIViewController {
         imageButton.pin.all()
         let width = imageButton.frame.width * 0.35
         let height = imageButton.frame.height * 0.35
-        imageButton.imageEdgeInsets = UIEdgeInsets(top: height, left: width, bottom: height, right: width)
+        imageButton.imageEdgeInsets = UIEdgeInsets(top: height,
+                                                   left: width,
+                                                   bottom: height,
+                                                   right: width)
     }
 
     private func setupFullNameLayout() {
         fullNameLabel.pin
             .below(of: outerImageView, aligned: .center)
             .marginTop(3.3%)
-            .sizeToFit()
+            .width(95%)
+            .height(15)
     }
 
     private func setupTableViewLayout() {

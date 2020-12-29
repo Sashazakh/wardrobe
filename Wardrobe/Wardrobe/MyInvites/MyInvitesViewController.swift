@@ -15,9 +15,11 @@ final class MyInvitesViewController: UIViewController {
     private weak var headerView: UIView!
     private weak var titleLabel: UILabel!
     private weak var backButton: UIButton!
-    private weak var tableView: UITableView!
+    private weak var inviteTableView: UITableView!
 
     private let screenBounds = UIScreen.main.bounds
+
+    // MARK: VC lifecycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,6 +32,13 @@ final class MyInvitesViewController: UIViewController {
 
         setupLayout()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        output?.didLoadView()
+    }
+
     private func setupViews() {
         setupMainView()
         setupHeaderView()
@@ -70,21 +79,21 @@ final class MyInvitesViewController: UIViewController {
         titleLabel.textColor = GlobalColors.backgroundColor
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.1
-        titleLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 1
         titleLabel.sizeToFit()
         headerView.addSubview(titleLabel)
     }
 
     private func setupTableView() {
         let table = UITableView()
-        tableView = table
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = GlobalColors.backgroundColor
-        tableView.separatorStyle = .none
-        tableView.register(MyInvitesCell.self, forCellReuseIdentifier: MyInvitesCell.identifier)
-        tableView.tableFooterView = UIView(frame: .zero)
-        view.addSubview(tableView)
+        inviteTableView = table
+        inviteTableView.delegate = self
+        inviteTableView.dataSource = self
+        inviteTableView.backgroundColor = GlobalColors.backgroundColor
+        inviteTableView.separatorStyle = .none
+        inviteTableView.register(MyInvitesCell.self, forCellReuseIdentifier: MyInvitesCell.identifier)
+        inviteTableView.tableFooterView = UIView(frame: .zero)
+        view.addSubview(inviteTableView)
     }
 
     private func setupBackButton() {
@@ -94,7 +103,8 @@ final class MyInvitesViewController: UIViewController {
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
-        backButton.addTarget(self, action: #selector(didBackButtonTapped(_:)), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(didBackButtonTapped(_:)),
+                             for: .touchUpInside)
         headerView.addSubview(backButton)
     }
 
@@ -117,14 +127,16 @@ final class MyInvitesViewController: UIViewController {
 
     private func setupBackButtonLayout() {
         backButton.pin
-            .height(titleLabel.frame.height * 0.36)
-            .width(5%)
-            .before(of: titleLabel, aligned: .center)
+            .height(25)
+            .width(20)
+
+        backButton.pin
+            .top(titleLabel.frame.midY - backButton.bounds.height / 2)
             .left(3%)
     }
 
     private func setupTableViewLayout() {
-        tableView.pin
+        inviteTableView.pin
             .below(of: headerView)
             .marginTop(5)
             .left()
@@ -141,11 +153,16 @@ extension MyInvitesViewController: MyInvitesViewInput {
     func showAlert(alert: UIAlertController) {
         self.present(alert, animated: true, completion: nil)
     }
+
+    func reloadData() {
+        inviteTableView.reloadData()
+    }
+
 }
 
 extension MyInvitesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -13,13 +13,17 @@ final class DataService: NetworkService {
 extension DataService: DataServiceInput {
     // MARK: Settings
     func changeName(newName: String,
-                    completion: @escaping (Result<String, NetworkError>) -> Void) {
-        let parametrs: [String: String] =
-            ["login": "\(String(describing: getlogin()))",
-             "newName": newName]
-        let url = "joap"
+                    completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        guard let login = getUserLogin() else { return }
 
-        var result = Result<String, NetworkError>()
+        let parametrs: [String: String] =
+            ["login": login,
+             "new_name": newName,
+             "apikey": getApiKey()]
+
+        let url = getBaseURL() + "changeName"
+
+        var result = SingleResult<NetworkError>()
         let request = AF.request(url, method: .post, parameters: parametrs)
 
         guard NetworkReachabilityManager()?.isReachable ?? false else {
@@ -28,10 +32,27 @@ extension DataService: DataServiceInput {
             return
         }
 
-        request.responseDecodable(of: String.self) { response in
+        request.response { response in
             switch response.result {
-            case .success(let newName):
-                result.data = newName
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
             case .failure(let error):
                 if error.isInvalidURLError {
                     result.error = .connectionToServerError
@@ -39,8 +60,6 @@ extension DataService: DataServiceInput {
                     result.error = .unknownError
                 }
             }
-
-            completion(result)
         }
     }
 
@@ -402,4 +421,20 @@ extension DataService: DataServiceInput {
             }
         }
     }
+
+    func getUserLogin() -> String? {
+        return UserDefaults.standard.string(forKey: Constants.loginKey)
+    }
+}
+
+struct Constants {
+    static let authKey: String = "isAuthorized"
+
+    static let loginKey: String = "login"
+
+    static let userNameKey: String = "username"
+
+    static let passwordKey: String = "password"
+
+    static let imageURLKey: String = "imageURL"
 }

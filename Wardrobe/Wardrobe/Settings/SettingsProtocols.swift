@@ -23,7 +23,7 @@ protocol SettingsInteractorInput: class {
 
 protocol SettingsInteractorOutput: class {
     func didAllKeysDeleted()
-    func didReceive(with name: String)
+    func didNameChanged()
     func showAlert(title: String, message: String)
     func upadateImage()
 }

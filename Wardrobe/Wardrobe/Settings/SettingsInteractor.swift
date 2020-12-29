@@ -12,10 +12,6 @@ final class SettingsInteractor {
         }
     }
 
-    private func handleNewName(name: String) {
-        output?.didReceive(with: name)
-    }
-
     private func imageDidUpdate() {
 
     }
@@ -48,10 +44,7 @@ extension SettingsInteractor: SettingsInteractorInput {
                 return
             }
 
-            guard let name = result.data else {
-                return }
-
-            self.handleNewName(name: name)
+            self.output?.didNameChanged()
         }
     }
 

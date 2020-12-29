@@ -33,5 +33,7 @@ protocol DataServiceInput {
                      completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void)
 
     func changeName(newName: String,
-                    completion: @escaping (Result<String, NetworkError>) -> Void)
+                    completion: @escaping (SingleResult<NetworkError>) -> Void)
+
+    func getUserInvites(completion: @escaping (Result<[InviteRaw], NetworkError>) -> Void)
 }
