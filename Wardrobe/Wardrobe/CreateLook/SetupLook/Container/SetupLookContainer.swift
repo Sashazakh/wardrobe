@@ -6,14 +6,14 @@ final class SetupLookContainer {
 
 	class func assemble(with context: SetupLookContext) -> SetupLookContainer {
         let router = SetupLookRouter()
-        let interactor = SetupLookInteractor()
+        let interactor = SetupLookInteractor(wardrobeID: context.wardrobeID, itemIDs: context.choosedItemsID)
         let presenter = SetupLookPresenter(router: router, interactor: interactor)
-	let viewController = SetupLookViewController()
+        let viewController = SetupLookViewController()
 
         viewController.output = presenter
-	presenter.view = viewController
-	interactor.output = presenter
-	router.viewController = viewController
+        presenter.view = viewController
+        interactor.output = presenter
+        router.viewController = viewController
 
         return SetupLookContainer(view: viewController, router: router)
 	}
@@ -25,4 +25,6 @@ final class SetupLookContainer {
 }
 
 struct SetupLookContext {
+    var wardrobeID: Int
+    var choosedItemsID: [Int]
 }

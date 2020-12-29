@@ -22,6 +22,8 @@ protocol CreateLookViewOutput: AnyObject {
 
 protocol CreateLookInteractorInput: AnyObject {
     func fetchAllItems()
+
+    func getWardrobeID() -> Int
 }
 
 protocol CreateLookInteractorOutput: AnyObject {
@@ -35,5 +37,5 @@ protocol CreateLookInteractorOutput: AnyObject {
 protocol CreateLookRouterInput: AnyObject {
     func showWardrobeDetailScreen()
 
-    func showSetupLookScreen()
+    func showSetupLookScreen(wardrobeID: Int, itemsID: [Int])
 }

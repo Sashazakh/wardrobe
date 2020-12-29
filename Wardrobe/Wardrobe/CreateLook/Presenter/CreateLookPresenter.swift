@@ -23,7 +23,20 @@ extension CreateLookPresenter: CreateLookViewOutput {
     }
 
     func didTapConfirmButton() {
-        router.showSetupLookScreen()
+        guard let status = isSelected,
+              let model = model else {
+            return
+        }
+
+        var ids: [Int] = []
+
+        for i in .zero..<status.count {
+            for j in .zero..<status[i].count where status[i][j] {
+                ids.append(model.categories[i].items[j].clothesID)
+            }
+        }
+
+        router.showSetupLookScreen(wardrobeID: interactor.getWardrobeID(), itemsID: ids)
     }
 
     func didLoadView() {

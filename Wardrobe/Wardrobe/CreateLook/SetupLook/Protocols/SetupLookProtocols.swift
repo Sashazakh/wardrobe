@@ -27,8 +27,13 @@ protocol SetupLookInteractorInput: AnyObject {
 }
 
 protocol SetupLookInteractorOutput: AnyObject {
+    func lookDidSaved()
+
+    func showAlert(title: String, message: String)
 }
 
 protocol SetupLookRouterInput: AnyObject {
     func backToCreateLookScreen()
+
+    func backToWardrobeScreen()
 }

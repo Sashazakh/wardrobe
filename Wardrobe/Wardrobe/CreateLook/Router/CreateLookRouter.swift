@@ -9,8 +9,8 @@ extension CreateLookRouter: CreateLookRouterInput {
         viewController?.navigationController?.popViewController(animated: true)
     }
 
-    func showSetupLookScreen() {
-        let setupLookVC = SetupLookContainer.assemble(with: SetupLookContext()).viewController
+    func showSetupLookScreen(wardrobeID: Int, itemsID: [Int]) {
+        let setupLookVC = SetupLookContainer.assemble(with: SetupLookContext(wardrobeID: wardrobeID, choosedItemsID: itemsID)).viewController
 
         viewController?.modalPresentationStyle = .fullScreen
 

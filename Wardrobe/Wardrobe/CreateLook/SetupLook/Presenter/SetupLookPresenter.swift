@@ -43,4 +43,11 @@ extension SetupLookPresenter: SetupLookViewOutput {
 }
 
 extension SetupLookPresenter: SetupLookInteractorOutput {
+    func lookDidSaved() {
+        router.backToWardrobeScreen()
+    }
+
+    func showAlert(title: String, message: String) {
+        view?.showAlert(title: title, message: message)
+    }
 }

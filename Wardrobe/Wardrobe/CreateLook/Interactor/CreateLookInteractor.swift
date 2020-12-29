@@ -3,6 +3,12 @@ import Foundation
 final class CreateLookInteractor {
 	weak var output: CreateLookInteractorOutput?
 
+    private var wardrobeID: Int
+
+    init(wardrobeID: Int) {
+        self.wardrobeID = wardrobeID
+    }
+
     private func convertToAllItemsData(model: [ItemRaw]) -> AllItemsData {
         var uniqueCategories: [String: [ItemData]] = [:]
 
@@ -58,5 +64,9 @@ extension CreateLookInteractor: CreateLookInteractorInput {
             self.output?.updateModel(model: self.convertToAllItemsData(model: data.clothes))
             self.output?.allItemsSuccesfullyReceived()
         }
+    }
+
+    func getWardrobeID() -> Int {
+        return wardrobeID
     }
 }
