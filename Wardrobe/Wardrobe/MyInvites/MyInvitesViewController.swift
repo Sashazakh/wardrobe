@@ -138,6 +138,9 @@ final class MyInvitesViewController: UIViewController {
 }
 
 extension MyInvitesViewController: MyInvitesViewInput {
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension MyInvitesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -156,6 +159,10 @@ extension MyInvitesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return screenBounds.height * 0.156
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output?.didInviteButtonTapped(at: indexPath)
     }
 }
 extension MyInvitesViewController {
