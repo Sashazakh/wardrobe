@@ -142,7 +142,8 @@ extension AuthService: AuthServiceInput {
 
           let parameters = ["login": login,
                             "username": fio,
-                            "password": password]
+                            "password": password,
+                            "apikey": getApiKey()]
 
           _ = AF.upload(multipartFormData: { multipartFormData in
               for (key, value) in parameters {

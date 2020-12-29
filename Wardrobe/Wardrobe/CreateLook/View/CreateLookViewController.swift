@@ -19,6 +19,8 @@ final class CreateLookViewController: UIViewController {
 
         setupView()
         setupSubviews()
+
+        output?.didLoadView()
     }
 
     override func viewDidLayoutSubviews() {
@@ -103,7 +105,7 @@ final class CreateLookViewController: UIViewController {
         allItemsTableView = tableView
         view.addSubview(tableView)
 
-        allItemsTableView.register(AllItemsTableViewCell.self, forCellReuseIdentifier: "AllItemsTableViewCell")
+        allItemsTableView.register(CreateLookTableViewCell.self, forCellReuseIdentifier: "CreateLookTableViewCell")
 
         allItemsTableView.delegate = self
         allItemsTableView.dataSource = self
@@ -193,6 +195,18 @@ final class CreateLookViewController: UIViewController {
 }
 
 extension CreateLookViewController: CreateLookViewInput {
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+
+    func loadData() {
+        allItemsTableView.reloadData()
+    }
 }
 
 extension CreateLookViewController: UITableViewDelegate {
@@ -203,15 +217,26 @@ extension CreateLookViewController: UITableViewDelegate {
 
 extension CreateLookViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return output?.getRowsCount() ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AllItemsTableViewCell", for: indexPath) as? LookTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateLookTableViewCell", for: indexPath) as? CreateLookTableViewCell else {
             return UITableViewCell()
         }
 
         cell.selectionStyle = .none
+
+        guard let model = output?.viewModel(index: indexPath.row) else {
+            return cell
+        }
+
+        let cellPresenter = CreateLookTableViewCellPresenter(index: indexPath.row)
+
+        cellPresenter.output = output
+        cellPresenter.cell = cell
+        cell.output = cellPresenter
+        cell.configure(model: model)
 
         return cell
     }

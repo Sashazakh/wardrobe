@@ -69,6 +69,13 @@
 		318122DB25991D0800009886 /* AllItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122DA25991D0800009886 /* AllItemsModel.swift */; };
 		318122DF2599271D00009886 /* AllItemsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122DE2599271D00009886 /* AllItemsTableViewCellViewModel.swift */; };
 		318122E22599279700009886 /* AllItemsCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318122E12599279700009886 /* AllItemsCollectionViewCellViewModel.swift */; };
+		3181230225993D8300009886 /* Wardrobe-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3181230125993D8300009886 /* Wardrobe-Info.plist */; };
+		3181230525993FC200009886 /* AllItemsTableViewCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181230425993FC200009886 /* AllItemsTableViewCellPresenter.swift */; };
+		3181230D2599409900009886 /* AllItemsCollectionViewCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3181230C2599409900009886 /* AllItemsCollectionViewCellPresenter.swift */; };
+		31CB1210259B647C00CEA505 /* CreateLookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CB120F259B647C00CEA505 /* CreateLookTableViewCell.swift */; };
+		31CB1215259B649C00CEA505 /* CreateLookTableViewCellPresetner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CB1214259B649C00CEA505 /* CreateLookTableViewCellPresetner.swift */; };
+		31CB121C259B671800CEA505 /* CreateLookCollectionViewCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CB121B259B671800CEA505 /* CreateLookCollectionViewCellPresenter.swift */; };
+		31CB1220259B672800CEA505 /* CreateLookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CB121F259B672800CEA505 /* CreateLookCollectionViewCell.swift */; };
 		31DD94A82597915600D2390C /* LookModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94A72597915500D2390C /* LookModels.swift */; };
 		31DD94B02597A0B800D2390C /* LookTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94AF2597A0B800D2390C /* LookTableViewCellViewModel.swift */; };
 		31DD94B32597A13600D2390C /* ItemCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD94B22597A13600D2390C /* ItemCollectionViewCellViewModel.swift */; };
@@ -148,7 +155,6 @@
 		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
 		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
 		31F8C5152593754A003BB6E0 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C5142593754A003BB6E0 /* DataService.swift */; };
-		31F8C51C2593A609003BB6E0 /* Wardrobe-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31F8C51B2593A609003BB6E0 /* Wardrobe-Info.plist */; };
 		31F8C5202593A78A003BB6E0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51F2593A78A003BB6E0 /* NetworkService.swift */; };
 		D01532F399E202C2F1464915 /* Pods_Wardrobe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1B9047E3A9526460D1CD4 /* Pods_Wardrobe.framework */; };
 /* End PBXBuildFile section */
@@ -217,6 +223,13 @@
 		318122DA25991D0800009886 /* AllItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsModel.swift; sourceTree = "<group>"; };
 		318122DE2599271D00009886 /* AllItemsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		318122E12599279700009886 /* AllItemsCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		3181230125993D8300009886 /* Wardrobe-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Wardrobe-Info.plist"; sourceTree = "<group>"; };
+		3181230425993FC200009886 /* AllItemsTableViewCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllItemsTableViewCellPresenter.swift; path = Wardrobe/AllItems/View/TableViewCell/Presenter/AllItemsTableViewCellPresenter.swift; sourceTree = SOURCE_ROOT; };
+		3181230C2599409900009886 /* AllItemsCollectionViewCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsCollectionViewCellPresenter.swift; sourceTree = "<group>"; };
+		31CB120F259B647C00CEA505 /* CreateLookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookTableViewCell.swift; sourceTree = "<group>"; };
+		31CB1214259B649C00CEA505 /* CreateLookTableViewCellPresetner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookTableViewCellPresetner.swift; sourceTree = "<group>"; };
+		31CB121B259B671800CEA505 /* CreateLookCollectionViewCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookCollectionViewCellPresenter.swift; sourceTree = "<group>"; };
+		31CB121F259B672800CEA505 /* CreateLookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLookCollectionViewCell.swift; sourceTree = "<group>"; };
 		31DD94A72597915500D2390C /* LookModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookModels.swift; sourceTree = "<group>"; };
 		31DD94AF2597A0B800D2390C /* LookTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		31DD94B22597A13600D2390C /* ItemCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -298,7 +311,6 @@
 		31F8C50C25937429003BB6E0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		31F8C51125937519003BB6E0 /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
 		31F8C5142593754A003BB6E0 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		31F8C51B2593A609003BB6E0 /* Wardrobe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wardrobe-Info.plist"; sourceTree = "<group>"; };
 		31F8C51F2593A78A003BB6E0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7868A0E5AC4E3FEEEEB60FFD /* Pods-Wardrobe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.release.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.release.xcconfig"; sourceTree = "<group>"; };
 		8E628020EFEE71A0D3856E4A /* Pods-Wardrobe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.debug.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -566,8 +578,8 @@
 		31467C2025926BD400B785FF /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				3181230825993FF200009886 /* Presenter */,
 				318122D7259915F100009886 /* ViewModel */,
-				318122D6259915EB00009886 /* Presenter */,
 				318122D5259915E000009886 /* View */,
 				31467C2725926E3B00B785FF /* CollectionViewCell */,
 			);
@@ -577,8 +589,8 @@
 		31467C2725926E3B00B785FF /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				3181230A2599408200009886 /* Presenter */,
 				318122D4259915B100009886 /* ViewModel */,
-				318122D3259915AA00009886 /* Presenter */,
 				318122D22599159600009886 /* View */,
 			);
 			path = CollectionViewCell;
@@ -633,6 +645,7 @@
 		31467C4D2592815D00B785FF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				31CB120E259B645900CEA505 /* TableViewCell */,
 				31467C3E2592813A00B785FF /* CreateLookViewController.swift */,
 			);
 			path = View;
@@ -803,13 +816,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		318122D3259915AA00009886 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		318122D4259915B100009886 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,13 +832,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		318122D6259915EB00009886 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		318122D7259915F100009886 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,6 +846,73 @@
 				318122DA25991D0800009886 /* AllItemsModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3181230825993FF200009886 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3181230425993FC200009886 /* AllItemsTableViewCellPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3181230A2599408200009886 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3181230C2599409900009886 /* AllItemsCollectionViewCellPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		31CB120E259B645900CEA505 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				31CB1218259B66EE00CEA505 /* CollectionViewCell */,
+				31CB1213259B648900CEA505 /* View */,
+				31CB1212259B648100CEA505 /* Presenter */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		31CB1212259B648100CEA505 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				31CB1214259B649C00CEA505 /* CreateLookTableViewCellPresetner.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		31CB1213259B648900CEA505 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31CB120F259B647C00CEA505 /* CreateLookTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31CB1218259B66EE00CEA505 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				31CB121A259B670600CEA505 /* Presenter */,
+				31CB1219259B66F800CEA505 /* View */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		31CB1219259B66F800CEA505 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31CB121F259B672800CEA505 /* CreateLookCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31CB121A259B670600CEA505 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				31CB121B259B671800CEA505 /* CreateLookCollectionViewCellPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		31DD94A62597914300D2390C /* Models */ = {
@@ -1204,7 +1270,7 @@
 				31E6E6C7258BFD3700591F72 /* AppDelegate.swift */,
 				31E6E6C9258BFD3700591F72 /* SceneDelegate.swift */,
 				31E6E6D5258BFD3900591F72 /* Info.plist */,
-				31F8C51B2593A609003BB6E0 /* Wardrobe-Info.plist */,
+				3181230125993D8300009886 /* Wardrobe-Info.plist */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1378,7 +1444,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31F8C51C2593A609003BB6E0 /* Wardrobe-Info.plist in Resources */,
+				3181230225993D8300009886 /* Wardrobe-Info.plist in Resources */,
 				31E6E766258CF47800591F72 /* DMSans-Regular.ttf in Resources */,
 				31E6E700258C093300591F72 /* SplashScreen.xib in Resources */,
 				31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */,
@@ -1454,6 +1520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13A15A56259A3F8700B271B0 /* MyInvitesProtocols.swift in Sources */,
+				31CB1210259B647C00CEA505 /* CreateLookTableViewCell.swift in Sources */,
 				318122BD2598B67500009886 /* SetupLookProtocols.swift in Sources */,
 				31E4EC69259231FC001AC230 /* AllItemsInteractor.swift in Sources */,
 				13A15A54259A3F8700B271B0 /* MyInvitesRouter.swift in Sources */,
@@ -1473,6 +1540,7 @@
 				3180ECFF2593FA8400A046E5 /* RegisterModels.swift in Sources */,
 				31E4EBDD258E6CA4001AC230 /* AllClothesInteractor.swift in Sources */,
 				31E6E729258CE33C00591F72 /* LoginInteractor.swift in Sources */,
+				3181230525993FC200009886 /* AllItemsTableViewCellPresenter.swift in Sources */,
 				1306220F2591F7290019E704 /* AddUserCell.swift in Sources */,
 				31E4EBB1258E6A19001AC230 /* WardrobeUsersInteractor.swift in Sources */,
 				31E6E777258D2CE500591F72 /* RegisterViewController.swift in Sources */,
@@ -1488,6 +1556,7 @@
 				31E6E776258D2CE500591F72 /* RegisterRouter.swift in Sources */,
 				31E6E77A258D2CE500591F72 /* RegisterContainer.swift in Sources */,
 				31E4EB73258E673D001AC230 /* WardrobeDetailInteractor.swift in Sources */,
+				31CB1220259B672800CEA505 /* CreateLookCollectionViewCell.swift in Sources */,
 				0D95F20F258FE15B00E26D25 /* WardrobeExtensions.swift in Sources */,
 				31E6E72A258CE33C00591F72 /* LoginContainer.swift in Sources */,
 				31E4EBBC258E6A45001AC230 /* SettingsRouter.swift in Sources */,
@@ -1517,9 +1586,12 @@
 				13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */,
 				13A15A5E259A51CE00B271B0 /* MyInvitesCell.swift in Sources */,
 				31E4EBCD258E6A59001AC230 /* InviteProtocols.swift in Sources */,
+				3181230D2599409900009886 /* AllItemsCollectionViewCellPresenter.swift in Sources */,
 				31E4EC67259231FC001AC230 /* AllItemsViewController.swift in Sources */,
 				0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */,
 				1386DE09259773DD003D0174 /* CreateWardobeData.swift in Sources */,
+				31CB121C259B671800CEA505 /* CreateLookCollectionViewCellPresenter.swift in Sources */,
+				31CB1215259B649C00CEA505 /* CreateLookTableViewCellPresetner.swift in Sources */,
 				31E4EB54258E6601001AC230 /* EditItemContainer.swift in Sources */,
 				31E4EBDB258E6CA4001AC230 /* AllClothesViewController.swift in Sources */,
 				13A15A53259A3F8700B271B0 /* MyInvitesPresenter.swift in Sources */,

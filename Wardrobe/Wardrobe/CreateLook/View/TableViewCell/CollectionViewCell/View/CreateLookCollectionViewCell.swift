@@ -1,11 +1,11 @@
 import UIKit
 import PinLayout
 
-final class AllItemsCollectionViewCell: WardrobeCell {
+final class CreateLookCollectionViewCell: WardrobeCell {
 
     private weak var stateButton: UIButton!
 
-    var output: AllItemsCollectionViewCellPresenter?
+    var output: CreateLookCollectionViewCellPresenter?
 
     private var isAdding: Bool = false
 

@@ -9,8 +9,8 @@ extension LookRouter: LookRouterInput {
         viewController?.navigationController?.popViewController(animated: true)
     }
 
-    func showAllItemsScreen() {
-        let allItemsVC = AllItemsContainer.assemble(with: AllItemsContext()).viewController
+    func showAllItemsScreen(lookID: Int) {
+        let allItemsVC = AllItemsContainer.assemble(with: AllItemsContext(lookID: lookID)).viewController
 
         allItemsVC.modalPresentationStyle = .fullScreen
 

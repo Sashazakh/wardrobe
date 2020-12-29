@@ -21,6 +21,18 @@ extension SetupLookPresenter: SetupLookViewOutput {
         view?.showPickPhotoAlert()
     }
 
+    func didTapSetupLookButton() {
+        guard let lookName = view?.getLookName(),
+              !lookName.isEmpty else {
+            view?.showAlert(title: "Ошибка", message: "Введите имя набора")
+            return
+        }
+
+        let imageData = view?.getLookImage()
+
+        interactor.createLook(name: lookName, imageData: imageData)
+    }
+
     func userDidSetImage(imageData: Data?) {
         guard let data = imageData else {
             return

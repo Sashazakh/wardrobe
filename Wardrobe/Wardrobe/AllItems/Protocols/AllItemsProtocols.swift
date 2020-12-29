@@ -1,10 +1,6 @@
 import Foundation
 
 protocol AllItemsViewInput: AnyObject {
-    func showEditLayout()
-
-    func hideEditLayout()
-
     func showAlert(title: String, message: String)
 
     func loadData()
@@ -20,10 +16,12 @@ protocol AllItemsViewOutput: AnyObject {
     func getRowsCount() -> Int
 
     func viewModel(index: Int) -> AllItemsTableViewCellViewModel
+
+    func setSelection(categoryIndex: Int, itemIndex: Int, isSelected: Bool)
 }
 
 protocol AllItemsInteractorInput: AnyObject {
-    func fetchAllItems()
+    func fetchUserItems()
 }
 
 protocol AllItemsInteractorOutput: AnyObject {
@@ -31,7 +29,7 @@ protocol AllItemsInteractorOutput: AnyObject {
 
     func updateModel(model: AllItemsData)
 
-    func allItemsDidReceived()
+    func userItemsDidReceived()
 }
 
 protocol AllItemsRouterInput: AnyObject {
