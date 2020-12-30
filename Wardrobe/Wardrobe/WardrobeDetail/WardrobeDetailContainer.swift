@@ -15,6 +15,7 @@ final class WardrobeDetailContainer {
         interactor.output = presenter
         router.viewController = viewController
 
+        presenter.wardrobeId = context.wardrobeId
         return WardrobeDetailContainer(view: viewController, router: router)
 	}
 

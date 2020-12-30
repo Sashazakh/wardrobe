@@ -7,9 +7,13 @@ struct MyInvitesData {
     let imageUrl: String?
 
     init(with inviteRaw: InviteRaw) {
-        self.id = inviteRaw.wardrobeIdInvite
+        self.id = inviteRaw.inviteId
         self.login = inviteRaw.login
         self.name = inviteRaw.wardrobeName
-        self.imageUrl = inviteRaw.imageUrl
+        if let imageUrl = inviteRaw.imageUrl {
+            self.imageUrl = imageUrl + "&apikey=" + DataService.shared.getApiKey()
+        } else {
+            imageUrl = nil
+        }
     }
 }

@@ -111,9 +111,11 @@ class MyInvitesCell: UITableViewCell {
     }
     // MARK: Public functions
 
-    func configureCell(userLogin: String, wardrobeName: String, imageUrl: URL?) {
-        let resultString = userLogin + Constants.constText + wardrobeName
+    func configureCell(with invite: MyInvitesData) {
+        let resultString = invite.login + Constants.constText + invite.name
         infoLabel.text = resultString
+        guard let url = URL(string: invite.imageUrl ?? "") else { return }
+        wardobeImageView.kf.setImage(with: url)
     }
 }
 

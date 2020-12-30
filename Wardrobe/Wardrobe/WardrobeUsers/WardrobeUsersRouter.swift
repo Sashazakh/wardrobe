@@ -5,10 +5,12 @@ final class WardrobeUsersRouter {
 }
 
 extension WardrobeUsersRouter: WardrobeUsersRouterInput {
-    func showInviteUser() {
-        let vc = InviteContainer.assemble(with: InviteContext()).viewController
+    func showInviteUser(with wardrobeId: Int) {
+        if wardrobeId != -1 {
+            let vc = InviteContainer.assemble(with: InviteContext(wardrobeId: wardrobeId)).viewController
 
-        viewController?.navigationController?.pushViewController(vc, animated: true)
+            viewController?.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }
