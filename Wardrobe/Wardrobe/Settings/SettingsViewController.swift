@@ -2,10 +2,12 @@ import UIKit
 import PinLayout
 
 enum SettingsSections: Int, CaseIterable {
-    case  changeName = 0, logout = 1
+    case  myInvites = 0, changeName, logout
 
     var info: String {
         switch self {
+        case .myInvites:
+            return "Мои приглашения"
         case .changeName:
             return "Изменить имя"
         case .logout:
@@ -83,7 +85,7 @@ final class SettingsViewController: UIViewController {
         let title = UILabel()
         titleLabel = title
         titleLabel.text = "Настройки"
-        titleLabel.numberOfLines = 2
+        titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = GlobalColors.backgroundColor
@@ -143,8 +145,8 @@ final class SettingsViewController: UIViewController {
     private func setupFullNameLabel() {
         let lbl = UILabel()
         fullNameLabel = lbl
-        fullNameLabel.text = "Морж Моржов"
         fullNameLabel.textColor = GlobalColors.darkColor
+        fullNameLabel.textAlignment = .center
         fullNameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
         self.view.addSubview(fullNameLabel)
     }
@@ -156,7 +158,8 @@ final class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = GlobalColors.backgroundColor
         tableView.separatorStyle = .none
-        tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
+        tableView.register(SettingsTableViewCell.self,
+                           forCellReuseIdentifier: SettingsTableViewCell.identifier)
         tableView.isScrollEnabled = false
         tableView.tableFooterView = UIView(frame: .zero)
         view.addSubview(tableView)
@@ -204,14 +207,18 @@ final class SettingsViewController: UIViewController {
         imageButton.pin.all()
         let width = imageButton.frame.width * 0.35
         let height = imageButton.frame.height * 0.35
-        imageButton.imageEdgeInsets = UIEdgeInsets(top: height, left: width, bottom: height, right: width)
+        imageButton.imageEdgeInsets = UIEdgeInsets(top: height,
+                                                   left: width,
+                                                   bottom: height,
+                                                   right: width)
     }
 
     private func setupFullNameLayout() {
         fullNameLabel.pin
             .below(of: outerImageView, aligned: .center)
             .marginTop(3.3%)
-            .sizeToFit()
+            .width(95%)
+            .height(15)
     }
 
     private func setupTableViewLayout() {
@@ -234,11 +241,18 @@ final class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewInput {
-    func setUserData(name: String?, imageUrl: URL?) {
+    func setUserName(name: String?) {
         if let name = name {
             fullNameLabel.text = name
         }
+    }
+
+    func setUserImage(with imageUrl: URL?) {
         avatarImageView.kf.setImage(with: imageUrl)
+    }
+
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -264,6 +278,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch SettingsSections(rawValue: indexPath.row) {
+        case .myInvites:
+            output?.didmyInvitesButtonTap()
         case .changeName:
             output?.didChangeNameTapped()
         case .logout:
@@ -300,12 +316,12 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
             guard let img = image else {
                 return
             }
-            output?.didImageLoaded(image: img)
-            imageButton.imageEdgeInsets = UIEdgeInsets()
-            avatarImageView.image = img
-            imageButton.contentMode = .scaleToFill
-            imageButton.clipsToBounds = true
-            setupAvatarViewLayout()
+            output?.didImageLoaded(imageData: img.jpegData(compressionQuality: 0.1))
+//            imageButton.imageEdgeInsets = UIEdgeInsets()
+//            avatarImageView.image = img
+//            imageButton.contentMode = .scaleToFill
+//            imageButton.clipsToBounds = true
+//            setupAvatarViewLayout()
         }
 
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

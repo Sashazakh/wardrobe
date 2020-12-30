@@ -25,4 +25,5 @@ final class WardrobeDetailContainer {
 }
 
 struct WardrobeDetailContext {
+    let wardrobeId: Int
 }

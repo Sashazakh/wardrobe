@@ -47,7 +47,8 @@ extension MainScreenPresenter: MainScreenViewOutput {
     }
 
     func showDetailDidTap(at indexPath: IndexPath) {
-        router.showDetailWardrope(id: indexPath.row)
+        let wardobeData = userWardrobes[indexPath.row]
+        router.showDetailWardrope(id: wardobeData.id)
     }
 
     func settingsButtonDidTap() {

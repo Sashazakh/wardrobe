@@ -12,21 +12,120 @@ final class DataService: NetworkService {
 
 extension DataService: DataServiceInput {
     // MARK: Settings
-    func changeName(newName: String) {
+    func changeName(newName: String,
+                    completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        guard let login = getUserLogin() else { return }
 
+        let parametrs: [String: String] =
+            ["login": login,
+             "new_name": newName,
+             "apikey": getApiKey()]
+
+        let url = getBaseURL() + "changeName"
+
+        var result = SingleResult<NetworkError>()
+        let request = AF.request(url, method: .post, parameters: parametrs)
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.response { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+        }
     }
 
     func changePassword(newPassword: Int) {
 
     }
 
-    func changePhoto(newPhoto: UIImage) {
+    func changePhoto(newPhotoData: Data,
+                     completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        let parameters: [String: String] = [
+            "login": "\(String(describing: getlogin()))"
+        ]
 
+        var result = SingleResult<NetworkError>()
+        let url = "jopa"
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        _ = AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(newPhotoData, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+                for (key, value) in parameters {
+                     if let valueData = value.data(using: String.Encoding.utf8) {
+                         multipartFormData.append(valueData, withName: key)
+                     }
+                }
+        },
+        to: url).response(completionHandler: { (response) in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+            completion(result)
+        })
     }
 
     // MARK: Wardrobe
 
-    func getUserWardrobes(for user: String, completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
+    func getUserWardrobes(for user: String,
+                          completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
 
         let url = getBaseURL() + "getWardrobes?login=\(user)&apikey=\(getApiKey())"
 
@@ -130,7 +229,8 @@ extension DataService: DataServiceInput {
 
     // MARK: Look screen
 
-    func getAllLookClothes(with id: Int, completion: @escaping (Result<LookRaw, NetworkError>) -> Void) {
+    func getAllLookClothes(with id: Int,
+                           completion: @escaping (Result<LookRaw, NetworkError>) -> Void) {
         let request = AF.request(getBaseURL() + "getLook?" + "look_id=\(id)" + "&apikey=\(getApiKey())")
         var result = Result<LookRaw, NetworkError>()
 
@@ -270,7 +370,8 @@ extension DataService: DataServiceInput {
 
     }
 
-    func getAllItems(for login: String, completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void) {
+    func getAllItems(for login: String,
+                     completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void) {
         let request = AF.request(getBaseURL() + "getAllItems?login=\(login)&apikey=\(getApiKey())")
         var result = Result<AllItemsRaw, NetworkError>()
 
@@ -315,4 +416,88 @@ extension DataService: DataServiceInput {
 
     func deleteItem(with id: Int) {
     }
+
+    func getUserInvites(completion: @escaping (Result<[InviteRaw], NetworkError>) -> Void) {
+        let request = AF.request(getBaseURL() + "getInvites")
+        var result = Result<[InviteRaw], NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.responseDecodable(of: [InviteRaw].self) { response in
+            switch response.result {
+            case .success(let invites):
+                result.data = invites
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+
+            completion(result)
+        }
+    }
+
+    func wardrobeResponseInvite(response: InviteWardrobeResponse,
+                                completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        let parameters: [String: String] = [
+            "response": String(response.rawValue)
+        ]
+
+        let url = getBaseURL()
+        var result = SingleResult<NetworkError>()
+
+        let request = AF.request(url, method: .post, parameters: parameters)
+
+        request.response { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+        }
+    }
+
+    func getUserLogin() -> String? {
+        return UserDefaults.standard.string(forKey: Constants.loginKey)
+    }
+}
+
+struct Constants {
+    static let authKey: String = "isAuthorized"
+
+    static let loginKey: String = "login"
+
+    static let userNameKey: String = "username"
+
+    static let passwordKey: String = "password"
+
+    static let imageURLKey: String = "imageURL"
 }

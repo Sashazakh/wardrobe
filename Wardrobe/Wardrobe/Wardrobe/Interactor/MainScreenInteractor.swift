@@ -13,7 +13,6 @@ final class MainScreenInteractor {
 
     private func handleError(with error: Error) {
         print(error)
-
     }
 
     private func handleWardrobes(with wardrobeRaw: [WardrobeRaw]) {
