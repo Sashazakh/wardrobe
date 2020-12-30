@@ -87,6 +87,10 @@ extension LookInteractor: LookInteractorInput {
     }
 
     func deleteItems(categoryIndex: Int, itemIndex: Int) {
+        guard let itemID = lookData?.categories[categoryIndex].items[itemIndex].clothesID else {
+            return
+        }
+
         lookData?.categories[categoryIndex].items.remove(at: itemIndex)
 
         if let category = lookData?.categories[categoryIndex],
@@ -99,7 +103,30 @@ extension LookInteractor: LookInteractorInput {
         }
 
         output?.updateModel(model: lookData)
-        output?.lookDidReceived()
+
+        DataService.shared.deleteItemFromLook(lookID: lookID,
+                                              itemID: itemID) { [weak self] result in
+            guard result.error == nil else {
+                guard let networkError = result.error else {
+                    return
+                }
+
+                switch networkError {
+                case .networkNotReachable:
+                    self?.output?.showAlert(title: "Ошибка", message: "Не удается подключиться")
+                default:
+                    self?.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
+                }
+
+                return
+            }
+
+            guard let self = self else {
+                return
+            }
+
+            self.output?.lookDidReceived()
+        }
     }
 
     func appendItemsToLook(items: [ItemData]) {

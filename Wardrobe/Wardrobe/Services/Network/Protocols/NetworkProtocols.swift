@@ -39,6 +39,10 @@ protocol DataServiceInput {
                     itemIDs: [Int],
                     completion: @escaping (SingleResult<NetworkError>) -> Void)
 
+    func deleteItemFromLook(lookID: Int,
+                            itemID: Int,
+                            completion: @escaping (SingleResult<NetworkError>) -> Void)
+
     func getAllItems(for login: String,
                      completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void)
 
