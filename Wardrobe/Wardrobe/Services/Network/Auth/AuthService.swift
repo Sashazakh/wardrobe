@@ -186,6 +186,7 @@ extension AuthService: AuthServiceInput {
                   }
 
                   completion(result)
+                  return
               }
 
               self.saveUser(login: login,
