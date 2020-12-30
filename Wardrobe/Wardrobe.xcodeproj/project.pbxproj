@@ -46,6 +46,8 @@
 		13A7462E258D0B4600643369 /* MainScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74628258D0B4600643369 /* MainScreenProtocols.swift */; };
 		13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A74629258D0B4600643369 /* MainScreenInteractor.swift */; };
 		13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A7462A258D0B4600643369 /* MainScreenContainer.swift */; };
+		13B3A9E6259D1B62003C306B /* DetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B3A9E5259D1B62003C306B /* DetailViewCell.swift */; };
+		13B3A9E9259D1BA2003C306B /* WardrobeDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B3A9E8259D1BA2003C306B /* WardrobeDetailData.swift */; };
 		13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */; };
 		31467C1D25926B9500B785FF /* AllItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C1C25926B9400B785FF /* AllItemsTableViewCell.swift */; };
 		31467C2925926E4B00B785FF /* AllItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31467C2825926E4B00B785FF /* AllItemsCollectionViewCell.swift */; };
@@ -200,6 +202,8 @@
 		13A74628258D0B4600643369 /* MainScreenProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenProtocols.swift; sourceTree = "<group>"; };
 		13A74629258D0B4600643369 /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
 		13A7462A258D0B4600643369 /* MainScreenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenContainer.swift; sourceTree = "<group>"; };
+		13B3A9E5259D1B62003C306B /* DetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCell.swift; sourceTree = "<group>"; };
+		13B3A9E8259D1BA2003C306B /* WardrobeDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeDetailData.swift; sourceTree = "<group>"; };
 		13EF8DD3258F8BA30081FBE6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		31467C1C25926B9400B785FF /* AllItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsTableViewCell.swift; sourceTree = "<group>"; };
 		31467C2825926E4B00B785FF /* AllItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -945,6 +949,8 @@
 				31E4EB6E258E673D001AC230 /* WardrobeDetailContainer.swift */,
 				31E4EB6C258E673D001AC230 /* WardrobeDetailProtocols.swift */,
 				31E4EB6A258E673D001AC230 /* WardrobeDetailRouter.swift */,
+				13B3A9E5259D1B62003C306B /* DetailViewCell.swift */,
+				13B3A9E8259D1BA2003C306B /* WardrobeDetailData.swift */,
 			);
 			path = WardrobeDetail;
 			sourceTree = "<group>";
@@ -1646,6 +1652,7 @@
 				31E4EC68259231FC001AC230 /* AllItemsProtocols.swift in Sources */,
 				318122BA2598B67500009886 /* SetupLookPresenter.swift in Sources */,
 				31E4EB7F258E679B001AC230 /* LookRouter.swift in Sources */,
+				13B3A9E9259D1BA2003C306B /* WardrobeDetailData.swift in Sources */,
 				31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */,
 				136649752593DC51008C13EF /* DataServiceRawModels.swift in Sources */,
 				0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */,
@@ -1660,6 +1667,7 @@
 				318122E22599279700009886 /* AllItemsCollectionViewCellViewModel.swift in Sources */,
 				3180ED0425949F3400A046E5 /* NetworkServiceErrors.swift in Sources */,
 				31467C472592813A00B785FF /* CreateLookContainer.swift in Sources */,
+				13B3A9E6259D1B62003C306B /* DetailViewCell.swift in Sources */,
 				31E4EBBF258E6A45001AC230 /* SettingsInteractor.swift in Sources */,
 				31DD94B32597A13600D2390C /* ItemCollectionViewCellViewModel.swift in Sources */,
 			);

@@ -100,7 +100,7 @@ final class MainScreenViewController: UIViewController {
         avatarImageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
         avatarImageView.dropShadow()
         avatarImageView.clipsToBounds = true
-        avatarImageView.backgroundColor = GlobalColors.backgroundColor
+//        avatarImageView.backgroundColor = GlobalColors.backgroundColor
         outerImageView.addSubview(avatarImageView)
     }
 
@@ -236,6 +236,10 @@ final class MainScreenViewController: UIViewController {
 }
 
 extension MainScreenViewController: MainScreenViewInput {
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
+
     func setUserName(name: String?) {
         if let name = name {
             let text = name.split(separator: " ")

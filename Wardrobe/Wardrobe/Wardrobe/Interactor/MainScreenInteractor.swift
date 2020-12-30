@@ -11,8 +11,13 @@ import Foundation
 final class MainScreenInteractor {
 	weak var output: MainScreenInteractorOutput?
 
-    private func handleError(with error: Error) {
-        print(error)
+    private func handleError(with error: NetworkError) {
+        switch error {
+        case .networkNotReachable:
+            self.output?.showAlert(title: "Ошибка", message: "Не удается подключиться")
+        default:
+            self.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
+        }
     }
 
     private func handleWardrobes(with wardrobeRaw: [WardrobeRaw]) {

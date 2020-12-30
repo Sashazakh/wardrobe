@@ -11,6 +11,7 @@ final class DataService: NetworkService {
 }
 
 extension DataService: DataServiceInput {
+
     // MARK: Settings
     func changeName(newName: String,
                     completion: @escaping (SingleResult<NetworkError>) -> Void) {
@@ -338,6 +339,50 @@ extension DataService: DataServiceInput {
                 }
 
                 completion(result)
+            }
+
+            completion(result)
+        }
+    }
+
+    func getLooks(for wardrobeId: Int,
+                  completion: @escaping (Result<[WardrobeDetailLookRaw], NetworkError>) -> Void) {
+        let request = AF.request(getBaseURL() + "getLookByWardrobe?" + "wardrobe_id=\(wardrobeId)" + "&apikey=\(getApiKey())")
+        var result = Result<[WardrobeDetailLookRaw], NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.responseDecodable(of: [WardrobeDetailLookRaw].self) { (response) in
+            switch response.result {
+            case .success(let data):
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    result.data = data
+                case ResponseCode.error.code:
+                    result.error = .lookNotExist
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
             }
 
             completion(result)

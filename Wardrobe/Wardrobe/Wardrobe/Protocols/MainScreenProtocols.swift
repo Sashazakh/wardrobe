@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MainScreenViewInput: class {
     func reloadData()
@@ -14,6 +15,7 @@ protocol MainScreenViewInput: class {
     func setUserImage(with imageUrl: URL?)
     func startActivity()
     func endActivity()
+    func showAlert(alert: UIAlertController)
 }
 
 protocol MainScreenViewOutput: class {
@@ -33,6 +35,7 @@ protocol MainScreenInteractorInput: class {
 protocol MainScreenInteractorOutput: class {
     func didReceive(with wardrobes: [WardrobeData])
     func didReceive(name: String?, imageUrl: String?)
+    func showAlert(title: String, message: String)
 }
 
 protocol MainScreenRouterInput: class {

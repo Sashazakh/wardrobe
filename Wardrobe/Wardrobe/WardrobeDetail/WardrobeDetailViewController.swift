@@ -19,6 +19,11 @@ final class WardrobeDetailViewController: UIViewController {
         setupViews()
 	}
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        output?.didLoadView()
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -100,7 +105,8 @@ final class WardrobeDetailViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView = collection
         collectionView.backgroundColor = .white
-        collectionView.register(WardrobeCell.self, forCellWithReuseIdentifier: WardrobeCell.identifier)
+        collectionView.register(DetailViewCell.self,
+                                forCellWithReuseIdentifier: "WardrobeDetail")
         collectionView.register(AddWardrobeCell.self, forCellWithReuseIdentifier: AddWardrobeCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -172,21 +178,41 @@ final class WardrobeDetailViewController: UIViewController {
 }
 
 extension WardrobeDetailViewController: WardrobeDetailViewInput {
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func reloadData() {
+        collectionView.reloadData()
+    }
 }
 
 extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                                     UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        countOfCells
+        var totalNumberOfCells = output?.getNumberOfLooks() ?? 0
+        totalNumberOfCells += 1
+        return totalNumberOfCells
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WardrobeCell.identifier, for: indexPath)
-        if indexPath.row == countOfCells - 1 {
+        var numberOfLooks = output?.getNumberOfLooks() ?? 0
+        numberOfLooks += 1
+        if indexPath.row == numberOfLooks - 1 || numberOfLooks == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddWardrobeCell.identifier, for: indexPath)
             return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WardrobeDetail", for: indexPath) as? DetailViewCell else {
+                return UICollectionViewCell()
+            }
+
+            guard let look = output?.look(at: indexPath) else {
+                return UICollectionViewCell()
+            }
+
+            cell.configureCell(with: look)
+            return cell
         }
-        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
@@ -209,10 +235,12 @@ extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == countOfCells - 1 {
+        var numberOfWardobes = output?.getNumberOfLooks() ?? 0
+        numberOfWardobes += 1
+        if indexPath.row == numberOfWardobes - 1 || numberOfWardobes == 0 {
             output?.didTapCreateLookCell()
         } else {
-            output?.didTapLook()
+            output?.didTapLook(at: indexPath)
         }
     }
 }

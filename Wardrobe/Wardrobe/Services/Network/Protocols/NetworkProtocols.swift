@@ -50,4 +50,7 @@ protocol DataServiceInput {
     func addUserToWardrobe(with login: String,
                            wardobeId: Int,
                            completion: @escaping (SingleResult<NetworkError>) -> Void)
+
+    func getLooks(for wardrobeId: Int,
+                  completion: @escaping (Result<[WardrobeDetailLookRaw], NetworkError>) -> Void)
 }

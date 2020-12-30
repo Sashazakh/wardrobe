@@ -62,6 +62,15 @@ extension MainScreenPresenter: MainScreenViewOutput {
 }
 
 extension MainScreenPresenter: MainScreenInteractorOutput {
+    func showAlert(title: String, message: String) {
+        view?.endActivity()
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
+
+        alert.addAction(okAction)
+        view?.showAlert(alert: alert)
+    }
+
     func didReceive(with wardrobes: [WardrobeData]) {
         view?.endActivity()
         self.userWardrobes = wardrobes
@@ -71,6 +80,11 @@ extension MainScreenPresenter: MainScreenInteractorOutput {
         if let name = name {
             view?.setUserName(name: name)
         }
-        view?.setUserImage(with: URL(string: imageUrl ?? ""))
+        if var imageUrl = imageUrl {
+            imageUrl += "&apikey=" + DataService.shared.getApiKey()
+            view?.setUserImage(with: URL(string: imageUrl))
+        } else {
+            view?.setUserImage(with: nil)
+        }
     }
 }
