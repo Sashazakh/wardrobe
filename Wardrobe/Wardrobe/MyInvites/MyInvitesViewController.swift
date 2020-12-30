@@ -16,6 +16,7 @@ final class MyInvitesViewController: UIViewController {
     private weak var titleLabel: UILabel!
     private weak var backButton: UIButton!
     private weak var inviteTableView: UITableView!
+    private weak var noInvitesLabel: UILabel!
 
     private let screenBounds = UIScreen.main.bounds
 
@@ -45,6 +46,7 @@ final class MyInvitesViewController: UIViewController {
         setupTitleLabel()
         setupBackButton()
         setupTableView()
+        setupNoInvitesLabel()
     }
 
     private func setupLayout() {
@@ -53,6 +55,7 @@ final class MyInvitesViewController: UIViewController {
         setupBackButtonLayout()
         setupTitleLableLayout()
         setupTableViewLayout()
+        setupNoInvitesLabelLayout()
     }
 
     // MARK: Setup views
@@ -108,6 +111,21 @@ final class MyInvitesViewController: UIViewController {
         headerView.addSubview(backButton)
     }
 
+    private func setupNoInvitesLabel() {
+        let noInvite = UILabel()
+        noInvitesLabel = noInvite
+        noInvitesLabel.text = "У вас пока не приглашений."
+        noInvitesLabel.textAlignment = .center
+        noInvitesLabel.font = UIFont(name: "DMSans-Bold", size: 20)
+        noInvitesLabel.textColor = GlobalColors.darkColor
+        noInvitesLabel.adjustsFontSizeToFitWidth = true
+        noInvitesLabel.minimumScaleFactor = 0.1
+        noInvitesLabel.numberOfLines = 1
+        noInvitesLabel.sizeToFit()
+        noInvitesLabel.isHidden = true
+        view.addSubview(noInvitesLabel)
+    }
+
     // MARK: Setup layout
 
     private func setupHeaderViewLayout() {
@@ -143,6 +161,13 @@ final class MyInvitesViewController: UIViewController {
             .right()
             .bottom()
     }
+
+    private func setupNoInvitesLabelLayout() {
+        noInvitesLabel.pin
+            .center()
+            .sizeToFit()
+    }
+
     // MARK: Actions
     @objc func didBackButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -150,6 +175,10 @@ final class MyInvitesViewController: UIViewController {
 }
 
 extension MyInvitesViewController: MyInvitesViewInput {
+    func showNoDataLabel() {
+        noInvitesLabel.isHidden = false
+    }
+
     func showAlert(alert: UIAlertController) {
         self.present(alert, animated: true, completion: nil)
     }

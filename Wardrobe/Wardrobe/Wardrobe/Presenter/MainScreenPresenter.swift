@@ -30,15 +30,12 @@ final class MainScreenPresenter {
         self.router = router
         self.interactor = interactor
     }
-
-    private func setUserData() {
-        view?.setUserData(name: userName, imageUrl: URL(string: imageUrlString ?? ""))
-    }
 }
 
 extension MainScreenPresenter: MainScreenViewOutput {
     func didLoadView() {
-        setUserData()
+        view?.startActivity()
+        interactor.loadUserData()
         interactor.loadUserWardobes(for: userLogin ?? "")
     }
 
@@ -66,7 +63,14 @@ extension MainScreenPresenter: MainScreenViewOutput {
 
 extension MainScreenPresenter: MainScreenInteractorOutput {
     func didReceive(with wardrobes: [WardrobeData]) {
+        view?.endActivity()
         self.userWardrobes = wardrobes
     }
 
+    func didReceive(name: String?, imageUrl: String?) {
+        if let name = name {
+            view?.setUserName(name: name)
+        }
+        view?.setUserImage(with: URL(string: imageUrl ?? ""))
+    }
 }

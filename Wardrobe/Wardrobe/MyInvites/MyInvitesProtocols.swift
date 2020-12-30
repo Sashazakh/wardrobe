@@ -12,6 +12,7 @@ import UIKit
 protocol MyInvitesViewInput: class {
     func showAlert(alert: UIAlertController)
     func reloadData()
+    func showNoDataLabel()
 }
 
 protocol MyInvitesViewOutput: class {

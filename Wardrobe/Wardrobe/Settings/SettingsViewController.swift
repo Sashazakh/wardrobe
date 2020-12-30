@@ -108,7 +108,8 @@ final class SettingsViewController: UIViewController {
         avatarImageView = imageView
         avatarImageView.layer.borderWidth = 4
         avatarImageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
-        avatarImageView.image = UIImage(named: "morz")
+        avatarImageView.image = UIImage(named: "no_photo")
+        avatarImageView.contentMode = .bottom
         avatarImageView.dropShadow()
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.clipsToBounds = true
@@ -248,7 +249,9 @@ extension SettingsViewController: SettingsViewInput {
     }
 
     func setUserImage(with imageUrl: URL?) {
-        avatarImageView.kf.setImage(with: imageUrl)
+        if let imageUrl = imageUrl {
+            avatarImageView.kf.setImage(with: imageUrl)
+        }
     }
 
     func showAlert(alert: UIAlertController) {

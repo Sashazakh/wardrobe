@@ -10,7 +10,10 @@ import Foundation
 
 protocol MainScreenViewInput: class {
     func reloadData()
-    func setUserData(name: String?, imageUrl: URL?)
+    func setUserName(name: String?)
+    func setUserImage(with imageUrl: URL?)
+    func startActivity()
+    func endActivity()
 }
 
 protocol MainScreenViewOutput: class {
@@ -24,10 +27,12 @@ protocol MainScreenViewOutput: class {
 
 protocol MainScreenInteractorInput: class {
     func loadUserWardobes(for user: String)
+    func loadUserData()
 }
 
 protocol MainScreenInteractorOutput: class {
     func didReceive(with wardrobes: [WardrobeData])
+    func didReceive(name: String?, imageUrl: String?)
 }
 
 protocol MainScreenRouterInput: class {

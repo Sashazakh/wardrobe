@@ -19,6 +19,7 @@ protocol SettingsInteractorInput: class {
     func logout()
     func saveNewUserName(with name: String)
     func saveNewUserImage(with imageData: Data?)
+    func loadUserData()
 }
 
 protocol SettingsInteractorOutput: class {
@@ -26,6 +27,7 @@ protocol SettingsInteractorOutput: class {
     func didNameChanged()
     func showAlert(title: String, message: String)
     func upadateImage()
+    func didReceive(name: String?, imageUrl: String?)
 }
 
 protocol SettingsRouterInput: class {
