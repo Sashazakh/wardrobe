@@ -49,24 +49,28 @@ extension MyInvitesInteractor: MyInvitesInteractorInput {
     }
 
     func didUserAcceptWardrobe(with id: Int) {
-        DataService.shared.wardrobeResponseInvite(response: .accept) { [weak self](result) in
+        DataService.shared.wardrobeResponseInvite(inviteId: id,
+                                                  response: .accept) { [weak self](result) in
             guard let self = self else { return }
 
             if let error = result.error {
                 self.handleError(with: error)
                 return
             }
+            self.output?.removeWardrobe()
         }
     }
 
     func didUserDenyWardrobe(with id: Int) {
-        DataService.shared.wardrobeResponseInvite(response: .deny) { [weak self](result) in
+        DataService.shared.wardrobeResponseInvite(inviteId: id,
+                                                  response: .deny) { [weak self](result) in
             guard let self = self else { return }
 
             if let error = result.error {
                 self.handleError(with: error)
                 return
             }
+            self.output?.removeWardrobe()
         }
     }
 }

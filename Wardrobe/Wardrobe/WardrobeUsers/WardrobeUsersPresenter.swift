@@ -8,6 +8,8 @@ final class WardrobeUsersPresenter {
 
     private var isUserEditButtonTapped: Bool = false
 
+    var wardrobeId: Int?
+
     init(router: WardrobeUsersRouterInput, interactor: WardrobeUsersInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -30,7 +32,8 @@ extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
     }
 
     func didInivteUserButtonTapped() {
-        router.showInviteUser()
+        guard let id = wardrobeId else { return }
+        router.showInviteUser(with: id)
     }
 }
 

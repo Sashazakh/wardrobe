@@ -41,11 +41,13 @@ extension MyInvitesPresenter: MyInvitesViewOutput {
                                       message: Constants.inviteMessage,
                                       preferredStyle: UIAlertController.Style.alert )
         let reset = UIAlertAction(title: "Принять", style: .default) { [self] (_) in
+            tappedWardobe = indexPath
             guard let invite = getInvite(at: indexPath) else { return }
             interactor.didUserAcceptWardrobe(with: invite.id)
         }
         alert.addAction(reset)
         let splitOff = UIAlertAction(title: "Отклонить", style: .default) { [self] (_) in
+            tappedWardobe = indexPath
             guard let invite = getInvite(at: indexPath) else { return }
             interactor.didUserDenyWardrobe(with: invite.id)
         }
@@ -57,6 +59,10 @@ extension MyInvitesPresenter: MyInvitesViewOutput {
 
     func getInvite(at indexPath: IndexPath) -> MyInvitesData? {
         return invites[indexPath.row]
+    }
+
+    func getNumberOfInvites() -> Int {
+        return invites.count
     }
 }
 

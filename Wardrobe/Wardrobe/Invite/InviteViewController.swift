@@ -154,6 +154,8 @@ extension InviteViewController {
         inviteButton.backgroundColor = GlobalColors.mainBlueScreen
         inviteButton.setTitleColor(.gray, for: .highlighted)
         inviteButton.dropShadow()
+        inviteButton.addTarget(self, action: #selector(didUserTapInviteButton(_:)),
+                               for: .touchUpInside)
         self.view.addSubview(inviteButton)
     }
 
@@ -167,6 +169,13 @@ extension InviteViewController {
         let width = inviteButton.frame.width
         inviteButton.layer.cornerRadius = width * 0.058
     }
+
+    // MARK: Actions
+
+    @objc private func didUserTapInviteButton(_ sender: Any) {
+        guard let userLogin = loginTextField.text else { return }
+        output?.didUserTapInviteButton(with: userLogin)
+    }
 }
 
 extension InviteViewController {
@@ -175,6 +184,9 @@ extension InviteViewController {
     }
 }
 extension InviteViewController: InviteViewInput {
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension InviteViewController: UITextFieldDelegate {

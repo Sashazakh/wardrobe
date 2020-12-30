@@ -18,5 +18,5 @@ protocol WardrobeUsersInteractorOutput: class {
 }
 
 protocol WardrobeUsersRouterInput: class {
-    func showInviteUser()
+    func showInviteUser(with wardrobeId: Int)
 }

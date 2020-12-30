@@ -16,7 +16,7 @@ protocol WardrobeDetailInteractorOutput: class {
 }
 
 protocol WardrobeDetailRouterInput: class {
-    func showPersons()
+    func showPersons(with wardrobeId: Int)
     func showLookScreen()
     func showCreateLookScreen()
 }

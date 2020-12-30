@@ -355,14 +355,125 @@ extension DataService: DataServiceInput {
 
     }
 
-    func addUserToWardrobe(with login: String) {
+    func addUserToWardrobe(with login: String,
+                           wardobeId: Int,
+                           completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        guard let userLogin = getUserLogin() else { return }
+        let url = getBaseURL() + "sendInvite" +
+            "?my_login=\(userLogin)" +
+            "&login_to_invite=\(login)" +
+            "&wardrobe_id=\(wardobeId)" +
+            "&apikey=\(getApiKey())"
 
+        var result = SingleResult<NetworkError>()
+
+        let request = AF.request(url)
+        request.response { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+        }
     }
-
     func deleteUserFromWardrobe(with login: String) {
 
     }
 
+    func wardrobeResponseInvite(inviteId: Int,
+                                response: InviteWardrobeResponse,
+                                completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        let url = getBaseURL() + "handleInvite"
+        + "?inviteId=\(inviteId)"
+        + "&accepted=\(response.rawValue)"
+        + "&apikey=\(getApiKey())"
+
+        var result = SingleResult<NetworkError>()
+
+        let request = AF.request(url)
+
+        request.response { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+        }
+    }
+
+    func getUserInvites(completion: @escaping (Result<[InviteRaw], NetworkError>) -> Void) {
+        guard let login = getUserLogin() else { return }
+        let url = getBaseURL() +
+            "whoInvitesMe" +
+            "?login=\(login)&apikey=\(getApiKey())"
+        let request = AF.request(url)
+        var result = Result<[InviteRaw], NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.responseDecodable(of: [InviteRaw].self) { response in
+            switch response.result {
+            case .success(let invites):
+                result.data = invites
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+
+            completion(result)
+        }
+    }
     // MARK: Clothes
 
     // Можно передавать модель вещи
@@ -415,74 +526,6 @@ extension DataService: DataServiceInput {
     }
 
     func deleteItem(with id: Int) {
-    }
-
-    func getUserInvites(completion: @escaping (Result<[InviteRaw], NetworkError>) -> Void) {
-        let request = AF.request(getBaseURL() + "getInvites")
-        var result = Result<[InviteRaw], NetworkError>()
-
-        guard NetworkReachabilityManager()?.isReachable ?? false else {
-            result.error = .networkNotReachable
-            completion(result)
-            return
-        }
-
-        request.responseDecodable(of: [InviteRaw].self) { response in
-            switch response.result {
-            case .success(let invites):
-                result.data = invites
-            case .failure(let error):
-                if error.isInvalidURLError {
-                    result.error = .connectionToServerError
-                } else {
-                    result.error = .unknownError
-                }
-            }
-
-            completion(result)
-        }
-    }
-
-    func wardrobeResponseInvite(response: InviteWardrobeResponse,
-                                completion: @escaping (SingleResult<NetworkError>) -> Void) {
-        let parameters: [String: String] = [
-            "response": String(response.rawValue)
-        ]
-
-        let url = getBaseURL()
-        var result = SingleResult<NetworkError>()
-
-        let request = AF.request(url, method: .post, parameters: parameters)
-
-        request.response { response in
-            switch response.result {
-            case .success:
-                guard let statusCode = response.response?.statusCode else {
-                    result.error = .unknownError
-                    completion(result)
-                    return
-                }
-
-                switch statusCode {
-                case ResponseCode.success.code:
-                    completion(result)
-                case ResponseCode.error.code:
-                    result.error = .networkNotReachable
-                    completion(result)
-                    return
-                default:
-                    result.error = .unknownError
-                    completion(result)
-                    return
-                }
-            case .failure(let error):
-                if error.isInvalidURLError {
-                    result.error = .connectionToServerError
-                } else {
-                    result.error = .unknownError
-                }
-            }
-        }
     }
 
     func getUserLogin() -> String? {

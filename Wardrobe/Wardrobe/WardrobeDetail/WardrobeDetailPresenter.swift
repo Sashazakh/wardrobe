@@ -6,6 +6,8 @@ final class WardrobeDetailPresenter {
 	private let router: WardrobeDetailRouterInput
 	private let interactor: WardrobeDetailInteractorInput
 
+    var wardrobeId: Int?
+
     init(router: WardrobeDetailRouterInput, interactor: WardrobeDetailInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -14,7 +16,8 @@ final class WardrobeDetailPresenter {
 
 extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
     func personDidTap() {
-        router.showPersons()
+        guard let id = wardrobeId else { return }
+        router.showPersons(with: id)
     }
 
     func didTapLook() {

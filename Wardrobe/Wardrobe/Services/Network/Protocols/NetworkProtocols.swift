@@ -42,4 +42,12 @@ protocol DataServiceInput {
                     completion: @escaping (SingleResult<NetworkError>) -> Void)
 
     func getUserInvites(completion: @escaping (Result<[InviteRaw], NetworkError>) -> Void)
+
+    func wardrobeResponseInvite(inviteId: Int,
+                                response: InviteWardrobeResponse,
+                                completion: @escaping (SingleResult<NetworkError>) -> Void)
+
+    func addUserToWardrobe(with login: String,
+                           wardobeId: Int,
+                           completion: @escaping (SingleResult<NetworkError>) -> Void)
 }
