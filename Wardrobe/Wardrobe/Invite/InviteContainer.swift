@@ -15,6 +15,8 @@ final class InviteContainer {
         interactor.output = presenter
         router.viewController = viewController
 
+        presenter.wardrobeId = context.wardrobeId
+
         return InviteContainer(view: viewController, router: router)
 	}
 
@@ -25,4 +27,5 @@ final class InviteContainer {
 }
 
 struct InviteContext {
+    let wardrobeId: Int
 }

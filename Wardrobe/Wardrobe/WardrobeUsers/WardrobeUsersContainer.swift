@@ -8,13 +8,14 @@ final class WardrobeUsersContainer {
         let router = WardrobeUsersRouter()
         let interactor = WardrobeUsersInteractor()
         let presenter = WardrobeUsersPresenter(router: router, interactor: interactor)
-	let viewController = WardrobeUsersViewController()
+        let viewController = WardrobeUsersViewController()
 
         viewController.output = presenter
-	presenter.view = viewController
-	interactor.output = presenter
-	router.viewController = viewController
+        presenter.view = viewController
+        interactor.output = presenter
+        router.viewController = viewController
 
+        presenter.wardrobeId = context.wardrobeId
         return WardrobeUsersContainer(view: viewController, router: router)
 	}
 
@@ -25,4 +26,5 @@ final class WardrobeUsersContainer {
 }
 
 struct WardrobeUsersContext {
+    let wardrobeId: Int
 }

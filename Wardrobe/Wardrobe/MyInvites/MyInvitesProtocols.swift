@@ -18,6 +18,7 @@ protocol MyInvitesViewOutput: class {
     func didLoadView()
     func didInviteButtonTapped(at indexPath: IndexPath)
     func getInvite(at indexPath: IndexPath) -> MyInvitesData?
+    func getNumberOfInvites() -> Int
 }
 
 protocol MyInvitesInteractorInput: class {

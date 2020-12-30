@@ -162,7 +162,7 @@ extension MyInvitesViewController: MyInvitesViewInput {
 
 extension MyInvitesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return output?.getNumberOfInvites() ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -170,7 +170,8 @@ extension MyInvitesViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             return UITableViewCell()
         }
-        cell.configureCell(userLogin: "Sashazak", wardrobeName: "Суббота", imageUrl: nil)
+        guard let inviteData = output?.getInvite(at: indexPath) else { return UITableViewCell() }
+        cell.configureCell(with: inviteData)
         return cell
     }
 

@@ -5,8 +5,8 @@ final class WardrobeDetailRouter {
 }
 
 extension WardrobeDetailRouter: WardrobeDetailRouterInput {
-    func showPersons() {
-        let vc = WardrobeUsersContainer.assemble(with: WardrobeUsersContext()).viewController
+    func showPersons(with wardrobeId: Int) {
+        let vc = WardrobeUsersContainer.assemble(with: WardrobeUsersContext(wardrobeId: wardrobeId)).viewController
 
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
