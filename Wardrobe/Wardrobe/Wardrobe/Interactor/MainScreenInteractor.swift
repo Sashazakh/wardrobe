@@ -39,4 +39,9 @@ extension MainScreenInteractor: MainScreenInteractorInput {
         }
     }
 
+    func loadUserData() {
+        let name = AuthService.shared.getUserName()
+        let image = AuthService.shared.getUserImageURL()
+        output?.didReceive(name: name, imageUrl: image)
+    }
 }

@@ -531,6 +531,10 @@ extension DataService: DataServiceInput {
     func getUserLogin() -> String? {
         return UserDefaults.standard.string(forKey: Constants.loginKey)
     }
+
+    func setNewUserName(newName: String) {
+        UserDefaults.standard.setValue(newName, forKey: Constants.userNameKey)
+    }
 }
 
 struct Constants {

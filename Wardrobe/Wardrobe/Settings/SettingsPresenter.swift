@@ -49,7 +49,7 @@ extension SettingsPresenter: SettingsViewOutput {
     }
 
     func didLoadView() {
-        setUserData()
+        interactor.loadUserData()
     }
 
     func didChangeNameTapped() {
@@ -88,6 +88,13 @@ extension SettingsPresenter: SettingsViewOutput {
 }
 
 extension SettingsPresenter: SettingsInteractorOutput {
+    func didReceive(name: String?, imageUrl: String?) {
+        if let name = name {
+            view?.setUserName(name: name)
+        }
+        view?.setUserImage(with: URL(string: imageUrl ?? ""))
+    }
+
    func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
@@ -109,7 +116,7 @@ extension SettingsPresenter: SettingsInteractorOutput {
     }
 
     func upadateImage() {
-        view?.setUserImage(with: URL(string: imageUrl ?? ""))
+        view?.setUserImage(with: URL(string: imageUrl ?? "") ?? nil)
     }
 }
 

@@ -13,6 +13,8 @@ final class MainScreenViewController: UIViewController {
 
     private let screenBounds = UIScreen.main.bounds
 
+    private var activityIndicatorView: UIActivityIndicatorView!
+
     // MARK: Vc lifecycle
 
     override func viewDidLoad() {
@@ -41,6 +43,7 @@ final class MainScreenViewController: UIViewController {
         setupAvatarView()
         setupNameLabel()
         setupCollectionView()
+        setupActivityIndicatorView()
     }
 
     private func setupViewsLayout() {
@@ -95,9 +98,9 @@ final class MainScreenViewController: UIViewController {
         avatarImageView = imageView
         avatarImageView.layer.borderWidth = 4
         avatarImageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
-        avatarImageView.image = UIImage(named: "morz")
         avatarImageView.dropShadow()
         avatarImageView.clipsToBounds = true
+        avatarImageView.backgroundColor = GlobalColors.backgroundColor
         outerImageView.addSubview(avatarImageView)
     }
 
@@ -133,7 +136,17 @@ final class MainScreenViewController: UIViewController {
         view.addSubview(collectionView)
     }
 
+    private func setupActivityIndicatorView() {
+        let activ = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        activityIndicatorView = activ
+        activityIndicatorView.color = .black
+        activityIndicatorView.center = CGPoint(x: UIScreen.main.bounds.size.width / 2,
+                                               y: UIScreen.main.bounds.size.height / 2)
+        activityIndicatorView.hidesWhenStopped = true
+        view.addSubview(activityIndicatorView)
+    }
     // MARK: layout
+
     private func setupHeaderViewLayout() {
         headerView.pin
             .top()
@@ -223,13 +236,19 @@ final class MainScreenViewController: UIViewController {
 }
 
 extension MainScreenViewController: MainScreenViewInput {
-    func setUserData(name: String?, imageUrl: URL?) {
+    func setUserName(name: String?) {
         if let name = name {
             let text = name.split(separator: " ")
             nameLabel.text = text.joined(separator: "\n")
         }
+    }
+
+    func setUserImage(with imageUrl: URL?) {
         if let imageUrl = imageUrl {
             avatarImageView.kf.setImage(with: imageUrl)
+        } else {
+            avatarImageView.image = UIImage(named: "no_photo")
+            avatarImageView.contentMode = .bottom
         }
     }
 
@@ -237,6 +256,13 @@ extension MainScreenViewController: MainScreenViewInput {
         collectionView.reloadData()
     }
 
+    func startActivity() {
+        activityIndicatorView.startAnimating()
+    }
+
+    func endActivity() {
+        activityIndicatorView.stopAnimating()
+    }
 }
 
 extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDataSource,

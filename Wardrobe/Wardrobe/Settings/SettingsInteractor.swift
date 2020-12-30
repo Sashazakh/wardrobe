@@ -43,7 +43,7 @@ extension SettingsInteractor: SettingsInteractorInput {
                 self.handleError(with: error)
                 return
             }
-
+            DataService.shared.setNewUserName(newName: name)
             self.output?.didNameChanged()
         }
     }
@@ -51,5 +51,11 @@ extension SettingsInteractor: SettingsInteractorInput {
     func logout() {
         AuthService.shared.dropUser()
         output?.didAllKeysDeleted()
+    }
+
+    func loadUserData() {
+        let name = AuthService.shared.getUserName()
+        let image = AuthService.shared.getUserImageURL()
+        output?.didReceive(name: name, imageUrl: image)
     }
 }

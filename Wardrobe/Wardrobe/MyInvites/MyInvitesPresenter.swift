@@ -18,6 +18,9 @@ final class MyInvitesPresenter {
     private var invites: [MyInvitesData] = [] {
         didSet {
             DispatchQueue.main.async {
+                if self.invites.isEmpty {
+                    self.view?.showNoDataLabel()
+                }
                 self.view?.reloadData()
             }
         }
