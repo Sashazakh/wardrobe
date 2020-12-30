@@ -213,6 +213,8 @@ extension DataService: DataServiceInput {
                 } else {
                     result.error = .unknownError
                 }
+
+                completion(result)
             }
         })
     }
@@ -274,8 +276,50 @@ extension DataService: DataServiceInput {
         }
     }
 
-    func deleItemFormLook(with id: Int) {
+    func deleteItemFromLook(lookID: Int,
+                            itemID: Int,
+                            completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        var result = SingleResult<NetworkError>()
 
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        let request = AF.request("\(getBaseURL())" + "deleteItemFromLook?look_id=\(lookID)&item_id=\(itemID)&apikey=\(getApiKey())")
+
+        request.response { (response) in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+
+                completion(result)
+            }
+        }
     }
 
     func createLook(wardrobeID: Int,
@@ -344,6 +388,58 @@ extension DataService: DataServiceInput {
             completion(result)
         }
     }
+
+    func updateLook(lookID: Int,
+                    itemIDs: [Int],
+                    completion: @escaping (SingleResult<NetworkError>) -> Void) {
+            var result = SingleResult<NetworkError>()
+
+            guard NetworkReachabilityManager()?.isReachable ?? false else {
+                result.error = .networkNotReachable
+                completion(result)
+                return
+            }
+
+            let parameters: [String: String] = [
+                "items_ids": "(itemIDs)",
+                "look_id": "(lookID)",
+                "apikey": "(getApiKey())"
+            ]
+
+            let request = AF.request("(getBaseURL())" + "updateLookItems", method: .post, parameters: parameters)
+
+            request.response { (response) in
+                switch response.result {
+                case .success:
+                    guard let statusCode = response.response?.statusCode else {
+                        result.error = .unknownError
+                        completion(result)
+                        return
+                    }
+
+                    switch statusCode {
+                    case ResponseCode.success.code:
+                        completion(result)
+                    case ResponseCode.error.code:
+                        result.error = .networkNotReachable
+                        completion(result)
+                        return
+                    default:
+                        result.error = .unknownError
+                        completion(result)
+                        return
+                    }
+                case .failure(let error):
+                    if error.isInvalidURLError {
+                        result.error = .connectionToServerError
+                    } else {
+                        result.error = .unknownError
+                    }
+
+                    completion(result)
+                }
+            }
+        }
 
     func getLooks(for wardrobeId: Int,
                   completion: @escaping (Result<[WardrobeDetailLookRaw], NetworkError>) -> Void) {

@@ -28,12 +28,18 @@ protocol LookViewOutput: AnyObject {
     func viewModel(index: Int) -> LookTableViewCellViewModel
 
     func deleteViewModel(tableCellIndex: Int, collectionCellIndex: Int)
+
+    func didUserAddItems(items: [ItemData])
 }
 
 protocol LookInteractorInput: AnyObject {
     func fetchLook()
 
     func getLookID() -> Int
+
+    func appendItemsToLook(items: [ItemData])
+
+    func deleteItems(categoryIndex: Int, itemIndex: Int)
 }
 
 protocol LookInteractorOutput: AnyObject {
