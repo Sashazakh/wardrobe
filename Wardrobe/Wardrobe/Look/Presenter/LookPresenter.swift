@@ -54,7 +54,11 @@ extension LookPresenter: LookViewOutput {
     }
 
     func deleteViewModel(tableCellIndex: Int, collectionCellIndex: Int) {
-        model?.categories[tableCellIndex].items.remove(at: collectionCellIndex)
+        interactor.deleteItems(categoryIndex: tableCellIndex, itemIndex: collectionCellIndex)
+    }
+
+    func didUserAddItems(items: [ItemData]) {
+        interactor.appendItemsToLook(items: items)
     }
 }
 

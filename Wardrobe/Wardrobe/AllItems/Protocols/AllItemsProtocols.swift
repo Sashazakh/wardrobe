@@ -33,5 +33,7 @@ protocol AllItemsInteractorOutput: AnyObject {
 }
 
 protocol AllItemsRouterInput: AnyObject {
+    func showLookScreen(items: [ItemData])
+
     func showLookScreen()
 }

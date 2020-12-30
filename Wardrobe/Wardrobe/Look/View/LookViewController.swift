@@ -249,6 +249,8 @@ extension LookViewController: LookViewInput {
 
     func setLookIsEditing(isEditing: Bool) {
         lookIsEditing = isEditing
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
         lookTableView.reloadData()
     }
 

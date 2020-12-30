@@ -23,7 +23,25 @@ extension AllItemsPresenter: AllItemsViewOutput {
     }
 
     func didTapConfirmButton() {
-        router.showLookScreen()
+        var items: [ItemData] = []
+
+        guard let status = isSelected,
+              let model = model else {
+            return
+        }
+
+        for i in .zero..<status.count {
+            for j in .zero..<status[i].count where status[i][j] {
+                items.append(model.categories[i].items[j])
+            }
+        }
+
+        guard !items.isEmpty else {
+            router.showLookScreen()
+            return
+        }
+
+        router.showLookScreen(items: items)
     }
 
     func didLoadView() {
