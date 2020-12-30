@@ -100,7 +100,7 @@ final class MainScreenViewController: UIViewController {
         avatarImageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
         avatarImageView.dropShadow()
         avatarImageView.clipsToBounds = true
-//        avatarImageView.backgroundColor = GlobalColors.backgroundColor
+        avatarImageView.backgroundColor = GlobalColors.backgroundColor
         outerImageView.addSubview(avatarImageView)
     }
 

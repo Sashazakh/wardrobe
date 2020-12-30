@@ -92,7 +92,12 @@ extension SettingsPresenter: SettingsInteractorOutput {
         if let name = name {
             view?.setUserName(name: name)
         }
-        view?.setUserImage(with: URL(string: imageUrl ?? ""))
+        if var imageUrl = imageUrl {
+            imageUrl += "&apikey=" + DataService.shared.getApiKey()
+            view?.setUserImage(with: URL(string: imageUrl))
+        } else {
+            view?.setUserImage(with: nil)
+        }
     }
 
    func showAlert(title: String, message: String) {
