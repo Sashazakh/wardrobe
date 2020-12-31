@@ -8,12 +8,14 @@ final class WardrobeDetailPresenter {
 	private let interactor: WardrobeDetailInteractorInput
 
     var wardrobeId: Int?
+    var wardrobeName: String?
 
     var looks: [WardrobeDetailData] = [] {
         didSet {
             view?.reloadData()
         }
     }
+
     init(router: WardrobeDetailRouterInput, interactor: WardrobeDetailInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -30,13 +32,16 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
     }
 
     func didLoadView() {
+        if let name = wardrobeName {
+            view?.setWardrobeName(with: name)
+        }
         guard let id = wardrobeId else { return }
         interactor.loadLooks(with: id)
     }
 
     func personDidTap() {
-        guard let id = wardrobeId else { return }
-        router.showPersons(with: id)
+        guard let id = wardrobeId, let name = wardrobeName else { return }
+        router.showPersons(wardrobeId: id, wardrobeName: name)
     }
 
     func didTapLook(at indexPath: IndexPath) {

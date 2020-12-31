@@ -66,13 +66,13 @@ final class WardrobeDetailViewController: UIViewController {
     private func setupTitleLabel() {
         let title = UILabel()
         titleLabel = title
-        titleLabel.text = "Гардероб \n \"Работа\""
         titleLabel.textAlignment = .center
+        titleLabel.text = "Гардероб \n"
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = GlobalColors.backgroundColor
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.1
-        titleLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 2
         titleLabel.sizeToFit()
         headerView.addSubview(titleLabel)
     }
@@ -127,7 +127,8 @@ final class WardrobeDetailViewController: UIViewController {
     private func setupTitleLableLayout() {
         titleLabel.pin
             .hCenter()
-            .top(38%)
+            .vCenter()
+            .width(70%)
             .height(50%)
     }
 
@@ -178,6 +179,12 @@ final class WardrobeDetailViewController: UIViewController {
 }
 
 extension WardrobeDetailViewController: WardrobeDetailViewInput {
+    func setWardrobeName(with name: String) {
+        guard var text = titleLabel.text else { return }
+        text += "\"\(name)\""
+        titleLabel.text = text
+    }
+
     func showAlert(alert: UIAlertController) {
         self.present(alert, animated: true, completion: nil)
     }

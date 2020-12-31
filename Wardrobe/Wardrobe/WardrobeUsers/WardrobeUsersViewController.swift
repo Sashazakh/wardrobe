@@ -16,8 +16,6 @@ final class WardrobeUsersViewController: UIViewController {
 
     private let screenBounds = UIScreen.main.bounds
 
-    private var countOfCells = 20
-
     private var isReloadDataNeed: Bool = false
 
 	override func viewDidLoad() {
@@ -26,6 +24,11 @@ final class WardrobeUsersViewController: UIViewController {
         setupViews()
 	}
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        output?.didLoadView()
+    }
     override func viewDidLayoutSubviews() {
         super .viewDidLayoutSubviews()
 
@@ -68,7 +71,7 @@ final class WardrobeUsersViewController: UIViewController {
     private func setupTitleLabel() {
         let title = UILabel()
         titleLabel = title
-        titleLabel.text = "Участники\nгардероба" + "\n\"Собеседование\""
+        titleLabel.text = "Участники\nгардероба\n"
         titleLabel.numberOfLines = 3
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
@@ -132,8 +135,9 @@ final class WardrobeUsersViewController: UIViewController {
     private func setupTitleLableLayout() {
         titleLabel.pin
             .hCenter()
-            .vCenter(5%)
-            .height(60.3%)
+            .vCenter()
+            .width(70%)
+            .height(50%)
     }
 
     private func setupBackButtonLayout() {
@@ -167,14 +171,27 @@ final class WardrobeUsersViewController: UIViewController {
     }
 
     @objc func didEditButtonTapped(_ sender: Any) {
-        isReloadDataNeed = !isReloadDataNeed
         output?.didEditButtonTap()
     }
 }
 
 extension WardrobeUsersViewController: WardrobeUsersViewInput {
-    func reloadCollectionView() {
+    func setWardrobeName(with name: String) {
+        guard var text = titleLabel.text else { return }
+        text += "\"\(name)\""
+        titleLabel.text = text
+    }
+
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func reloadDataWithAnimation() {
         isReloadDataNeed = true
+        collectionView.reloadData()
+    }
+
+    func reloadData() {
         collectionView.reloadData()
     }
 
@@ -191,32 +208,35 @@ extension WardrobeUsersViewController: WardrobeUsersViewInput {
 extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                                        UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        countOfCells
+        var totalNumberOfCells = output?.getNumberOfUsers() ?? 0
+        totalNumberOfCells += 1
+        return totalNumberOfCells
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
-
-        if indexPath.row < countOfCells - 1 {
+        var numberOfLooks = output?.getNumberOfUsers() ?? 0
+        numberOfLooks += 1
+        if indexPath.row == numberOfLooks - 1 || numberOfLooks == 0 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+                                                                    AddUserCell.identifier,
+                                                                    for: indexPath)
+                                                                    as? AddUserCell
+            else { return UICollectionViewCell() }
+            return cell
+        } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
                                                                     WardrobeUsersCell.identifier,
                                                                     for: indexPath)
                                                                     as? WardrobeUsersCell
             else { return UICollectionViewCell() }
 
-            cell.configureCell(label: "Моржик Моржиков", image: UIImage(named: "morz"), output: output)
-            return cell
-        } else if indexPath.row == countOfCells - 1 {
+            guard let user = output?.getWardrobeUser(at: indexPath) else {
+                return UICollectionViewCell()
+            }
 
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-                                                                    AddUserCell.identifier,
-                                                                    for: indexPath)
-                                                                    as? AddUserCell
-            else { return UICollectionViewCell() }
-
+            cell.configureCell(wardrobeUser: user, output: output)
             return cell
         }
-        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
@@ -234,6 +254,8 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard var countOfCells = output?.getNumberOfUsers() else { return }
+        countOfCells += 1
         if isReloadDataNeed {
             if indexPath.row != countOfCells - 1 {
                 cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
@@ -252,7 +274,8 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == countOfCells - 1 {
+        guard let count = output?.getNumberOfUsers() else { return }
+        if indexPath.row == count {
             output?.didInivteUserButtonTapped()
         }
     }

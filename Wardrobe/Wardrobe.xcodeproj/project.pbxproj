@@ -32,6 +32,7 @@
 		136EFECA258E5EB60041B9D5 /* AddWardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */; };
 		1386DE09259773DD003D0174 /* CreateWardobeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1386DE08259773DD003D0174 /* CreateWardobeData.swift */; };
 		138B8250259B4F64000B138B /* MyInvitesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B824F259B4F64000B138B /* MyInvitesData.swift */; };
+		138DF807259E4C350076081F /* WardrobeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138DF806259E4C350076081F /* WardrobeUserData.swift */; };
 		139EF328258E3DC900A9435B /* WardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139EF327258E3DC900A9435B /* WardrobeCell.swift */; };
 		13A15A53259A3F8700B271B0 /* MyInvitesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15A4D259A3F8700B271B0 /* MyInvitesPresenter.swift */; };
 		13A15A54259A3F8700B271B0 /* MyInvitesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15A4E259A3F8700B271B0 /* MyInvitesRouter.swift */; };
@@ -188,6 +189,7 @@
 		136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWardrobeCell.swift; sourceTree = "<group>"; };
 		1386DE08259773DD003D0174 /* CreateWardobeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardobeData.swift; sourceTree = "<group>"; };
 		138B824F259B4F64000B138B /* MyInvitesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesData.swift; sourceTree = "<group>"; };
+		138DF806259E4C350076081F /* WardrobeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeUserData.swift; sourceTree = "<group>"; };
 		139EF327258E3DC900A9435B /* WardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeCell.swift; sourceTree = "<group>"; };
 		13A15A4D259A3F8700B271B0 /* MyInvitesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesPresenter.swift; sourceTree = "<group>"; };
 		13A15A4E259A3F8700B271B0 /* MyInvitesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesRouter.swift; sourceTree = "<group>"; };
@@ -979,6 +981,7 @@
 				31E4EBAA258E6A19001AC230 /* WardrobeUsersProtocols.swift */,
 				31E4EBAB258E6A19001AC230 /* WardrobeUsersInteractor.swift */,
 				31E4EBAC258E6A19001AC230 /* WardrobeUsersContainer.swift */,
+				138DF806259E4C350076081F /* WardrobeUserData.swift */,
 			);
 			path = WardrobeUsers;
 			sourceTree = "<group>";
@@ -1537,6 +1540,7 @@
 				318122BC2598B67500009886 /* SetupLookViewController.swift in Sources */,
 				31DD94A82597915600D2390C /* LookModels.swift in Sources */,
 				31E4EBBB258E6A45001AC230 /* SettingsPresenter.swift in Sources */,
+				138DF807259E4C350076081F /* WardrobeUserData.swift in Sources */,
 				0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */,
 				13A15A55259A3F8700B271B0 /* MyInvitesViewController.swift in Sources */,
 				31E6E725258CE33C00591F72 /* LoginPresenter.swift in Sources */,

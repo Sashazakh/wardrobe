@@ -16,6 +16,8 @@ final class WardrobeUsersContainer {
         router.viewController = viewController
 
         presenter.wardrobeId = context.wardrobeId
+        presenter.wardrobeName = context.wardrobeName
+
         return WardrobeUsersContainer(view: viewController, router: router)
 	}
 
@@ -27,4 +29,5 @@ final class WardrobeUsersContainer {
 
 struct WardrobeUsersContext {
     let wardrobeId: Int
+    let wardrobeName: String
 }

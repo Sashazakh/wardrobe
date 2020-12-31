@@ -39,7 +39,7 @@ protocol MainScreenInteractorOutput: class {
 }
 
 protocol MainScreenRouterInput: class {
-    func showDetailWardrope(id: Int)
+    func showDetailWardrope(id: Int, name: String)
     func showSettings(login: String, name: String, imageUrl: String)
     func showAddWardobeScreen(for user: String)
 }

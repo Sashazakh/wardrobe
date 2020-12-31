@@ -4,6 +4,7 @@ import UIKit
 protocol WardrobeDetailViewInput: class {
     func showAlert(alert: UIAlertController)
     func reloadData()
+    func setWardrobeName(with name: String)
 }
 
 protocol WardrobeDetailViewOutput: class {
@@ -26,7 +27,7 @@ protocol WardrobeDetailInteractorOutput: class {
 }
 
 protocol WardrobeDetailRouterInput: class {
-    func showPersons(with wardrobeId: Int)
+    func showPersons(wardrobeId: Int, wardrobeName: String)
     func showLookScreen(with lookId: Int)
     func showCreateLookScreen()
 }
