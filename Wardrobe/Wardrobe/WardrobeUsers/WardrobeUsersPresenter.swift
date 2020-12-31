@@ -20,6 +20,8 @@ final class WardrobeUsersPresenter {
         }
     }
 
+    private var isLoadView: Bool = false
+
     init(router: WardrobeUsersRouterInput, interactor: WardrobeUsersInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -32,11 +34,12 @@ extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
     }
 
     func didLoadView() {
-        if let name = wardrobeName {
+        if let name = wardrobeName, !isLoadView {
             view?.setWardrobeName(with: name)
         }
         guard let wardrobeId = wardrobeId else { return }
         interactor.loadWardrobeUsers(with: wardrobeId)
+        isLoadView = true
     }
 
     func didEditButtonTap() {

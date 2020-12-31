@@ -16,6 +16,8 @@ final class WardrobeDetailPresenter {
         }
     }
 
+    private var isLoadView: Bool = false
+
     init(router: WardrobeDetailRouterInput, interactor: WardrobeDetailInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -32,11 +34,12 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
     }
 
     func didLoadView() {
-        if let name = wardrobeName {
+        if let name = wardrobeName, !isLoadView {
             view?.setWardrobeName(with: name)
         }
         guard let id = wardrobeId else { return }
         interactor.loadLooks(with: id)
+        isLoadView = true
     }
 
     func personDidTap() {
