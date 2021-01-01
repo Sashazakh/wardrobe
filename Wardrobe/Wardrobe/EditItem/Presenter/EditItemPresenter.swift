@@ -46,7 +46,7 @@ extension EditItemPresenter: EditItemInteractorOutput {
         view?.setItemName(name: model.name)
 
         guard let urlString = model.imageURL,
-              let imageURL = URL(string: urlString) else {
+              let imageURL = URL(string: urlString + "&apikey=\(AuthService.shared.getApiKey())") else {
             view?.setItemImage(url: nil)
             return
         }
