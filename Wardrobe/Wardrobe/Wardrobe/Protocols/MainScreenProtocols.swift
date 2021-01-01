@@ -10,12 +10,14 @@ import Foundation
 import UIKit
 
 protocol MainScreenViewInput: class {
+    func reloadDataWithAnimation()
     func reloadData()
     func setUserName(name: String?)
     func setUserImage(with imageUrl: URL?)
     func startActivity()
     func endActivity()
     func showAlert(alert: UIAlertController)
+    func changeEditButton(state: EditButtonState)
 }
 
 protocol MainScreenViewOutput: class {
@@ -25,6 +27,8 @@ protocol MainScreenViewOutput: class {
     func didLoadView()
     func getNumberOfWardrobes() -> Int
     func wardrobe(at indexPath: IndexPath) -> WardrobeData?
+    func didEditButtonTap()
+    func isEditButtonTapped() -> Bool
 }
 
 protocol MainScreenInteractorInput: class {

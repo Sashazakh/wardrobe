@@ -9,7 +9,7 @@ final class WardrobeDetailViewController: UIViewController {
     private weak var backButton: UIButton!
     private weak var personButton: UIButton!
     private weak var collectionView: UICollectionView!
-
+    
     private var countOfCells = 20
     private let screenBounds = UIScreen.main.bounds
 
