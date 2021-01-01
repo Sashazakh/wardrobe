@@ -702,7 +702,46 @@ extension DataService: DataServiceInput {
         }
     }
 
-    func deleteItem(with id: Int) {
+    func getItem(id: Int,
+                 completion: @escaping (Result<EditItemRaw, NetworkError>) -> Void) {
+        let request = AF.request(getBaseURL() + "getItemById?item_id=\(id)&apikey=\(getApiKey())")
+        var result = Result<EditItemRaw, NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.responseDecodable(of: [EditItemRaw].self) { (response) in
+            switch response.result {
+            case .success(let data):
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    result.data = data.first
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+
+                completion(result)
+            }
+
+            completion(result)
+        }
     }
 
     func getUserLogin() -> String? {

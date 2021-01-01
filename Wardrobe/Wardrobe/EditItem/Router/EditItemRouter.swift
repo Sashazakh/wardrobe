@@ -5,4 +5,7 @@ final class EditItemRouter {
 }
 
 extension EditItemRouter: EditItemRouterInput {
+    func goBack() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
 }

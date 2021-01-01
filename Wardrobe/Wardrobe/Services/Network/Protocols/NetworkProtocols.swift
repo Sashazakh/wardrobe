@@ -46,6 +46,9 @@ protocol DataServiceInput {
     func getAllItems(for login: String,
                      completion: @escaping (Result<AllItemsRaw, NetworkError>) -> Void)
 
+    func getItem(id: Int,
+                 completion: @escaping (Result<EditItemRaw, NetworkError>) -> Void)
+
     func changeName(newName: String,
                     completion: @escaping (SingleResult<NetworkError>) -> Void)
 
