@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0D193175258F90FC0001529B /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D193174258F90FC0001529B /* MainTabBar.swift */; };
-		0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */; };
-		0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */; };
-		0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */; };
-		0D63E793258CF8550031AE6F /* NewItemScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78D258CF8550031AE6F /* NewItemScreenProtocols.swift */; };
-		0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */; };
-		0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */; };
 		0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E18A1258D02C8008273C8 /* Colors.swift */; };
 		0D95F20F258FE15B00E26D25 /* WardrobeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95F20E258FE15B00E26D25 /* WardrobeExtensions.swift */; };
 		0D95F215258FED2A00E26D25 /* ItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95F214258FED2A00E26D25 /* ItemCollectionCell.swift */; };
@@ -158,6 +152,12 @@
 		31EB193A259694AF00621DDF /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EB1939259694AF00621DDF /* SplashScreenViewController.swift */; };
 		31EC2949259FB20A0013527E /* EditItemsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC2948259FB20A0013527E /* EditItemsModels.swift */; };
 		31EC295325A0F2760013527E /* LookSettingsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC295225A0F2760013527E /* LookSettingsMenuView.swift */; };
+		31EC296D25A12C7F0013527E /* NewItemScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */; };
+		31EC296E25A12C7F0013527E /* NewItemScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */; };
+		31EC296F25A12C7F0013527E /* NewItemScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78D258CF8550031AE6F /* NewItemScreenProtocols.swift */; };
+		31EC297025A12C7F0013527E /* NewItemScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */; };
+		31EC297125A12C7F0013527E /* NewItemScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */; };
+		31EC297225A12C7F0013527E /* NewItemScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */; };
 		31F798F8259617C200DBDC2E /* MainTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */; };
 		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
 		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
@@ -362,12 +362,12 @@
 		0D63E789258CF83D0031AE6F /* NewItemScreen */ = {
 			isa = PBXGroup;
 			children = (
-				0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */,
-				0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */,
-				0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */,
-				0D63E78D258CF8550031AE6F /* NewItemScreenProtocols.swift */,
-				0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */,
-				0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */,
+				31EC296225A128FE0013527E /* Container */,
+				31EC296125A128EF0013527E /* Router */,
+				31EC296025A128EA0013527E /* Protocols */,
+				31EC295F25A128E50013527E /* View */,
+				31EC295E25A128CA0013527E /* Interactor */,
+				31EC295D25A128C10013527E /* Presenter */,
 			);
 			path = NewItemScreen;
 			sourceTree = "<group>";
@@ -1414,6 +1414,54 @@
 			path = SettingsMenu;
 			sourceTree = "<group>";
 		};
+		31EC295D25A128C10013527E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		31EC295E25A128CA0013527E /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		31EC295F25A128E50013527E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31EC296025A128EA0013527E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0D63E78D258CF8550031AE6F /* NewItemScreenProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		31EC296125A128EF0013527E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		31EC296225A128FE0013527E /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
 		31F798F6259617B200DBDC2E /* Container */ = {
 			isa = PBXGroup;
 			children = (
@@ -1612,6 +1660,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31EC296D25A12C7F0013527E /* NewItemScreenContainer.swift in Sources */,
+				31EC296E25A12C7F0013527E /* NewItemScreenRouter.swift in Sources */,
+				31EC296F25A12C7F0013527E /* NewItemScreenProtocols.swift in Sources */,
+				31EC297025A12C7F0013527E /* NewItemScreenViewController.swift in Sources */,
+				31EC297125A12C7F0013527E /* NewItemScreenInteractor.swift in Sources */,
+				31EC297225A12C7F0013527E /* NewItemScreenPresenter.swift in Sources */,
 				13A15A56259A3F8700B271B0 /* MyInvitesProtocols.swift in Sources */,
 				31CB1210259B647C00CEA505 /* CreateLookTableViewCell.swift in Sources */,
 				318122BD2598B67500009886 /* SetupLookProtocols.swift in Sources */,
@@ -1625,7 +1679,6 @@
 				31DD94A82597915600D2390C /* LookModels.swift in Sources */,
 				31E4EBBB258E6A45001AC230 /* SettingsPresenter.swift in Sources */,
 				138DF807259E4C350076081F /* WardrobeUserData.swift in Sources */,
-				0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */,
 				13A15A55259A3F8700B271B0 /* MyInvitesViewController.swift in Sources */,
 				31E6E725258CE33C00591F72 /* LoginPresenter.swift in Sources */,
 				31E6E6C8258BFD3700591F72 /* AppDelegate.swift in Sources */,
@@ -1683,7 +1736,6 @@
 				31E4EBCD258E6A59001AC230 /* InviteProtocols.swift in Sources */,
 				3181230D2599409900009886 /* AllItemsCollectionViewCellPresenter.swift in Sources */,
 				31E4EC67259231FC001AC230 /* AllItemsViewController.swift in Sources */,
-				0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */,
 				1386DE09259773DD003D0174 /* CreateWardobeData.swift in Sources */,
 				31CB121C259B671800CEA505 /* CreateLookCollectionViewCellPresenter.swift in Sources */,
 				31CB1215259B649C00CEA505 /* CreateLookTableViewCellPresetner.swift in Sources */,
@@ -1722,12 +1774,10 @@
 				31EC295325A0F2760013527E /* LookSettingsMenuView.swift in Sources */,
 				31E4EBCF258E6A59001AC230 /* InviteContainer.swift in Sources */,
 				31DD94B72597A1C200D2390C /* ItemCollectionVIewCellPresenter.swift in Sources */,
-				0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */,
 				31E4EB81258E679B001AC230 /* LookProtocols.swift in Sources */,
 				31E4EB7E258E679B001AC230 /* LookPresenter.swift in Sources */,
 				31F8C5152593754A003BB6E0 /* DataService.swift in Sources */,
 				31467C2925926E4B00B785FF /* AllItemsCollectionViewCell.swift in Sources */,
-				0D63E793258CF8550031AE6F /* NewItemScreenProtocols.swift in Sources */,
 				13A7462B258D0B4600643369 /* MainScreenPresenter.swift in Sources */,
 				0DE88521258E29CE00BFC856 /* CreateWardrobeRouter.swift in Sources */,
 				31E4EB80258E679B001AC230 /* LookViewController.swift in Sources */,
@@ -1745,7 +1795,6 @@
 				13B3A9E9259D1BA2003C306B /* WardrobeDetailData.swift in Sources */,
 				31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */,
 				136649752593DC51008C13EF /* DataServiceRawModels.swift in Sources */,
-				0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */,
 				1358A0AC259FB04200C44469 /* DropDownView.swift in Sources */,
 				136649B5259528C1008C13EF /* WardrobeData.swift in Sources */,
 				31E4EB53258E6601001AC230 /* EditItemInteractor.swift in Sources */,
@@ -1753,7 +1802,6 @@
 				13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */,
 				13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */,
 				3180ECE82593DC7300A046E5 /* LoginRawModels.swift in Sources */,
-				0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */,
 				31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */,
 				318122E22599279700009886 /* AllItemsCollectionViewCellViewModel.swift in Sources */,
 				3180ED0425949F3400A046E5 /* NetworkServiceErrors.swift in Sources */,
