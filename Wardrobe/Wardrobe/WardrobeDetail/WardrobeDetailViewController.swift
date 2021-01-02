@@ -207,7 +207,7 @@ final class WardrobeDetailViewController: UIViewController {
             .right(10)
             .height(0)
             .width(0)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.dropDownTableView.pin
                 .below(of: self.actionButton)
                 .marginTop(20)
@@ -226,7 +226,7 @@ final class WardrobeDetailViewController: UIViewController {
             .right(10)
             .height(100)
             .width(160)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.dropDownTableView.pin
                 .below(of: self.actionButton)
                 .marginTop(20)

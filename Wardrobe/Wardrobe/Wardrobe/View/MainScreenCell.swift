@@ -8,6 +8,8 @@ class MainScreenCell: WardrobeCell {
 
     weak var output: MainScreenViewOutput?
 
+    private var id: Int?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -68,6 +70,8 @@ class MainScreenCell: WardrobeCell {
     // MARK: Public functions
 
     public func configureCell(wardobeData: WardrobeData, output: MainScreenViewOutput?) {
+        id = wardobeData.id
+
         titleLable.text = wardobeData.name
 
         let url = URL(string: wardobeData.imageUrl ?? "")
@@ -80,6 +84,7 @@ class MainScreenCell: WardrobeCell {
     // MARK: User actions
 
     @objc private func didTapDeleteMarkButton(_ sender: Any) {
-        print("Hello")
+        guard let id = id else { return }
+        output?.didDeleteWardrobeTap(with: id)
     }
 }

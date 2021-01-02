@@ -71,10 +71,7 @@ extension EditItemInteractor: EditItemInteractorInput {
                 return
             }
 
-            guard let self = self,
-                  let newName = newName else {
-                return
-            }
+            guard let self = self else { return }
 
             self.model.name = newName
             self.output?.didSavedItemData()

@@ -6,7 +6,17 @@ final class ItemCollectionCell: UITableViewCell {
     private weak var itemCollectionView: UICollectionView!
     private weak var collectionLabel: UILabel!
     private weak var addButton: UIButton!
+    var output: AllClothesViewOutput?
+    var index: Int?
+    var localModel: CategoryData?
     private let screenBounds = UIScreen.main.bounds
+
+    func setData(output: AllClothesViewOutput, index: Int) {
+        self.output = output
+        self.index = index
+        readTitle()
+        readModel()
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,6 +32,17 @@ final class ItemCollectionCell: UITableViewCell {
         super.layoutSubviews()
         layoutUI()
     }
+
+    private func readTitle() {
+        guard let index = self.index else { return }
+        collectionLabel.text = output?.getTitle(for: index)
+    }
+
+    private func readModel() {
+        guard let index = self.index else { return }
+        guard let output = self.output else { return }
+        self.localModel = output.getCategory(for: index)
+    }
 }
 
 extension ItemCollectionCell {
@@ -34,7 +55,6 @@ extension ItemCollectionCell {
     }
 
     private func layoutUI() {
-        layoutView()
         layoutCollectionLabel()
         layoutItemCollectionView()
         layoutAddButton()
@@ -45,7 +65,6 @@ extension ItemCollectionCell {
     private func setupCollectionLabel() {
         let label = UILabel()
         collectionLabel = label
-        collectionLabel.text = "Проверка"
         collectionLabel.textColor = GlobalColors.darkColor
         collectionLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         addSubview(collectionLabel)
@@ -66,7 +85,7 @@ extension ItemCollectionCell {
         itemCollectionView.backgroundColor = .clear
         itemCollectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         itemCollectionView.showsHorizontalScrollIndicator = false
-        itemCollectionView.register(WardrobeCell.self, forCellWithReuseIdentifier: WardrobeCell.identifier)
+        itemCollectionView.register(AllClothesItemCell.self, forCellWithReuseIdentifier: AllClothesItemCell.identifier)
         if let flowLayout = itemCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let marginSides = screenBounds.width * 0.053
             let marginBottom = screenBounds.height * 0.023
@@ -107,20 +126,16 @@ extension ItemCollectionCell {
         addButton.layer.cornerRadius = addButton.frame.width / 2
         addButton.dropShadow(offset: CGSize(width: 0, height: 2), radius: 2, opacity: 0.4)
     }
-
-    // MARK: Hacker techniques
-    private func layoutView() {
-        self.pin
-//            .left(10)
-//            .right(10)
-        // self.dropShadow()
-    }
-
 }
 
 extension ItemCollectionCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.localModel?.items.count ?? 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let data = localModel?.items[indexPath.row] else { return }
+        output?.didTapItem(itemId: data.clothesID)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
@@ -136,7 +151,10 @@ extension ItemCollectionCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WardrobeCell.identifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AllClothesItemCell.identifier, for: indexPath)
+                as? AllClothesItemCell else { return UICollectionViewCell() }
+        guard let data = localModel?.items[indexPath.row] else { return UICollectionViewCell() }
+        cell.setData(data: data)
         return cell
     }
 

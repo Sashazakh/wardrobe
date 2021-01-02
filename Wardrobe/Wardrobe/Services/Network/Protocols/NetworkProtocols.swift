@@ -1,5 +1,17 @@
 import UIKit
 
+protocol Service {
+    func getUserLogin() -> String?
+
+    func getUserName() -> String?
+
+    func getUserImageURL() -> String?
+
+    func dropUser()
+
+    func getImageId() -> String?
+}
+
 protocol AuthServiceInput {
     func register(login: String,
                   fio: String,
@@ -12,19 +24,10 @@ protocol AuthServiceInput {
                completion: @escaping (Result<LoginResponse, NetworkError>) -> Void)
 
     func isAuthorized(completion: @escaping (Result<Bool, NetworkError>) -> Void)
-
-    func getUserLogin() -> String?
-
-    func getUserName() -> String?
-
-    func getUserImageURL() -> String?
-
-    func dropUser()
 }
 
 protocol DataServiceInput {
-    func getUserWardrobes(for user: String,
-                          completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void)
+    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void)
 
     func getAllLookClothes(with id: Int,
                            completion: @escaping (Result<LookRaw, NetworkError>) -> Void)
@@ -69,4 +72,7 @@ protocol DataServiceInput {
 
     func getLooks(for wardrobeId: Int,
                   completion: @escaping (Result<[WardrobeDetailLookRaw], NetworkError>) -> Void)
+
+    func deleteWardrobe(with id: Int,
+                        completion: @escaping (SingleResult<NetworkError>) -> Void)
 }

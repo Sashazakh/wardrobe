@@ -69,13 +69,16 @@ extension DataService: DataServiceInput {
     }
 
     func changePhoto(newPhotoData: Data,
-                     completion: @escaping (SingleResult<NetworkError>) -> Void) {
+                     completion: @escaping (Result<ResponseEditString, NetworkError>) -> Void) {
+        guard let user = getUserLogin() else { return }
+
         let parameters: [String: String] = [
-            "login": "\(String(describing: getlogin()))"
+            "login": "\(user)",
+            "apikey": getApiKey()
         ]
 
-        var result = SingleResult<NetworkError>()
-        let url = "jopa"
+        var result = Result<ResponseEditString, NetworkError>()
+        let url = getBaseURL() + "changeAvatar"
 
         guard NetworkReachabilityManager()?.isReachable ?? false else {
             result.error = .networkNotReachable
@@ -91,27 +94,10 @@ extension DataService: DataServiceInput {
                      }
                 }
         },
-        to: url).response(completionHandler: { (response) in
+        to: url).responseDecodable(of: [ResponseEditString].self) { response in
             switch response.result {
-            case .success:
-                guard let statusCode = response.response?.statusCode else {
-                    result.error = .unknownError
-                    completion(result)
-                    return
-                }
-
-                switch statusCode {
-                case ResponseCode.success.code:
-                    completion(result)
-                case ResponseCode.error.code:
-                    result.error = .networkNotReachable
-                    completion(result)
-                    return
-                default:
-                    result.error = .unknownError
-                    completion(result)
-                    return
-                }
+            case .success(let url):
+                result.data = url.first
             case .failure(let error):
                 if error.isInvalidURLError {
                     result.error = .connectionToServerError
@@ -120,15 +106,15 @@ extension DataService: DataServiceInput {
                 }
             }
             completion(result)
-        })
+        }
     }
 
     // MARK: Wardrobe
 
-    func getUserWardrobes(for user: String,
-                          completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
+    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
 
-        let url = getBaseURL() + "getWardrobes?login=\(user)&apikey=\(getApiKey())"
+        guard let login = getUserLogin() else { return }
+        let url = getBaseURL() + "getWardrobes?login=\(login)&apikey=\(getApiKey())"
 
         let request = AF.request(url)
 
@@ -217,6 +203,50 @@ extension DataService: DataServiceInput {
                 completion(result)
             }
         })
+    }
+
+    func deleteWardrobe(with id: Int,
+                        completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        let url = getBaseURL() + "deleteWardrobe?wardrobe_id=\(id)&apikey=\(getApiKey())"
+
+        var result = SingleResult<NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        let request = AF.request(url)
+        request.response { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+        }
     }
 
     // MARK: Wardrobe detail
@@ -807,23 +837,7 @@ extension DataService: DataServiceInput {
         }
     }
 
-    func getUserLogin() -> String? {
-        return UserDefaults.standard.string(forKey: Constants.loginKey)
-    }
-
     func setNewUserName(newName: String) {
         UserDefaults.standard.setValue(newName, forKey: Constants.userNameKey)
     }
-}
-
-struct Constants {
-    static let authKey: String = "isAuthorized"
-
-    static let loginKey: String = "login"
-
-    static let userNameKey: String = "username"
-
-    static let passwordKey: String = "password"
-
-    static let imageURLKey: String = "imageURL"
 }

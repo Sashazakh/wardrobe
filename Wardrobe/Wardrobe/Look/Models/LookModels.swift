@@ -19,3 +19,12 @@ struct ItemData {
 
     let imageURL: String?
 }
+
+extension ItemData {
+    init(with data: ItemRaw) {
+        self.clothesID = data.clothesID
+        self.category = data.category
+        self.clothesName = data.clothesName
+        self.imageURL = data.imageURL
+    }
+}
