@@ -253,7 +253,7 @@ extension EditItemViewController: EditItemViewInput {
             return
         }
 
-        itemPhotoImageView.kf.setImage(with: url)
+        itemPhotoImageView.kf.setImage(with: url, options: [.forceRefresh])
     }
 
     func getItemImageData() -> Data? {
