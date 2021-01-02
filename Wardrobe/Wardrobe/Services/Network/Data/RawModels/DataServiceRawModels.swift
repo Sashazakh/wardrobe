@@ -44,6 +44,20 @@ struct ItemRaw: Decodable {
     }
 }
 
+struct EditItemRaw: Decodable {
+    let clothesID: Int
+    let clothesName: String
+    let imageURL: String?
+    let imageID: Int?
+
+    private enum CodingKeys: String, CodingKey {
+        case clothesID = "clothes_id"
+        case clothesName = "clothes_name"
+        case imageURL = "image_url"
+        case imageID = "image_id"
+    }
+}
+
 struct AllItemsRaw: Decodable {
     let categories: [String]
     let clothes: [ItemRaw]

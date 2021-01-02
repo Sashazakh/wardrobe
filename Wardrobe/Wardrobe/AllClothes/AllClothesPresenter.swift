@@ -13,6 +13,9 @@ final class AllClothesPresenter {
 }
 
 extension AllClothesPresenter: AllClothesViewOutput {
+    func didTapItem() {
+        router.showEditItemScreen()
+    }
 }
 
 extension AllClothesPresenter: AllClothesInteractorOutput {
