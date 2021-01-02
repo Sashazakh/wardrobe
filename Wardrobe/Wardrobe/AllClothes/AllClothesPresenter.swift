@@ -18,6 +18,10 @@ final class AllClothesPresenter {
 }
 
 extension AllClothesPresenter: AllClothesViewOutput {
+    func didTapAddItem(category: String) {
+        router.showAddItemScreen(category: category)
+    }
+
     func getCategory(for index: Int) -> CategoryData? {
         guard let data = self.model else { return nil }
         if index < data.categories.count {
