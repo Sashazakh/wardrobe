@@ -10,11 +10,13 @@ final class LookViewController: UIViewController {
 
     private weak var backToWardrobe: UIButton!
 
-    private weak var editLookButton: UIButton!
+    private weak var lookParamsButton: UIButton!
 
     private weak var lookTableView: UITableView!
 
     private weak var addItemsButton: UIButton!
+
+    private weak var dropMenuView: LookSettingsMenuView!
 
     private var lookIsEditing: Bool = false
 
@@ -33,9 +35,9 @@ final class LookViewController: UIViewController {
         layoutBackgroundView()
         layoutLookName()
         layoutBackToWardrobe()
-        layoutEditLookButton()
+        layoutLookParamsButton()
         layoutLookTableView()
-        layoutAddItemsButton()
+        layoutDropMenuView()
     }
 
     private func setupView() {
@@ -46,9 +48,9 @@ final class LookViewController: UIViewController {
         setupBackgroundView()
         setupLookName()
         setupBackToWardrobe()
-        setupEditLookButton()
+        setupLookParamsButton()
         setupLookTableView()
-        setupAddItemsButton()
+        setupDropMenuView()
     }
 
     private func setupBackgroundView() {
@@ -91,19 +93,20 @@ final class LookViewController: UIViewController {
         backToWardrobe.addTarget(self, action: #selector(didTapBackToWardrobeButton), for: .touchUpInside)
     }
 
-    private func setupEditLookButton() {
+    private func setupLookParamsButton() {
         let button = UIButton()
 
-        editLookButton = button
-        backgroundView.addSubview(editLookButton)
+        lookParamsButton = button
+        backgroundView.addSubview(lookParamsButton)
 
-        editLookButton.setImage(UIImage(systemName: "square.and.pencil",
-                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+        lookParamsButton.setImage(UIImage(named: "more",
+                                        in: Bundle.main,
+                                        with: UIImage.SymbolConfiguration(weight: .bold)),
                                         for: .normal)
-        editLookButton.tintColor = GlobalColors.backgroundColor
-        editLookButton.contentVerticalAlignment = .fill
-        editLookButton.contentHorizontalAlignment = .fill
-        editLookButton.addTarget(self, action: #selector(didTapEditLookButton), for: .touchUpInside)
+        lookParamsButton.tintColor = GlobalColors.backgroundColor
+        lookParamsButton.contentVerticalAlignment = .fill
+        lookParamsButton.contentHorizontalAlignment = .fill
+        lookParamsButton.addTarget(self, action: #selector(didTapLookParamsButton), for: .touchUpInside)
     }
 
     private func setupLookTableView() {
@@ -127,22 +130,16 @@ final class LookViewController: UIViewController {
         lookTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
     }
 
-    private func setupAddItemsButton() {
-        let button = UIButton()
+    private func setupDropMenuView() {
+        let menu = LookSettingsMenuView()
 
-        addItemsButton = button
-        view.addSubview(addItemsButton)
+        dropMenuView = menu
+        view.addSubview(dropMenuView)
 
-        addItemsButton.isHidden = true
-        addItemsButton.backgroundColor = GlobalColors.mainBlueScreen
-        addItemsButton.layer.cornerRadius = 10
-        addItemsButton.dropShadow()
-
-        addItemsButton.titleLabel?.font = UIFont(name: "DMSans-Regular", size: 15)
-        addItemsButton.setTitleColor(.white, for: .normal)
-        addItemsButton.setTitle("Добавить предметы", for: .normal)
-
-        addItemsButton.addTarget(self, action: #selector(didTapAddItemsButton), for: .touchUpInside)
+        dropMenuView.output = output
+        dropMenuView.dropShadow()
+        dropMenuView.isUserInteractionEnabled = true
+        dropMenuView.isHidden = true
     }
 
     private func layoutBackgroundView() {
@@ -170,13 +167,13 @@ final class LookViewController: UIViewController {
             .left(5%)
     }
 
-    private func layoutEditLookButton() {
-        editLookButton.pin
+    private func layoutLookParamsButton() {
+        lookParamsButton.pin
             .height(25)
             .width(25)
 
-        editLookButton.pin
-            .top(lookName.frame.midY - editLookButton.bounds.height / 2)
+        lookParamsButton.pin
+            .top(lookName.frame.midY - lookParamsButton.bounds.height / 2)
             .right(5%)
     }
 
@@ -185,35 +182,15 @@ final class LookViewController: UIViewController {
             .below(of: backgroundView)
             .hCenter()
             .width(100%)
-            .bottom((tabBarController?.tabBar.frame.height ?? 0) + 55)
-
-        let gradientLayerUp = CAGradientLayer()
-
-        gradientLayerUp.frame = CGRect(x: .zero,
-                                     y: lookTableView.frame.minY,
-                                     width: lookTableView.bounds.width,
-                                     height: 4)
-        gradientLayerUp.colors = [GlobalColors.mainBlueScreen.cgColor,
-                                  UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
-        view.layer.addSublayer(gradientLayerUp)
-
-        let gradientLayerDown = CAGradientLayer()
-
-        gradientLayerDown.frame = CGRect(x: .zero,
-                                     y: lookTableView.frame.maxY - 4,
-                                     width: lookTableView.bounds.width,
-                                     height: 4)
-        gradientLayerDown.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
-                                    UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
-        view.layer.addSublayer(gradientLayerDown)
+            .bottom(tabBarController?.tabBar.frame.height ?? 0)
     }
 
-    private func layoutAddItemsButton() {
-        addItemsButton.pin
-            .top(lookTableView.frame.maxY + 5)
-            .hCenter()
-            .width(96%)
-            .height(44)
+    private func layoutDropMenuView() {
+        dropMenuView.pin
+            .width(160)
+            .height(100)
+            .below(of: lookParamsButton).marginTop(1%)
+            .right(3%)
     }
 
     @objc
@@ -222,29 +199,23 @@ final class LookViewController: UIViewController {
     }
 
     @objc
-    private func didTapEditLookButton() {
-        output?.didTapEditLookButton()
-    }
-
-    @objc
-    private func didTapAddItemsButton() {
-        output?.didTapAddItemsButton()
+    private func didTapLookParamsButton() {
+        output?.didTapLookParamsButton()
     }
 }
 
 extension LookViewController: LookViewInput {
     func showEditLayout() {
-        editLookButton.setImage(UIImage(systemName: "checkmark",
+        lookParamsButton.setImage(UIImage(systemName: "checkmark",
                                         withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
                                         for: .normal)
-        addItemsButton.isHidden = false
     }
 
     func hideEditLayout() {
-        editLookButton.setImage(UIImage(systemName: "square.and.pencil",
-                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+        lookParamsButton.setImage(UIImage(named: "more",
+                                        in: Bundle.main,
+                                        with: UIImage.SymbolConfiguration(weight: .bold)),
                                         for: .normal)
-        addItemsButton.isHidden = true
     }
 
     func setLookIsEditing(isEditing: Bool) {
@@ -269,6 +240,14 @@ extension LookViewController: LookViewInput {
 
     func setLookTitle(with text: String) {
         lookName.text = "Набор\n\"\(text)\""
+    }
+
+    func showDropMenu() {
+        dropMenuView.isHidden = false
+    }
+
+    func hideDropMenu() {
+        dropMenuView.isHidden = true
     }
 }
 

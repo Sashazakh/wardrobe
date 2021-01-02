@@ -9,6 +9,8 @@ final class LookPresenter {
 
     private var isEditing: Bool = false
 
+    private var menuIsDropped: Bool = false
+
     private var model: LookData?
 
     init(router: LookRouterInput, interactor: LookInteractorInput) {
@@ -18,18 +20,19 @@ final class LookPresenter {
 }
 
 extension LookPresenter: LookViewOutput {
-    func didTapEditLookButton() {
-        isEditing ? view?.hideEditLayout() : view?.showEditLayout()
-        isEditing = !isEditing
-        view?.setLookIsEditing(isEditing: isEditing)
+    func didTapLookParamsButton() {
+        if self.isEditing {
+            self.isEditing = false
+            view?.hideEditLayout()
+            view?.setLookIsEditing(isEditing: self.isEditing)
+        } else {
+            menuIsDropped = !menuIsDropped
+            menuIsDropped ? view?.showDropMenu() : view?.hideDropMenu()
+        }
     }
 
     func didTapBackToWardrobeButton() {
         router.showWardrobeScreen()
-    }
-
-    func didTapAddItemsButton() {
-        router.showAllItemsScreen(lookID: interactor.getLookID())
     }
 
     func didLoadView() {
@@ -59,6 +62,22 @@ extension LookPresenter: LookViewOutput {
 
     func didUserAddItems(items: [ItemData]) {
         interactor.appendItemsToLook(items: items)
+    }
+
+    func didTapDeleteItems() {
+        menuIsDropped = false
+        view?.hideDropMenu()
+        self.isEditing = true
+
+        view?.showEditLayout()
+        view?.setLookIsEditing(isEditing: self.isEditing)
+    }
+
+    func didTapAddItems() {
+        menuIsDropped = false
+        view?.hideDropMenu()
+
+        router.showAllItemsScreen(lookID: interactor.getLookID())
     }
 }
 
