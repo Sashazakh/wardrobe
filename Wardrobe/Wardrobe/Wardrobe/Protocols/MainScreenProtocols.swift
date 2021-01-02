@@ -29,17 +29,20 @@ protocol MainScreenViewOutput: class {
     func wardrobe(at indexPath: IndexPath) -> WardrobeData?
     func didEditButtonTap()
     func isEditButtonTapped() -> Bool
+    func didDeleteWardrobeTap(with id: Int)
 }
 
 protocol MainScreenInteractorInput: class {
-    func loadUserWardobes(for user: String)
+    func loadUserWardobes()
     func loadUserData()
+    func deleteWardrobe(with id: Int)
 }
 
 protocol MainScreenInteractorOutput: class {
     func didReceive(with wardrobes: [WardrobeData])
     func didReceive(name: String?, imageUrl: String?)
     func showAlert(title: String, message: String)
+    func didDelete()
 }
 
 protocol MainScreenRouterInput: class {

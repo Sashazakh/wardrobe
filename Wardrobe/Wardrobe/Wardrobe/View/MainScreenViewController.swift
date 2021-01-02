@@ -271,13 +271,11 @@ final class MainScreenViewController: UIViewController {
 
 extension MainScreenViewController: MainScreenViewInput {
     func changeEditButton(state: EditButtonState) {
-        func changeEditButton(state: EditButtonState) {
-            switch state {
-            case .edit:
-                editButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
-            case .accept:
-                editButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
-            }
+        switch state {
+        case .edit:
+            editButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        case .accept:
+            editButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
         }
     }
 

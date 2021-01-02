@@ -11,7 +11,8 @@ final class AuthService: NetworkService {
     private func saveUser(login: String,
                           password: String,
                           userName: String?,
-                          imageURL: String?) {
+                          imageURL: String?,
+                          imageId: Int?) {
 
         UserDefaults.standard.setValue(true, forKey: Constants.authKey)
 
@@ -29,6 +30,10 @@ final class AuthService: NetworkService {
         }
 
         UserDefaults.standard.setValue(imageURL, forKey: Constants.imageURLKey)
+
+        guard let imageId = imageId else { return }
+
+        UserDefaults.standard.setValue(imageId, forKey: Constants.imageIdKey)
     }
 }
 
@@ -122,7 +127,8 @@ extension AuthService: AuthServiceInput {
             self.saveUser(login: login,
                           password: password,
                           userName: result.data?.userName,
-                          imageURL: result.data?.imageURL)
+                          imageURL: result.data?.imageURL,
+                          imageId: result.data?.imageId)
             completion(result)
         }
     }
@@ -192,42 +198,9 @@ extension AuthService: AuthServiceInput {
               self.saveUser(login: login,
                             password: password,
                             userName: result.data?.userName,
-                            imageURL: result.data?.imageURL)
+                            imageURL: result.data?.imageURL,
+                            imageId: result.data?.imageId)
               completion(result)
           }
       }
-
-    func getUserLogin() -> String? {
-        return UserDefaults.standard.string(forKey: Constants.loginKey)
-    }
-
-    func getUserName() -> String? {
-        return UserDefaults.standard.string(forKey: Constants.userNameKey)
-    }
-
-    func getUserImageURL() -> String? {
-        return UserDefaults.standard.string(forKey: Constants.imageURLKey)
-    }
-
-    func dropUser() {
-        UserDefaults.standard.removeObject(forKey: Constants.authKey)
-        UserDefaults.standard.removeObject(forKey: Constants.loginKey)
-        UserDefaults.standard.removeObject(forKey: Constants.userNameKey)
-        UserDefaults.standard.removeObject(forKey: Constants.passwordKey)
-        UserDefaults.standard.removeObject(forKey: Constants.imageURLKey)
-    }
-}
-
-extension AuthService {
-    struct Constants {
-        static let authKey: String = "isAuthorized"
-
-        static let loginKey: String = "login"
-
-        static let userNameKey: String = "username"
-
-        static let passwordKey: String = "password"
-
-        static let imageURLKey: String = "imageURL"
-    }
 }

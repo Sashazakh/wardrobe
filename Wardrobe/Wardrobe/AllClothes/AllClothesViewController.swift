@@ -21,6 +21,7 @@ final class AllClothesViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         setupUI()
+        output?.didLoadView()
 	}
 
     override func viewDidLayoutSubviews() {
@@ -147,11 +148,7 @@ extension AllClothesViewController {
 
 extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        output?.didTapItem()
+        return output?.getCategoriesCount() ?? 0
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -159,11 +156,21 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = categoriesTableView.dequeueReusableCell(withIdentifier: ItemCollectionCell.reuseIdentifier, for: indexPath)
+        guard let cell = categoriesTableView.dequeueReusableCell(
+                withIdentifier: ItemCollectionCell.reuseIdentifier, for: indexPath) as? ItemCollectionCell
+        else {
+            return UITableViewCell()
+        }
+        guard let presenter = self.output else { return UITableViewCell() }
+        cell.setData(output: presenter, index: indexPath.row)
         return cell
     }
 
 }
 
 extension AllClothesViewController: AllClothesViewInput {
+    func reloadData() {
+        self.categoriesTableView.reloadData()
+    }
+
 }

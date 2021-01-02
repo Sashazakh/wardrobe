@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0D193175258F90FC0001529B /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D193174258F90FC0001529B /* MainTabBar.swift */; };
+		0D39F680259D598500557FE3 /* AllClothesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D39F67F259D598500557FE3 /* AllClothesModels.swift */; };
+		0D39F68A259D685600557FE3 /* AllClothesItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D39F689259D685600557FE3 /* AllClothesItemCell.swift */; };
+		0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */; };
+		0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */; };
+		0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */; };
+		0D63E793258CF8550031AE6F /* NewItemScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78D258CF8550031AE6F /* NewItemScreenProtocols.swift */; };
+		0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */; };
+		0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */; };
 		0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E18A1258D02C8008273C8 /* Colors.swift */; };
 		0D95F20F258FE15B00E26D25 /* WardrobeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95F20E258FE15B00E26D25 /* WardrobeExtensions.swift */; };
 		0D95F215258FED2A00E26D25 /* ItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95F214258FED2A00E26D25 /* ItemCollectionCell.swift */; };
@@ -169,6 +177,8 @@
 /* Begin PBXFileReference section */
 		03A1B9047E3A9526460D1CD4 /* Pods_Wardrobe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wardrobe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D193174258F90FC0001529B /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		0D39F67F259D598500557FE3 /* AllClothesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllClothesModels.swift; sourceTree = "<group>"; };
+		0D39F689259D685600557FE3 /* AllClothesItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllClothesItemCell.swift; sourceTree = "<group>"; };
 		0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenPresenter.swift; sourceTree = "<group>"; };
 		0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenRouter.swift; sourceTree = "<group>"; };
 		0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemScreenViewController.swift; sourceTree = "<group>"; };
@@ -359,6 +369,15 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		0D39F682259D65D000557FE3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0D95F214258FED2A00E26D25 /* ItemCollectionCell.swift */,
+				0D39F689259D685600557FE3 /* AllClothesItemCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		0D63E789258CF83D0031AE6F /* NewItemScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,7 +562,6 @@
 			children = (
 				136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */,
 				139EF327258E3DC900A9435B /* WardrobeCell.swift */,
-				0D95F214258FED2A00E26D25 /* ItemCollectionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1035,12 +1053,14 @@
 		31E4EBD2258E6C8F001AC230 /* AllClothes */ = {
 			isa = PBXGroup;
 			children = (
+				0D39F682259D65D000557FE3 /* Cells */,
 				31E4EBD3258E6CA4001AC230 /* AllClothesPresenter.swift */,
 				31E4EBD4258E6CA4001AC230 /* AllClothesRouter.swift */,
 				31E4EBD5258E6CA4001AC230 /* AllClothesViewController.swift */,
 				31E4EBD6258E6CA4001AC230 /* AllClothesProtocols.swift */,
 				31E4EBD7258E6CA4001AC230 /* AllClothesInteractor.swift */,
 				31E4EBD8258E6CA4001AC230 /* AllClothesContainer.swift */,
+				0D39F67F259D598500557FE3 /* AllClothesModels.swift */,
 			);
 			path = AllClothes;
 			sourceTree = "<group>";
@@ -1695,6 +1715,7 @@
 				0D95F215258FED2A00E26D25 /* ItemCollectionCell.swift in Sources */,
 				318122DB25991D0800009886 /* AllItemsModel.swift in Sources */,
 				31E4EBAD258E6A19001AC230 /* WardrobeUsersPresenter.swift in Sources */,
+				0D39F680259D598500557FE3 /* AllClothesModels.swift in Sources */,
 				31E4EB71258E673D001AC230 /* WardrobeDetailViewController.swift in Sources */,
 				31467C462592813A00B785FF /* CreateLookInteractor.swift in Sources */,
 				31DD94B02597A0B800D2390C /* LookTableViewCellViewModel.swift in Sources */,
@@ -1787,6 +1808,7 @@
 				31E4EBDC258E6CA4001AC230 /* AllClothesProtocols.swift in Sources */,
 				138B8250259B4F64000B138B /* MyInvitesData.swift in Sources */,
 				0DE88525258E29CE00BFC856 /* CreateWardrobeContainer.swift in Sources */,
+				0D39F68A259D685600557FE3 /* AllClothesItemCell.swift in Sources */,
 				31467C422592813A00B785FF /* CreateLookPresenter.swift in Sources */,
 				31E4EBB0258E6A19001AC230 /* WardrobeUsersProtocols.swift in Sources */,
 				31E4EC68259231FC001AC230 /* AllItemsProtocols.swift in Sources */,
@@ -1946,7 +1968,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = coffeemilk1337.Wardrobe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wardrobeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1967,7 +1989,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = coffeemilk1337.Wardrobe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wardrobeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

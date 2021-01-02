@@ -19,6 +19,19 @@ final class WardrobeUsersInteractor {
 }
 
 extension WardrobeUsersInteractor: WardrobeUsersInteractorInput {
+    func deleteUser(login: String, wardrobeId: Int) {
+        DataService.shared.deleteUserFromWardrobe(wardrobeId: wardrobeId,
+                                                  login: login) { [weak self](result) in
+            guard let self = self else { return }
+            if let error = result.error {
+                self.handleError(with: error)
+                return
+            }
+
+            self.output?.didDelete()
+        }
+    }
+
     func loadWardrobeUsers(with wardrobeId: Int) {
         DataService.shared.getWardroeUsers(with: wardrobeId) { [weak self](result) in
             guard let self = self else { return }

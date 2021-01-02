@@ -5,6 +5,7 @@ protocol SettingsViewInput: class {
     func setUserName(name: String?)
     func setUserImage(with imageUrl: URL?)
     func showAlert(alert: UIAlertController)
+    func refreshImage(with imageUrl: URL?)
 }
 
 protocol SettingsViewOutput: class {
@@ -26,7 +27,7 @@ protocol SettingsInteractorOutput: class {
     func didAllKeysDeleted()
     func didNameChanged()
     func showAlert(title: String, message: String)
-    func upadateImage()
+    func upadateImage(imageUrl: String)
     func didReceive(name: String?, imageUrl: String?)
 }
 
