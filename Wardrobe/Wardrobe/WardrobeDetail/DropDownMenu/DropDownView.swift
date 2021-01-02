@@ -42,7 +42,7 @@ class DropDownView: UIView {
     }
 
     private func setupViews() {
-        isUserInteractionEnabled = true
+        setupMainView()
         setupDropTable()
     }
 
@@ -51,6 +51,10 @@ class DropDownView: UIView {
     }
 
     // MARK: Setup views
+
+    private func setupMainView() {
+        isUserInteractionEnabled = true
+    }
 
     private func setupDropTable() {
         let tbl = UITableView()
@@ -61,6 +65,7 @@ class DropDownView: UIView {
         dropTable.separatorStyle = .none
         dropTable.isScrollEnabled = false
         dropTable.register(DropTableCell.self, forCellReuseIdentifier: DropTableCell.identifier)
+        dropTable.backgroundColor = GlobalColors.backgroundColor
         self.addSubview(tbl)
     }
 
