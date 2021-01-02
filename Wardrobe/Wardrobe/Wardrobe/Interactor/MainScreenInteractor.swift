@@ -27,8 +27,21 @@ final class MainScreenInteractor {
 }
 
 extension MainScreenInteractor: MainScreenInteractorInput {
-    func loadUserWardobes(for user: String) {
-        DataService.shared.getUserWardrobes(for: user) { [weak self] result in
+    func deleteWardrobe(with id: Int) {
+        DataService.shared.deleteWardrobe(with: id) { [weak self] result in
+            guard let self = self else { return }
+
+            if let error = result.error {
+                self.handleError(with: error)
+                return
+            }
+
+            self.output?.didDelete()
+        }
+    }
+
+    func loadUserWardobes() {
+        DataService.shared.getUserWardrobes { [weak self] result in
             guard let self = self else { return }
 
             if let error = result.error {

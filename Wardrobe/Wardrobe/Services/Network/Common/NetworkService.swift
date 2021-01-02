@@ -62,6 +62,8 @@ extension NetworkService {
 
         static let baseURL: String = "PROD_HOST"
 
+        static let imageId: String = "IMAGE_ID"
+        
         static let suckBigBlackMambaDick: String = "blowjob"
     }
 }

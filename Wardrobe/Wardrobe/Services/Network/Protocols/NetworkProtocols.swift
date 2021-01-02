@@ -23,8 +23,7 @@ protocol AuthServiceInput {
 }
 
 protocol DataServiceInput {
-    func getUserWardrobes(for user: String,
-                          completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void)
+    func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void)
 
     func getAllLookClothes(with id: Int,
                            completion: @escaping (Result<LookRaw, NetworkError>) -> Void)
@@ -69,4 +68,7 @@ protocol DataServiceInput {
 
     func getLooks(for wardrobeId: Int,
                   completion: @escaping (Result<[WardrobeDetailLookRaw], NetworkError>) -> Void)
+
+    func deleteWardrobe(with id: Int,
+                        completion: @escaping (SingleResult<NetworkError>) -> Void)
 }

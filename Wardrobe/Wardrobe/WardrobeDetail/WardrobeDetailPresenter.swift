@@ -60,6 +60,7 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
     }
 
     func didPersonTap() {
+        view?.hideDropMenu()
         guard let id = wardrobeId, let name = wardrobeName else { return }
         router.showPersons(wardrobeId: id, wardrobeName: name)
     }

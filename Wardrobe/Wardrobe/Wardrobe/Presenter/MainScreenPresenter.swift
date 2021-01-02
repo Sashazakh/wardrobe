@@ -35,10 +35,14 @@ final class MainScreenPresenter {
 }
 
 extension MainScreenPresenter: MainScreenViewOutput {
+    func didDeleteWardrobeTap(with id: Int) {
+        interactor.deleteWardrobe(with: id)
+    }
+
     func didLoadView() {
         view?.startActivity()
         interactor.loadUserData()
-        interactor.loadUserWardobes(for: userLogin ?? "")
+        interactor.loadUserWardobes()
     }
 
     func addWardrobeDidTap() {
@@ -102,5 +106,9 @@ extension MainScreenPresenter: MainScreenInteractorOutput {
         } else {
             view?.setUserImage(with: nil)
         }
+    }
+
+    func didDelete() {
+        interactor.loadUserWardobes()
     }
 }
