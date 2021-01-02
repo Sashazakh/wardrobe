@@ -22,6 +22,8 @@ final class MainScreenPresenter {
         }
     }
 
+    private var isUserEditButtonTapped: Bool = false
+
     var userName: String?
     var userLogin: String?
     var imageUrlString: String?
@@ -41,6 +43,20 @@ extension MainScreenPresenter: MainScreenViewOutput {
 
     func addWardrobeDidTap() {
         router.showAddWardobeScreen(for: userLogin ?? "")
+    }
+
+    func didEditButtonTap() {
+        isUserEditButtonTapped = !isUserEditButtonTapped
+        view?.reloadDataWithAnimation()
+        if isEditButtonTapped() {
+            view?.changeEditButton(state: .accept)
+        } else {
+            view?.changeEditButton(state: .edit)
+        }
+    }
+
+    func isEditButtonTapped() -> Bool {
+        return isUserEditButtonTapped
     }
 
     func showDetailDidTap(at indexPath: IndexPath) {
