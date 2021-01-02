@@ -41,10 +41,7 @@ class MainScreenCell: WardrobeCell {
                                         for: .normal)
         deleteMarkButton.tintColor = GlobalColors.backgroundColor
         deleteMarkButton.addTarget(self, action: #selector(didTapDeleteMarkButton), for: .touchUpInside)
-        deleteMarkButton.backgroundColor = UIColor(red: 240 / 255,
-                                                   green: 98 / 255,
-                                                   blue: 98 / 255,
-                                                   alpha: 1)
+        deleteMarkButton.backgroundColor = GlobalColors.redCancelColor
         deleteMarkButton.layer.cornerRadius = 10
     }
 

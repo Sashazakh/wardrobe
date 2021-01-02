@@ -7,7 +7,7 @@ final class WardrobeDetailViewController: UIViewController {
     private weak var headerView: UIView!
     private weak var titleLabel: UILabel!
     private weak var backButton: UIButton!
-    private weak var personButton: UIButton!
+    private weak var actionButton: UIButton!
     private weak var collectionView: UICollectionView!
     private weak var dropDownTableView: DropDownView!
     private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
@@ -16,6 +16,8 @@ final class WardrobeDetailViewController: UIViewController {
     private let screenBounds = UIScreen.main.bounds
 
     private var didTap: Bool = true
+
+    private var isReloadDataNeed: Bool = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -96,15 +98,15 @@ final class WardrobeDetailViewController: UIViewController {
 
     private func setupPersonButton() {
         let btn = UIButton()
-        personButton = btn
+        actionButton = btn
         let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
-        personButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
-        personButton.setImage(UIImage(named: "more"), for: .normal)
-        personButton.tintColor = GlobalColors.backgroundColor
-        personButton.contentVerticalAlignment = .fill
-        personButton.contentHorizontalAlignment = .fill
-        personButton.addTarget(self, action: #selector(dropDownMenuTap(_:)), for: .touchUpInside)
-        headerView.addSubview(personButton)
+        actionButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
+        actionButton.setImage(UIImage(named: "more"), for: .normal)
+        actionButton.tintColor = GlobalColors.backgroundColor
+        actionButton.contentVerticalAlignment = .fill
+        actionButton.contentHorizontalAlignment = .fill
+        actionButton.addTarget(self, action: #selector(dropDownMenuTap(_:)), for: .touchUpInside)
+        headerView.addSubview(actionButton)
     }
 
     private func setupCollectionView() {
@@ -170,8 +172,8 @@ final class WardrobeDetailViewController: UIViewController {
     }
 
     private func setupPersonButtonLayout() {
-        personButton.sizeToFit()
-        personButton.pin
+        actionButton.sizeToFit()
+        actionButton.pin
             .vCenter()
             .right(4.8%)
             .height(28)
@@ -200,14 +202,14 @@ final class WardrobeDetailViewController: UIViewController {
 
     private func showDropDownMenu() {
         dropDownTableView.pin
-            .below(of: personButton)
+            .below(of: actionButton)
             .marginTop(20)
             .right(10)
             .height(0)
             .width(0)
         UIView.animate(withDuration: 0.5) {
             self.dropDownTableView.pin
-                .below(of: self.personButton)
+                .below(of: self.actionButton)
                 .marginTop(20)
                 .right(10)
                 .height(100)
@@ -219,14 +221,14 @@ final class WardrobeDetailViewController: UIViewController {
 
     private func hideDropDownMenu() {
         dropDownTableView.pin
-            .below(of: personButton)
+            .below(of: actionButton)
             .marginTop(20)
             .right(10)
             .height(100)
             .width(160)
         UIView.animate(withDuration: 0.5) {
             self.dropDownTableView.pin
-                .below(of: self.personButton)
+                .below(of: self.actionButton)
                 .marginTop(20)
                 .right(10)
                 .height(0)
@@ -249,13 +251,18 @@ final class WardrobeDetailViewController: UIViewController {
     // MARK: Button actions
 
     @objc func dropDownMenuTap(_ sender: Any) {
-//        output?.personDidTap()w
-        if didTap {
-            enableGesture()
-            showDropDownMenu()
+        guard let isEditing = output?.isEditButtonTapped() else { return }
+        if isEditing {
+            output?.didEditButtonTap()
+            didTap = !didTap
         } else {
-            disableGesture()
-            hideDropDownMenu()
+            if didTap {
+                enableGesture()
+                showDropDownMenu()
+            } else {
+                disableGesture()
+                hideDropDownMenu()
+            }
         }
     }
 
@@ -265,6 +272,25 @@ final class WardrobeDetailViewController: UIViewController {
 }
 
 extension WardrobeDetailViewController: WardrobeDetailViewInput {
+    func hideDropMenu() {
+        disableGesture()
+        hideDropDownMenu()
+    }
+
+    func reloadDataWithAnimation() {
+        isReloadDataNeed = true
+        collectionView.reloadData()
+    }
+
+    func changeEditButton(state: EditButtonState) {
+        switch state {
+        case .edit:
+            actionButton.setImage(UIImage(named: "more"), for: .normal)
+        case .accept:
+            actionButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        }
+    }
+
     func setWardrobeName(with name: String) {
         guard var text = titleLabel.text else { return }
         text += "\"\(name)\""
@@ -304,7 +330,7 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
                 return UICollectionViewCell()
             }
 
-            cell.configureCell(with: look)
+            cell.configureCell(with: look, output: output)
             return cell
         }
     }
@@ -336,19 +362,5 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
         } else {
             output?.didTapLook(at: indexPath)
         }
-    }
-}
-
-extension WardrobeDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = GlobalColors.backgroundColor
-        cell.textLabel?.text = "Участники гардероба"
-        cell.imageView?.image = UIImage(named: "morz")
-        return cell
     }
 }

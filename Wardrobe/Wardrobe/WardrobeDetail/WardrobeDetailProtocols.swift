@@ -2,18 +2,23 @@ import Foundation
 import UIKit
 
 protocol WardrobeDetailViewInput: class {
+    func reloadDataWithAnimation()
     func showAlert(alert: UIAlertController)
     func reloadData()
     func setWardrobeName(with name: String)
+    func changeEditButton(state: EditButtonState)
+    func hideDropMenu()
 }
 
 protocol WardrobeDetailViewOutput: class {
-    func personDidTap()
+    func didPersonTap()
     func didTapLook(at indexPath: IndexPath)
     func didTapCreateLookCell()
     func didLoadView()
     func getNumberOfLooks() -> Int
     func look(at indexPath: IndexPath) -> WardrobeDetailData
+    func didEditButtonTap()
+    func isEditButtonTapped() -> Bool
 }
 
 protocol WardrobeDetailInteractorInput: class {

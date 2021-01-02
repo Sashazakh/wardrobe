@@ -74,7 +74,7 @@ class DropDownView: UIView {
 
 extension DropDownView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        DropDownMenuSections.allCases.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,12 +93,23 @@ extension DropDownView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return Constants.cellHeight
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            output?.personDidTap()
+        switch DropDownMenuSections(rawValue: indexPath.row) {
+        case .persons:
+            output?.didPersonTap()
+        case .edit:
+            output?.didEditButtonTap()
+        default:
+            break
         }
+    }
+}
+
+extension DropDownView {
+    struct Constants {
+        static let cellHeight: CGFloat = 50
     }
 }

@@ -18,6 +18,8 @@ final class WardrobeDetailPresenter {
 
     private var isLoadView: Bool = false
 
+    private var isUserEditButtonTapped: Bool = false
+
     init(router: WardrobeDetailRouterInput, interactor: WardrobeDetailInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -25,6 +27,21 @@ final class WardrobeDetailPresenter {
 }
 
 extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
+    func didEditButtonTap() {
+        view?.hideDropMenu()
+        isUserEditButtonTapped = !isUserEditButtonTapped
+        view?.reloadDataWithAnimation()
+        if isEditButtonTapped() {
+            view?.changeEditButton(state: .accept)
+        } else {
+            view?.changeEditButton(state: .edit)
+        }
+    }
+
+    func isEditButtonTapped() -> Bool {
+        return isUserEditButtonTapped
+    }
+
     func look(at indexPath: IndexPath) -> WardrobeDetailData {
         return looks[indexPath.row]
     }
@@ -42,7 +59,7 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
         isLoadView = true
     }
 
-    func personDidTap() {
+    func didPersonTap() {
         guard let id = wardrobeId, let name = wardrobeName else { return }
         router.showPersons(wardrobeId: id, wardrobeName: name)
     }
