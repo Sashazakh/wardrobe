@@ -401,12 +401,12 @@ extension DataService: DataServiceInput {
         }
 
         let parameters: [String: String] = [
-            "items_ids": "(itemIDs)",
-            "look_id": "(lookID)",
-            "apikey": "(getApiKey())"
+            "items_ids": "\(itemIDs)",
+            "look_id": "\(lookID)",
+            "apikey": "\(getApiKey())"
         ]
 
-        let request = AF.request("(getBaseURL())" + "updateLookItems", method: .post, parameters: parameters)
+        let request = AF.request("\(getBaseURL())" + "updateLookItems", method: .post, parameters: parameters)
 
         request.response { (response) in
             switch response.result {
