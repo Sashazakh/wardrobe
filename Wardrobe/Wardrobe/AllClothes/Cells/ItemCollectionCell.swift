@@ -133,6 +133,11 @@ extension ItemCollectionCell: UICollectionViewDelegate, UICollectionViewDataSour
         return self.localModel?.items.count ?? 0
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let data = localModel?.items[indexPath.row] else { return }
+        output?.didTapItem(itemId: data.clothesID)
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
         -> CGSize {
         return GlobalConstants.cellSize

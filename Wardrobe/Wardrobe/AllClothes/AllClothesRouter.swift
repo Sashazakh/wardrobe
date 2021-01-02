@@ -15,8 +15,8 @@ extension AllClothesRouter: AllClothesRouterInput {
         view.present(alert, animated: true, completion: nil)
     }
 
-    func showEditItemScreen() {
-        let editItemVC = EditItemContainer.assemble(with: EditItemContext(itemID: 1)).viewController
+    func showEditItemScreen(itemId: Int) {
+        let editItemVC = EditItemContainer.assemble(with: EditItemContext(itemID: itemId)).viewController
 
         editItemVC.modalPresentationStyle = .fullScreen
 

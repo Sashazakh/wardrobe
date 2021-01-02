@@ -151,10 +151,6 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
         return output?.getCategoriesCount() ?? 0
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        output?.didTapItem()
-    }
-
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return GlobalConstants.cellSize.height * 1.3
     }
