@@ -205,7 +205,7 @@ final class LookViewController: UIViewController {
             .right(10)
             .height(0)
             .width(0)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.dropMenuView.pin
                 .below(of: self.lookParamsButton)
                 .marginTop(20)
@@ -223,7 +223,7 @@ final class LookViewController: UIViewController {
             .right(10)
             .height(100)
             .width(160)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.dropMenuView.pin
                 .below(of: self.lookParamsButton)
                 .marginTop(20)
