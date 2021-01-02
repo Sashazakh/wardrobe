@@ -1,5 +1,17 @@
 import UIKit
 
+protocol Service {
+    func getUserLogin() -> String?
+
+    func getUserName() -> String?
+
+    func getUserImageURL() -> String?
+
+    func dropUser()
+
+    func getImageId() -> Int?
+}
+
 protocol AuthServiceInput {
     func register(login: String,
                   fio: String,
@@ -12,14 +24,6 @@ protocol AuthServiceInput {
                completion: @escaping (Result<LoginResponse, NetworkError>) -> Void)
 
     func isAuthorized(completion: @escaping (Result<Bool, NetworkError>) -> Void)
-
-    func getUserLogin() -> String?
-
-    func getUserName() -> String?
-
-    func getUserImageURL() -> String?
-
-    func dropUser()
 }
 
 protocol DataServiceInput {

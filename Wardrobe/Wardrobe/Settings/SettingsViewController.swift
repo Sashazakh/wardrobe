@@ -242,6 +242,14 @@ final class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewInput {
+    func refreshImage(with imageUrl: URL?) {
+        if let imageUrl = imageUrl {
+            avatarImageView.kf.setImage(with: imageUrl, options: [.forceRefresh])
+        } else {
+            avatarImageView.contentMode = .bottom
+        }
+    }
+
     func setUserName(name: String?) {
         if let name = name {
             fullNameLabel.text = name

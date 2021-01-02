@@ -121,7 +121,7 @@ extension SettingsPresenter: SettingsInteractorOutput {
     }
 
     func upadateImage() {
-        view?.setUserImage(with: URL(string: imageUrl ?? "") ?? nil)
+        view?.refreshImage(with: URL(string: imageUrl ?? "") ?? nil)
     }
 }
 

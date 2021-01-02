@@ -11,10 +11,6 @@ final class SettingsInteractor {
             self.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
         }
     }
-
-    private func imageDidUpdate() {
-
-    }
 }
 
 extension SettingsInteractor: SettingsInteractorInput {
@@ -31,7 +27,7 @@ extension SettingsInteractor: SettingsInteractorInput {
                 self.handleError(with: error)
             }
 
-            self.imageDidUpdate()
+            self.output?.upadateImage()
         }
     }
 

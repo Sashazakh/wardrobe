@@ -5,6 +5,7 @@ protocol SettingsViewInput: class {
     func setUserName(name: String?)
     func setUserImage(with imageUrl: URL?)
     func showAlert(alert: UIAlertController)
+    func refreshImage(with imageUrl: URL?)
 }
 
 protocol SettingsViewOutput: class {

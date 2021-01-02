@@ -70,12 +70,15 @@ extension DataService: DataServiceInput {
 
     func changePhoto(newPhotoData: Data,
                      completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        guard let id = getImageId() else { return }
+
         let parameters: [String: String] = [
-            "login": "\(String(describing: getlogin()))"
+            "image_id": "\(id)",
+            "apikey": getApiKey()
         ]
 
         var result = SingleResult<NetworkError>()
-        let url = "jopa"
+        let url = getBaseURL() + "changeImage"
 
         guard NetworkReachabilityManager()?.isReachable ?? false else {
             result.error = .networkNotReachable
@@ -851,23 +854,7 @@ extension DataService: DataServiceInput {
         }
     }
 
-    func getUserLogin() -> String? {
-        return UserDefaults.standard.string(forKey: Constants.loginKey)
-    }
-
     func setNewUserName(newName: String) {
         UserDefaults.standard.setValue(newName, forKey: Constants.userNameKey)
     }
-}
-
-struct Constants {
-    static let authKey: String = "isAuthorized"
-
-    static let loginKey: String = "login"
-
-    static let userNameKey: String = "username"
-
-    static let passwordKey: String = "password"
-
-    static let imageURLKey: String = "imageURL"
 }
