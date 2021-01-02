@@ -24,7 +24,7 @@ extension AllClothesRouter: AllClothesRouterInput {
     }
 
     func showAddItemScreen(category: String) {
-        let newItemVC = NewItemScreenContainer.assemble(with: NewItemScreenContext()).viewController
+        let newItemVC = NewItemScreenContainer.assemble(with: NewItemScreenContext(category: category)).viewController
 
         newItemVC.modalPresentationStyle = .fullScreen
 
