@@ -29,6 +29,11 @@ final class WardrobeUsersPresenter {
 }
 
 extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
+    func didDeleteUserTap(login: String) {
+        guard let wardrobeId = wardrobeId else { return }
+        interactor.deleteUser(login: login, wardrobeId: wardrobeId)
+    }
+
     func getWardrobeUser(at indexPath: IndexPath) -> WardrobeUserData {
         return wardrobeUsers[indexPath.row]
     }
@@ -67,6 +72,11 @@ extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
 }
 
 extension WardrobeUsersPresenter: WardrobeUsersInteractorOutput {
+    func didDelete() {
+        guard let id = wardrobeId else { return }
+        interactor.loadWardrobeUsers(with: id)
+    }
+
     func didReceive(with wardrobeUsers: [WardrobeUserData]) {
         self.wardrobeUsers = wardrobeUsers
     }

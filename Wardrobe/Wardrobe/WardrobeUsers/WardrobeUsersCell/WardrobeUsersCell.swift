@@ -11,6 +11,8 @@ class WardrobeUsersCell: UICollectionViewCell {
 
     weak var output: WardrobeUsersViewOutput?
 
+    private var login: String?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -146,9 +148,12 @@ class WardrobeUsersCell: UICollectionViewCell {
     // MARK: Public functions
 
     func configureCell(wardrobeUser: WardrobeUserData, output: WardrobeUsersViewOutput?) {
+        login = wardrobeUser.login
+
         nameLabel.text = wardrobeUser.name
         let url = URL(string: wardrobeUser.imageUrl ?? "")
         self.imageView.kf.setImage(with: url)
+
         self.output = output
         checkDeleteButton()
     }
@@ -156,7 +161,10 @@ class WardrobeUsersCell: UICollectionViewCell {
     // MARK: Actions
 
     @objc private func didUserDeleteButtonTapped(_ sender: Any) {
-        print("Hello")
+        guard let login = login else {
+            return
+        }
+        output?.didDeleteUserTap(login: login)
     }
 }
 

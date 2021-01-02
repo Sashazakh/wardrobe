@@ -16,15 +16,18 @@ protocol WardrobeUsersViewOutput: class {
     func didInivteUserButtonTapped()
     func getNumberOfUsers() -> Int
     func getWardrobeUser(at indexPath: IndexPath) -> WardrobeUserData
+    func didDeleteUserTap(login: String)
 }
 
 protocol WardrobeUsersInteractorInput: class {
     func loadWardrobeUsers(with wardrobeId: Int)
+    func deleteUser(login: String, wardrobeId: Int)
 }
 
 protocol WardrobeUsersInteractorOutput: class {
     func showAlert(title: String, message: String)
     func didReceive(with wardrobeUsers: [WardrobeUserData])
+    func didDelete()
 }
 
 protocol WardrobeUsersRouterInput: class {

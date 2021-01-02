@@ -11,7 +11,6 @@ final class DataService: NetworkService {
 }
 
 extension DataService: DataServiceInput {
-
     // MARK: Settings
     func changeName(newName: String,
                     completion: @escaping (SingleResult<NetworkError>) -> Void) {
@@ -605,8 +604,48 @@ extension DataService: DataServiceInput {
             }
         }
     }
-    func deleteUserFromWardrobe(with login: String) {
 
+    func deleteUserFromWardrobe(wardrobeId: Int,
+                                login: String,
+                                completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        let url = getBaseURL() + "removeUserFromWardrobe"
+        + "?wardrobe_id=\(wardrobeId)"
+        + "&remove_login=\(login)"
+        + "&apikey=\(getApiKey())"
+
+        var result = SingleResult<NetworkError>()
+
+        let request = AF.request(url)
+
+        request.response { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+        }
     }
 
     func wardrobeResponseInvite(inviteId: Int,
