@@ -7,7 +7,6 @@ class AllClothesItemCell: WardrobeCell {
     func setData(data: ItemData) {
         self.localModel = data
         self.titleLable.text = data.clothesName
-        debugPrint(data.imageURL)
         guard let url = URL(string: (data.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
             return
         }
