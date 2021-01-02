@@ -20,6 +20,8 @@ final class LookViewController: UIViewController {
 
     private var lookIsEditing: Bool = false
 
+    private var menuIsDropped: Bool?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -139,7 +141,6 @@ final class LookViewController: UIViewController {
         dropMenuView.output = output
         dropMenuView.dropShadow()
         dropMenuView.isUserInteractionEnabled = true
-        dropMenuView.isHidden = true
     }
 
     private func layoutBackgroundView() {
@@ -186,11 +187,51 @@ final class LookViewController: UIViewController {
     }
 
     private func layoutDropMenuView() {
+        guard let isDropping = menuIsDropped else {
+            return
+        }
+
+        if isDropping {
+            showDropDownMenu()
+        } else {
+            hideDropDownMenu()
+        }
+    }
+
+    private func showDropDownMenu() {
         dropMenuView.pin
-            .width(160)
+            .below(of: lookParamsButton)
+            .marginTop(20)
+            .right(10)
+            .height(0)
+            .width(0)
+        UIView.animate(withDuration: 0.5) {
+            self.dropMenuView.pin
+                .below(of: self.lookParamsButton)
+                .marginTop(20)
+                .right(10)
+                .height(100)
+                .width(160)
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    private func hideDropDownMenu() {
+        dropMenuView.pin
+            .below(of: lookParamsButton)
+            .marginTop(20)
+            .right(10)
             .height(100)
-            .below(of: lookParamsButton).marginTop(1%)
-            .right(3%)
+            .width(160)
+        UIView.animate(withDuration: 0.5) {
+            self.dropMenuView.pin
+                .below(of: self.lookParamsButton)
+                .marginTop(20)
+                .right(10)
+                .height(0)
+                .width(0)
+            self.view.layoutIfNeeded()
+        }
     }
 
     @objc
@@ -220,8 +261,8 @@ extension LookViewController: LookViewInput {
 
     func setLookIsEditing(isEditing: Bool) {
         lookIsEditing = isEditing
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
+        // view.setNeedsLayout()
+        // view.layoutIfNeeded()
         lookTableView.reloadData()
     }
 
@@ -243,11 +284,15 @@ extension LookViewController: LookViewInput {
     }
 
     func showDropMenu() {
-        dropMenuView.isHidden = false
+        menuIsDropped = true
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
 
     func hideDropMenu() {
-        dropMenuView.isHidden = true
+        menuIsDropped = false
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
 }
 
