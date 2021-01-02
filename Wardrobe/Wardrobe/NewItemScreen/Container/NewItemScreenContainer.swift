@@ -6,7 +6,7 @@ final class NewItemScreenContainer {
 
 	class func assemble(with context: NewItemScreenContext) -> NewItemScreenContainer {
         let router = NewItemScreenRouter()
-        let interactor = NewItemScreenInteractor()
+        let interactor = NewItemScreenInteractor(category: context.category)
         let presenter = NewItemScreenPresenter(router: router, interactor: interactor)
 		let viewController = NewItemScreenViewController()
 
@@ -24,4 +24,5 @@ final class NewItemScreenContainer {
 }
 
 struct NewItemScreenContext {
+    var category: String
 }
