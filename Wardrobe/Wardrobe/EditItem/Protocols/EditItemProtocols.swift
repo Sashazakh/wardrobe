@@ -9,6 +9,10 @@ protocol EditItemViewInput: AnyObject {
 
     func setItemImage(url: URL?)
 
+    func getItemImageData() -> Data?
+
+    func getItemName() -> String?
+
     func showAlert(title: String, message: String)
 }
 
@@ -19,17 +23,23 @@ protocol EditItemViewOutput: AnyObject {
 
     func didTapEditImageView()
 
+    func didTapEditItemButton()
+
     func userDidSetImage(imageData: Data?)
 }
 
 protocol EditItemInteractorInput: AnyObject {
     func fetchItem()
+
+    func saveItemChanges(name: String, imageData: Data?)
 }
 
 protocol EditItemInteractorOutput: AnyObject {
     func showAlert(title: String, message: String)
 
     func didReceivedItemData()
+
+    func didSavedItemData()
 
     func updateModel(model: EditItemPresenterData)
 }

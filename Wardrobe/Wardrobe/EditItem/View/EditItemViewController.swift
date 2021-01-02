@@ -194,7 +194,7 @@ final class EditItemViewController: UIViewController {
 
     @objc
     private func didTapEditItemButton() {
-
+        output?.didTapEditItemButton()
     }
 
     @objc
@@ -254,6 +254,14 @@ extension EditItemViewController: EditItemViewInput {
         }
 
         itemPhotoImageView.kf.setImage(with: url)
+    }
+
+    func getItemImageData() -> Data? {
+        return itemPhotoImageView.image?.jpegData(compressionQuality: 1)
+    }
+
+    func getItemName() -> String? {
+        return itemNameTextField.text
     }
 }
 

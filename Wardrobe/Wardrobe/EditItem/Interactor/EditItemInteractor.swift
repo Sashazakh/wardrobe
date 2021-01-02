@@ -41,4 +41,43 @@ extension EditItemInteractor: EditItemInteractorInput {
             self.output?.didReceivedItemData()
         }
     }
+
+    func saveItemChanges(name: String, imageData: Data?) {
+        var newName: String?
+
+        if name != model.name {
+            newName = name
+        }
+
+        if newName == nil && imageData == nil {
+            return
+        }
+
+        DataService.shared.updateItem(id: model.itemID,
+                                      name: newName,
+                                      imageData: imageData) { [weak self] result in
+            guard result.error == nil else {
+                guard let networkError = result.error else {
+                    return
+                }
+
+                switch networkError {
+                case .networkNotReachable:
+                    self?.output?.showAlert(title: "Ошибка", message: "Не удается подключиться")
+                default:
+                    self?.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
+                }
+
+                return
+            }
+
+            guard let self = self,
+                  let newName = newName else {
+                return
+            }
+
+            self.model.name = newName
+            self.output?.didSavedItemData()
+        }
+    }
 }

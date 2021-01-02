@@ -9,6 +9,8 @@ final class EditItemPresenter {
 
     private var model: EditItemPresenterData?
 
+    private var imageChanged: Bool = false
+
     init(router: EditItemRouterInput, interactor: EditItemInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -29,11 +31,26 @@ extension EditItemPresenter: EditItemViewOutput {
             return
         }
 
+        imageChanged = true
         view?.setItemImage(imageData: imageData)
     }
 
     func didTapEditImageView() {
         view?.showPickPhotoAlert()
+    }
+
+    func didTapEditItemButton() {
+        guard let itemName = view?.getItemName(),
+              !itemName.isEmpty else {
+            view?.showAlert(title: "Ошибка", message: "Введите название предмета")
+            return
+        }
+
+        interactor.saveItemChanges(name: itemName, imageData: imageChanged ? view?.getItemImageData() : nil)
+    }
+
+    func didSavedItemData() {
+        router.goBack()
     }
 }
 
