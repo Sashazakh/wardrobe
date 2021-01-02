@@ -12,14 +12,16 @@ protocol LookViewInput: AnyObject {
     func showAlert(title: String, message: String)
 
     func setLookTitle(with: String)
+
+    func showDropMenu()
+
+    func hideDropMenu()
 }
 
 protocol LookViewOutput: AnyObject {
-    func didTapEditLookButton()
+    func didTapLookParamsButton()
 
     func didTapBackToWardrobeButton()
-
-    func didTapAddItemsButton()
 
     func didLoadView()
 
@@ -30,6 +32,10 @@ protocol LookViewOutput: AnyObject {
     func deleteViewModel(tableCellIndex: Int, collectionCellIndex: Int)
 
     func didUserAddItems(items: [ItemData])
+
+    func didTapDeleteItems()
+
+    func didTapAddItems()
 }
 
 protocol LookInteractorInput: AnyObject {

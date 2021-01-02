@@ -44,6 +44,10 @@ extension AllClothesPresenter: AllClothesViewOutput {
     func didLoadView() {
         interactor.getAllClothes()
     }
+
+    func didTapItem() {
+        router.showEditItemScreen()
+    }
 }
 
 extension AllClothesPresenter: AllClothesInteractorOutput {

@@ -27,6 +27,8 @@
 		0DE88525258E29CE00BFC856 /* CreateWardrobeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */; };
 		0DE97FC32592567A00903CE1 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE97FC22592567A00903CE1 /* GlobalConstants.swift */; };
 		1306220F2591F7290019E704 /* AddUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1306220E2591F7290019E704 /* AddUserCell.swift */; };
+		1358A0A9259FACE500C44469 /* DropTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1358A0A8259FACE500C44469 /* DropTableCell.swift */; };
+		1358A0AC259FB04200C44469 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1358A0AB259FB04200C44469 /* DropDownView.swift */; };
 		135D7BE8258FE9210020DB1C /* WardrobeUsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */; };
 		136649752593DC51008C13EF /* DataServiceRawModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136649742593DC51008C13EF /* DataServiceRawModels.swift */; };
 		136649B5259528C1008C13EF /* WardrobeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136649B4259528C1008C13EF /* WardrobeData.swift */; };
@@ -34,6 +36,7 @@
 		136EFECA258E5EB60041B9D5 /* AddWardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */; };
 		1386DE09259773DD003D0174 /* CreateWardobeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1386DE08259773DD003D0174 /* CreateWardobeData.swift */; };
 		138B8250259B4F64000B138B /* MyInvitesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138B824F259B4F64000B138B /* MyInvitesData.swift */; };
+		138DF807259E4C350076081F /* WardrobeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138DF806259E4C350076081F /* WardrobeUserData.swift */; };
 		139EF328258E3DC900A9435B /* WardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139EF327258E3DC900A9435B /* WardrobeCell.swift */; };
 		13A15A53259A3F8700B271B0 /* MyInvitesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15A4D259A3F8700B271B0 /* MyInvitesPresenter.swift */; };
 		13A15A54259A3F8700B271B0 /* MyInvitesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15A4E259A3F8700B271B0 /* MyInvitesRouter.swift */; };
@@ -155,6 +158,8 @@
 		31E6E779258D2CE500591F72 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E773258D2CE500591F72 /* RegisterInteractor.swift */; };
 		31E6E77A258D2CE500591F72 /* RegisterContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E6E774258D2CE500591F72 /* RegisterContainer.swift */; };
 		31EB193A259694AF00621DDF /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EB1939259694AF00621DDF /* SplashScreenViewController.swift */; };
+		31EC2949259FB20A0013527E /* EditItemsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC2948259FB20A0013527E /* EditItemsModels.swift */; };
+		31EC295325A0F2760013527E /* LookSettingsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC295225A0F2760013527E /* LookSettingsMenuView.swift */; };
 		31F798F8259617C200DBDC2E /* MainTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */; };
 		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
 		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
@@ -185,6 +190,8 @@
 		0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeContainer.swift; sourceTree = "<group>"; };
 		0DE97FC22592567A00903CE1 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		1306220E2591F7290019E704 /* AddUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserCell.swift; sourceTree = "<group>"; };
+		1358A0A8259FACE500C44469 /* DropTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTableCell.swift; sourceTree = "<group>"; };
+		1358A0AB259FB04200C44469 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeUsersCell.swift; sourceTree = "<group>"; };
 		136649742593DC51008C13EF /* DataServiceRawModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceRawModels.swift; sourceTree = "<group>"; };
 		136649B4259528C1008C13EF /* WardrobeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeData.swift; sourceTree = "<group>"; };
@@ -192,6 +199,7 @@
 		136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWardrobeCell.swift; sourceTree = "<group>"; };
 		1386DE08259773DD003D0174 /* CreateWardobeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardobeData.swift; sourceTree = "<group>"; };
 		138B824F259B4F64000B138B /* MyInvitesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesData.swift; sourceTree = "<group>"; };
+		138DF806259E4C350076081F /* WardrobeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeUserData.swift; sourceTree = "<group>"; };
 		139EF327258E3DC900A9435B /* WardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeCell.swift; sourceTree = "<group>"; };
 		13A15A4D259A3F8700B271B0 /* MyInvitesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesPresenter.swift; sourceTree = "<group>"; };
 		13A15A4E259A3F8700B271B0 /* MyInvitesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvitesRouter.swift; sourceTree = "<group>"; };
@@ -315,6 +323,8 @@
 		31E6E773258D2CE500591F72 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		31E6E774258D2CE500591F72 /* RegisterContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContainer.swift; sourceTree = "<group>"; };
 		31EB1939259694AF00621DDF /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		31EC2948259FB20A0013527E /* EditItemsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemsModels.swift; sourceTree = "<group>"; };
+		31EC295225A0F2760013527E /* LookSettingsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookSettingsMenuView.swift; sourceTree = "<group>"; };
 		31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarContainer.swift; sourceTree = "<group>"; };
 		31F8C50C25937429003BB6E0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		31F8C51125937519003BB6E0 /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
@@ -411,6 +421,15 @@
 				0DE97FC22592567A00903CE1 /* GlobalConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		135B0C3625A09DE100344FDD /* DropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1358A0A8259FACE500C44469 /* DropTableCell.swift */,
+				1358A0AB259FB04200C44469 /* DropDownView.swift */,
+			);
+			path = DropDownMenu;
 			sourceTree = "<group>";
 		};
 		135D7BE6258FE9080020DB1C /* WardrobeUsersCell */ = {
@@ -942,12 +961,13 @@
 		31E4EB48258E65F3001AC230 /* EditItem */ = {
 			isa = PBXGroup;
 			children = (
-				31E4EB49258E6601001AC230 /* EditItemPresenter.swift */,
-				31E4EB4A258E6601001AC230 /* EditItemRouter.swift */,
-				31E4EB4B258E6601001AC230 /* EditItemViewController.swift */,
-				31E4EB4C258E6601001AC230 /* EditItemProtocols.swift */,
-				31E4EB4D258E6601001AC230 /* EditItemInteractor.swift */,
-				31E4EB4E258E6601001AC230 /* EditItemContainer.swift */,
+				31EC2947259FB1F80013527E /* Models */,
+				31EC2945259F8F300013527E /* Protocols */,
+				31EC2944259F8F200013527E /* Container */,
+				31EC2943259F8F180013527E /* View */,
+				31EC2942259F8F0C0013527E /* Interactor */,
+				31EC2941259F8F060013527E /* Router */,
+				31EC2940259F8F000013527E /* Presenter */,
 			);
 			path = EditItem;
 			sourceTree = "<group>";
@@ -955,6 +975,7 @@
 		31E4EB68258E6728001AC230 /* WardrobeDetail */ = {
 			isa = PBXGroup;
 			children = (
+				135B0C3625A09DE100344FDD /* DropDownMenu */,
 				31E4EB69258E673D001AC230 /* WardrobeDetailPresenter.swift */,
 				31E4EB6B258E673D001AC230 /* WardrobeDetailViewController.swift */,
 				31E4EB6D258E673D001AC230 /* WardrobeDetailInteractor.swift */,
@@ -991,6 +1012,7 @@
 				31E4EBAA258E6A19001AC230 /* WardrobeUsersProtocols.swift */,
 				31E4EBAB258E6A19001AC230 /* WardrobeUsersInteractor.swift */,
 				31E4EBAC258E6A19001AC230 /* WardrobeUsersContainer.swift */,
+				138DF806259E4C350076081F /* WardrobeUserData.swift */,
 			);
 			path = WardrobeUsers;
 			sourceTree = "<group>";
@@ -1064,6 +1086,7 @@
 		31E4EC1C258FE1F9001AC230 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				31EC295125A0F25A0013527E /* SettingsMenu */,
 				31E4EC33258FF79B001AC230 /* TableViewCell */,
 				31E4EB7A258E679B001AC230 /* LookViewController.swift */,
 			);
@@ -1341,6 +1364,70 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		31EC2940259F8F000013527E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB49258E6601001AC230 /* EditItemPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		31EC2941259F8F060013527E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB4A258E6601001AC230 /* EditItemRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		31EC2942259F8F0C0013527E /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB4D258E6601001AC230 /* EditItemInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		31EC2943259F8F180013527E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB4B258E6601001AC230 /* EditItemViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31EC2944259F8F200013527E /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB4E258E6601001AC230 /* EditItemContainer.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		31EC2945259F8F300013527E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				31E4EB4C258E6601001AC230 /* EditItemProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		31EC2947259FB1F80013527E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				31EC2948259FB20A0013527E /* EditItemsModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		31EC295125A0F25A0013527E /* SettingsMenu */ = {
+			isa = PBXGroup;
+			children = (
+				31EC295225A0F2760013527E /* LookSettingsMenuView.swift */,
+			);
+			path = SettingsMenu;
+			sourceTree = "<group>";
+		};
 		31F798F6259617B200DBDC2E /* Container */ = {
 			isa = PBXGroup;
 			children = (
@@ -1551,6 +1638,7 @@
 				318122BC2598B67500009886 /* SetupLookViewController.swift in Sources */,
 				31DD94A82597915600D2390C /* LookModels.swift in Sources */,
 				31E4EBBB258E6A45001AC230 /* SettingsPresenter.swift in Sources */,
+				138DF807259E4C350076081F /* WardrobeUserData.swift in Sources */,
 				0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */,
 				13A15A55259A3F8700B271B0 /* MyInvitesViewController.swift in Sources */,
 				31E6E725258CE33C00591F72 /* LoginPresenter.swift in Sources */,
@@ -1559,6 +1647,7 @@
 				31E4EBAF258E6A19001AC230 /* WardrobeUsersViewController.swift in Sources */,
 				3180ECFF2593FA8400A046E5 /* RegisterModels.swift in Sources */,
 				31E4EBDD258E6CA4001AC230 /* AllClothesInteractor.swift in Sources */,
+				1358A0A9259FACE500C44469 /* DropTableCell.swift in Sources */,
 				31E6E729258CE33C00591F72 /* LoginInteractor.swift in Sources */,
 				3181230525993FC200009886 /* AllItemsTableViewCellPresenter.swift in Sources */,
 				1306220F2591F7290019E704 /* AddUserCell.swift in Sources */,
@@ -1645,6 +1734,7 @@
 				3180ECE32593DBF400A046E5 /* Result.swift in Sources */,
 				31E4EB72258E673D001AC230 /* WardrobeDetailProtocols.swift in Sources */,
 				31E4EB6F258E673D001AC230 /* WardrobeDetailPresenter.swift in Sources */,
+				31EC295325A0F2760013527E /* LookSettingsMenuView.swift in Sources */,
 				31E4EBCF258E6A59001AC230 /* InviteContainer.swift in Sources */,
 				31DD94B72597A1C200D2390C /* ItemCollectionVIewCellPresenter.swift in Sources */,
 				0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */,
@@ -1672,6 +1762,7 @@
 				31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */,
 				136649752593DC51008C13EF /* DataServiceRawModels.swift in Sources */,
 				0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */,
+				1358A0AC259FB04200C44469 /* DropDownView.swift in Sources */,
 				136649B5259528C1008C13EF /* WardrobeData.swift in Sources */,
 				31E4EB53258E6601001AC230 /* EditItemInteractor.swift in Sources */,
 				31E4EBC0258E6A45001AC230 /* SettingsContainer.swift in Sources */,
@@ -1683,6 +1774,7 @@
 				318122E22599279700009886 /* AllItemsCollectionViewCellViewModel.swift in Sources */,
 				3180ED0425949F3400A046E5 /* NetworkServiceErrors.swift in Sources */,
 				31467C472592813A00B785FF /* CreateLookContainer.swift in Sources */,
+				31EC2949259FB20A0013527E /* EditItemsModels.swift in Sources */,
 				13B3A9E6259D1B62003C306B /* DetailViewCell.swift in Sources */,
 				31E4EBBF258E6A45001AC230 /* SettingsInteractor.swift in Sources */,
 				31DD94B32597A13600D2390C /* ItemCollectionViewCellViewModel.swift in Sources */,

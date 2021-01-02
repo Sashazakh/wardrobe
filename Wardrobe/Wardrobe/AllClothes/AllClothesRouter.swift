@@ -14,4 +14,12 @@ extension AllClothesRouter: AllClothesRouterInput {
 
         view.present(alert, animated: true, completion: nil)
     }
+
+    func showEditItemScreen() {
+        let editItemVC = EditItemContainer.assemble(with: EditItemContext(itemID: 1)).viewController
+
+        editItemVC.modalPresentationStyle = .fullScreen
+
+        viewController?.navigationController?.pushViewController(editItemVC, animated: true)
+    }
 }

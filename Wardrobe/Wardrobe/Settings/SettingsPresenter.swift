@@ -88,6 +88,12 @@ extension SettingsPresenter: SettingsViewOutput {
 }
 
 extension SettingsPresenter: SettingsInteractorOutput {
+    func upadateImage(imageUrl: String) {
+        var img = imageUrl
+        img += "&apikey=" + DataService.shared.getApiKey()
+        view?.refreshImage(with: URL(string: img))
+    }
+
     func didReceive(name: String?, imageUrl: String?) {
         if let name = name {
             view?.setUserName(name: name)
@@ -118,10 +124,6 @@ extension SettingsPresenter: SettingsInteractorOutput {
         if let sceneDelegate: SceneDelegate = (scene?.delegate as? SceneDelegate) {
             sceneDelegate.logout()
         }
-    }
-
-    func upadateImage() {
-        view?.setUserImage(with: URL(string: imageUrl ?? "") ?? nil)
     }
 }
 

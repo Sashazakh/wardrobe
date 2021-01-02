@@ -22,6 +22,8 @@ final class MainScreenPresenter {
         }
     }
 
+    private var isUserEditButtonTapped: Bool = false
+
     var userName: String?
     var userLogin: String?
     var imageUrlString: String?
@@ -33,19 +35,37 @@ final class MainScreenPresenter {
 }
 
 extension MainScreenPresenter: MainScreenViewOutput {
+    func didDeleteWardrobeTap(with id: Int) {
+        interactor.deleteWardrobe(with: id)
+    }
+
     func didLoadView() {
         view?.startActivity()
         interactor.loadUserData()
-        interactor.loadUserWardobes(for: userLogin ?? "")
+        interactor.loadUserWardobes()
     }
 
     func addWardrobeDidTap() {
         router.showAddWardobeScreen(for: userLogin ?? "")
     }
 
+    func didEditButtonTap() {
+        isUserEditButtonTapped = !isUserEditButtonTapped
+        view?.reloadDataWithAnimation()
+        if isEditButtonTapped() {
+            view?.changeEditButton(state: .accept)
+        } else {
+            view?.changeEditButton(state: .edit)
+        }
+    }
+
+    func isEditButtonTapped() -> Bool {
+        return isUserEditButtonTapped
+    }
+
     func showDetailDidTap(at indexPath: IndexPath) {
         let wardobeData = userWardrobes[indexPath.row]
-        router.showDetailWardrope(id: wardobeData.id)
+        router.showDetailWardrope(id: wardobeData.id, name: wardobeData.name)
     }
 
     func settingsButtonDidTap() {
@@ -86,5 +106,9 @@ extension MainScreenPresenter: MainScreenInteractorOutput {
         } else {
             view?.setUserImage(with: nil)
         }
+    }
+
+    func didDelete() {
+        interactor.loadUserWardobes()
     }
 }

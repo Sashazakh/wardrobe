@@ -3,6 +3,7 @@ import PinLayout
 
 final class MainScreenViewController: UIViewController {
     var output: MainScreenViewOutput?
+
     private weak var headerView: UIView!
     private weak var titleLabel: UILabel!
     private weak var settingsButton: UIButton!
@@ -10,10 +11,13 @@ final class MainScreenViewController: UIViewController {
     private weak var outerImageView: UIView!
     private weak var nameLabel: UILabel!
     private weak var collectionView: UICollectionView!
+    private weak var editButton: UIButton!
 
     private let screenBounds = UIScreen.main.bounds
 
     private var activityIndicatorView: UIActivityIndicatorView!
+
+    private var isReloadDataNeed: Bool = false
 
     // MARK: Vc lifecycle
 
@@ -40,6 +44,7 @@ final class MainScreenViewController: UIViewController {
         setupHeaderView()
         setupLabelView()
         setupSettingsButton()
+        setupEditButton()
         setupAvatarView()
         setupNameLabel()
         setupCollectionView()
@@ -50,6 +55,7 @@ final class MainScreenViewController: UIViewController {
         setupHeaderViewLayout()
         setupTitleLabelLayout()
         setupSettingsButtonLayout()
+        setupEditButtonLayout()
         setupAvatarViewLayout()
         setupNameLabelLayout()
         setupCollectionLayout()
@@ -145,6 +151,22 @@ final class MainScreenViewController: UIViewController {
         activityIndicatorView.hidesWhenStopped = true
         view.addSubview(activityIndicatorView)
     }
+
+    private func setupEditButton() {
+        let editBtn = UIButton()
+        editButton = editBtn
+        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
+        editButton.setImage(UIImage(systemName: "square.and.pencil"),
+                                for: .normal)
+        editButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
+        editButton.tintColor = GlobalColors.backgroundColor
+        editButton.contentVerticalAlignment = .fill
+        editButton.contentHorizontalAlignment = .fill
+        editButton.addTarget(self, action: #selector(didEditButtonTapped(_:)),
+                                 for: .touchUpInside)
+        self.headerView.addSubview(editButton)
+    }
+
     // MARK: layout
 
     private func setupHeaderViewLayout() {
@@ -164,10 +186,18 @@ final class MainScreenViewController: UIViewController {
 
     private func setupSettingsButtonLayout() {
         settingsButton.pin
-            .after(of: titleLabel, aligned: .center)
-            .margin(17%)
+            .before(of: titleLabel, aligned: .center)
+            .margin(23%)
             .width(titleLabel.frame.height * 0.7)
             .height(titleLabel.frame.height * 0.7)
+    }
+
+    private func setupEditButtonLayout() {
+        editButton.pin
+            .after(of: titleLabel, aligned: .center)
+            .margin(23%)
+            .width(titleLabel.frame.height * 0.8)
+            .height(titleLabel.frame.height * 0.8)
     }
 
     private func setupAvatarViewLayout() {
@@ -233,9 +263,27 @@ final class MainScreenViewController: UIViewController {
     @objc private func didSettingsButtonTapped(_ sender: Any) {
         output?.settingsButtonDidTap()
     }
+
+    @objc private func didEditButtonTapped(_ sender: Any) {
+        output?.didEditButtonTap()
+    }
 }
 
 extension MainScreenViewController: MainScreenViewInput {
+    func changeEditButton(state: EditButtonState) {
+        switch state {
+        case .edit:
+            editButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        case .accept:
+            editButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        }
+    }
+
+    func reloadDataWithAnimation() {
+        isReloadDataNeed = true
+        collectionView.reloadData()
+    }
+
     func showAlert(alert: UIAlertController) {
         self.present(alert, animated: true, completion: nil)
     }
@@ -292,7 +340,7 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
                 return UICollectionViewCell()
             }
 
-            cell.configureCell(with: wardobe)
+            cell.configureCell(wardobeData: wardobe, output: output)
             return cell
         }
     }
@@ -319,9 +367,22 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-            UIView.animate(withDuration: 0.4) {
-                cell.transform = CGAffineTransform.identity
+        guard var countOfCells = output?.getNumberOfWardrobes() else { return }
+        countOfCells += 1
+        if isReloadDataNeed {
+            if indexPath.row != countOfCells - 1 {
+                cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                    UIView.animate(withDuration: 0.3) {
+                        cell.transform = CGAffineTransform.identity
+                    }
+            } else {
+                isReloadDataNeed = !isReloadDataNeed
             }
+        } else {
+            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                UIView.animate(withDuration: 0.4) {
+                    cell.transform = CGAffineTransform.identity
+                }
+        }
     }
 }

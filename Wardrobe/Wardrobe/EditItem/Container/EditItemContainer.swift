@@ -6,7 +6,7 @@ final class EditItemContainer {
 
 	class func assemble(with context: EditItemContext) -> EditItemContainer {
         let router = EditItemRouter()
-        let interactor = EditItemInteractor()
+        let interactor = EditItemInteractor(itemID: context.itemID)
         let presenter = EditItemPresenter(router: router, interactor: interactor)
 		let viewController = EditItemViewController()
 
@@ -25,4 +25,5 @@ final class EditItemContainer {
 }
 
 struct EditItemContext {
+    var itemID: Int
 }

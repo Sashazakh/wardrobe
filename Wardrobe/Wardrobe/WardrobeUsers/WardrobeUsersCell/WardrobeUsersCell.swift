@@ -145,9 +145,10 @@ class WardrobeUsersCell: UICollectionViewCell {
     }
     // MARK: Public functions
 
-    func configureCell(label: String?, image: UIImage?, output: WardrobeUsersViewOutput?) {
-        nameLabel.text = label
-        imageView.image = image
+    func configureCell(wardrobeUser: WardrobeUserData, output: WardrobeUsersViewOutput?) {
+        nameLabel.text = wardrobeUser.name
+        let url = URL(string: wardrobeUser.imageUrl ?? "")
+        self.imageView.kf.setImage(with: url)
         self.output = output
         checkDeleteButton()
     }
