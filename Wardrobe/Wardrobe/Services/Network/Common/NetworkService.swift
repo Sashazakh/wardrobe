@@ -53,8 +53,8 @@ class NetworkService {
 }
 
 extension NetworkService: Service {
-    func getImageId() -> Int? {
-        return UserDefaults.standard.integer(forKey: Constants.imageIdKey)
+    func getImageId() -> String? {
+        return UserDefaults.standard.string(forKey: Constants.imageIdKey)
     }
 
     func getUserLogin() -> String? {

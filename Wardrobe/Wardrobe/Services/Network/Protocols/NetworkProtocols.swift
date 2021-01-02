@@ -9,7 +9,7 @@ protocol Service {
 
     func dropUser()
 
-    func getImageId() -> Int?
+    func getImageId() -> String?
 }
 
 protocol AuthServiceInput {

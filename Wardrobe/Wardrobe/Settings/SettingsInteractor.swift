@@ -27,7 +27,8 @@ extension SettingsInteractor: SettingsInteractorInput {
                 self.handleError(with: error)
             }
 
-            self.output?.upadateImage()
+            guard let data = result.data else { return }
+            self.output?.upadateImage(imageUrl: data.imageUrl)
         }
     }
 

@@ -69,16 +69,16 @@ extension DataService: DataServiceInput {
     }
 
     func changePhoto(newPhotoData: Data,
-                     completion: @escaping (SingleResult<NetworkError>) -> Void) {
-        guard let id = getImageId() else { return }
+                     completion: @escaping (Result<ResponseEditString, NetworkError>) -> Void) {
+        guard let user = getUserLogin() else { return }
 
         let parameters: [String: String] = [
-            "image_id": "\(id)",
+            "login": "\(user)",
             "apikey": getApiKey()
         ]
 
-        var result = SingleResult<NetworkError>()
-        let url = getBaseURL() + "changeImage"
+        var result = Result<ResponseEditString, NetworkError>()
+        let url = getBaseURL() + "changeAvatar"
 
         guard NetworkReachabilityManager()?.isReachable ?? false else {
             result.error = .networkNotReachable
@@ -94,27 +94,10 @@ extension DataService: DataServiceInput {
                      }
                 }
         },
-        to: url).response(completionHandler: { (response) in
+        to: url).responseDecodable(of: [ResponseEditString].self) { response in
             switch response.result {
-            case .success:
-                guard let statusCode = response.response?.statusCode else {
-                    result.error = .unknownError
-                    completion(result)
-                    return
-                }
-
-                switch statusCode {
-                case ResponseCode.success.code:
-                    completion(result)
-                case ResponseCode.error.code:
-                    result.error = .networkNotReachable
-                    completion(result)
-                    return
-                default:
-                    result.error = .unknownError
-                    completion(result)
-                    return
-                }
+            case .success(let url):
+                result.data = url.first
             case .failure(let error):
                 if error.isInvalidURLError {
                     result.error = .connectionToServerError
@@ -123,7 +106,7 @@ extension DataService: DataServiceInput {
                 }
             }
             completion(result)
-        })
+        }
     }
 
     // MARK: Wardrobe

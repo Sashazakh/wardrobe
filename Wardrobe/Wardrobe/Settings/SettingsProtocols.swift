@@ -27,7 +27,7 @@ protocol SettingsInteractorOutput: class {
     func didAllKeysDeleted()
     func didNameChanged()
     func showAlert(title: String, message: String)
-    func upadateImage()
+    func upadateImage(imageUrl: String)
     func didReceive(name: String?, imageUrl: String?)
 }
 

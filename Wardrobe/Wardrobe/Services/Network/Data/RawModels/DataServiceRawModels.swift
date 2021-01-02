@@ -104,3 +104,11 @@ struct WardrobeUserRaw: Decodable {
         case imageId = "image_id"
     }
 }
+
+struct ResponseEditString: Decodable {
+    let imageUrl: String
+
+    private enum CodingKeys: String, CodingKey {
+        case imageUrl = "image_url"
+    }
+}
