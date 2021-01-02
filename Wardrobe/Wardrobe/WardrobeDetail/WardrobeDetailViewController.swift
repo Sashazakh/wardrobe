@@ -9,9 +9,13 @@ final class WardrobeDetailViewController: UIViewController {
     private weak var backButton: UIButton!
     private weak var personButton: UIButton!
     private weak var collectionView: UICollectionView!
-    
-    private var countOfCells = 20
+    private weak var dropDownTableView: DropDownView!
+    private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
+    private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
+
     private let screenBounds = UIScreen.main.bounds
+
+    private var didTap: Bool = true
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -37,6 +41,8 @@ final class WardrobeDetailViewController: UIViewController {
         setupPersonButton()
         setupMainView()
         setupCollectionView()
+        setupDropDownView()
+        setupGestureRecognizers()
     }
 
     private func setupLayout() {
@@ -55,7 +61,7 @@ final class WardrobeDetailViewController: UIViewController {
     }
 
     private func setupHeaderView() {
-        let viewHeader = UIView()
+        let viewHeader = UIView(frame: .zero)
         headerView = viewHeader
         headerView.backgroundColor = GlobalColors.mainBlueScreen
 //        headerView.dropShadow()
@@ -93,11 +99,11 @@ final class WardrobeDetailViewController: UIViewController {
         personButton = btn
         let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
         personButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
-        personButton.setImage(UIImage(systemName: "person.3.fill"), for: .normal)
+        personButton.setImage(UIImage(named: "more"), for: .normal)
         personButton.tintColor = GlobalColors.backgroundColor
         personButton.contentVerticalAlignment = .fill
         personButton.contentHorizontalAlignment = .fill
-        personButton.addTarget(self, action: #selector(didPersonButtonTabbed(_:)), for: .touchUpInside)
+        personButton.addTarget(self, action: #selector(dropDownMenuTap(_:)), for: .touchUpInside)
         headerView.addSubview(personButton)
     }
 
@@ -112,6 +118,29 @@ final class WardrobeDetailViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         view.addSubview(collectionView)
+    }
+
+    private func setupDropDownView() {
+        let drop = DropDownView()
+        dropDownTableView = drop
+        dropDownTableView.output = output
+        dropDownTableView.dropShadow()
+        dropDownTableView.isUserInteractionEnabled = true
+        view.addSubview(dropDownTableView)
+    }
+
+    private func setupGestureRecognizers() {
+        tapOnMainViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dropDownMenuTap(_:)))
+        self.view.isUserInteractionEnabled = true
+        tapOnMainViewGestureRecognizer.isEnabled = false
+        tapOnMainViewGestureRecognizer.numberOfTouchesRequired = 1
+        collectionView.addGestureRecognizer(tapOnMainViewGestureRecognizer)
+
+        tapOnHeaderViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dropDownMenuTap(_:)))
+        tapOnHeaderViewGestureRecognizer.cancelsTouchesInView = true
+        tapOnHeaderViewGestureRecognizer.isEnabled = false
+        tapOnHeaderViewGestureRecognizer.numberOfTouchesRequired = 1
+        headerView.addGestureRecognizer(tapOnHeaderViewGestureRecognizer)
     }
 
     // MARK: Setup layout
@@ -167,10 +196,67 @@ final class WardrobeDetailViewController: UIViewController {
         }
     }
 
+    // MARK: Drop down menu functions
+
+    private func showDropDownMenu() {
+        dropDownTableView.pin
+            .below(of: personButton)
+            .marginTop(20)
+            .right(10)
+            .height(0)
+            .width(0)
+        UIView.animate(withDuration: 0.5) {
+            self.dropDownTableView.pin
+                .below(of: self.personButton)
+                .marginTop(20)
+                .right(10)
+                .height(100)
+                .width(160)
+            self.view.layoutIfNeeded()
+        }
+        didTap = !didTap
+    }
+
+    private func hideDropDownMenu() {
+        dropDownTableView.pin
+            .below(of: personButton)
+            .marginTop(20)
+            .right(10)
+            .height(100)
+            .width(160)
+        UIView.animate(withDuration: 0.5) {
+            self.dropDownTableView.pin
+                .below(of: self.personButton)
+                .marginTop(20)
+                .right(10)
+                .height(0)
+                .width(0)
+            self.view.layoutIfNeeded()
+        }
+        didTap = !didTap
+    }
+
+    private func enableGesture() {
+        tapOnMainViewGestureRecognizer.isEnabled = true
+        tapOnHeaderViewGestureRecognizer.isEnabled = true
+    }
+
+    private func disableGesture() {
+        tapOnMainViewGestureRecognizer.isEnabled = false
+        tapOnHeaderViewGestureRecognizer.isEnabled = false
+    }
+
     // MARK: Button actions
 
-    @objc func didPersonButtonTabbed(_ sender: Any) {
-        output?.personDidTap()
+    @objc func dropDownMenuTap(_ sender: Any) {
+//        output?.personDidTap()w
+        if didTap {
+            enableGesture()
+            showDropDownMenu()
+        } else {
+            disableGesture()
+            hideDropDownMenu()
+        }
     }
 
     @objc func didBackButtonTapped(_ sender: Any) {
@@ -194,8 +280,9 @@ extension WardrobeDetailViewController: WardrobeDetailViewInput {
     }
 }
 
-extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource,
-                                    UICollectionViewDelegateFlowLayout {
+extension WardrobeDetailViewController: UICollectionViewDelegate,
+                                        UICollectionViewDataSource,
+                                        UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var totalNumberOfCells = output?.getNumberOfLooks() ?? 0
         totalNumberOfCells += 1
@@ -249,5 +336,19 @@ extension WardrobeDetailViewController: UICollectionViewDelegate, UICollectionVi
         } else {
             output?.didTapLook(at: indexPath)
         }
+    }
+}
+
+extension WardrobeDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        2
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.backgroundColor = GlobalColors.backgroundColor
+        cell.textLabel?.text = "Участники гардероба"
+        cell.imageView?.image = UIImage(named: "morz")
+        return cell
     }
 }

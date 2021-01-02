@@ -25,6 +25,8 @@
 		0DE88525258E29CE00BFC856 /* CreateWardrobeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */; };
 		0DE97FC32592567A00903CE1 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE97FC22592567A00903CE1 /* GlobalConstants.swift */; };
 		1306220F2591F7290019E704 /* AddUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1306220E2591F7290019E704 /* AddUserCell.swift */; };
+		1358A0A9259FACE500C44469 /* DropTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1358A0A8259FACE500C44469 /* DropTableCell.swift */; };
+		1358A0AC259FB04200C44469 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1358A0AB259FB04200C44469 /* DropDownView.swift */; };
 		135D7BE8258FE9210020DB1C /* WardrobeUsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */; };
 		136649752593DC51008C13EF /* DataServiceRawModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136649742593DC51008C13EF /* DataServiceRawModels.swift */; };
 		136649B5259528C1008C13EF /* WardrobeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136649B4259528C1008C13EF /* WardrobeData.swift */; };
@@ -182,6 +184,8 @@
 		0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeContainer.swift; sourceTree = "<group>"; };
 		0DE97FC22592567A00903CE1 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		1306220E2591F7290019E704 /* AddUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserCell.swift; sourceTree = "<group>"; };
+		1358A0A8259FACE500C44469 /* DropTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTableCell.swift; sourceTree = "<group>"; };
+		1358A0AB259FB04200C44469 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeUsersCell.swift; sourceTree = "<group>"; };
 		136649742593DC51008C13EF /* DataServiceRawModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceRawModels.swift; sourceTree = "<group>"; };
 		136649B4259528C1008C13EF /* WardrobeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeData.swift; sourceTree = "<group>"; };
@@ -400,6 +404,15 @@
 				0DE97FC22592567A00903CE1 /* GlobalConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		135B0C3625A09DE100344FDD /* DropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1358A0A8259FACE500C44469 /* DropTableCell.swift */,
+				1358A0AB259FB04200C44469 /* DropDownView.swift */,
+			);
+			path = DropDownMenu;
 			sourceTree = "<group>";
 		};
 		135D7BE6258FE9080020DB1C /* WardrobeUsersCell */ = {
@@ -945,6 +958,7 @@
 		31E4EB68258E6728001AC230 /* WardrobeDetail */ = {
 			isa = PBXGroup;
 			children = (
+				135B0C3625A09DE100344FDD /* DropDownMenu */,
 				31E4EB69258E673D001AC230 /* WardrobeDetailPresenter.swift */,
 				31E4EB6B258E673D001AC230 /* WardrobeDetailViewController.swift */,
 				31E4EB6D258E673D001AC230 /* WardrobeDetailInteractor.swift */,
@@ -1549,6 +1563,7 @@
 				31E4EBAF258E6A19001AC230 /* WardrobeUsersViewController.swift in Sources */,
 				3180ECFF2593FA8400A046E5 /* RegisterModels.swift in Sources */,
 				31E4EBDD258E6CA4001AC230 /* AllClothesInteractor.swift in Sources */,
+				1358A0A9259FACE500C44469 /* DropTableCell.swift in Sources */,
 				31E6E729258CE33C00591F72 /* LoginInteractor.swift in Sources */,
 				3181230525993FC200009886 /* AllItemsTableViewCellPresenter.swift in Sources */,
 				1306220F2591F7290019E704 /* AddUserCell.swift in Sources */,
@@ -1660,6 +1675,7 @@
 				31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */,
 				136649752593DC51008C13EF /* DataServiceRawModels.swift in Sources */,
 				0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */,
+				1358A0AC259FB04200C44469 /* DropDownView.swift in Sources */,
 				136649B5259528C1008C13EF /* WardrobeData.swift in Sources */,
 				31E4EB53258E6601001AC230 /* EditItemInteractor.swift in Sources */,
 				31E4EBC0258E6A45001AC230 /* SettingsContainer.swift in Sources */,
