@@ -175,6 +175,7 @@
 		31EC29CE25A27D4E0013527E /* EditWardrobeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC29C825A27D4E0013527E /* EditWardrobeProtocols.swift */; };
 		31EC29CF25A27D4E0013527E /* EditWardrobeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC29C925A27D4E0013527E /* EditWardrobeInteractor.swift */; };
 		31EC29D025A27D4E0013527E /* EditWardrobeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC29CA25A27D4E0013527E /* EditWardrobeContainer.swift */; };
+		31EC29DC25A285C30013527E /* EditWardrobeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC29DB25A285C30013527E /* EditWardrobeModels.swift */; };
 		31F798F8259617C200DBDC2E /* MainTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */; };
 		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
 		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
@@ -354,6 +355,7 @@
 		31EC29C825A27D4E0013527E /* EditWardrobeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWardrobeProtocols.swift; sourceTree = "<group>"; };
 		31EC29C925A27D4E0013527E /* EditWardrobeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWardrobeInteractor.swift; sourceTree = "<group>"; };
 		31EC29CA25A27D4E0013527E /* EditWardrobeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWardrobeContainer.swift; sourceTree = "<group>"; };
+		31EC29DB25A285C30013527E /* EditWardrobeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWardrobeModels.swift; sourceTree = "<group>"; };
 		31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarContainer.swift; sourceTree = "<group>"; };
 		31F8C50C25937429003BB6E0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		31F8C51125937519003BB6E0 /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
@@ -1590,6 +1592,7 @@
 		31EC29C425A27C190013527E /* EditWardrobe */ = {
 			isa = PBXGroup;
 			children = (
+				31EC29DA25A285A90013527E /* Models */,
 				31EC29D825A27D760013527E /* Protocols */,
 				31EC29D725A27D6B0013527E /* Container */,
 				31EC29D625A27D660013527E /* Router */,
@@ -1646,6 +1649,14 @@
 				31EC29C825A27D4E0013527E /* EditWardrobeProtocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		31EC29DA25A285A90013527E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				31EC29DB25A285C30013527E /* EditWardrobeModels.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		31F798F6259617B200DBDC2E /* Container */ = {
@@ -1939,6 +1950,7 @@
 				31F8C5202593A78A003BB6E0 /* NetworkService.swift in Sources */,
 				31E4EC3925909E6B001AC230 /* ItemCollectionViewCell.swift in Sources */,
 				31EC299A25A24F6D0013527E /* EditLookInteractor.swift in Sources */,
+				31EC29DC25A285C30013527E /* EditWardrobeModels.swift in Sources */,
 				13A7462D258D0B4600643369 /* MainScreenViewController.swift in Sources */,
 				13A15A57259A3F8700B271B0 /* MyInvitesInteractor.swift in Sources */,
 				0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */,
