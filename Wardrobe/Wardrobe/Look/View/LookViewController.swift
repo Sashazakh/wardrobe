@@ -148,7 +148,7 @@ final class LookViewController: UIViewController {
         backgroundView.pin
             .top(.zero)
             .width(100%)
-            .height(Constants.screenHeight * 0.07 + 30 + 5 + 30 + 15)
+            .height(16%)
     }
 
     private func layoutLookName() {

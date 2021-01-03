@@ -4,7 +4,7 @@ import PinLayout
 class WardrobeUsersCell: UICollectionViewCell {
     static let identifier = "WardrobeUsersCell"
 
-    private weak var imageView: UIImageView!
+    private weak var avatarImageView: UIImageView!
     private weak var outerView: UIView!
     private weak var nameLabel: UILabel!
     private weak var deleteButton: DeleteButton!
@@ -65,14 +65,16 @@ class WardrobeUsersCell: UICollectionViewCell {
 
     private func setupImageView() {
         let imgView = UIImageView()
-        imageView = imgView
-        imageView.tintColor = GlobalColors.darkColor
-        imageView.contentMode = .scaleToFill
-        imageView.dropShadow()
-        imageView.clipsToBounds = true
-        imageView.layer.borderWidth = 4
-        imageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
-        outerView.addSubview(imageView)
+        avatarImageView = imgView
+//        imageView.tintColor = GlobalColors.darkColor
+//        imageView.contentMode = .scaleToFill
+        avatarImageView.dropShadow()
+        avatarImageView.contentMode = .scaleToFill
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.borderWidth = 4
+        avatarImageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
+        avatarImageView.backgroundColor = GlobalColors.backgroundColor
+        outerView.addSubview(avatarImageView)
     }
 
     private func setupNameLabel() {
@@ -109,8 +111,8 @@ class WardrobeUsersCell: UICollectionViewCell {
             .height(imgRadius * 2)
             .width(imgRadius * 2)
 
-        imageView.pin.all()
-        imageView.layer.cornerRadius = outerView.frame.height / 2
+        avatarImageView.pin.all()
+        avatarImageView.layer.cornerRadius = outerView.frame.height / 2
         outerView.layer.cornerRadius = outerView.frame.height / 2
     }
 
@@ -145,14 +147,19 @@ class WardrobeUsersCell: UICollectionViewCell {
             }
         }
     }
+
     // MARK: Public functions
 
     func configureCell(wardrobeUser: WardrobeUserData, output: WardrobeUsersViewOutput?) {
         login = wardrobeUser.login
 
         nameLabel.text = wardrobeUser.name
-        let url = URL(string: wardrobeUser.imageUrl ?? "")
-        self.imageView.kf.setImage(with: url)
+
+        if let url = URL(string: wardrobeUser.imageUrl ?? "") {
+            self.avatarImageView.kf.setImage(with: url)
+        } else {
+            self.avatarImageView.image = UIImage(named: "no_photo")
+        }
 
         self.output = output
         checkDeleteButton()

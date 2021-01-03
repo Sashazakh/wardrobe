@@ -17,6 +17,7 @@ protocol WardrobeUsersViewOutput: class {
     func getNumberOfUsers() -> Int
     func getWardrobeUser(at indexPath: IndexPath) -> WardrobeUserData
     func didDeleteUserTap(login: String)
+    func refreshData()
 }
 
 protocol WardrobeUsersInteractorInput: class {

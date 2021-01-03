@@ -13,6 +13,7 @@ protocol MyInvitesViewInput: class {
     func showAlert(alert: UIAlertController)
     func reloadData()
     func showNoDataLabel()
+    func hideNoDataLabel()
 }
 
 protocol MyInvitesViewOutput: class {
@@ -20,6 +21,7 @@ protocol MyInvitesViewOutput: class {
     func didInviteButtonTapped(at indexPath: IndexPath)
     func getInvite(at indexPath: IndexPath) -> MyInvitesData?
     func getNumberOfInvites() -> Int
+    func refreshData()
 }
 
 protocol MyInvitesInteractorInput: class {

@@ -30,6 +30,7 @@ protocol MainScreenViewOutput: class {
     func didEditButtonTap()
     func isEditButtonTapped() -> Bool
     func didDeleteWardrobeTap(with id: Int)
+    func refreshData()
 }
 
 protocol MainScreenInteractorInput: class {

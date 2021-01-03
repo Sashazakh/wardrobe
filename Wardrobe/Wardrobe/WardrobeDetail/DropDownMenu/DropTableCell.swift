@@ -62,7 +62,7 @@ class DropTableCell: UITableViewCell {
         let lbl = UILabel()
         cellLabel = lbl
         cellLabel.textColor = GlobalColors.darkColor
-        cellLabel.font = UIFont(name: "DMSans-Bold", size: 12)
+        cellLabel.font = UIFont(name: "DMSans-Bold", size: 14)
         contentView.addSubview(cellLabel)
     }
 
@@ -94,9 +94,9 @@ class DropTableCell: UITableViewCell {
 
 extension DropTableCell {
     struct Constants {
-        static let iconWidth: CGFloat = 17
-        static let iconHeight: CGFloat = 17
+        static let iconWidth: CGFloat = 20
+        static let iconHeight: CGFloat = 20
         static let cellMarginLeft: CGFloat = 10
-        static let iconMatginLeft: CGFloat = 10
+        static let iconMatginLeft: CGFloat = 15
     }
 }

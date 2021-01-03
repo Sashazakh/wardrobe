@@ -14,6 +14,8 @@ class DetailViewCell: WardrobeCell {
 
     weak var output: WardrobeDetailViewOutput?
 
+    private var lookId: Int?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -77,12 +79,16 @@ class DetailViewCell: WardrobeCell {
         let url = URL(string: look.imageUrl ?? "")
         self.imageView.kf.setImage(with: url)
 
+        lookId = look.id
+
         self.output = output
         checkDeleteButton()
     }
     // MARK: User actions
 
     @objc private func didTapDeleteMarkButton(_ sender: Any) {
-        print("Hello")
+        guard let lookId = lookId else { return }
+
+        output?.didDeleteLookTap(lookId: lookId)
     }
 }

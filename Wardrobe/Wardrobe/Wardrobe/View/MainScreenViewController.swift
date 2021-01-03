@@ -12,6 +12,7 @@ final class MainScreenViewController: UIViewController {
     private weak var nameLabel: UILabel!
     private weak var collectionView: UICollectionView!
     private weak var editButton: UIButton!
+    private let refreshControl = UIRefreshControl()
 
     private let screenBounds = UIScreen.main.bounds
 
@@ -139,6 +140,9 @@ final class MainScreenViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
+
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
         view.addSubview(collectionView)
     }
 
@@ -186,18 +190,22 @@ final class MainScreenViewController: UIViewController {
 
     private func setupSettingsButtonLayout() {
         settingsButton.pin
-            .before(of: titleLabel, aligned: .center)
-            .margin(23%)
-            .width(titleLabel.frame.height * 0.7)
-            .height(titleLabel.frame.height * 0.7)
+            .height(27)
+            .width(27)
+
+        settingsButton.pin
+            .top(titleLabel.frame.midY - settingsButton.bounds.height / 2)
+            .left(7%)
     }
 
     private func setupEditButtonLayout() {
         editButton.pin
-            .after(of: titleLabel, aligned: .center)
-            .margin(23%)
-            .width(titleLabel.frame.height * 0.8)
-            .height(titleLabel.frame.height * 0.8)
+            .height(27)
+            .width(27)
+
+        editButton.pin
+            .top(titleLabel.frame.midY - editButton.bounds.height / 2)
+            .right(7%)
     }
 
     private func setupAvatarViewLayout() {
@@ -233,8 +241,10 @@ final class MainScreenViewController: UIViewController {
                                        y: collectionView.frame.minY,
                                        width: collectionView.bounds.width,
                                        height: 10)
+
         gradientLayerUp.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor,
-                                          UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
+                                  UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
+
         view.layer.addSublayer(gradientLayerUp)
 
         let gradientLayerDown = CAGradientLayer()
@@ -243,8 +253,10 @@ final class MainScreenViewController: UIViewController {
                                          y: collectionView.frame.maxY - 10,
                                          width: collectionView.bounds.width,
                                          height: 10)
+
         gradientLayerDown.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
-                                        UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
+                                    UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
+
         view.layer.addSublayer(gradientLayerDown)
     }
 
@@ -258,7 +270,7 @@ final class MainScreenViewController: UIViewController {
         }
     }
 
-    // MARK: Button actions
+    // MARK: Actions
 
     @objc private func didSettingsButtonTapped(_ sender: Any) {
         output?.settingsButtonDidTap()
@@ -266,6 +278,10 @@ final class MainScreenViewController: UIViewController {
 
     @objc private func didEditButtonTapped(_ sender: Any) {
         output?.didEditButtonTap()
+    }
+
+    @objc private func refreshData(_ sender: Any) {
+        output?.refreshData()
     }
 }
 
@@ -297,7 +313,7 @@ extension MainScreenViewController: MainScreenViewInput {
 
     func setUserImage(with imageUrl: URL?) {
         if let imageUrl = imageUrl {
-            avatarImageView.kf.setImage(with: imageUrl)
+            avatarImageView.kf.setImage(with: imageUrl, options: [.forceRefresh])
         } else {
             avatarImageView.image = UIImage(named: "no_photo")
             avatarImageView.contentMode = .bottom
@@ -305,6 +321,7 @@ extension MainScreenViewController: MainScreenViewInput {
     }
 
     func reloadData() {
+        refreshControl.endRefreshing()
         collectionView.reloadData()
     }
 

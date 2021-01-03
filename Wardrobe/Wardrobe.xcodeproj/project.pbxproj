@@ -21,6 +21,7 @@
 		0DE88525258E29CE00BFC856 /* CreateWardrobeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */; };
 		0DE97FC32592567A00903CE1 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE97FC22592567A00903CE1 /* GlobalConstants.swift */; };
 		1306220F2591F7290019E704 /* AddUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1306220E2591F7290019E704 /* AddUserCell.swift */; };
+		1342CF6F25A21FD700ABD0C6 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1342CF6E25A21FD700ABD0C6 /* Storyboard.storyboard */; };
 		1358A0A9259FACE500C44469 /* DropTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1358A0A8259FACE500C44469 /* DropTableCell.swift */; };
 		1358A0AC259FB04200C44469 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1358A0AB259FB04200C44469 /* DropDownView.swift */; };
 		135D7BE8258FE9210020DB1C /* WardrobeUsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */; };
@@ -196,6 +197,7 @@
 		0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeContainer.swift; sourceTree = "<group>"; };
 		0DE97FC22592567A00903CE1 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		1306220E2591F7290019E704 /* AddUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserCell.swift; sourceTree = "<group>"; };
+		1342CF6E25A21FD700ABD0C6 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		1358A0A8259FACE500C44469 /* DropTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTableCell.swift; sourceTree = "<group>"; };
 		1358A0AB259FB04200C44469 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeUsersCell.swift; sourceTree = "<group>"; };
@@ -1025,6 +1027,7 @@
 				31E4EBAB258E6A19001AC230 /* WardrobeUsersInteractor.swift */,
 				31E4EBAC258E6A19001AC230 /* WardrobeUsersContainer.swift */,
 				138DF806259E4C350076081F /* WardrobeUserData.swift */,
+				1342CF6E25A21FD700ABD0C6 /* Storyboard.storyboard */,
 			);
 			path = WardrobeUsers;
 			sourceTree = "<group>";
@@ -1678,6 +1681,7 @@
 				31E6E700258C093300591F72 /* SplashScreen.xib in Resources */,
 				31E6E6D1258BFD3900591F72 /* Assets.xcassets in Resources */,
 				31E6E764258CF47800591F72 /* DMSans-Medium.ttf in Resources */,
+				1342CF6F25A21FD700ABD0C6 /* Storyboard.storyboard in Resources */,
 				31E6E765258CF47800591F72 /* DMSans-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

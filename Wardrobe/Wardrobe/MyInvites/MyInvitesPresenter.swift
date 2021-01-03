@@ -20,8 +20,11 @@ final class MyInvitesPresenter {
             DispatchQueue.main.async {
                 if self.invites.isEmpty {
                     self.view?.showNoDataLabel()
+                    self.view?.reloadData()
+                } else {
+                    self.view?.hideNoDataLabel()
+                    self.view?.reloadData()
                 }
-                self.view?.reloadData()
             }
         }
     }
@@ -35,6 +38,10 @@ final class MyInvitesPresenter {
 }
 
 extension MyInvitesPresenter: MyInvitesViewOutput {
+    func refreshData() {
+        interactor.loadInvites()
+    }
+
     func didLoadView() {
         interactor.loadInvites()
     }
@@ -71,8 +78,7 @@ extension MyInvitesPresenter: MyInvitesViewOutput {
 
 extension MyInvitesPresenter: MyInvitesInteractorOutput {
     func removeWardrobe() {
-        guard let tappedWardrobe = tappedWardobe else { return }
-        invites.remove(at: tappedWardrobe.row)
+        interactor.loadInvites()
     }
 
     func showAlert(title: String, message: String) {

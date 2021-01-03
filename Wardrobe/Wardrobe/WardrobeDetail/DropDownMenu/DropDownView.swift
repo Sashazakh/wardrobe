@@ -115,6 +115,6 @@ extension DropDownView: UITableViewDelegate, UITableViewDataSource {
 
 extension DropDownView {
     struct Constants {
-        static let cellHeight: CGFloat = 50
+        static let cellHeight: CGFloat = 60
     }
 }

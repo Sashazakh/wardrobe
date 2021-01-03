@@ -13,6 +13,7 @@ final class WardrobeUsersViewController: UIViewController {
     private weak var backButton: UIButton!
     private weak var collectionView: UICollectionView!
     private weak var editButton: UIButton!
+    private let refreshControl = UIRefreshControl()
 
     private let screenBounds = UIScreen.main.bounds
 
@@ -71,7 +72,7 @@ final class WardrobeUsersViewController: UIViewController {
     private func setupTitleLabel() {
         let title = UILabel()
         titleLabel = title
-        titleLabel.text = "Участники\nгардероба\n"
+        titleLabel.text = "Участники гардероба\n"
         titleLabel.numberOfLines = 3
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
@@ -87,7 +88,10 @@ final class WardrobeUsersViewController: UIViewController {
     private func setupBackButton() {
         let btn = UIButton()
         backButton = btn
-        backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+
+        backButton.setImage(UIImage(systemName: "chevron.backward",
+                                    withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                                    for: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
@@ -106,6 +110,9 @@ final class WardrobeUsersViewController: UIViewController {
         collectionView.register(AddUserCell.self, forCellWithReuseIdentifier: AddUserCell.identifier)
         collectionView.backgroundColor = GlobalColors.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
+
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
         view.addSubview(collectionView)
     }
 
@@ -126,26 +133,27 @@ final class WardrobeUsersViewController: UIViewController {
 
     private func setupHeaderViewLayout() {
         headerView.pin
-            .top()
-            .right()
-            .left()
-            .height(18%)
+            .top(.zero)
+            .width(100%)
+            .height(16%)
     }
 
     private func setupTitleLableLayout() {
         titleLabel.pin
+            .top(40%)
             .hCenter()
-            .vCenter()
             .width(70%)
-            .height(50%)
+            .height(50)
     }
 
     private func setupBackButtonLayout() {
         backButton.pin
-            .vCenter()
-            .height(titleLabel.frame.height * 0.3)
-            .width(5%)
-            .left(3%)
+            .height(25)
+            .width(20)
+
+        backButton.pin
+            .top(titleLabel.frame.midY - backButton.bounds.height / 2)
+            .left(5%)
     }
 
     private func setupCollectionViewLayout() {
@@ -158,13 +166,15 @@ final class WardrobeUsersViewController: UIViewController {
 
     private func setupEditButtonLayout() {
         editButton.pin
-            .vCenter(-2%)
-            .right(3%)
-            .width(titleLabel.frame.height * 0.344)
-            .height(titleLabel.frame.height * 0.344)
+            .height(25)
+            .width(25)
+
+        editButton.pin
+            .top(titleLabel.frame.midY - editButton.bounds.height / 2)
+            .right(5%)
     }
 
-    // MARK: Button actions
+    // MARK: Actions
 
     @objc func didBackButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -172,6 +182,10 @@ final class WardrobeUsersViewController: UIViewController {
 
     @objc func didEditButtonTapped(_ sender: Any) {
         output?.didEditButtonTap()
+    }
+
+    @objc func refreshData(_ sender: Any) {
+        output?.refreshData()
     }
 }
 
@@ -192,6 +206,7 @@ extension WardrobeUsersViewController: WardrobeUsersViewInput {
     }
 
     func reloadData() {
+        refreshControl.endRefreshing()
         collectionView.reloadData()
     }
 
@@ -207,13 +222,16 @@ extension WardrobeUsersViewController: WardrobeUsersViewInput {
 
 extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                                        UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         var totalNumberOfCells = output?.getNumberOfUsers() ?? 0
         totalNumberOfCells += 1
         return totalNumberOfCells
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var numberOfLooks = output?.getNumberOfUsers() ?? 0
         numberOfLooks += 1
         if indexPath.row == numberOfLooks - 1 || numberOfLooks == 0 {
@@ -239,7 +257,8 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
     -> CGSize {
         let cellWidth = screenBounds.width * 0.354
         let cellHeight = screenBounds.height * 0.2558
@@ -273,7 +292,8 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         guard let count = output?.getNumberOfUsers() else { return }
         if indexPath.row == count {
             output?.didInivteUserButtonTapped()

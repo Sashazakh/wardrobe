@@ -27,6 +27,15 @@ final class WardrobeDetailPresenter {
 }
 
 extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
+    func didDeleteLookTap(lookId: Int) {
+        interactor.deleteLook(lookId: lookId)
+    }
+
+    func refreshData() {
+        guard let wardrobeId = wardrobeId else { return }
+        interactor.loadLooks(with: wardrobeId)
+    }
+
     func didEditButtonTap() {
         view?.hideDropMenu()
         isUserEditButtonTapped = !isUserEditButtonTapped
@@ -75,6 +84,11 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
 }
 
 extension WardrobeDetailPresenter: WardrobeDetailInteractorOutput {
+    func didDelete() {
+        guard let wardrobeId = wardrobeId else { return }
+        interactor.loadLooks(with: wardrobeId)
+    }
+
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
