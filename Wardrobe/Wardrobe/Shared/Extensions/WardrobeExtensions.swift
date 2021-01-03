@@ -98,3 +98,13 @@ extension UITableView {
         return tableView
     }
 }
+
+// MARK: UIButton
+
+extension UIButton {
+    open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let screenBounds = UIScreen.main.bounds
+
+        return bounds.insetBy(dx: -screenBounds.height * 0.016, dy: -screenBounds.width * 0.036).contains(point)
+    }
+}
