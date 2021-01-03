@@ -14,7 +14,7 @@ final class EditLookInteractor {
 
 extension EditLookInteractor: EditLookInteractorInput {
     func fetchLookData() {
-        DataService.shared.getItem(id: model.lookID) { [weak self] result in
+        DataService.shared.getLookMetadata(lookID: model.lookID) { [weak self] result in
             guard result.error == nil else {
                 guard let networkError = result.error else {
                     return
@@ -35,7 +35,7 @@ extension EditLookInteractor: EditLookInteractorInput {
                 return
             }
 
-            self.model.name = data.clothesName
+            self.model.name = data.name
             self.model.imageURL = data.imageURL
             self.output?.updateModel(model: EditLookPresenterData(model: self.model))
             self.output?.didReceivedLookData()
@@ -53,9 +53,9 @@ extension EditLookInteractor: EditLookInteractorInput {
             return
         }
 
-        DataService.shared.updateItem(id: model.lookID,
-                                      name: newName,
-                                      imageData: imageData) { [weak self] result in
+        DataService.shared.updateLookMetadata(lookID: model.lookID,
+                                              name: newName,
+                                              imageData: imageData) { [weak self] result in
             guard result.error == nil else {
                 guard let networkError = result.error else {
                     return
