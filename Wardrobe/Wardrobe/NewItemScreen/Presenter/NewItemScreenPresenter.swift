@@ -1,11 +1,3 @@
-//
-//  NewItemScreenPresenter.swift
-//  Wardrobe
-//
-//  Created by kymblc on 18.12.2020.
-//  
-//
-
 import Foundation
 import UIKit
 
@@ -26,7 +18,23 @@ extension NewItemScreenPresenter: NewItemScreenViewOutput {
         debugPrint("Got image \(image.description)")
     }
 
+    func didTapBackButton() {
+        router.goBack()
+    }
+
+    func didTapAddButton() {
+        guard let itemName = view?.getItemName(),
+              !itemName.isEmpty else {
+            view?.showAlert(title: "Ошибка", message: "Введите название предмета")
+            return
+        }
+
+        interactor.addItem(name: itemName, imageData: view?.getItemImage())
+    }
 }
 
 extension NewItemScreenPresenter: NewItemScreenInteractorOutput {
+    func showAlert(title: String, message: String) {
+        view?.showAlert(title: title, message: message)
+    }
 }

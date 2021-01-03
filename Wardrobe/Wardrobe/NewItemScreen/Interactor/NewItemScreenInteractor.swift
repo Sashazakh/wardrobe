@@ -1,11 +1,3 @@
-//
-//  NewItemScreenInteractor.swift
-//  Wardrobe
-//
-//  Created by kymblc on 18.12.2020.
-//  
-//
-
 import Foundation
 
 final class NewItemScreenInteractor {
@@ -19,4 +11,7 @@ final class NewItemScreenInteractor {
 }
 
 extension NewItemScreenInteractor: NewItemScreenInteractorInput {
+    func addItem(name: String, imageData: Data?) {
+
+    }
 }
