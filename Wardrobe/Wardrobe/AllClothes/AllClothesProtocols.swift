@@ -10,6 +10,7 @@ protocol AllClothesViewOutput: class {
     func getTitle(for index: Int) -> String
     func getCategory(for index: Int) -> CategoryData?
     func didTapItem(itemId: Int)
+    func didTapAddItem(category: String)
 }
 
 protocol AllClothesInteractorInput: class {
@@ -24,4 +25,5 @@ protocol AllClothesInteractorOutput: class {
 protocol AllClothesRouterInput: class {
     func showAlert(title: String, message: String)
     func showEditItemScreen(itemId: Int)
+    func showAddItemScreen(category: String)
 }

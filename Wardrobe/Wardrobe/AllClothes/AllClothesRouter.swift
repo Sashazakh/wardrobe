@@ -22,4 +22,12 @@ extension AllClothesRouter: AllClothesRouterInput {
 
         viewController?.navigationController?.pushViewController(editItemVC, animated: true)
     }
+
+    func showAddItemScreen(category: String) {
+        let newItemVC = NewItemScreenContainer.assemble(with: NewItemScreenContext(category: category)).viewController
+
+        newItemVC.modalPresentationStyle = .fullScreen
+
+        viewController?.navigationController?.pushViewController(newItemVC, animated: true)
+    }
 }

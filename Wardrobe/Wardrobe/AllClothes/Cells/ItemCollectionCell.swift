@@ -43,6 +43,10 @@ final class ItemCollectionCell: UITableViewCell {
         guard let output = self.output else { return }
         self.localModel = output.getCategory(for: index)
     }
+
+    @objc private func didTapAddButton() {
+        output?.didTapAddItem(category: localModel?.categoryName ?? "")
+    }
 }
 
 extension ItemCollectionCell {
@@ -113,6 +117,7 @@ extension ItemCollectionCell {
         addButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addButton.tintColor = GlobalColors.backgroundColor
         addButton.backgroundColor = GlobalColors.mainBlueScreen
+        addButton.addTarget(self, action: #selector(self.didTapAddButton), for: .touchUpInside)
         contentView.addSubview(addButton)
     }
 
