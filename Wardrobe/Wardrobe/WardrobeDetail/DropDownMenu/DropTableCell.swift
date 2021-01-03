@@ -54,7 +54,7 @@ class DropTableCell: UITableViewCell {
         icon = icn
         icon.contentMode = .scaleToFill
         icon.clipsToBounds = true
-
+        icon.tintColor = GlobalColors.darkColor
         contentView.addSubview(icon)
     }
 
@@ -63,6 +63,10 @@ class DropTableCell: UITableViewCell {
         cellLabel = lbl
         cellLabel.textColor = GlobalColors.darkColor
         cellLabel.font = UIFont(name: "DMSans-Bold", size: 14)
+        cellLabel.adjustsFontSizeToFitWidth = true
+        cellLabel.minimumScaleFactor = 0.1
+        cellLabel.numberOfLines = 0
+        cellLabel.sizeToFit()
         contentView.addSubview(cellLabel)
     }
 
@@ -82,6 +86,7 @@ class DropTableCell: UITableViewCell {
             .marginLeft(Constants.cellMarginLeft)
             .height(60%)
             .width(80%)
+            .right(5)
     }
 
     // MARK: Public func
@@ -94,8 +99,8 @@ class DropTableCell: UITableViewCell {
 
 extension DropTableCell {
     struct Constants {
-        static let iconWidth: CGFloat = 20
-        static let iconHeight: CGFloat = 20
+        static let iconWidth: CGFloat = 18
+        static let iconHeight: CGFloat = 18
         static let cellMarginLeft: CGFloat = 10
         static let iconMatginLeft: CGFloat = 15
     }

@@ -220,8 +220,8 @@ final class WardrobeDetailViewController: UIViewController {
                 .below(of: self.actionButton)
                 .marginTop(20)
                 .right(10)
-                .height(120)
-                .width(180)
+                .height(13%)
+                .width(43%)
             self.view.layoutIfNeeded()
         }
         didTap = !didTap
@@ -232,8 +232,8 @@ final class WardrobeDetailViewController: UIViewController {
             .below(of: actionButton)
             .marginTop(20)
             .right(10)
-            .height(120)
-            .width(180)
+            .height(13%)
+            .width(43%)
         UIView.animate(withDuration: 0.3) {
             self.dropDownTableView.pin
                 .below(of: self.actionButton)

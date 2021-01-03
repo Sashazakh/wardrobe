@@ -73,7 +73,7 @@ final class WardrobeUsersViewController: UIViewController {
         let title = UILabel()
         titleLabel = title
         titleLabel.text = "Участники гардероба\n"
-        titleLabel.numberOfLines = 3
+        titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = GlobalColors.backgroundColor
