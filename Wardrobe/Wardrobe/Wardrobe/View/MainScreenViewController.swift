@@ -224,8 +224,8 @@ final class MainScreenViewController: UIViewController {
         nameLabel.pin
             .below(of: outerImageView, aligned: .center)
             .marginTop(1.3%)
-            .height(4.7%)
-            .sizeToFit()
+            .height(6.7%)
+            .width(60%)
     }
 
     private func setupCollectionLayout() {

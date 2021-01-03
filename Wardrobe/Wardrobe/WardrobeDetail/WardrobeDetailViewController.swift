@@ -372,7 +372,7 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
                 return UICollectionViewCell()
             }
 
-            cell.configureCell(with: look, output: output)
+            cell.configureCell(with: look, output: output, needForceRefresh: isReloadDataNeed)
             return cell
         }
     }

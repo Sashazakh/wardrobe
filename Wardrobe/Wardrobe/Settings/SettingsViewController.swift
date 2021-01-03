@@ -192,7 +192,7 @@ final class SettingsViewController: UIViewController {
 
         backButton.pin
             .top(titleLabel.frame.midY - backButton.bounds.height / 2)
-            .left(7%)
+            .left(3%)
     }
 
     private func setupAvatarViewLayout() {
