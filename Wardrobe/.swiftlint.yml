@@ -31,12 +31,12 @@ line_length:
   - 200
 
 file_length:
-  warning: 600
-  error: 1200
+  warning: 1200
+  error: 1500
 
 type_body_length:
-  - 300 # warning
-  - 400 # error
+  - 600 # warning
+  - 1000 # error
 
 cyclomatic_complexity:
     warning: 18

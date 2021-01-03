@@ -8,6 +8,7 @@ target 'Wardrobe' do
     pod 'SwiftLint'
     pod 'Alamofire'
     pod 'PinLayout'
+    pod 'Kingfisher'
 end
 
 post_install do |installer|
