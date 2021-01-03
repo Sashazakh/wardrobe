@@ -18,6 +18,15 @@ final class AllClothesPresenter {
 }
 
 extension AllClothesPresenter: AllClothesViewOutput {
+    func deleteItem(id: Int, collectionIndex: Int, cellIndex: Int) {
+        interactor.deleteItem(id: id, collectionIndex: collectionIndex, cellIndex: cellIndex)
+    }
+
+    func didTapEditButton() {
+        view?.toggleEditMode()
+        view?.reloadData()
+    }
+
     func didTapAddItem(category: String) {
         router.showAddItemScreen(category: category)
     }
@@ -55,6 +64,14 @@ extension AllClothesPresenter: AllClothesViewOutput {
 }
 
 extension AllClothesPresenter: AllClothesInteractorOutput {
+    func didDeletedItem(collectionIndex: Int, cellIndex: Int) {
+        interactor.getAllClothes()
+        // guard var newmodel = self.model else { return }
+        // newmodel.categories[collectionIndex].items.remove(at: cellIndex)
+        // model = newmodel
+        // view?.reloadData()
+    }
+
     func handleModel(model: AllClothesModel) {
         self.model = model
     }
