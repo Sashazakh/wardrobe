@@ -25,7 +25,6 @@
 		1358A0A9259FACE500C44469 /* DropTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1358A0A8259FACE500C44469 /* DropTableCell.swift */; };
 		1358A0AC259FB04200C44469 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1358A0AB259FB04200C44469 /* DropDownView.swift */; };
 		135D7BE8258FE9210020DB1C /* WardrobeUsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */; };
-		136649752593DC51008C13EF /* DataServiceRawModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136649742593DC51008C13EF /* DataServiceRawModels.swift */; };
 		136649B5259528C1008C13EF /* WardrobeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136649B4259528C1008C13EF /* WardrobeData.swift */; };
 		136649C8259540AF008C13EF /* MainScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136649C7259540AF008C13EF /* MainScreenCell.swift */; };
 		136EFECA258E5EB60041B9D5 /* AddWardrobeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */; };
@@ -167,10 +166,12 @@
 		31EC299925A24F6D0013527E /* EditLookProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299325A24F6D0013527E /* EditLookProtocols.swift */; };
 		31EC299A25A24F6D0013527E /* EditLookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299425A24F6D0013527E /* EditLookInteractor.swift */; };
 		31EC299B25A24F6D0013527E /* EditLookContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299525A24F6D0013527E /* EditLookContainer.swift */; };
+		31EC29B225A25DC00013527E /* EditLookModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC29B125A25DC00013527E /* EditLookModels.swift */; };
+		31EC29BE25A276110013527E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC29BB25A276110013527E /* DataService.swift */; };
+		31EC29BF25A276110013527E /* DataServiceRawModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC29BD25A276110013527E /* DataServiceRawModels.swift */; };
 		31F798F8259617C200DBDC2E /* MainTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */; };
 		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
 		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
-		31F8C5152593754A003BB6E0 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C5142593754A003BB6E0 /* DataService.swift */; };
 		31F8C5202593A78A003BB6E0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51F2593A78A003BB6E0 /* NetworkService.swift */; };
 		D01532F399E202C2F1464915 /* Pods_Wardrobe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1B9047E3A9526460D1CD4 /* Pods_Wardrobe.framework */; };
 /* End PBXBuildFile section */
@@ -201,7 +202,6 @@
 		1358A0A8259FACE500C44469 /* DropTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTableCell.swift; sourceTree = "<group>"; };
 		1358A0AB259FB04200C44469 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		135D7BE7258FE9210020DB1C /* WardrobeUsersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeUsersCell.swift; sourceTree = "<group>"; };
-		136649742593DC51008C13EF /* DataServiceRawModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceRawModels.swift; sourceTree = "<group>"; };
 		136649B4259528C1008C13EF /* WardrobeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeData.swift; sourceTree = "<group>"; };
 		136649C7259540AF008C13EF /* MainScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCell.swift; sourceTree = "<group>"; };
 		136EFEC9258E5EB60041B9D5 /* AddWardrobeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWardrobeCell.swift; sourceTree = "<group>"; };
@@ -339,10 +339,12 @@
 		31EC299325A24F6D0013527E /* EditLookProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookProtocols.swift; sourceTree = "<group>"; };
 		31EC299425A24F6D0013527E /* EditLookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookInteractor.swift; sourceTree = "<group>"; };
 		31EC299525A24F6D0013527E /* EditLookContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookContainer.swift; sourceTree = "<group>"; };
+		31EC29B125A25DC00013527E /* EditLookModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookModels.swift; sourceTree = "<group>"; };
+		31EC29BB25A276110013527E /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		31EC29BD25A276110013527E /* DataServiceRawModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceRawModels.swift; sourceTree = "<group>"; };
 		31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarContainer.swift; sourceTree = "<group>"; };
 		31F8C50C25937429003BB6E0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		31F8C51125937519003BB6E0 /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
-		31F8C5142593754A003BB6E0 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		31F8C51F2593A78A003BB6E0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7868A0E5AC4E3FEEEEB60FFD /* Pods-Wardrobe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.release.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.release.xcconfig"; sourceTree = "<group>"; };
 		8E628020EFEE71A0D3856E4A /* Pods-Wardrobe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wardrobe.debug.xcconfig"; path = "Target Support Files/Pods-Wardrobe/Pods-Wardrobe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -461,14 +463,6 @@
 				136649B4259528C1008C13EF /* WardrobeData.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		136649B8259528F9008C13EF /* RawModels */ = {
-			isa = PBXGroup;
-			children = (
-				136649742593DC51008C13EF /* DataServiceRawModels.swift */,
-			);
-			path = RawModels;
 			sourceTree = "<group>";
 		};
 		13A15A4C259A3EC300B271B0 /* MyInvites */ = {
@@ -1495,6 +1489,7 @@
 		31EC298E25A24F4B0013527E /* EditLook */ = {
 			isa = PBXGroup;
 			children = (
+				31EC29B025A25DB30013527E /* Models */,
 				31EC29A225A250130013527E /* View */,
 				31EC29A125A2500C0013527E /* Router */,
 				31EC29A025A250050013527E /* Container */,
@@ -1553,6 +1548,32 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		31EC29B025A25DB30013527E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				31EC29B125A25DC00013527E /* EditLookModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		31EC29BA25A276110013527E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				31EC29BB25A276110013527E /* DataService.swift */,
+				31EC29BC25A276110013527E /* RawModels */,
+			);
+			name = Data;
+			path = Wardrobe/Services/Network/Data;
+			sourceTree = SOURCE_ROOT;
+		};
+		31EC29BC25A276110013527E /* RawModels */ = {
+			isa = PBXGroup;
+			children = (
+				31EC29BD25A276110013527E /* DataServiceRawModels.swift */,
+			);
+			path = RawModels;
+			sourceTree = "<group>";
+		};
 		31F798F6259617B200DBDC2E /* Container */ = {
 			isa = PBXGroup;
 			children = (
@@ -1578,22 +1599,13 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		31F8C50A259373F4003BB6E0 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				136649B8259528F9008C13EF /* RawModels */,
-				31F8C5142593754A003BB6E0 /* DataService.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		31F8C50B2593740F003BB6E0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				31F8C51E2593A770003BB6E0 /* Common */,
 				31F8C51025937504003BB6E0 /* Protocols */,
 				31F8C509259373E5003BB6E0 /* Auth */,
-				31F8C50A259373F4003BB6E0 /* Data */,
+				31EC29BA25A276110013527E /* Data */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1756,6 +1768,7 @@
 				31EC296E25A12C7F0013527E /* NewItemScreenRouter.swift in Sources */,
 				31EC296F25A12C7F0013527E /* NewItemScreenProtocols.swift in Sources */,
 				31EC297025A12C7F0013527E /* NewItemScreenViewController.swift in Sources */,
+				31EC29B225A25DC00013527E /* EditLookModels.swift in Sources */,
 				31EC297125A12C7F0013527E /* NewItemScreenInteractor.swift in Sources */,
 				31EC297225A12C7F0013527E /* NewItemScreenPresenter.swift in Sources */,
 				31EC299925A24F6D0013527E /* EditLookProtocols.swift in Sources */,
@@ -1824,6 +1837,7 @@
 				31E6E728258CE33C00591F72 /* LoginProtocols.swift in Sources */,
 				31467C432592813A00B785FF /* CreateLookRouter.swift in Sources */,
 				31EC299625A24F6D0013527E /* EditLookPresenter.swift in Sources */,
+				31EC29BE25A276110013527E /* DataService.swift in Sources */,
 				31E4EBCB258E6A59001AC230 /* InviteRouter.swift in Sources */,
 				318122DF2599271D00009886 /* AllItemsTableViewCellViewModel.swift in Sources */,
 				13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */,
@@ -1874,7 +1888,6 @@
 				31DD94B72597A1C200D2390C /* ItemCollectionVIewCellPresenter.swift in Sources */,
 				31E4EB81258E679B001AC230 /* LookProtocols.swift in Sources */,
 				31E4EB7E258E679B001AC230 /* LookPresenter.swift in Sources */,
-				31F8C5152593754A003BB6E0 /* DataService.swift in Sources */,
 				31467C2925926E4B00B785FF /* AllItemsCollectionViewCell.swift in Sources */,
 				13A7462B258D0B4600643369 /* MainScreenPresenter.swift in Sources */,
 				0DE88521258E29CE00BFC856 /* CreateWardrobeRouter.swift in Sources */,
@@ -1894,13 +1907,13 @@
 				31E4EB7F258E679B001AC230 /* LookRouter.swift in Sources */,
 				13B3A9E9259D1BA2003C306B /* WardrobeDetailData.swift in Sources */,
 				31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */,
-				136649752593DC51008C13EF /* DataServiceRawModels.swift in Sources */,
 				1358A0AC259FB04200C44469 /* DropDownView.swift in Sources */,
 				136649B5259528C1008C13EF /* WardrobeData.swift in Sources */,
 				31E4EB53258E6601001AC230 /* EditItemInteractor.swift in Sources */,
 				31E4EBC0258E6A45001AC230 /* SettingsContainer.swift in Sources */,
 				13EF8DD4258F8BA30081FBE6 /* SettingsTableViewCell.swift in Sources */,
 				13A74630258D0B4600643369 /* MainScreenContainer.swift in Sources */,
+				31EC29BF25A276110013527E /* DataServiceRawModels.swift in Sources */,
 				3180ECE82593DC7300A046E5 /* LoginRawModels.swift in Sources */,
 				31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */,
 				318122E22599279700009886 /* AllItemsCollectionViewCellViewModel.swift in Sources */,
