@@ -12,7 +12,11 @@ final class NewItemScreenViewController: UIViewController, UINavigationControlle
     private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
     private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
 
+    private var naturalImage: UIImage?
+
 	var output: NewItemScreenViewOutput?
+
+    private var photoLoaded: Bool = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -84,6 +88,10 @@ extension NewItemScreenViewController {
         let button = UIButton()
         self.backButton = button
         headerView.addSubview(backButton)
+
+        backButton.addTarget(self,
+                             action: #selector(didTapBackButton),
+                             for: .touchUpInside)
     }
 
     private func layoutBackButton() {
@@ -194,6 +202,10 @@ extension NewItemScreenViewController {
         addButton.dropShadow()
 
         view.addSubview(addButton)
+
+        addButton.addTarget(self,
+                            action: #selector(didTapAddButton),
+                            for: .touchUpInside)
     }
 
     private func layoutAddButton() {
@@ -206,6 +218,16 @@ extension NewItemScreenViewController {
         let width = addButton.frame.width
 
         addButton.layer.cornerRadius = width * 0.078
+    }
+
+    @objc
+    private func didTapBackButton() {
+        output?.didTapBackButton()
+    }
+
+    @objc
+    private func didTapAddButton() {
+        output?.didTapAddButton()
     }
 }
 
@@ -235,7 +257,9 @@ extension NewItemScreenViewController: UIImagePickerControllerDelegate {
             guard let img = image else {
                 return
             }
-            output?.didImageLoaded(image: img)
+
+            naturalImage = img
+            photoLoaded = true
             let toset = img.alpha(0.5)
             imagePickButton.setBackgroundImage(toset, for: .normal)
             imagePickButton.clipsToBounds = true
@@ -255,7 +279,26 @@ extension NewItemScreenViewController: UIImagePickerControllerDelegate {
 }
 
 extension NewItemScreenViewController: NewItemScreenViewInput {
+    func getItemName() -> String? {
+        return itemNameTextField.text
+    }
 
+    func getItemImage() -> Data? {
+        guard photoLoaded else {
+            return nil
+        }
+
+        return naturalImage?.jpegData(compressionQuality: 0.1)
+    }
+
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension NewItemScreenViewController: UITextFieldDelegate {

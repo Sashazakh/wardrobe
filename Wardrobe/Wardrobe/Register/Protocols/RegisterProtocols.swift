@@ -14,6 +14,8 @@ protocol RegisterViewInput: AnyObject {
     func setCheckBoxChecked()
 
     func setCheckBoxUnchecked()
+
+    func disableKeyboard()
 }
 
 protocol RegisterViewOutput: AnyObject {
@@ -26,6 +28,8 @@ protocol RegisterViewOutput: AnyObject {
     func didTapCheckBox()
 
     func userDidSetImage(imageData: Data?)
+
+    func didTapView()
 }
 
 protocol RegisterInteractorInput: AnyObject {

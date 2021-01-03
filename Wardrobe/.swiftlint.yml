@@ -31,8 +31,8 @@ line_length:
   - 200
 
 file_length:
-  warning: 900
-  error: 1200
+  warning: 1200
+  error: 1500
 
 type_body_length:
   - 600 # warning

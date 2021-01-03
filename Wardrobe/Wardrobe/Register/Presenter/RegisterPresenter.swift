@@ -81,6 +81,10 @@ extension RegisterPresenter: RegisterViewOutput {
         userImageIsSet = true
         view?.setUserImage(imageData: data)
     }
+
+    func didTapView() {
+        view?.disableKeyboard()
+    }
 }
 
 extension RegisterPresenter: RegisterInteractorOutput {

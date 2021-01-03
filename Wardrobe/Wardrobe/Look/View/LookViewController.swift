@@ -130,6 +130,7 @@ final class LookViewController: UIViewController {
                                                   bottom: 0,
                                                   right: 0)
         lookTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
+        lookTableView.backgroundColor = .white
     }
 
     private func setupDropMenuView() {

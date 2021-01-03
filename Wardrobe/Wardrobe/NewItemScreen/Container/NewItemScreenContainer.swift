@@ -13,6 +13,7 @@ final class NewItemScreenContainer {
         viewController.output = presenter
 		presenter.view = viewController
 		interactor.output = presenter
+        router.viewController = viewController
 
         return NewItemScreenContainer(view: viewController, router: router)
 	}

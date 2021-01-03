@@ -1,15 +1,11 @@
-//
-//  NewItemScreenRouter.swift
-//  Wardrobe
-//
-//  Created by kymblc on 18.12.2020.
-//  
-//
-
 import UIKit
 
 final class NewItemScreenRouter {
+    weak var viewController: UIViewController?
 }
 
 extension NewItemScreenRouter: NewItemScreenRouterInput {
+    func goBack() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
 }

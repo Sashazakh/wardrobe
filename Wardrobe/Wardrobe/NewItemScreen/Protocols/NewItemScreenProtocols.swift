@@ -1,18 +1,30 @@
 import Foundation
 import UIKit
 
-protocol NewItemScreenViewInput: class {
+protocol NewItemScreenViewInput: AnyObject {
+    func getItemName() -> String?
+
+    func getItemImage() -> Data?
+
+    func showAlert(title: String, message: String)
 }
 
-protocol NewItemScreenViewOutput: class {
-    func didImageLoaded(image: UIImage)
+protocol NewItemScreenViewOutput: AnyObject {
+    func didTapBackButton()
+
+    func didTapAddButton()
 }
 
-protocol NewItemScreenInteractorInput: class {
+protocol NewItemScreenInteractorInput: AnyObject {
+    func addItem(name: String, imageData: Data?)
 }
 
-protocol NewItemScreenInteractorOutput: class {
+protocol NewItemScreenInteractorOutput: AnyObject {
+    func showAlert(title: String, message: String)
+
+    func didItemAdded()
 }
 
-protocol NewItemScreenRouterInput: class {
+protocol NewItemScreenRouterInput: AnyObject {
+    func goBack()
 }

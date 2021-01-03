@@ -63,6 +63,12 @@ final class RegisterViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .white
+
+        let tapRecognizer = UITapGestureRecognizer(target: self,
+                                                   action: #selector(didTapView))
+
+        tapRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tapRecognizer)
     }
 
     private func setupImagePicker() {
@@ -396,6 +402,11 @@ final class RegisterViewController: UIViewController {
     private func didTapAddPhotoButton() {
         output?.didTapAddPhotoButton()
     }
+
+    @objc
+    private func didTapView() {
+        output?.didTapView()
+    }
 }
 
 extension RegisterViewController: RegisterViewInput {
@@ -454,6 +465,10 @@ extension RegisterViewController: RegisterViewInput {
         alert.addAction(okAction)
 
         present(alert, animated: true, completion: nil)
+    }
+
+    func disableKeyboard() {
+        view.endEditing(true)
     }
 }
 
