@@ -63,7 +63,8 @@ final class LookTableViewCell: UITableViewCell {
         itemCollectionView.delegate = self
         itemCollectionView.dataSource = self
 
-        itemCollectionView.register(LookCollectionViewCell.self, forCellWithReuseIdentifier: "itemCell")
+        itemCollectionView.register(LookCollectionViewCell.self,
+                                    forCellWithReuseIdentifier: "itemCell")
 
         itemCollectionView.backgroundColor = .white
         itemCollectionView.showsHorizontalScrollIndicator = false

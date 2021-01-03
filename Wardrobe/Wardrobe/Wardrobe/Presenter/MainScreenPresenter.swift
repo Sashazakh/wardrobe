@@ -35,6 +35,10 @@ final class MainScreenPresenter {
 }
 
 extension MainScreenPresenter: MainScreenViewOutput {
+    func refreshData() {
+        interactor.loadUserWardobes()
+    }
+
     func didDeleteWardrobeTap(with id: Int) {
         interactor.deleteWardrobe(with: id)
     }

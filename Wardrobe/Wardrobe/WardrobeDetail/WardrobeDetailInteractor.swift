@@ -19,6 +19,17 @@ final class WardrobeDetailInteractor {
 }
 
 extension WardrobeDetailInteractor: WardrobeDetailInteractorInput {
+    func deleteLook(lookId: Int) {
+        DataService.shared.deleteLook(lookId: lookId) { [weak self](result) in
+            guard let self = self else { return }
+
+            if let error = result.error {
+                self.handleError(with: error)
+                return
+            }
+        }
+    }
+
     func loadLooks(with wardrobeId: Int) {
         DataService.shared.getLooks(for: wardrobeId, completion: { [weak self](result) in
             guard let self = self else { return }

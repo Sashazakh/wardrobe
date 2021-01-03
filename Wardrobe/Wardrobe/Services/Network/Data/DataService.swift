@@ -250,13 +250,48 @@ extension DataService: DataServiceInput {
 
     // MARK: Wardrobe detail
 
-    func getWardrobeId(with id: Int) {
+    func deleteLook(lookId: Int,
+                    completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        let url = getBaseURL() + "removeLook?look_id=\(lookId)&apikey=\(getApiKey())"
 
-    }
+        var result = SingleResult<NetworkError>()
 
-    // Думаем здесь принимать словарь вещей
-    func addClothesToLook() {
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
 
+        let request = AF.request(url)
+        request.response { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+        }
     }
 
     // MARK: Look screen

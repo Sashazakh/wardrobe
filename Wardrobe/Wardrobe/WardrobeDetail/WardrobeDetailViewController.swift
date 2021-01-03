@@ -12,6 +12,7 @@ final class WardrobeDetailViewController: UIViewController {
     private weak var dropDownTableView: DropDownView!
     private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
     private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
+    private let refreshControl = UIRefreshControl()
 
     private let screenBounds = UIScreen.main.bounds
 
@@ -119,6 +120,9 @@ final class WardrobeDetailViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
+
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
         view.addSubview(collectionView)
     }
 
@@ -269,6 +273,10 @@ final class WardrobeDetailViewController: UIViewController {
     @objc func didBackButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+
+    @objc func refreshData() {
+        output?.refreshData()
+    }
 }
 
 extension WardrobeDetailViewController: WardrobeDetailViewInput {
@@ -302,6 +310,7 @@ extension WardrobeDetailViewController: WardrobeDetailViewInput {
     }
 
     func reloadData() {
+        refreshControl.endRefreshing()
         collectionView.reloadData()
     }
 }
@@ -348,10 +357,23 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            UIView.animate(withDuration: 0.4) {
-                cell.transform = CGAffineTransform.identity
+        guard var countOfCells = output?.getNumberOfLooks() else { return }
+        countOfCells += 1
+        if isReloadDataNeed {
+            if indexPath.row != countOfCells - 1 {
+                cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                    UIView.animate(withDuration: 0.3) {
+                        cell.transform = CGAffineTransform.identity
+                    }
+            } else {
+                isReloadDataNeed = !isReloadDataNeed
             }
+        } else {
+            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                UIView.animate(withDuration: 0.4) {
+                    cell.transform = CGAffineTransform.identity
+                }
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

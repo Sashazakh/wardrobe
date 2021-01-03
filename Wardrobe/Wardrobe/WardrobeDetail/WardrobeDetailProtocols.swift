@@ -19,16 +19,19 @@ protocol WardrobeDetailViewOutput: class {
     func look(at indexPath: IndexPath) -> WardrobeDetailData
     func didEditButtonTap()
     func isEditButtonTapped() -> Bool
+    func refreshData()
+    func didDeleteLookTap(lookId: Int)
 }
 
 protocol WardrobeDetailInteractorInput: class {
     func loadLooks(with wardrobeId: Int)
+    func deleteLook(lookId: Int)
 }
 
 protocol WardrobeDetailInteractorOutput: class {
     func didReceive(with: [WardrobeDetailData])
     func showAlert(title: String, message: String)
-
+    func didDelete()
 }
 
 protocol WardrobeDetailRouterInput: class {

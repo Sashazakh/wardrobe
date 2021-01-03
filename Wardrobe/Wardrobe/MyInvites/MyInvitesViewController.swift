@@ -17,6 +17,7 @@ final class MyInvitesViewController: UIViewController {
     private weak var backButton: UIButton!
     private weak var inviteTableView: UITableView!
     private weak var noInvitesLabel: UILabel!
+    private let refreshControl = UIRefreshControl()
 
     private let screenBounds = UIScreen.main.bounds
 
@@ -94,8 +95,12 @@ final class MyInvitesViewController: UIViewController {
         inviteTableView.dataSource = self
         inviteTableView.backgroundColor = GlobalColors.backgroundColor
         inviteTableView.separatorStyle = .none
-        inviteTableView.register(MyInvitesCell.self, forCellReuseIdentifier: MyInvitesCell.identifier)
+        inviteTableView.register(MyInvitesCell.self,
+                                 forCellReuseIdentifier: MyInvitesCell.identifier)
         inviteTableView.tableFooterView = UIView(frame: .zero)
+
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        inviteTableView.refreshControl = refreshControl
         view.addSubview(inviteTableView)
     }
 
@@ -172,9 +177,17 @@ final class MyInvitesViewController: UIViewController {
     @objc func didBackButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+
+    @objc func refreshData(_ sender: Any) {
+        output?.refreshData()
+    }
 }
 
 extension MyInvitesViewController: MyInvitesViewInput {
+    func hideNoDataLabel() {
+        noInvitesLabel.isHidden = true
+    }
+
     func showNoDataLabel() {
         noInvitesLabel.isHidden = false
     }
@@ -185,6 +198,7 @@ extension MyInvitesViewController: MyInvitesViewInput {
 
     func reloadData() {
         inviteTableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
 }
