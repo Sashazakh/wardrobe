@@ -96,6 +96,8 @@ final class SettingsViewController: UIViewController {
         let btn = UIButton()
         backButton = btn
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
+        backButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
@@ -185,10 +187,12 @@ final class SettingsViewController: UIViewController {
 
     private func setupBackButtonLayout() {
         backButton.pin
-            .height(titleLabel.frame.height * 0.89)
-            .width(5%)
-            .before(of: titleLabel, aligned: .top)
-            .left(3%)
+            .height(25)
+            .width(20)
+
+        backButton.pin
+            .top(titleLabel.frame.midY - backButton.bounds.height / 2)
+            .left(7%)
     }
 
     private func setupAvatarViewLayout() {

@@ -107,7 +107,9 @@ final class MyInvitesViewController: UIViewController {
     private func setupBackButton() {
         let btn = UIButton()
         backButton = btn
-        backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        backButton.setImage(UIImage(systemName: "chevron.backward",
+                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                                        for: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
@@ -135,10 +137,9 @@ final class MyInvitesViewController: UIViewController {
 
     private func setupHeaderViewLayout() {
         headerView.pin
-            .top()
-            .right()
-            .left()
-            .height(18%)
+            .top(.zero)
+            .width(100%)
+            .height(16%)
     }
 
     private func setupTitleLableLayout() {
