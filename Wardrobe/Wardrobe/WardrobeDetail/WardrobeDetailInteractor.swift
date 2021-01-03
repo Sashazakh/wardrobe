@@ -27,6 +27,8 @@ extension WardrobeDetailInteractor: WardrobeDetailInteractorInput {
                 self.handleError(with: error)
                 return
             }
+
+            self.output?.didDelete()
         }
     }
 

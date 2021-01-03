@@ -41,7 +41,7 @@ final class WardrobeDetailViewController: UIViewController {
         setupHeaderView()
         setupTitleLabel()
         setupBackButton()
-        setupPersonButton()
+        setupMoreButton()
         setupMainView()
         setupCollectionView()
         setupDropDownView()
@@ -52,7 +52,7 @@ final class WardrobeDetailViewController: UIViewController {
         setupHeaderViewLayout()
         setupTitleLableLayout()
         setupBackButtonLayout()
-        setupPersonButtonLayout()
+        setupMoreButtonLayout()
         setupCollectionLayout()
         setupFlowLayout()
     }
@@ -89,7 +89,9 @@ final class WardrobeDetailViewController: UIViewController {
     private func setupBackButton() {
         let btn = UIButton()
         backButton = btn
-        backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        backButton.setImage(UIImage(systemName: "chevron.backward",
+                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                                        for: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
@@ -97,7 +99,7 @@ final class WardrobeDetailViewController: UIViewController {
         headerView.addSubview(backButton)
     }
 
-    private func setupPersonButton() {
+    private func setupMoreButton() {
         let btn = UIButton()
         actionButton = btn
         let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
@@ -153,35 +155,37 @@ final class WardrobeDetailViewController: UIViewController {
 
     private func setupHeaderViewLayout() {
         headerView.pin
-            .top()
-            .right()
-            .left()
-            .height(18%)
+            .top(.zero)
+            .width(100%)
+            .height(16%)
     }
 
     private func setupTitleLableLayout() {
         titleLabel.pin
+            .top(40%)
             .hCenter()
-            .vCenter()
-            .width(70%)
-            .height(50%)
+            .width(50%)
+            .height(50)
     }
 
     private func setupBackButtonLayout() {
         backButton.pin
-            .height(titleLabel.frame.height * 0.364)
-            .width(5%)
-            .vCenter()
-            .left(3%)
+            .height(25)
+            .width(20)
+
+        backButton.pin
+            .top(titleLabel.frame.midY - backButton.bounds.height / 2)
+            .left(5%)
     }
 
-    private func setupPersonButtonLayout() {
-        actionButton.sizeToFit()
+    private func setupMoreButtonLayout() {
         actionButton.pin
-            .vCenter()
-            .right(4.8%)
-            .height(28)
-            .width(31)
+            .height(25)
+            .width(25)
+
+        actionButton.pin
+            .top(titleLabel.frame.midY - actionButton.bounds.height / 2)
+            .right(5%)
     }
 
     private func setupCollectionLayout() {
@@ -216,8 +220,8 @@ final class WardrobeDetailViewController: UIViewController {
                 .below(of: self.actionButton)
                 .marginTop(20)
                 .right(10)
-                .height(100)
-                .width(160)
+                .height(120)
+                .width(180)
             self.view.layoutIfNeeded()
         }
         didTap = !didTap
@@ -228,8 +232,8 @@ final class WardrobeDetailViewController: UIViewController {
             .below(of: actionButton)
             .marginTop(20)
             .right(10)
-            .height(100)
-            .width(160)
+            .height(120)
+            .width(180)
         UIView.animate(withDuration: 0.3) {
             self.dropDownTableView.pin
                 .below(of: self.actionButton)

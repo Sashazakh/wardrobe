@@ -190,18 +190,22 @@ final class MainScreenViewController: UIViewController {
 
     private func setupSettingsButtonLayout() {
         settingsButton.pin
-            .before(of: titleLabel, aligned: .center)
-            .margin(23%)
-            .width(titleLabel.frame.height * 0.7)
-            .height(titleLabel.frame.height * 0.7)
+            .height(27)
+            .width(27)
+
+        settingsButton.pin
+            .top(titleLabel.frame.midY - settingsButton.bounds.height / 2)
+            .left(7%)
     }
 
     private func setupEditButtonLayout() {
         editButton.pin
-            .after(of: titleLabel, aligned: .center)
-            .margin(23%)
-            .width(titleLabel.frame.height * 0.8)
-            .height(titleLabel.frame.height * 0.8)
+            .height(27)
+            .width(27)
+
+        editButton.pin
+            .top(titleLabel.frame.midY - editButton.bounds.height / 2)
+            .right(7%)
     }
 
     private func setupAvatarViewLayout() {
