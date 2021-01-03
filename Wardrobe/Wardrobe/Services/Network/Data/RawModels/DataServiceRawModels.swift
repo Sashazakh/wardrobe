@@ -26,6 +26,16 @@ struct LookMetadataRaw: Decodable {
     }
 }
 
+struct WardrobeMetadataRaw: Decodable {
+    let name: String
+    let imageURL: String?
+
+    private enum CodingKeys: String, CodingKey {
+        case name = "wardrobe_name"
+        case imageURL = "image_url"
+    }
+}
+
 struct LookRaw: Decodable {
     let lookID: Int
     let lookName: String

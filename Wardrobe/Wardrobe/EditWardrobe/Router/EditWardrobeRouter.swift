@@ -5,4 +5,7 @@ final class EditWardrobeRouter {
 }
 
 extension EditWardrobeRouter: EditWardrobeRouterInput {
+    func goBack() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
 }
