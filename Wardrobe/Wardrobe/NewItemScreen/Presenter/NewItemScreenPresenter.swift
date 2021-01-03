@@ -27,6 +27,10 @@ extension NewItemScreenPresenter: NewItemScreenViewOutput {
 
         interactor.addItem(name: itemName, imageData: view?.getItemImage())
     }
+
+    func didTapView() {
+        view?.disableKeyboard()
+    }
 }
 
 extension NewItemScreenPresenter: NewItemScreenInteractorOutput {

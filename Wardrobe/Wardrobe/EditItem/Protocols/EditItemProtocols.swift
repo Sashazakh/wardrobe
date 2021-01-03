@@ -14,6 +14,8 @@ protocol EditItemViewInput: AnyObject {
     func getItemName() -> String?
 
     func showAlert(title: String, message: String)
+
+    func disableKeyboard()
 }
 
 protocol EditItemViewOutput: AnyObject {
@@ -26,6 +28,8 @@ protocol EditItemViewOutput: AnyObject {
     func didTapEditItemButton()
 
     func userDidSetImage(imageData: Data?)
+
+    func didTapView()
 }
 
 protocol EditItemInteractorInput: AnyObject {
