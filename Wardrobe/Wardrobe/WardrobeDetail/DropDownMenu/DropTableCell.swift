@@ -31,10 +31,15 @@ class DropTableCell: UITableViewCell {
     }
 
     private func setupViews() {
-        isUserInteractionEnabled = true
-        self.selectionStyle = .none
+        setupMainView()
         setupIcon()
         setupLabel()
+    }
+
+    private func setupMainView() {
+        contentView.backgroundColor = GlobalColors.backgroundColor
+        isUserInteractionEnabled = true
+        self.selectionStyle = .none
     }
 
     private func setupLayout() {
