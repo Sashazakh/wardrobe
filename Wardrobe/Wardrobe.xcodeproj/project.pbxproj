@@ -160,6 +160,12 @@
 		31EC297025A12C7F0013527E /* NewItemScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */; };
 		31EC297125A12C7F0013527E /* NewItemScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */; };
 		31EC297225A12C7F0013527E /* NewItemScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */; };
+		31EC299625A24F6D0013527E /* EditLookPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299025A24F6D0013527E /* EditLookPresenter.swift */; };
+		31EC299725A24F6D0013527E /* EditLookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299125A24F6D0013527E /* EditLookRouter.swift */; };
+		31EC299825A24F6D0013527E /* EditLookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299225A24F6D0013527E /* EditLookViewController.swift */; };
+		31EC299925A24F6D0013527E /* EditLookProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299325A24F6D0013527E /* EditLookProtocols.swift */; };
+		31EC299A25A24F6D0013527E /* EditLookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299425A24F6D0013527E /* EditLookInteractor.swift */; };
+		31EC299B25A24F6D0013527E /* EditLookContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299525A24F6D0013527E /* EditLookContainer.swift */; };
 		31F798F8259617C200DBDC2E /* MainTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */; };
 		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
 		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
@@ -325,6 +331,12 @@
 		31EB1939259694AF00621DDF /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		31EC2948259FB20A0013527E /* EditItemsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemsModels.swift; sourceTree = "<group>"; };
 		31EC295225A0F2760013527E /* LookSettingsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookSettingsMenuView.swift; sourceTree = "<group>"; };
+		31EC299025A24F6D0013527E /* EditLookPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookPresenter.swift; sourceTree = "<group>"; };
+		31EC299125A24F6D0013527E /* EditLookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookRouter.swift; sourceTree = "<group>"; };
+		31EC299225A24F6D0013527E /* EditLookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookViewController.swift; sourceTree = "<group>"; };
+		31EC299325A24F6D0013527E /* EditLookProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookProtocols.swift; sourceTree = "<group>"; };
+		31EC299425A24F6D0013527E /* EditLookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookInteractor.swift; sourceTree = "<group>"; };
+		31EC299525A24F6D0013527E /* EditLookContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookContainer.swift; sourceTree = "<group>"; };
 		31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarContainer.swift; sourceTree = "<group>"; };
 		31F8C50C25937429003BB6E0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		31F8C51125937519003BB6E0 /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
@@ -1269,6 +1281,7 @@
 		31E6E6C6258BFD3700591F72 /* Wardrobe */ = {
 			isa = PBXGroup;
 			children = (
+				31EC298E25A24F4B0013527E /* EditLook */,
 				13A15A4C259A3EC300B271B0 /* MyInvites */,
 				31F8C508259373C9003BB6E0 /* Services */,
 				31467C3B2592812100B785FF /* CreateLook */,
@@ -1476,6 +1489,67 @@
 			path = Container;
 			sourceTree = "<group>";
 		};
+		31EC298E25A24F4B0013527E /* EditLook */ = {
+			isa = PBXGroup;
+			children = (
+				31EC29A225A250130013527E /* View */,
+				31EC29A125A2500C0013527E /* Router */,
+				31EC29A025A250050013527E /* Container */,
+				31EC299F25A24FFE0013527E /* Protocols */,
+				31EC299E25A24FF50013527E /* Interactor */,
+				31EC299D25A24FEE0013527E /* Presenter */,
+			);
+			path = EditLook;
+			sourceTree = "<group>";
+		};
+		31EC299D25A24FEE0013527E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				31EC299025A24F6D0013527E /* EditLookPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		31EC299E25A24FF50013527E /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				31EC299425A24F6D0013527E /* EditLookInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		31EC299F25A24FFE0013527E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				31EC299325A24F6D0013527E /* EditLookProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		31EC29A025A250050013527E /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				31EC299525A24F6D0013527E /* EditLookContainer.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		31EC29A125A2500C0013527E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				31EC299125A24F6D0013527E /* EditLookRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		31EC29A225A250130013527E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31EC299225A24F6D0013527E /* EditLookViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		31F798F6259617B200DBDC2E /* Container */ = {
 			isa = PBXGroup;
 			children = (
@@ -1680,6 +1754,7 @@
 				31EC297025A12C7F0013527E /* NewItemScreenViewController.swift in Sources */,
 				31EC297125A12C7F0013527E /* NewItemScreenInteractor.swift in Sources */,
 				31EC297225A12C7F0013527E /* NewItemScreenPresenter.swift in Sources */,
+				31EC299925A24F6D0013527E /* EditLookProtocols.swift in Sources */,
 				13A15A56259A3F8700B271B0 /* MyInvitesProtocols.swift in Sources */,
 				31CB1210259B647C00CEA505 /* CreateLookTableViewCell.swift in Sources */,
 				318122BD2598B67500009886 /* SetupLookProtocols.swift in Sources */,
@@ -1744,6 +1819,7 @@
 				136EFECA258E5EB60041B9D5 /* AddWardrobeCell.swift in Sources */,
 				31E6E728258CE33C00591F72 /* LoginProtocols.swift in Sources */,
 				31467C432592813A00B785FF /* CreateLookRouter.swift in Sources */,
+				31EC299625A24F6D0013527E /* EditLookPresenter.swift in Sources */,
 				31E4EBCB258E6A59001AC230 /* InviteRouter.swift in Sources */,
 				318122DF2599271D00009886 /* AllItemsTableViewCellViewModel.swift in Sources */,
 				13A7462F258D0B4600643369 /* MainScreenInteractor.swift in Sources */,
@@ -1759,11 +1835,14 @@
 				13A15A53259A3F8700B271B0 /* MyInvitesPresenter.swift in Sources */,
 				31E4EC65259231FC001AC230 /* AllItemsPresenter.swift in Sources */,
 				31F798F8259617C200DBDC2E /* MainTabBarContainer.swift in Sources */,
+				31EC299825A24F6D0013527E /* EditLookViewController.swift in Sources */,
 				31E4EBCA258E6A59001AC230 /* InvitePresenter.swift in Sources */,
 				13A7462C258D0B4600643369 /* MainScreenRouter.swift in Sources */,
 				139EF328258E3DC900A9435B /* WardrobeCell.swift in Sources */,
+				31EC299725A24F6D0013527E /* EditLookRouter.swift in Sources */,
 				31F8C5202593A78A003BB6E0 /* NetworkService.swift in Sources */,
 				31E4EC3925909E6B001AC230 /* ItemCollectionViewCell.swift in Sources */,
+				31EC299A25A24F6D0013527E /* EditLookInteractor.swift in Sources */,
 				13A7462D258D0B4600643369 /* MainScreenViewController.swift in Sources */,
 				13A15A57259A3F8700B271B0 /* MyInvitesInteractor.swift in Sources */,
 				0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */,
@@ -1799,6 +1878,7 @@
 				31E4EB74258E673D001AC230 /* WardrobeDetailContainer.swift in Sources */,
 				31E6E6CA258BFD3700591F72 /* SceneDelegate.swift in Sources */,
 				31E4EB82258E679B001AC230 /* LookInteractor.swift in Sources */,
+				31EC299B25A24F6D0013527E /* EditLookContainer.swift in Sources */,
 				31E4EBDC258E6CA4001AC230 /* AllClothesProtocols.swift in Sources */,
 				138B8250259B4F64000B138B /* MyInvitesData.swift in Sources */,
 				0DE88525258E29CE00BFC856 /* CreateWardrobeContainer.swift in Sources */,
