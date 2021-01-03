@@ -52,6 +52,10 @@ extension EditItemPresenter: EditItemViewOutput {
     func didSavedItemData() {
         router.goBack()
     }
+
+    func didTapView() {
+        view?.disableKeyboard()
+    }
 }
 
 extension EditItemPresenter: EditItemInteractorOutput {

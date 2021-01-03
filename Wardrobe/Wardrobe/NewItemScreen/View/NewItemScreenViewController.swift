@@ -21,6 +21,12 @@ final class NewItemScreenViewController: UIViewController, UINavigationControlle
 	override func viewDidLoad() {
 		super.viewDidLoad()
         setupUI()
+
+        let tapRecognizer = UITapGestureRecognizer(target: self,
+                                                   action: #selector(didTapView))
+
+        tapRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tapRecognizer)
 	}
 
     override func viewDidLayoutSubviews() {
@@ -133,6 +139,9 @@ extension NewItemScreenViewController {
         self.pageTitle = label
         pageTitle.text = "Добавить предмет"
         pageTitle.font = UIFont(name: "DMSans-Bold", size: 25)
+        pageTitle.adjustsFontSizeToFitWidth = true
+        pageTitle.minimumScaleFactor = 0.1
+
         headerView.addSubview(pageTitle)
     }
 
@@ -141,7 +150,8 @@ extension NewItemScreenViewController {
         pageTitle.pin
             .top(11%)
             .hCenter()
-            .sizeToFit()
+            .width(50%)
+            .height(5%)
     }
 
     // Item name text field
@@ -158,8 +168,8 @@ extension NewItemScreenViewController {
         itemNameTextField.pin
             .below(of: pageTitle).margin(8%)
             .hCenter()
-            .width(80%)
-            .height(8%)
+            .width(90%)
+            .height(7.5%)
     }
 
     // image Button
@@ -181,9 +191,9 @@ extension NewItemScreenViewController {
 
     private func layoutImageButton() {
         imagePickButton.pin
-            .width(70%)
-            .below(of: itemNameTextField).margin(8%)
-            .height(45%)
+            .width(80%)
+            .below(of: itemNameTextField).marginTop(7%)
+            .bottom(7%)
             .hCenter()
 
         let width = imagePickButton.frame.width * 0.35
@@ -200,6 +210,7 @@ extension NewItemScreenViewController {
         addButton.setTitle("Добавить", for: .normal)
         addButton.backgroundColor = GlobalColors.mainBlueScreen
         addButton.dropShadow()
+        addButton.layer.cornerRadius = 20
 
         view.addSubview(addButton)
 
@@ -210,14 +221,10 @@ extension NewItemScreenViewController {
 
     private func layoutAddButton() {
         addButton.pin
-            .below(of: headerView).margin(10%)
-            .width(80%)
-            .height(7%)
+            .below(of: headerView).margin(5%)
+            .width(90%)
+            .height(6%)
             .hCenter()
-
-        let width = addButton.frame.width
-
-        addButton.layer.cornerRadius = width * 0.078
     }
 
     @objc
@@ -228,6 +235,11 @@ extension NewItemScreenViewController {
     @objc
     private func didTapAddButton() {
         output?.didTapAddButton()
+    }
+
+    @objc
+    private func didTapView() {
+        output?.didTapView()
     }
 }
 
@@ -298,6 +310,10 @@ extension NewItemScreenViewController: NewItemScreenViewInput {
         alert.addAction(okAction)
 
         present(alert, animated: true, completion: nil)
+    }
+
+    func disableKeyboard() {
+        view.endEditing(true)
     }
 }
 

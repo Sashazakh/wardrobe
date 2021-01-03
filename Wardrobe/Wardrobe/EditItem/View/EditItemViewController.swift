@@ -30,6 +30,12 @@ final class EditItemViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .white
+
+        let tapRecognizer = UITapGestureRecognizer(target: self,
+                                                   action: #selector(didTapView))
+
+        tapRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tapRecognizer)
     }
 
     private func setupSubviews() {
@@ -206,6 +212,11 @@ final class EditItemViewController: UIViewController {
     private func didTapEditImageView() {
         output?.didTapEditImageView()
     }
+
+    @objc
+    private func didTapView() {
+        output?.didTapView()
+    }
 }
 
 extension EditItemViewController: EditItemViewInput {
@@ -262,6 +273,10 @@ extension EditItemViewController: EditItemViewInput {
 
     func getItemName() -> String? {
         return itemNameTextField.text
+    }
+
+    func disableKeyboard() {
+        view.endEditing(true)
     }
 }
 

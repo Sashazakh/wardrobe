@@ -7,12 +7,16 @@ protocol NewItemScreenViewInput: AnyObject {
     func getItemImage() -> Data?
 
     func showAlert(title: String, message: String)
+
+    func disableKeyboard()
 }
 
 protocol NewItemScreenViewOutput: AnyObject {
     func didTapBackButton()
 
     func didTapAddButton()
+
+    func didTapView()
 }
 
 protocol NewItemScreenInteractorInput: AnyObject {
