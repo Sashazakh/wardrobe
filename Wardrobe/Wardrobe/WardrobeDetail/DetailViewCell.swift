@@ -77,7 +77,7 @@ class DetailViewCell: WardrobeCell {
         titleLable.text = look.name
 
         let url = URL(string: look.imageUrl ?? "")
-        self.imageView.kf.setImage(with: url)
+        self.imageView.kf.setImage(with: url, options: [.forceRefresh])
 
         lookId = look.id
 

@@ -22,6 +22,10 @@ final class LookViewController: UIViewController {
 
     private var menuIsDropped: Bool?
 
+    private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
+
+    private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -53,6 +57,7 @@ final class LookViewController: UIViewController {
         setupLookParamsButton()
         setupLookTableView()
         setupDropMenuView()
+        setupGestureRecognizers()
     }
 
     private func setupBackgroundView() {
@@ -144,6 +149,29 @@ final class LookViewController: UIViewController {
         dropMenuView.isUserInteractionEnabled = true
     }
 
+    private func setupGestureRecognizers() {
+        tapOnMainViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapLookParamsButton))
+        self.lookTableView.isUserInteractionEnabled = true
+        tapOnMainViewGestureRecognizer.isEnabled = false
+        tapOnMainViewGestureRecognizer.numberOfTouchesRequired = 1
+        lookTableView.addGestureRecognizer(tapOnMainViewGestureRecognizer)
+
+        tapOnHeaderViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapLookParamsButton))
+        tapOnHeaderViewGestureRecognizer.isEnabled = false
+        tapOnHeaderViewGestureRecognizer.numberOfTouchesRequired = 1
+        backgroundView.addGestureRecognizer(tapOnHeaderViewGestureRecognizer)
+    }
+
+    private func enableGesture() {
+        tapOnMainViewGestureRecognizer.isEnabled = true
+        tapOnHeaderViewGestureRecognizer.isEnabled = true
+    }
+
+    private func disableGesture() {
+        tapOnMainViewGestureRecognizer.isEnabled = false
+        tapOnHeaderViewGestureRecognizer.isEnabled = false
+    }
+
     private func layoutBackgroundView() {
         backgroundView.pin
             .top(.zero)
@@ -211,8 +239,8 @@ final class LookViewController: UIViewController {
                 .below(of: self.lookParamsButton)
                 .marginTop(20)
                 .right(10)
-                .height(100)
-                .width(160)
+                .height(13%)
+                .width(43%)
             self.view.layoutIfNeeded()
         }
     }
@@ -222,8 +250,8 @@ final class LookViewController: UIViewController {
             .below(of: lookParamsButton)
             .marginTop(20)
             .right(10)
-            .height(100)
-            .width(160)
+            .height(13%)
+            .width(43%)
         UIView.animate(withDuration: 0.3) {
             self.dropMenuView.pin
                 .below(of: self.lookParamsButton)
@@ -285,12 +313,14 @@ extension LookViewController: LookViewInput {
     }
 
     func showDropMenu() {
+        enableGesture()
         menuIsDropped = true
         view.setNeedsLayout()
         view.layoutIfNeeded()
     }
 
     func hideDropMenu() {
+        disableGesture()
         menuIsDropped = false
         view.setNeedsLayout()
         view.layoutIfNeeded()
