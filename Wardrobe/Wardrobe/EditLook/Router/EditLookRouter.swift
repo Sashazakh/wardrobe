@@ -5,4 +5,7 @@ final class EditLookRouter {
 }
 
 extension EditLookRouter: EditLookRouterInput {
+    func goBack() {
+        viewController?.navigationController?.popViewController(animated: true)
+    }
 }

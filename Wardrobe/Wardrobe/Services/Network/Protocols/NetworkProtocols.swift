@@ -32,6 +32,8 @@ protocol DataServiceInput {
     func getAllLookClothes(with id: Int,
                            completion: @escaping (Result<LookRaw, NetworkError>) -> Void)
 
+    // func getLookMetadata()
+
     func createLook(wardrobeID: Int,
                     name: String,
                     imageData: Data?,

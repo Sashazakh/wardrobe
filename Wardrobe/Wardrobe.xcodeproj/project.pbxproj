@@ -167,6 +167,7 @@
 		31EC299925A24F6D0013527E /* EditLookProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299325A24F6D0013527E /* EditLookProtocols.swift */; };
 		31EC299A25A24F6D0013527E /* EditLookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299425A24F6D0013527E /* EditLookInteractor.swift */; };
 		31EC299B25A24F6D0013527E /* EditLookContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC299525A24F6D0013527E /* EditLookContainer.swift */; };
+		31EC29B225A25DC00013527E /* EditLookModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EC29B125A25DC00013527E /* EditLookModels.swift */; };
 		31F798F8259617C200DBDC2E /* MainTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */; };
 		31F8C50D25937429003BB6E0 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C50C25937429003BB6E0 /* AuthService.swift */; };
 		31F8C51225937519003BB6E0 /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8C51125937519003BB6E0 /* NetworkProtocols.swift */; };
@@ -339,6 +340,7 @@
 		31EC299325A24F6D0013527E /* EditLookProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookProtocols.swift; sourceTree = "<group>"; };
 		31EC299425A24F6D0013527E /* EditLookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookInteractor.swift; sourceTree = "<group>"; };
 		31EC299525A24F6D0013527E /* EditLookContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookContainer.swift; sourceTree = "<group>"; };
+		31EC29B125A25DC00013527E /* EditLookModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLookModels.swift; sourceTree = "<group>"; };
 		31F798F7259617C200DBDC2E /* MainTabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarContainer.swift; sourceTree = "<group>"; };
 		31F8C50C25937429003BB6E0 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		31F8C51125937519003BB6E0 /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
@@ -1495,6 +1497,7 @@
 		31EC298E25A24F4B0013527E /* EditLook */ = {
 			isa = PBXGroup;
 			children = (
+				31EC29B025A25DB30013527E /* Models */,
 				31EC29A225A250130013527E /* View */,
 				31EC29A125A2500C0013527E /* Router */,
 				31EC29A025A250050013527E /* Container */,
@@ -1551,6 +1554,14 @@
 				31EC299225A24F6D0013527E /* EditLookViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		31EC29B025A25DB30013527E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				31EC29B125A25DC00013527E /* EditLookModels.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		31F798F6259617B200DBDC2E /* Container */ = {
@@ -1756,6 +1767,7 @@
 				31EC296E25A12C7F0013527E /* NewItemScreenRouter.swift in Sources */,
 				31EC296F25A12C7F0013527E /* NewItemScreenProtocols.swift in Sources */,
 				31EC297025A12C7F0013527E /* NewItemScreenViewController.swift in Sources */,
+				31EC29B225A25DC00013527E /* EditLookModels.swift in Sources */,
 				31EC297125A12C7F0013527E /* NewItemScreenInteractor.swift in Sources */,
 				31EC297225A12C7F0013527E /* NewItemScreenPresenter.swift in Sources */,
 				31EC299925A24F6D0013527E /* EditLookProtocols.swift in Sources */,
