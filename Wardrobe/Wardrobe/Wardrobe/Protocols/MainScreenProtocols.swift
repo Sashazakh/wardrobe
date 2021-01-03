@@ -31,6 +31,7 @@ protocol MainScreenViewOutput: class {
     func isEditButtonTapped() -> Bool
     func didDeleteWardrobeTap(with id: Int)
     func refreshData()
+    func didEditWardrobeTap(at indexPath: IndexPath)
 }
 
 protocol MainScreenInteractorInput: class {
@@ -50,4 +51,5 @@ protocol MainScreenRouterInput: class {
     func showDetailWardrope(id: Int, name: String)
     func showSettings(login: String, name: String, imageUrl: String)
     func showAddWardobeScreen(for user: String)
+    func showEditWardrobe(with wardrobeId: Int)
 }

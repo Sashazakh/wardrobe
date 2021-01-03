@@ -379,7 +379,12 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
         if indexPath.row == numberOfWardobes - 1 || numberOfWardobes == 0 {
             output?.addWardrobeDidTap()
         } else {
-            output?.showDetailDidTap(at: indexPath)
+            guard let isEditButtonTapped = output?.isEditButtonTapped() else { return }
+            if isEditButtonTapped {
+                output?.didEditWardrobeTap(at: indexPath)
+            } else {
+                output?.showDetailDidTap(at: indexPath)
+            }
         }
     }
 

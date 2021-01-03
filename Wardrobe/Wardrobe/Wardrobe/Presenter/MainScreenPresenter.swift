@@ -35,6 +35,10 @@ final class MainScreenPresenter {
 }
 
 extension MainScreenPresenter: MainScreenViewOutput {
+    func didEditWardrobeTap(at indexPath: IndexPath) {
+        router.showEditWardrobe(with: userWardrobes[indexPath.row].id)
+    }
+
     func refreshData() {
         interactor.loadUserWardobes()
     }
