@@ -3,6 +3,8 @@ import Foundation
 protocol LoginViewInput: AnyObject {
     func getUserCredentials() -> [String: String?]
 
+    func disableKeyboard()
+
     func showAlert(title: String, message: String)
 }
 
@@ -10,6 +12,8 @@ protocol LoginViewOutput: AnyObject {
     func didTapRegisterLabel()
 
     func didTapLoginButton()
+
+    func didTapView()
 }
 
 protocol LoginInteractorInput: AnyObject {

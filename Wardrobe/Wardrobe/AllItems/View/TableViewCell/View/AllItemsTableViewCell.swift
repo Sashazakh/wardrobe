@@ -26,6 +26,7 @@ final class AllItemsTableViewCell: UITableViewCell {
     }
 
     private func setupView() {
+        backgroundColor = .white
     }
 
     private func setupSubviews() {
@@ -45,7 +46,7 @@ final class AllItemsTableViewCell: UITableViewCell {
 
         sectionNameLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         sectionNameLabel.textAlignment = .left
-        sectionNameLabel.text = "Гучи Тапки"
+        sectionNameLabel.textColor = GlobalColors.darkColor
     }
 
     private func setupCollectionView() {

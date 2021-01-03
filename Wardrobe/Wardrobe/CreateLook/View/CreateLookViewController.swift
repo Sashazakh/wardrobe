@@ -118,6 +118,7 @@ final class CreateLookViewController: UIViewController {
                                                   bottom: 0,
                                                   right: 0)
         allItemsTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
+        allItemsTableView.backgroundColor = .white
     }
 
     private func layoutBackgroundView() {

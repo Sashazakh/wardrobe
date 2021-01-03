@@ -42,6 +42,12 @@ final class LoginViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .white
+
+        let tapRecognizer = UITapGestureRecognizer(target: self,
+                                                   action: #selector(didTapView))
+
+        tapRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tapRecognizer)
     }
 
     private func setupSubviews() {
@@ -227,6 +233,11 @@ final class LoginViewController: UIViewController {
     private func didTapLoginButton() {
         output?.didTapLoginButton()
     }
+
+    @objc
+    private func didTapView() {
+        output?.didTapView()
+    }
 }
 
 extension LoginViewController: LoginViewInput {
@@ -237,6 +248,10 @@ extension LoginViewController: LoginViewInput {
         credentials["password"] = passwordTextField.text
 
         return credentials
+    }
+
+    func disableKeyboard() {
+        view.endEditing(true)
     }
 
     func showAlert(title: String, message: String) {

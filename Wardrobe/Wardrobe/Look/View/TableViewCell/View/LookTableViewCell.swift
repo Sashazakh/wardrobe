@@ -28,6 +28,7 @@ final class LookTableViewCell: UITableViewCell {
     }
 
     private func setupView() {
+        backgroundColor = .white
     }
 
     private func setupSubviews() {
@@ -47,6 +48,7 @@ final class LookTableViewCell: UITableViewCell {
 
         sectionNameLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         sectionNameLabel.textAlignment = .left
+        sectionNameLabel.textColor = GlobalColors.darkColor
     }
 
     private func setupCollectionView() {

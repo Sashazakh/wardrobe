@@ -29,6 +29,12 @@ final class SetupLookViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .white
+
+        let tapRecognizer = UITapGestureRecognizer(target: self,
+                                                   action: #selector(didTapView))
+
+        tapRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tapRecognizer)
     }
 
     private func setupSubviews() {
@@ -232,9 +238,18 @@ final class SetupLookViewController: UIViewController {
     private func didTapSetupLookButton() {
         output?.didTapSetupLookButton()
     }
+
+    @objc
+    private func didTapView() {
+        output?.didTapView()
+    }
 }
 
 extension SetupLookViewController: SetupLookViewInput {
+    func disableKeyboard() {
+        view.endEditing(true)
+    }
+
     func setLookImage(imageData: Data) {
         lookPhotoImageView.contentMode = .scaleToFill
         lookPhotoImageView.image = UIImage(data: imageData)

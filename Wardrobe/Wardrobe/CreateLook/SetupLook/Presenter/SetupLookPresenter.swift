@@ -40,6 +40,10 @@ extension SetupLookPresenter: SetupLookViewOutput {
 
         view?.setLookImage(imageData: data)
     }
+
+    func didTapView() {
+        view?.disableKeyboard()
+    }
 }
 
 extension SetupLookPresenter: SetupLookInteractorOutput {

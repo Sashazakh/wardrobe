@@ -10,6 +10,8 @@ protocol SetupLookViewInput: AnyObject {
     func getLookImage() -> Data?
 
     func showAlert(title: String, message: String)
+
+    func disableKeyboard()
 }
 
 protocol SetupLookViewOutput: AnyObject {
@@ -20,6 +22,8 @@ protocol SetupLookViewOutput: AnyObject {
     func didTapSetupLookButton()
 
     func userDidSetImage(imageData: Data?)
+
+    func didTapView()
 }
 
 protocol SetupLookInteractorInput: AnyObject {

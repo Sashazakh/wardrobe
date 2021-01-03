@@ -39,6 +39,10 @@ extension LoginPresenter: LoginViewOutput {
 
         interactor.login(login: login, password: password)
     }
+
+    func didTapView() {
+        view?.disableKeyboard()
+    }
 }
 
 extension LoginPresenter: LoginInteractorOutput {
