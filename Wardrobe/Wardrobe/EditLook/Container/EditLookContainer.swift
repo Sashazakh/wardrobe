@@ -6,14 +6,14 @@ final class EditLookContainer {
 
 	class func assemble(with context: EditLookContext) -> EditLookContainer {
         let router = EditLookRouter()
-        let interactor = EditLookInteractor()
+        let interactor = EditLookInteractor(lookID: context.lookID)
         let presenter = EditLookPresenter(router: router, interactor: interactor)
-	let viewController = EditLookViewController()
+        let viewController = EditLookViewController()
 
         viewController.output = presenter
-	presenter.view = viewController
-	interactor.output = presenter
-	router.viewController = viewController
+        presenter.view = viewController
+        interactor.output = presenter
+        router.viewController = viewController
 
         return EditLookContainer(view: viewController, router: router)
 	}
@@ -25,4 +25,5 @@ final class EditLookContainer {
 }
 
 struct EditLookContext {
+    var lookID: Int
 }
