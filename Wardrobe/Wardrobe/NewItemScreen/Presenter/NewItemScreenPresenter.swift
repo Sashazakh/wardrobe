@@ -14,10 +14,6 @@ final class NewItemScreenPresenter {
 }
 
 extension NewItemScreenPresenter: NewItemScreenViewOutput {
-    func didImageLoaded(image: UIImage) {
-        debugPrint("Got image \(image.description)")
-    }
-
     func didTapBackButton() {
         router.goBack()
     }
@@ -36,5 +32,9 @@ extension NewItemScreenPresenter: NewItemScreenViewOutput {
 extension NewItemScreenPresenter: NewItemScreenInteractorOutput {
     func showAlert(title: String, message: String) {
         view?.showAlert(title: title, message: message)
+    }
+
+    func didItemAdded() {
+        router.goBack()
     }
 }

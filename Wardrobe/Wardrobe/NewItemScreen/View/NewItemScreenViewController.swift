@@ -12,6 +12,8 @@ final class NewItemScreenViewController: UIViewController, UINavigationControlle
     private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
     private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
 
+    private var naturalImage: UIImage?
+
 	var output: NewItemScreenViewOutput?
 
     private var photoLoaded: Bool = false
@@ -255,7 +257,8 @@ extension NewItemScreenViewController: UIImagePickerControllerDelegate {
             guard let img = image else {
                 return
             }
-            output?.didImageLoaded(image: img)
+
+            naturalImage = img
             photoLoaded = true
             let toset = img.alpha(0.5)
             imagePickButton.setBackgroundImage(toset, for: .normal)
@@ -285,7 +288,7 @@ extension NewItemScreenViewController: NewItemScreenViewInput {
             return nil
         }
 
-        return imagePickButton.image(for: .normal)?.jpegData(compressionQuality: 0.1)
+        return naturalImage?.jpegData(compressionQuality: 0.1)
     }
 
     func showAlert(title: String, message: String) {

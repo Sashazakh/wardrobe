@@ -10,8 +10,6 @@ protocol NewItemScreenViewInput: AnyObject {
 }
 
 protocol NewItemScreenViewOutput: AnyObject {
-    func didImageLoaded(image: UIImage)
-
     func didTapBackButton()
 
     func didTapAddButton()
@@ -23,6 +21,8 @@ protocol NewItemScreenInteractorInput: AnyObject {
 
 protocol NewItemScreenInteractorOutput: AnyObject {
     func showAlert(title: String, message: String)
+
+    func didItemAdded()
 }
 
 protocol NewItemScreenRouterInput: AnyObject {

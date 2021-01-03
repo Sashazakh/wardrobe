@@ -10,12 +10,6 @@
 		0D193175258F90FC0001529B /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D193174258F90FC0001529B /* MainTabBar.swift */; };
 		0D39F680259D598500557FE3 /* AllClothesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D39F67F259D598500557FE3 /* AllClothesModels.swift */; };
 		0D39F68A259D685600557FE3 /* AllClothesItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D39F689259D685600557FE3 /* AllClothesItemCell.swift */; };
-		0D63E790258CF8550031AE6F /* NewItemScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78A258CF8550031AE6F /* NewItemScreenPresenter.swift */; };
-		0D63E791258CF8550031AE6F /* NewItemScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78B258CF8550031AE6F /* NewItemScreenRouter.swift */; };
-		0D63E792258CF8550031AE6F /* NewItemScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78C258CF8550031AE6F /* NewItemScreenViewController.swift */; };
-		0D63E793258CF8550031AE6F /* NewItemScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78D258CF8550031AE6F /* NewItemScreenProtocols.swift */; };
-		0D63E794258CF8550031AE6F /* NewItemScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78E258CF8550031AE6F /* NewItemScreenInteractor.swift */; };
-		0D63E795258CF8550031AE6F /* NewItemScreenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D63E78F258CF8550031AE6F /* NewItemScreenContainer.swift */; };
 		0D6E18A2258D02C8008273C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E18A1258D02C8008273C8 /* Colors.swift */; };
 		0D95F20F258FE15B00E26D25 /* WardrobeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95F20E258FE15B00E26D25 /* WardrobeExtensions.swift */; };
 		0D95F215258FED2A00E26D25 /* ItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95F214258FED2A00E26D25 /* ItemCollectionCell.swift */; };
@@ -1961,7 +1955,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 24STU53D2Z;
+				DEVELOPMENT_TEAM = 2KQN9QWT5N;
 				INFOPLIST_FILE = Wardrobe/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1982,7 +1976,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 24STU53D2Z;
+				DEVELOPMENT_TEAM = 2KQN9QWT5N;
 				INFOPLIST_FILE = Wardrobe/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
