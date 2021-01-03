@@ -386,7 +386,12 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
         if indexPath.row == numberOfWardobes - 1 || numberOfWardobes == 0 {
             output?.didTapCreateLookCell()
         } else {
-            output?.didTapLook(at: indexPath)
+            guard let isEditButtonTapped = output?.isEditButtonTapped() else { return }
+            if isEditButtonTapped {
+                output?.didEditLookTap(at: indexPath)
+            } else {
+                output?.didTapLook(at: indexPath)
+            }
         }
     }
 }

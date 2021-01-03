@@ -21,6 +21,7 @@ protocol WardrobeDetailViewOutput: class {
     func isEditButtonTapped() -> Bool
     func refreshData()
     func didDeleteLookTap(lookId: Int)
+    func didEditLookTap(at indexPath: IndexPath)
 }
 
 protocol WardrobeDetailInteractorInput: class {
@@ -38,4 +39,5 @@ protocol WardrobeDetailRouterInput: class {
     func showPersons(wardrobeId: Int, wardrobeName: String)
     func showLookScreen(with lookId: Int)
     func showCreateLookScreen()
+    func showEditLook(with lookId: Int)
 }

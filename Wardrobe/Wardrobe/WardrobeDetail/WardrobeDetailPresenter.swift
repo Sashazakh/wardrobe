@@ -27,6 +27,10 @@ final class WardrobeDetailPresenter {
 }
 
 extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
+    func didEditLookTap(at indexPath: IndexPath) {
+        router.showEditLook(with: looks[indexPath.row].id)
+    }
+
     func didDeleteLookTap(lookId: Int) {
         interactor.deleteLook(lookId: lookId)
     }

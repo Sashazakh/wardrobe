@@ -5,6 +5,12 @@ final class WardrobeDetailRouter {
 }
 
 extension WardrobeDetailRouter: WardrobeDetailRouterInput {
+    func showEditLook(with lookId: Int) {
+        let lookVc = EditLookContainer.assemble(with: EditLookContext(lookID: lookId)).viewController
+
+        viewController?.navigationController?.pushViewController(lookVc, animated: true)
+    }
+
     func showLookScreen(with lookId: Int) {
         let lookVC = LookContainer.assemble(with: LookContext(lookID: lookId)).viewController
 
