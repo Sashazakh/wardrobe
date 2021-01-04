@@ -38,11 +38,6 @@ extension AllClothesPresenter: AllClothesViewOutput {
         }
     }
 
-//    func didTapNewCategoryButton() {
-//        print("Пока что жопа")
-//        fatalError("Ну забыл реализовать и забыл")
-//    }
-
     func didTapEditButton() {
          view?.toggleEditMode()
          view?.reloadData()

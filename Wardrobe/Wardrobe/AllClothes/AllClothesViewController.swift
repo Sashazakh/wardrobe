@@ -9,8 +9,10 @@ final class AllClothesViewController: UIViewController {
     private weak var categoriesTableView: UITableView!
     private weak var dropMenuView: AllClothesDropDownView!
     private let screenBounds = UIScreen.main.bounds
+    private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
+    private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
+    private var menuIsDropped: Bool?
     var editMode: Bool = false
-    private var menuIsDropped: Bool = false
 
 	var output: AllClothesViewOutput?
 
@@ -54,6 +56,7 @@ extension AllClothesViewController {
         layoutPageTitle()
         layoutEditButton()
         layoutCategoriesTableView()
+        layoutDropMenuView()
     }
 
     private func setupBackground() {
@@ -164,6 +167,18 @@ extension AllClothesViewController {
     }
 
     // MARK: Drop Menu
+    private func layoutDropMenuView() {
+        guard let isDropping = menuIsDropped else {
+            return
+        }
+
+        if isDropping {
+            showDropDownMenu()
+        } else {
+            hideDropDownMenu()
+        }
+    }
+
     private func setupDropMenuView() {
         let menu = AllClothesDropDownView()// LookSettingsMenuView()
 
@@ -175,15 +190,64 @@ extension AllClothesViewController {
         dropMenuView.isUserInteractionEnabled = true
     }
 
+    private func showDropDownMenu() {
+        dropMenuView.pin
+            .below(of: moreButton)
+            .marginTop(20)
+            .right(10)
+            .height(0)
+            .width(0)
+        UIView.animate(withDuration: 0.3) {
+            self.dropMenuView.pin
+                .below(of: self.moreButton)
+                .marginTop(20)
+                .right(10)
+                .height(13%)
+                .width(43%)
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    private func hideDropDownMenu() {
+        dropMenuView.pin
+            .below(of: moreButton)
+            .marginTop(20)
+            .right(10)
+            .height(13%)
+            .width(43%)
+        UIView.animate(withDuration: 0.3) {
+            self.dropMenuView.pin
+                .below(of: self.moreButton)
+                .marginTop(20)
+                .right(10)
+                .height(0)
+                .width(0)
+            self.view.layoutIfNeeded()
+        }
+    }
+
     // MARK: Gesture Recognizers
     private func setupGestureRecognizers() {
-        let tapOnMainViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideDropMenu))
+        tapOnMainViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMoreButton))
+        self.categoriesTableView.isUserInteractionEnabled = true
+        tapOnMainViewGestureRecognizer.isEnabled = false
         tapOnMainViewGestureRecognizer.numberOfTapsRequired = 1
-        view.addGestureRecognizer(tapOnMainViewGestureRecognizer)
+        categoriesTableView.addGestureRecognizer(tapOnMainViewGestureRecognizer)
 
-        let tapOnHeaderViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideDropMenu))
+        tapOnHeaderViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapMoreButton))
         tapOnHeaderViewGestureRecognizer.numberOfTapsRequired = 1
+        tapOnHeaderViewGestureRecognizer.isEnabled = false
         headerView.addGestureRecognizer(tapOnHeaderViewGestureRecognizer)
+    }
+
+    private func enableGesture() {
+        tapOnMainViewGestureRecognizer.isEnabled = true
+        tapOnHeaderViewGestureRecognizer.isEnabled = true
+    }
+
+    private func disableGesture() {
+        tapOnMainViewGestureRecognizer.isEnabled = false
+        tapOnHeaderViewGestureRecognizer.isEnabled = false
     }
 
 }
@@ -212,39 +276,17 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension AllClothesViewController: AllClothesViewInput {
     func showDropMenu() {
-        dropMenuView.pin
-            .below(of: moreButton)
-            .marginTop(20)
-            .right(10)
-            .height(0)
-            .width(0)
-        UIView.animate(withDuration: 0.3) {
-            self.dropMenuView.pin
-                .below(of: self.moreButton)
-                .marginTop(20)
-                .right(10)
-                .height(13%)
-                .width(43%)
-            self.view.layoutIfNeeded()
-        }
+        enableGesture()
+        menuIsDropped = true
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
 
-    @objc func hideDropMenu() {
-        dropMenuView.pin
-            .below(of: moreButton)
-            .marginTop(20)
-            .right(10)
-            .height(13%)
-            .width(43%)
-        UIView.animate(withDuration: 0.3) {
-            self.dropMenuView.pin
-                .below(of: self.moreButton)
-                .marginTop(20)
-                .right(10)
-                .height(0)
-                .width(0)
-            self.view.layoutIfNeeded()
-        }
+    func hideDropMenu() {
+        disableGesture()
+        menuIsDropped = false
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
 
     func toggleEditMode() {
