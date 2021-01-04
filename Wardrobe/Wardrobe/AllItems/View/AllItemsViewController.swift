@@ -119,6 +119,13 @@ final class AllItemsViewController: UIViewController {
                                                   right: 0)
         allItemsTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
         allItemsTableView.backgroundColor = .white
+
+        let refreshControl = UIRefreshControl()
+
+        refreshControl.addTarget(self,
+                                 action: #selector(didRefreshRequested),
+                                 for: .valueChanged)
+        allItemsTableView.refreshControl = refreshControl
     }
 
     private func layoutBackgroundView() {
@@ -193,10 +200,16 @@ final class AllItemsViewController: UIViewController {
     private func didTapConfirmButton() {
         output?.didTapConfirmButton()
     }
+
+    @objc
+    private func didRefreshRequested() {
+        output?.didRefreshRequested()
+    }
 }
 
 extension AllItemsViewController: AllItemsViewInput {
     func loadData() {
+        allItemsTableView.refreshControl?.endRefreshing()
         allItemsTableView.reloadData()
     }
 

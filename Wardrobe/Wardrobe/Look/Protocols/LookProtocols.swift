@@ -25,6 +25,8 @@ protocol LookViewOutput: AnyObject {
 
     func didLoadView()
 
+    func didRequestRefresh()
+
     func getRowsCount() -> Int
 
     func viewModel(index: Int) -> LookTableViewCellViewModel

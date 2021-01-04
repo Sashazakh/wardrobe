@@ -136,6 +136,11 @@ final class LookViewController: UIViewController {
                                                   right: 0)
         lookTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
         lookTableView.backgroundColor = .white
+
+        let refreshControl = UIRefreshControl()
+
+        refreshControl.addTarget(self, action: #selector(didRequestRefresh), for: .valueChanged)
+        lookTableView.refreshControl = refreshControl
     }
 
     private func setupDropMenuView() {
@@ -272,6 +277,11 @@ final class LookViewController: UIViewController {
     private func didTapLookParamsButton() {
         output?.didTapLookParamsButton()
     }
+
+    @objc
+    private func didRequestRefresh() {
+        output?.didLoadView()
+    }
 }
 
 extension LookViewController: LookViewInput {
@@ -294,6 +304,7 @@ extension LookViewController: LookViewInput {
     }
 
     func loadData() {
+        lookTableView.refreshControl?.endRefreshing()
         lookTableView.reloadData()
     }
 

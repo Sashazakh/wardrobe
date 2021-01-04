@@ -18,6 +18,8 @@ protocol CreateLookViewOutput: AnyObject {
     func viewModel(index: Int) -> AllItemsTableViewCellViewModel
 
     func setSelection(categoryIndex: Int, itemIndex: Int, isSelected: Bool)
+
+    func didRequestRefresh()
 }
 
 protocol CreateLookInteractorInput: AnyObject {

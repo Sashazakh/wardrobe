@@ -67,6 +67,10 @@ extension CreateLookPresenter: CreateLookViewOutput {
         self.isSelected?[categoryIndex][itemIndex] = isSelected
         view?.loadData()
     }
+
+    func didRequestRefresh() {
+        interactor.fetchAllItems()
+    }
 }
 
 extension CreateLookPresenter: CreateLookInteractorOutput {

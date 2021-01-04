@@ -39,6 +39,10 @@ extension LookPresenter: LookViewOutput {
         interactor.fetchLook()
     }
 
+    func didRequestRefresh() {
+        interactor.fetchLook()
+    }
+
     func getRowsCount() -> Int {
         return model?.categories.count ?? .zero
     }
