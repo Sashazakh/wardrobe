@@ -146,7 +146,7 @@ final class SetupLookViewController: UIViewController {
         imagePickerController = UIImagePickerController()
 
         imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
+        imagePickerController.allowsEditing = false
     }
 
     override func viewWillLayoutSubviews() {
@@ -309,7 +309,7 @@ extension SetupLookViewController: UIImagePickerControllerDelegate, UINavigation
 
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        guard let image = info[.editedImage] as? UIImage else {
+        guard let image = info[.originalImage] as? UIImage else {
             imagePickerController(picker, selectedImage: nil)
             return
         }

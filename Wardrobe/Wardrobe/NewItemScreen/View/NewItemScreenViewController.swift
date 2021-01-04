@@ -80,7 +80,7 @@ extension NewItemScreenViewController {
 
     private func setupImagePicker() {
         pickerController.delegate = self
-        pickerController.allowsEditing = true
+        pickerController.allowsEditing = false
     }
 
     private func setupBackground() {
@@ -282,7 +282,7 @@ extension NewItemScreenViewController: UIImagePickerControllerDelegate {
         }
 
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            guard let image = info[.editedImage] as? UIImage else {
+            guard let image = info[.originalImage] as? UIImage else {
                 pickerController(picker, didSelect: nil)
                 return
             }

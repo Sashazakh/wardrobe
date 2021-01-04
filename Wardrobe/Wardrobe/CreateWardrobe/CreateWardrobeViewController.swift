@@ -63,7 +63,7 @@ extension CreateWardrobeViewController {
 
     private func setupImagePicker() {
         pickerController.delegate = self
-        pickerController.allowsEditing = true
+        pickerController.allowsEditing = false
     }
 
     private func setupRecognizers() {
@@ -377,10 +377,20 @@ extension CreateWardrobeViewController: UIImagePickerControllerDelegate {
         }
 
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            guard let image = info[.editedImage] as? UIImage else {
+            guard let image = info[.originalImage] as? UIImage else {
                 pickerController(picker, didSelect: nil)
                 return
             }
             pickerController(picker, didSelect: image)
         }
+}
+
+extension UIImagePickerController {
+    open override var childForStatusBarHidden: UIViewController? {
+        return nil
+    }
+
+    open override var prefersStatusBarHidden: Bool {
+        return true
+    }
 }
