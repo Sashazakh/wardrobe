@@ -6,7 +6,9 @@ final class InviteInteractor {
     private func handleError(with error: NetworkError) {
         switch error {
         case .networkNotReachable:
-            self.output?.showAlert(title: "Ошибка", message: "Не удается подключиться")
+            self.output?.showAlert(title: "Ошибка", message: "Неверный логин или приглашение уже отправлено.")
+        case .userAlreadyInvite:
+            self.output?.showAlert(title: "Ошибка", message: "Пользователь уже находится в гардеробе.")
         default:
             self.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
         }
@@ -23,6 +25,9 @@ extension InviteInteractor: InviteInteractorInput {
                 self.handleError(with: error)
                 return
             }
+
+            self.output?.showAlert(title: "Успешно!",
+                                   message: "Пользователю отправлено приглашение.")
         }
     }
 }

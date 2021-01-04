@@ -35,4 +35,6 @@ struct GlobalColors {
                                             green: 249 / 255,
                                             blue: 249 / 255,
                                             alpha: 1)
+
+    static let tabBarBlueScreen: UIColor = #colorLiteral(red: 0.2705882353, green: 0.4117647059, blue: 0.5647058824, alpha: 1)
 }

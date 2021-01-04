@@ -107,6 +107,7 @@ extension NetworkService {
 enum ResponseCode {
     case success
     case error
+    case userAlreadyInvite
 }
 
 extension ResponseCode {
@@ -116,6 +117,8 @@ extension ResponseCode {
             return Codes.successCode
         case .error:
             return Codes.errorCode
+        case .userAlreadyInvite:
+            return Codes.userAlreadyInvite
         }
     }
 }
@@ -125,5 +128,7 @@ extension ResponseCode {
         static let successCode: Int = 200
 
         static let errorCode: Int = 404
+
+        static let userAlreadyInvite: Int = 405
     }
 }

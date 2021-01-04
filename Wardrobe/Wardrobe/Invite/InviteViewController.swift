@@ -73,16 +73,19 @@ extension InviteViewController {
     }
 
     private func layoutBackButton() {
-        backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        backButton.setImage(UIImage(systemName: "chevron.backward",
+                                        withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                                        for: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
         backButton.addTarget(self, action: #selector(didBackButtonTapped(_:)), for: .touchUpInside)
+
         backButton.pin
-            .height(pageTitle.frame.height * 0.45)
-            .width(5%)
-            .before(of: pageTitle, aligned: .center)
-            .left(5%)
+                    .height(25)
+                    .width(20)
+                    .before(of: pageTitle, aligned: .center)
+                    .left(5%)
     }
 
     // Header View

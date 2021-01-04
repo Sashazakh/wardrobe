@@ -263,10 +263,11 @@ extension SettingsViewController: SettingsViewInput {
 
     func setUserImage(with imageUrl: URL?) {
         if let imageUrl = imageUrl {
+            avatarImageView.contentMode = .scaleToFill
             avatarImageView.kf.setImage(with: imageUrl, options: [.fromMemoryCacheOrRefresh])
         } else {
-            avatarImageView.image = UIImage(named: "no_photo")
             avatarImageView.contentMode = .bottom
+            avatarImageView.image = UIImage(named: "no_photo")
         }
     }
 

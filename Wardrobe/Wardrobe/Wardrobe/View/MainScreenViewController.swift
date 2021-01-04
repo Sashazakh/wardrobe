@@ -392,12 +392,7 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
         guard var countOfCells = output?.getNumberOfWardrobes() else { return }
         countOfCells += 1
         if isReloadDataNeed {
-            if indexPath.row != countOfCells - 1 {
-                cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-                    UIView.animate(withDuration: 0.3) {
-                        cell.transform = CGAffineTransform.identity
-                    }
-            } else {
+            if indexPath.row == countOfCells - 1 {
                 isReloadDataNeed = !isReloadDataNeed
             }
         } else {
@@ -405,6 +400,6 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
                 UIView.animate(withDuration: 0.4) {
                     cell.transform = CGAffineTransform.identity
                 }
+            }
         }
-    }
 }

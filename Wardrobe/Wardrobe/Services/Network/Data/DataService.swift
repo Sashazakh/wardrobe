@@ -821,6 +821,7 @@ extension DataService: DataServiceInput {
                            wardobeId: Int,
                            completion: @escaping (SingleResult<NetworkError>) -> Void) {
         guard let userLogin = getUserLogin() else { return }
+
         let url = getBaseURL() + "sendInvite" +
             "?my_login=\(userLogin)" +
             "&login_to_invite=\(login)" +
@@ -846,6 +847,9 @@ extension DataService: DataServiceInput {
                     result.error = .networkNotReachable
                     completion(result)
                     return
+                case ResponseCode.userAlreadyInvite.code:
+                    result.error = .userAlreadyInvite
+                    completion(result)
                 default:
                     result.error = .unknownError
                     completion(result)
