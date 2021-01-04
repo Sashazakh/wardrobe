@@ -72,18 +72,11 @@ extension AllClothesViewController {
 
     private func layoutHeaderView() {
         headerView.backgroundColor = GlobalColors.mainBlueScreen
-        headerView.pin
+        self.headerView.pin
             .top()
             .left()
             .right()
-            .height(23.275%)
-        UIView.animate(withDuration: 0.2) {
-            self.headerView.pin
-                .top()
-                .left()
-                .right()
-                .height(14%)
-        }
+            .height(14%)
         // headerView.roundLowerCorners(40)
         // headerView.dropShadow()
     }
