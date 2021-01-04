@@ -17,18 +17,18 @@ protocol AllClothesViewOutput: class {
     func didTapMoreMenuButton()
     func didTapEditButton()
     func didTapNewCategoryButton()
-    func deleteItem(id: Int, collectionIndex: Int, cellIndex: Int)
+    func deleteItem(id: Int)
 }
 
 protocol AllClothesInteractorInput: class {
     func getAllClothes()
-    func deleteItem(id: Int, collectionIndex: Int, cellIndex: Int)
+    func deleteItem(id: Int)
 }
 
 protocol AllClothesInteractorOutput: class {
     func showAlert(title: String, message: String)
     func handleModel(model: AllClothesModel)
-    func didDeletedItem(collectionIndex: Int, cellIndex: Int)
+    func didDeletedItem()
 }
 
 protocol AllClothesRouterInput: class {

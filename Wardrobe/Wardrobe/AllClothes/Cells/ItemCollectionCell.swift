@@ -7,15 +7,15 @@ final class ItemCollectionCell: UITableViewCell {
     private weak var collectionLabel: UILabel!
     private weak var addButton: UIButton!
     var output: AllClothesViewOutput?
-    var index: Int?
     var localModel: CategoryData?
     var editMode: Bool?
+    var index: Int?
     private let screenBounds = UIScreen.main.bounds
 
     func setData(output: AllClothesViewOutput, index: Int, editMode: Bool) {
         self.output = output
-        self.index = index
         self.editMode = editMode
+        self.index = index
         readTitle()
         readModel()
         self.itemCollectionView.reloadData()
@@ -166,10 +166,9 @@ extension ItemCollectionCell: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AllClothesItemCell.identifier, for: indexPath)
                 as? AllClothesItemCell else { return UICollectionViewCell() }
         guard let data = localModel?.items[indexPath.row] else { return UICollectionViewCell() }
-        guard let index = self.index else { return UICollectionViewCell() }
-        cell.output = output
-        cell.setData(data: data, collectionIndex: index, cellIndex: indexPath.row)
         guard let mode = self.editMode else { return UICollectionViewCell() }
+        cell.output = output
+        cell.setData(data: data, needForceRefresh: isEditing)
         cell.setIsEditing(isEditing: mode)
         return cell
     }

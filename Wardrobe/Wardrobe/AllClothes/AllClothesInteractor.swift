@@ -26,7 +26,7 @@ final class AllClothesInteractor {
 }
 
 extension AllClothesInteractor: AllClothesInteractorInput {
-    func deleteItem(id: Int, collectionIndex: Int, cellIndex: Int) {
+    func deleteItem(id: Int) {
         DataService.shared.removeItem(id: id) { [weak self] (result) in
             guard result.error == nil else {
                 guard let networkError = result.error else {
@@ -47,7 +47,7 @@ extension AllClothesInteractor: AllClothesInteractorInput {
             guard let self = self else {
                 return
             }
-            self.output?.didDeletedItem(collectionIndex: collectionIndex, cellIndex: cellIndex)
+            self.output?.didDeletedItem()
         }
     }
 
