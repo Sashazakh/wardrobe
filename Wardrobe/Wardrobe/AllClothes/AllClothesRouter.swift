@@ -46,12 +46,9 @@ extension AllClothesRouter: AllClothesRouterInput {
                     }
                 }
             complition(correctName)
-            // self.newUserName = correctName
-            // self.saveName(name: correctName)
         }
             alert.addTextField { (textField) in
-                textField.placeholder = "Новое имя"
-                textField.keyboardType = .asciiCapable
+                textField.placeholder = "Название категории"
             }
             alert.addAction(save)
             let cancel = UIAlertAction(title: "Отмена", style: .cancel)

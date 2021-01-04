@@ -5,6 +5,9 @@ final class AllClothesPresenter {
     private var menuIsDropped: Bool = false
     var model: AllClothesModel? {
         didSet {
+            model?.categories.sort {
+                $0.categoryName < $1.categoryName
+            }
             view?.reloadData()
         }
     }
@@ -19,8 +22,8 @@ final class AllClothesPresenter {
 }
 
 extension AllClothesPresenter: AllClothesViewOutput {
-    func deleteItem(id: Int, collectionIndex: Int, cellIndex: Int) {
-        interactor.deleteItem(id: id, collectionIndex: collectionIndex, cellIndex: cellIndex)
+    func deleteItem(id: Int) {
+        interactor.deleteItem(id: id)
     }
 
     func didTapMoreMenuButton() {
@@ -80,7 +83,7 @@ extension AllClothesPresenter: AllClothesViewOutput {
 }
 
 extension AllClothesPresenter: AllClothesInteractorOutput {
-    func didDeletedItem(collectionIndex: Int, cellIndex: Int) {
+    func didDeletedItem() {
         interactor.getAllClothes()
         // guard var newmodel = self.model else { return }
         // newmodel.categories[collectionIndex].items.remove(at: cellIndex)

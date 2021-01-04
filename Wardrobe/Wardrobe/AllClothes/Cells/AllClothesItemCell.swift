@@ -4,8 +4,6 @@ import PinLayout
 
 class AllClothesItemCell: WardrobeCell {
     var output: AllClothesViewOutput?
-    var collectionIndex: Int?
-    var cellIndex: Int?
     var localModel: ItemData?
     private weak var deleteMarkButton: UIButton!
 
@@ -66,20 +64,20 @@ class AllClothesItemCell: WardrobeCell {
     @objc
     private func didTapDeleteMarkButton() {
         guard let localModel = localModel else { return }
-        guard let collectionIndex = self.collectionIndex else { return }
-        guard let cellIndex = self.cellIndex else { return }
 
-        output?.deleteItem(id: localModel.clothesID, collectionIndex: collectionIndex, cellIndex: cellIndex)
+        output?.deleteItem(id: localModel.clothesID)
     }
 
-    func setData(data: ItemData, collectionIndex: Int, cellIndex: Int) {
+    func setData(data: ItemData, needForceRefresh: Bool = true) {
         self.localModel = data
-        self.collectionIndex = collectionIndex
-        self.cellIndex = cellIndex
         self.titleLable.text = data.clothesName
         guard let url = URL(string: (data.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
             return
         }
-        self.imageView.kf.setImage(with: url, options: [.forceRefresh])
+        if needForceRefresh {
+            self.imageView.kf.setImage(with: url, options: [.forceRefresh])
+        } else {
+            self.imageView.kf.setImage(with: url)
+        }
     }
 }
