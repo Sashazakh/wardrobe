@@ -121,7 +121,7 @@ final class MyInvitesViewController: UIViewController {
     private func setupNoInvitesLabel() {
         let noInvite = UILabel()
         noInvitesLabel = noInvite
-        noInvitesLabel.text = "У вас пока не приглашений."
+        noInvitesLabel.text = "У вас пока нет приглашений."
         noInvitesLabel.textAlignment = .center
         noInvitesLabel.font = UIFont(name: "DMSans-Bold", size: 20)
         noInvitesLabel.textColor = GlobalColors.darkColor

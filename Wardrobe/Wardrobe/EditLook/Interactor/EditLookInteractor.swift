@@ -72,7 +72,7 @@ extension EditLookInteractor: EditLookInteractorInput {
             }
 
             guard let self = self else { return }
-
+//            self.output?.didReceivedLookData()
             self.model.name = newName
             self.output?.didSavedLookData()
         }

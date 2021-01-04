@@ -264,7 +264,7 @@ extension EditLookViewController: EditLookViewInput {
             return
         }
 
-        lookPhotoImageView.kf.setImage(with: url, options: [.forceRefresh])
+        lookPhotoImageView.kf.setImage(with: url)
     }
 
     func getLookImageData() -> Data? {

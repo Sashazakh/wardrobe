@@ -12,7 +12,9 @@ final class WardrobeDetailPresenter {
 
     var looks: [WardrobeDetailData] = [] {
         didSet {
-            view?.reloadData()
+            DispatchQueue.main.async {
+                self.view?.reloadData()
+            }
         }
     }
 

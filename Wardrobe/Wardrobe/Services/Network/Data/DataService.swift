@@ -206,7 +206,9 @@ extension DataService: DataServiceInput {
 
     func deleteWardrobe(with id: Int,
                         completion: @escaping (SingleResult<NetworkError>) -> Void) {
-        let url = getBaseURL() + "deleteWardrobe?wardrobe_id=\(id)&apikey=\(getApiKey())"
+        guard let login = getUserLogin() else { return }
+        let url = getBaseURL()
+            + "deleteWardrobe?wardrobe_id=\(id)&apikey=\(getApiKey())&login=\(login)"
 
         var result = SingleResult<NetworkError>()
 

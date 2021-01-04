@@ -264,7 +264,7 @@ extension EditWardrobeViewController: EditWardrobeViewInput {
             return
         }
 
-        wardrobePhotoImageView.kf.setImage(with: url, options: [.forceRefresh])
+        wardrobePhotoImageView.kf.setImage(with: url)
     }
 
     func getWardrobeImageData() -> Data? {

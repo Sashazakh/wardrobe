@@ -29,14 +29,14 @@ final class SettingsViewController: UIViewController {
     private weak var tableView: UITableView!
     private let pickerController: UIImagePickerController = UIImagePickerController()
 
-    private let screenBounds = UIScreen.main.bounds
+    private var opacityImage: UIImage?
+//    private let screenBounds = UIScreen.main.bounds
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
         setupViews()
-        output?.didLoadView()
-	}
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -44,12 +44,17 @@ final class SettingsViewController: UIViewController {
         setupLayout()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        output?.didLoadView()
+    }
+
     private func setupViews() {
         setupMainView()
         setupHeaderView()
         setupTitleLabel()
         setupBackButton()
-        setupOuterView()
         setupAvatarView()
         setupImageButton()
         setupFullNameLabel()
@@ -67,7 +72,6 @@ final class SettingsViewController: UIViewController {
     }
 
     // MARK: Setupping views
-
     private func setupMainView() {
         view.backgroundColor = GlobalColors.backgroundColor
     }
@@ -78,15 +82,13 @@ final class SettingsViewController: UIViewController {
         headerView.backgroundColor = GlobalColors.mainBlueScreen
 //        headerView.dropShadow()
 //        headerView.roundLowerCorners(40)
-        view.addSubview(headerView)
+        self.view.addSubview(headerView)
     }
 
     private func setupTitleLabel() {
         let title = UILabel()
         titleLabel = title
         titleLabel.text = "Настройки"
-        titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = GlobalColors.backgroundColor
         headerView.addSubview(titleLabel)
@@ -106,15 +108,13 @@ final class SettingsViewController: UIViewController {
     }
 
     private func setupAvatarView() {
+        setupOuterView()
         let imageView = UIImageView()
         avatarImageView = imageView
-        avatarImageView.layer.borderWidth = 4
-        avatarImageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
-        avatarImageView.image = UIImage(named: "no_photo")
-        avatarImageView.contentMode = .scaleToFill
         avatarImageView.dropShadow()
-        avatarImageView.isUserInteractionEnabled = true
         avatarImageView.clipsToBounds = true
+        avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.contentMode = .scaleToFill
         outerImageView.addSubview(avatarImageView)
     }
 
@@ -123,8 +123,10 @@ final class SettingsViewController: UIViewController {
         outerImageView = view
         outerImageView.clipsToBounds = false
         outerImageView.dropShadow()
-        outerImageView.backgroundColor = GlobalColors.darkColor
         outerImageView.isUserInteractionEnabled = true
+        outerImageView.layer.borderWidth = 4
+        outerImageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
+        outerImageView.backgroundColor = GlobalColors.darkColor
         self.view.addSubview(outerImageView)
     }
 
@@ -137,7 +139,7 @@ final class SettingsViewController: UIViewController {
         imageButton.contentHorizontalAlignment = .fill
         imageButton.addTarget(self, action: #selector(addImageAction(_:)), for: .touchUpInside)
         imageButton.isUserInteractionEnabled = true
-        avatarImageView.addSubview(imageButton)
+        outerImageView.addSubview(imageButton)
     }
 
     private func setupImagePicker() {
@@ -203,11 +205,10 @@ final class SettingsViewController: UIViewController {
             .hCenter()
             .height(imgRadius)
             .width(imgRadius)
-
         avatarImageView.pin.all()
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
-        avatarImageView.image = avatarImageView.image?.alpha(0.3)
         outerImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        avatarImageView.alpha = 0.3
 
         imageButton.pin.all()
         let width = imageButton.frame.width * 0.35
@@ -228,7 +229,7 @@ final class SettingsViewController: UIViewController {
 
     private func setupTableViewLayout() {
         tableView.pin
-            .top(39.77%)
+            .below(of: fullNameLabel)
             .left()
             .right()
             .bottom()
@@ -262,8 +263,9 @@ extension SettingsViewController: SettingsViewInput {
 
     func setUserImage(with imageUrl: URL?) {
         if let imageUrl = imageUrl {
-            avatarImageView.kf.setImage(with: imageUrl)
+            avatarImageView.kf.setImage(with: imageUrl, options: [.fromMemoryCacheOrRefresh])
         } else {
+            avatarImageView.image = UIImage(named: "no_photo")
             avatarImageView.contentMode = .bottom
         }
     }
@@ -289,7 +291,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height = screenBounds.height * 0.0881
+        let height = GlobalConstants.screenBounds.height * 0.0881
         return height
     }
 
@@ -333,12 +335,8 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
             guard let img = image else {
                 return
             }
+            opacityImage = img
             output?.didImageLoaded(imageData: img.jpegData(compressionQuality: 0.1))
-//            imageButton.imageEdgeInsets = UIEdgeInsets()
-//            avatarImageView.image = img
-//            imageButton.contentMode = .scaleToFill
-//            imageButton.clipsToBounds = true
-//            setupAvatarViewLayout()
         }
 
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

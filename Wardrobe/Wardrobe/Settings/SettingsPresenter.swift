@@ -1,5 +1,5 @@
-import Foundation
 import UIKit
+import Kingfisher
 
 final class SettingsPresenter {
 	weak var view: SettingsViewInput?
@@ -91,6 +91,7 @@ extension SettingsPresenter: SettingsInteractorOutput {
     func upadateImage(imageUrl: String) {
         var img = imageUrl
         img += "&apikey=" + DataService.shared.getApiKey()
+        KingfisherManager.shared.cache.removeImage(forKey: img)
         view?.refreshImage(with: URL(string: img))
     }
 

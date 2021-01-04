@@ -252,7 +252,9 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
                 return UICollectionViewCell()
             }
 
-            cell.configureCell(wardrobeUser: user, output: output)
+            cell.configureCell(wardrobeUser: user,
+                               output: output,
+                               isNeedRefresh: isReloadDataNeed)
             return cell
         }
     }

@@ -66,8 +66,6 @@ class WardrobeUsersCell: UICollectionViewCell {
     private func setupImageView() {
         let imgView = UIImageView()
         avatarImageView = imgView
-//        imageView.tintColor = GlobalColors.darkColor
-//        imageView.contentMode = .scaleToFill
         avatarImageView.dropShadow()
         avatarImageView.contentMode = .scaleToFill
         avatarImageView.clipsToBounds = true
@@ -150,13 +148,19 @@ class WardrobeUsersCell: UICollectionViewCell {
 
     // MARK: Public functions
 
-    func configureCell(wardrobeUser: WardrobeUserData, output: WardrobeUsersViewOutput?) {
+    func configureCell(wardrobeUser: WardrobeUserData,
+                       output: WardrobeUsersViewOutput?,
+                       isNeedRefresh: Bool) {
         login = wardrobeUser.login
 
         nameLabel.text = wardrobeUser.name
 
         if let url = URL(string: wardrobeUser.imageUrl ?? "") {
-            self.avatarImageView.kf.setImage(with: url)
+            if !isNeedRefresh {
+                self.avatarImageView.kf.setImage(with: url, options: [.forceRefresh])
+            } else {
+                self.avatarImageView.kf.setImage(with: url)
+            }
         } else {
             self.avatarImageView.image = UIImage(named: "no_photo")
         }

@@ -1,4 +1,5 @@
 import Foundation
+import Kingfisher
 
 final class EditWardrobePresenter {
     weak var view: EditWardrobeViewInput?
@@ -56,6 +57,14 @@ extension EditWardrobePresenter: EditWardrobeViewOutput {
 
 extension EditWardrobePresenter: EditWardrobeInteractorOutput {
     func didSavedWardrobeData() {
+        guard let model = model else {
+            return
+        }
+        if let urlString = model.imageURL {
+            let cacheKey = urlString + "&apikey=\(AuthService.shared.getApiKey())"
+            KingfisherManager.shared.cache.removeImage(forKey: cacheKey)
+        }
+
         router.goBack()
     }
 

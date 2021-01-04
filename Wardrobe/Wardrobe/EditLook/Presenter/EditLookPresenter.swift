@@ -1,4 +1,9 @@
 import Foundation
+import Kingfisher
+
+protocol EditLookDelegate: class {
+    func didImageUpdate()
+}
 
 final class EditLookPresenter {
     weak var view: EditLookViewInput?
@@ -15,6 +20,8 @@ final class EditLookPresenter {
         self.router = router
         self.interactor = interactor
     }
+
+    weak var editLookDelegate: EditLookDelegate?
 }
 
 extension EditLookPresenter: EditLookViewOutput {
@@ -56,6 +63,13 @@ extension EditLookPresenter: EditLookViewOutput {
 
 extension EditLookPresenter: EditLookInteractorOutput {
     func didSavedLookData() {
+        guard let model = model else {
+            return
+        }
+        if let urlString = model.imageURL {
+            let cacheKey = urlString + "&apikey=\(AuthService.shared.getApiKey())"
+            KingfisherManager.shared.cache.removeImage(forKey: cacheKey)
+        }
         router.goBack()
     }
 
