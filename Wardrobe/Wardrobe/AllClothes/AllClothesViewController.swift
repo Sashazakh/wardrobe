@@ -124,11 +124,6 @@ extension AllClothesViewController {
             .width(25)
             .top(pageTitle.frame.midY - moreButton.bounds.height / 2)
             .right(5%)
-//        moreButton.pin
-//            .after(of: pageTitle, aligned: .center)
-//            .marginLeft(5%)
-//            .width(pageTitle.frame.height * 0.7)
-//            .height(pageTitle.frame.height * 0.7)
     }
 
     // MARK: categories table view
@@ -140,6 +135,11 @@ extension AllClothesViewController {
         categoriesTableView.dataSource = self
         categoriesTableView.separatorStyle = .none
         categoriesTableView.register(ItemCollectionCell.self, forCellReuseIdentifier: ItemCollectionCell.reuseIdentifier)
+        categoriesTableView.contentInset = UIEdgeInsets(top: 10,
+                                                  left: 0,
+                                                  bottom: 0,
+                                                  right: 0)
+        categoriesTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
         view.addSubview(categoriesTableView)
     }
 

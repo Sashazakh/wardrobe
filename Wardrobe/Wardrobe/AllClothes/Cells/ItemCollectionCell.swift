@@ -92,20 +92,19 @@ extension ItemCollectionCell {
 
     private func setupItemCollectionView() {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        itemCollectionView = collectionView
-        itemCollectionView.backgroundColor = .clear
-        itemCollectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
-        itemCollectionView.showsHorizontalScrollIndicator = false
-        itemCollectionView.register(AllClothesItemCell.self, forCellWithReuseIdentifier: AllClothesItemCell.identifier)
-        if let flowLayout = itemCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let marginSides = screenBounds.width * 0.053
-            let marginBottom = screenBounds.height * 0.023
-            flowLayout.minimumInteritemSpacing = marginBottom
-            flowLayout.minimumLineSpacing = marginSides
+
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
         }
+
+        itemCollectionView = collectionView
+        itemCollectionView.backgroundColor = .clear
+        itemCollectionView.showsHorizontalScrollIndicator = false
+        itemCollectionView.register(AllClothesItemCell.self, forCellWithReuseIdentifier: AllClothesItemCell.identifier)
+
         itemCollectionView.delegate = self
         itemCollectionView.dataSource = self
+
         contentView.addSubview(itemCollectionView)
     }
 
@@ -115,6 +114,14 @@ extension ItemCollectionCell {
             .left()
             .right()
             .bottom()
+
+        if let flowLayout = itemCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.itemSize = GlobalConstants.cellSize
+            flowLayout.sectionInset = UIEdgeInsets(top: .zero,
+                                                   left: 5,
+                                                   bottom: .zero,
+                                                   right: 5)
+        }
     }
     // MARK: addButton
 

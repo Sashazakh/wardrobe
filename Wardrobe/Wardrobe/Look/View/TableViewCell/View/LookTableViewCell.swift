@@ -11,6 +11,8 @@ final class LookTableViewCell: UITableViewCell {
 
     private var itemsAreEditing: Bool = false
 
+    private var animate: [Bool]?
+
     private var itemModels: [ItemCollectionViewCellViewModel]?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -94,26 +96,25 @@ final class LookTableViewCell: UITableViewCell {
                                                    bottom: .zero,
                                                    right: 5)
         }
-
-        itemCollectionView.reloadData()
     }
 
     public func setIsEditing(isEditing: Bool) {
         if isEditing != itemsAreEditing {
             itemsAreEditing = isEditing
-            itemCollectionView.reloadData()
         }
     }
 
     public func configure(viewModel: LookTableViewCellViewModel) {
         sectionNameLabel.text = viewModel.sectionName
         itemModels = viewModel.itemModels
+        animate = [Bool](repeating: false, count: viewModel.itemModels.count)
         itemCollectionView.reloadData()
     }
 
     public func deleteCollectionViewCell(index: Int) {
         let indexPath = IndexPath(row: index, section: .zero)
 
+        animate = [Bool](repeating: false, count: (itemModels?.count ?? 1) - 1)
         itemCollectionView.deleteItems(at: [indexPath])
         itemModels?.remove(at: index)
     }
@@ -123,9 +124,13 @@ extension LookTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        UIView.animate(withDuration: 0.5) {
-            cell.transform = CGAffineTransform.identity
+        if animate?[indexPath.row] ?? false {
+            cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            UIView.animate(withDuration: 0.5) {
+                cell.transform = CGAffineTransform.identity
+            }
+        } else {
+            animate?[indexPath.row] = true
         }
     }
 }
