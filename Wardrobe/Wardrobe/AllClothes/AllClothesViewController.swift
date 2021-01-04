@@ -4,11 +4,13 @@ import PinLayout
 final class AllClothesViewController: UIViewController {
 
     private weak var headerView: UIView!
-    private weak var editButton: UIButton!
+    private weak var moreButton: UIButton!
     private weak var pageTitle: UILabel!
     private weak var categoriesTableView: UITableView!
+    private weak var dropMenuView: AllClothesDropDownView!
     private let screenBounds = UIScreen.main.bounds
     var editMode: Bool = false
+    private var menuIsDropped: Bool = false
 
 	var output: AllClothesViewOutput?
 
@@ -31,8 +33,8 @@ final class AllClothesViewController: UIViewController {
         layoutUI()
     }
 
-    @objc private func didTapEditButton() {
-        output?.didTapEditButton()
+    @objc private func didTapMoreButton() {
+        output?.didTapMoreMenuButton()
     }
 }
 
@@ -43,6 +45,8 @@ extension AllClothesViewController {
         setupPageTitle()
         setupEditButton()
         setupCategoriesTableView()
+        setupDropMenuView()
+        setupGestureRecognizers()
     }
 
     private func layoutUI() {
@@ -104,24 +108,31 @@ extension AllClothesViewController {
 
     private func setupEditButton() {
         let button = UIButton()
-        self.editButton = button
-        editButton.isUserInteractionEnabled = true
-        editButton.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
-        headerView.addSubview(editButton)
+
+        moreButton = button
+
+        moreButton.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
+        headerView.addSubview(moreButton)
     }
 
     private func layoutEditButton() {
-        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
-        editButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
-        editButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
-        editButton.tintColor = GlobalColors.backgroundColor
-        editButton.contentVerticalAlignment = .fill
-        editButton.contentHorizontalAlignment = .fill
-        editButton.pin
-            .after(of: pageTitle, aligned: .center)
-            .marginLeft(12%)
-            .width(pageTitle.frame.height * 0.7)
-            .height(pageTitle.frame.height * 0.7)
+        moreButton.setImage(UIImage(named: "more",
+                                        in: Bundle.main,
+                                        with: UIImage.SymbolConfiguration(weight: .bold)),
+                                        for: .normal)
+        moreButton.tintColor = GlobalColors.backgroundColor
+        moreButton.contentVerticalAlignment = .fill
+        moreButton.contentHorizontalAlignment = .fill
+        moreButton.pin
+            .height(25)
+            .width(25)
+            .top(pageTitle.frame.midY - moreButton.bounds.height / 2)
+            .right(5%)
+//        moreButton.pin
+//            .after(of: pageTitle, aligned: .center)
+//            .marginLeft(5%)
+//            .width(pageTitle.frame.height * 0.7)
+//            .height(pageTitle.frame.height * 0.7)
     }
 
     // MARK: categories table view
@@ -151,6 +162,30 @@ extension AllClothesViewController {
                 .bottom()
         }
     }
+
+    // MARK: Drop Menu
+    private func setupDropMenuView() {
+        let menu = AllClothesDropDownView()// LookSettingsMenuView()
+
+        dropMenuView = menu
+        view.addSubview(dropMenuView)
+
+        dropMenuView.output = output
+        dropMenuView.dropShadow()
+        dropMenuView.isUserInteractionEnabled = true
+    }
+
+    // MARK: Gesture Recognizers
+    private func setupGestureRecognizers() {
+        let tapOnMainViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideDropMenu))
+        tapOnMainViewGestureRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tapOnMainViewGestureRecognizer)
+
+        let tapOnHeaderViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideDropMenu))
+        tapOnHeaderViewGestureRecognizer.numberOfTapsRequired = 1
+        headerView.addGestureRecognizer(tapOnHeaderViewGestureRecognizer)
+    }
+
 }
 
 extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -176,6 +211,42 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension AllClothesViewController: AllClothesViewInput {
+    func showDropMenu() {
+        dropMenuView.pin
+            .below(of: moreButton)
+            .marginTop(20)
+            .right(10)
+            .height(0)
+            .width(0)
+        UIView.animate(withDuration: 0.3) {
+            self.dropMenuView.pin
+                .below(of: self.moreButton)
+                .marginTop(20)
+                .right(10)
+                .height(13%)
+                .width(43%)
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func hideDropMenu() {
+        dropMenuView.pin
+            .below(of: moreButton)
+            .marginTop(20)
+            .right(10)
+            .height(13%)
+            .width(43%)
+        UIView.animate(withDuration: 0.3) {
+            self.dropMenuView.pin
+                .below(of: self.moreButton)
+                .marginTop(20)
+                .right(10)
+                .height(0)
+                .width(0)
+            self.view.layoutIfNeeded()
+        }
+    }
+
     func toggleEditMode() {
         editMode.toggle()
     }
