@@ -30,4 +30,32 @@ extension AllClothesRouter: AllClothesRouterInput {
 
         viewController?.navigationController?.pushViewController(newItemVC, animated: true)
     }
+
+    func showNewCategoryAlert(complition: @escaping (String) -> Void) {
+        guard let view = viewController else { return }
+        let alert = UIAlertController(title: "Новая категория",
+                                      message: "Введите имя новой категории",
+                                      preferredStyle: UIAlertController.Style.alert)
+        let save = UIAlertAction(title: "Сохранить", style: .default) { (_) in
+            var correctName = ""
+            if let nameTextField = alert.textFields?[0] {
+                if let name = nameTextField.text {
+                    if !name.isEmpty {
+                            correctName = name
+                        }
+                    }
+                }
+            complition(correctName)
+            // self.newUserName = correctName
+            // self.saveName(name: correctName)
+        }
+            alert.addTextField { (textField) in
+                textField.placeholder = "Новое имя"
+                textField.keyboardType = .asciiCapable
+            }
+            alert.addAction(save)
+            let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+            alert.addAction(cancel)
+            view.present(alert, animated: true, completion: nil)
+    }
 }

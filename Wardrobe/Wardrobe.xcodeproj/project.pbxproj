@@ -20,6 +20,7 @@
 		0DE88524258E29CE00BFC856 /* CreateWardrobeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851E258E29CE00BFC856 /* CreateWardrobeInteractor.swift */; };
 		0DE88525258E29CE00BFC856 /* CreateWardrobeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */; };
 		0DE97FC32592567A00903CE1 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE97FC22592567A00903CE1 /* GlobalConstants.swift */; };
+		0DF722B225A29510000C1618 /* AllClothesDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF722B125A29510000C1618 /* AllClothesDropDownView.swift */; };
 		1306220F2591F7290019E704 /* AddUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1306220E2591F7290019E704 /* AddUserCell.swift */; };
 		1342CF6F25A21FD700ABD0C6 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1342CF6E25A21FD700ABD0C6 /* Storyboard.storyboard */; };
 		1358A0A9259FACE500C44469 /* DropTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1358A0A8259FACE500C44469 /* DropTableCell.swift */; };
@@ -204,6 +205,7 @@
 		0DE8851E258E29CE00BFC856 /* CreateWardrobeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeInteractor.swift; sourceTree = "<group>"; };
 		0DE8851F258E29CE00BFC856 /* CreateWardrobeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWardrobeContainer.swift; sourceTree = "<group>"; };
 		0DE97FC22592567A00903CE1 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		0DF722B125A29510000C1618 /* AllClothesDropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllClothesDropDownView.swift; sourceTree = "<group>"; };
 		1306220E2591F7290019E704 /* AddUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserCell.swift; sourceTree = "<group>"; };
 		1342CF6E25A21FD700ABD0C6 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		1358A0A8259FACE500C44469 /* DropTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTableCell.swift; sourceTree = "<group>"; };
@@ -451,6 +453,14 @@
 				0DE97FC22592567A00903CE1 /* GlobalConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		0DF722B025A29501000C1618 /* DropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				0DF722B125A29510000C1618 /* AllClothesDropDownView.swift */,
+			);
+			path = DropDownMenu;
 			sourceTree = "<group>";
 		};
 		135B0C3625A09DE100344FDD /* DropDownMenu */ = {
@@ -1070,6 +1080,7 @@
 		31E4EBD2258E6C8F001AC230 /* AllClothes */ = {
 			isa = PBXGroup;
 			children = (
+				0DF722B025A29501000C1618 /* DropDownMenu */,
 				0D39F682259D65D000557FE3 /* Cells */,
 				31E4EBD3258E6CA4001AC230 /* AllClothesPresenter.swift */,
 				31E4EBD4258E6CA4001AC230 /* AllClothesRouter.swift */,
@@ -1877,6 +1888,7 @@
 				31E6E725258CE33C00591F72 /* LoginPresenter.swift in Sources */,
 				31E6E6C8258BFD3700591F72 /* AppDelegate.swift in Sources */,
 				31E4EB50258E6601001AC230 /* EditItemRouter.swift in Sources */,
+				0DF722B225A29510000C1618 /* AllClothesDropDownView.swift in Sources */,
 				31E4EBAF258E6A19001AC230 /* WardrobeUsersViewController.swift in Sources */,
 				3180ECFF2593FA8400A046E5 /* RegisterModels.swift in Sources */,
 				31E4EBDD258E6CA4001AC230 /* AllClothesInteractor.swift in Sources */,

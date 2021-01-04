@@ -2,6 +2,7 @@ import Foundation
 
 final class AllClothesPresenter {
 	weak var view: AllClothesViewInput?
+    private var menuIsDropped: Bool = false
     var model: AllClothesModel? {
         didSet {
             view?.reloadData()
@@ -22,9 +23,24 @@ extension AllClothesPresenter: AllClothesViewOutput {
         interactor.deleteItem(id: id, collectionIndex: collectionIndex, cellIndex: cellIndex)
     }
 
+    func didTapMoreMenuButton() {
+        menuIsDropped.toggle()
+        menuIsDropped ? view?.showDropMenu() : view?.hideDropMenu()
+    }
+    func didTapNewCategoryButton() {
+        guard var model = self.model else { return }
+        router.showNewCategoryAlert { [weak self] category in
+            guard let self = self else {
+                return
+            }
+            model.categories.append(CategoryData(categoryName: category, items: []))
+            self.model = model
+        }
+    }
+
     func didTapEditButton() {
-        view?.toggleEditMode()
-        view?.reloadData()
+         view?.toggleEditMode()
+         view?.reloadData()
     }
 
     func didTapAddItem(category: String) {
