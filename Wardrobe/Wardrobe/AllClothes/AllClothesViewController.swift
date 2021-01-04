@@ -8,6 +8,7 @@ final class AllClothesViewController: UIViewController {
     private weak var pageTitle: UILabel!
     private weak var categoriesTableView: UITableView!
     private let screenBounds = UIScreen.main.bounds
+    var editMode: Bool = false
 
 	var output: AllClothesViewOutput?
 
@@ -16,6 +17,7 @@ final class AllClothesViewController: UIViewController {
 
         view.setNeedsLayout()
         view.layoutIfNeeded()
+        output?.didLoadView()
     }
 
 	override func viewDidLoad() {
@@ -27,6 +29,10 @@ final class AllClothesViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layoutUI()
+    }
+
+    @objc private func didTapEditButton() {
+        output?.didTapEditButton()
     }
 }
 
@@ -100,6 +106,7 @@ extension AllClothesViewController {
         let button = UIButton()
         self.editButton = button
         editButton.isUserInteractionEnabled = true
+        editButton.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
         headerView.addSubview(editButton)
     }
 
@@ -162,13 +169,17 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         guard let presenter = self.output else { return UITableViewCell() }
-        cell.setData(output: presenter, index: indexPath.row)
+        cell.setData(output: presenter, index: indexPath.row, editMode: editMode)
         return cell
     }
 
 }
 
 extension AllClothesViewController: AllClothesViewInput {
+    func toggleEditMode() {
+        editMode.toggle()
+    }
+
     func reloadData() {
         self.categoriesTableView.reloadData()
     }

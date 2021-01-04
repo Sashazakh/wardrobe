@@ -9,13 +9,16 @@ final class ItemCollectionCell: UITableViewCell {
     var output: AllClothesViewOutput?
     var index: Int?
     var localModel: CategoryData?
+    var editMode: Bool?
     private let screenBounds = UIScreen.main.bounds
 
-    func setData(output: AllClothesViewOutput, index: Int) {
+    func setData(output: AllClothesViewOutput, index: Int, editMode: Bool) {
         self.output = output
         self.index = index
+        self.editMode = editMode
         readTitle()
         readModel()
+        self.itemCollectionView.reloadData()
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -42,6 +45,10 @@ final class ItemCollectionCell: UITableViewCell {
         guard let index = self.index else { return }
         guard let output = self.output else { return }
         self.localModel = output.getCategory(for: index)
+    }
+
+    func reloadData() {
+        itemCollectionView?.reloadData()
     }
 
     @objc private func didTapAddButton() {
@@ -159,7 +166,11 @@ extension ItemCollectionCell: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AllClothesItemCell.identifier, for: indexPath)
                 as? AllClothesItemCell else { return UICollectionViewCell() }
         guard let data = localModel?.items[indexPath.row] else { return UICollectionViewCell() }
-        cell.setData(data: data)
+        guard let index = self.index else { return UICollectionViewCell() }
+        cell.output = output
+        cell.setData(data: data, collectionIndex: index, cellIndex: indexPath.row)
+        guard let mode = self.editMode else { return UICollectionViewCell() }
+        cell.setIsEditing(isEditing: mode)
         return cell
     }
 

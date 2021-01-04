@@ -101,4 +101,7 @@ protocol DataServiceInput {
     func deleteUserFromWardrobe(wardrobeId: Int,
                                 login: String,
                                 completion: @escaping (SingleResult<NetworkError>) -> Void)
+
+    func removeItem(id: Int,
+                    completion: @escaping (SingleResult<NetworkError>) -> Void)
 }
