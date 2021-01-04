@@ -83,7 +83,8 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
     }
 
     func didTapCreateLookCell() {
-        router.showCreateLookScreen()
+        guard let wardrobeId = wardrobeId else { return }
+        router.showCreateLookScreen(with: wardrobeId)
     }
 }
 

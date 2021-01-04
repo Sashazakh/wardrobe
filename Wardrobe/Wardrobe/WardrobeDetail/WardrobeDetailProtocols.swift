@@ -38,6 +38,6 @@ protocol WardrobeDetailInteractorOutput: class {
 protocol WardrobeDetailRouterInput: class {
     func showPersons(wardrobeId: Int, wardrobeName: String)
     func showLookScreen(with lookId: Int)
-    func showCreateLookScreen()
+    func showCreateLookScreen(with wardrobeId: Int)
     func showEditLook(with lookId: Int)
 }

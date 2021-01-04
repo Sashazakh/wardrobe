@@ -27,8 +27,8 @@ extension WardrobeDetailRouter: WardrobeDetailRouterInput {
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
-    func showCreateLookScreen() {
-        let createLookVC = CreateLookContainer.assemble(with: CreateLookContext(wardrobeID: 1)).viewController
+    func showCreateLookScreen(with wardrobeId: Int) {
+        let createLookVC = CreateLookContainer.assemble(with: CreateLookContext(wardrobeID: wardrobeId)).viewController
 
         createLookVC.modalPresentationStyle = .fullScreen
 
