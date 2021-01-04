@@ -5,6 +5,7 @@ import PinLayout
 class AllClothesItemCell: WardrobeCell {
     var output: AllClothesViewOutput?
     var localModel: ItemData?
+    var visible: Bool = false
     private weak var deleteMarkButton: UIButton!
 
     override init(frame: CGRect) {
@@ -20,7 +21,7 @@ class AllClothesItemCell: WardrobeCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        layoutDeleteMarkImageView()
+       // layoutDeleteMarkImageView()
     }
 
     private func setupSubviews() {
@@ -46,18 +47,57 @@ class AllClothesItemCell: WardrobeCell {
     }
 
     private func layoutDeleteMarkImageView() {
-        deleteMarkButton.pin
-            .top(3%)
-            .right(3%)
-            .width(20)
-            .height(20)
+        UIView.animate(withDuration: 0, animations: {
+            self.deleteMarkButton.pin
+                .top(3%)
+                .right(7%)
+                .width(10)
+                .height(10)
+            self.deleteMarkButton.alpha = 0
+        }, completion: { (_) in
+            UIView.animate(withDuration: 0.2, animations: {
+                self.deleteMarkButton.pin
+                    .top(3%)
+                    .right(3%)
+                    .width(20)
+                    .height(20)
+                self.deleteMarkButton.alpha = 1
+            })
+        })
+        visible = true
+    }
+    private func delayoutDeleteMarkImageView() {
+        UIView.animate(withDuration: 0, animations: {
+            self.deleteMarkButton.pin
+                .top(3%)
+                .right(3%)
+                .width(20)
+                .height(20)
+            self.deleteMarkButton.alpha = 1
+        }, completion: { (_) in
+            UIView.animate(withDuration: 0.2, animations: {
+                self.deleteMarkButton.pin
+                    .top(3%)
+                    .right(3%)
+                    .width(0)
+                    .height(0)
+                self.deleteMarkButton.alpha = 0
+            }, completion: { (_) in
+                self.deleteMarkButton.isHidden = true
+            })
+        })
+        visible = false
     }
 
     public func setIsEditing(isEditing: Bool) {
         if isEditing {
             deleteMarkButton.isHidden = false
+            layoutDeleteMarkImageView()
         } else {
-            deleteMarkButton.isHidden = true
+            if visible {
+                delayoutDeleteMarkImageView()
+            }
+
         }
     }
 
