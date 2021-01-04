@@ -1,20 +1,20 @@
 import Foundation
 
-final class EditLookInteractor {
-    weak var output: EditLookInteractorOutput?
+final class EditWardrobeInteractor {
+    weak var output: EditWardrobeInteractorOutput?
 
-    private var model: EditLookInteractorData
+    private var model: EditWardrobeInteractorData
 
-    init(lookID: Int) {
-        self.model = EditLookInteractorData(lookID: lookID,
-                                            name: nil,
-                                            imageURL: nil)
+    init(wardrobeID: Int) {
+        self.model = EditWardrobeInteractorData(wardrobeID: wardrobeID,
+                                                name: nil,
+                                                imageURL: nil)
     }
 }
 
-extension EditLookInteractor: EditLookInteractorInput {
-    func fetchLookData() {
-        DataService.shared.getLookMetadata(lookID: model.lookID) { [weak self] result in
+extension EditWardrobeInteractor: EditWardrobeInteractorInput {
+    func fetchWardrobeData() {
+        DataService.shared.getWardrobeMetadata(wardrobeID: model.wardrobeID) { [weak self] result in
             guard result.error == nil else {
                 guard let networkError = result.error else {
                     return
@@ -37,12 +37,12 @@ extension EditLookInteractor: EditLookInteractorInput {
 
             self.model.name = data.name
             self.model.imageURL = data.imageURL
-            self.output?.updateModel(model: EditLookPresenterData(model: self.model))
-            self.output?.didReceivedLookData()
+            self.output?.updateModel(model: EditWardrobePresenterData(model: self.model))
+            self.output?.didReceivedWardrobeData()
         }
     }
 
-    func saveLookDataChanges(name: String, imageData: Data?) {
+    func saveWardrobeDataChanges(name: String, imageData: Data?) {
         var newName: String?
 
         if name != model.name {
@@ -53,9 +53,9 @@ extension EditLookInteractor: EditLookInteractorInput {
             return
         }
 
-        DataService.shared.updateLookMetadata(lookID: model.lookID,
-                                              name: newName,
-                                              imageData: imageData) { [weak self] result in
+        DataService.shared.updateWardrobeMetadata(wardrobeID: model.wardrobeID,
+                                                  name: newName,
+                                                  imageData: imageData) { [weak self] result in
             guard result.error == nil else {
                 guard let networkError = result.error else {
                     return
@@ -74,7 +74,7 @@ extension EditLookInteractor: EditLookInteractorInput {
             guard let self = self else { return }
 
             self.model.name = newName
-            self.output?.didSavedLookData()
+            self.output?.didSavedWardrobeData()
         }
     }
 }

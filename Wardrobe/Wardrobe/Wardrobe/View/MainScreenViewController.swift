@@ -224,8 +224,8 @@ final class MainScreenViewController: UIViewController {
         nameLabel.pin
             .below(of: outerImageView, aligned: .center)
             .marginTop(1.3%)
-            .height(4.7%)
-            .sizeToFit()
+            .height(6.7%)
+            .width(60%)
     }
 
     private func setupCollectionLayout() {
@@ -379,7 +379,12 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
         if indexPath.row == numberOfWardobes - 1 || numberOfWardobes == 0 {
             output?.addWardrobeDidTap()
         } else {
-            output?.showDetailDidTap(at: indexPath)
+            guard let isEditButtonTapped = output?.isEditButtonTapped() else { return }
+            if isEditButtonTapped {
+                output?.didEditWardrobeTap(at: indexPath)
+            } else {
+                output?.showDetailDidTap(at: indexPath)
+            }
         }
     }
 

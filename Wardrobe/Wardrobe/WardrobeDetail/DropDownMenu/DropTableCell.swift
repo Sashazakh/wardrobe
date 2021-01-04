@@ -85,7 +85,6 @@ class DropTableCell: UITableViewCell {
             .after(of: icon, aligned: .center)
             .marginLeft(Constants.cellMarginLeft)
             .height(60%)
-            .width(80%)
             .right(5)
     }
 

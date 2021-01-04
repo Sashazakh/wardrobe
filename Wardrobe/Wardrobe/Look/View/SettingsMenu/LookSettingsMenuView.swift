@@ -48,7 +48,7 @@ class LookSettingsMenuView: UIView {
     private func setupDropTable() {
         let tbl = UITableView()
         dropTable = tbl
-        dropTable.layer.cornerRadius = 20
+        dropTable.layer.cornerRadius = UIScreen.main.bounds.height * 0.022
         dropTable.delegate = self
         dropTable.dataSource = self
         dropTable.separatorStyle = .none
@@ -86,7 +86,7 @@ extension LookSettingsMenuView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.cellHeight
+        return frame.height / CGFloat(EditLookMenuSections.allCases.count)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

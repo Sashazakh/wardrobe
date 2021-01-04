@@ -73,11 +73,17 @@ class DetailViewCell: WardrobeCell {
 
     // MARK: Public functions
 
-    func configureCell(with look: WardrobeDetailData, output: WardrobeDetailViewOutput?) {
+    func configureCell(with look: WardrobeDetailData,
+                       output: WardrobeDetailViewOutput?,
+                       needForceRefresh: Bool) {
         titleLable.text = look.name
 
         let url = URL(string: look.imageUrl ?? "")
-        self.imageView.kf.setImage(with: url)
+        if !needForceRefresh {
+            self.imageView.kf.setImage(with: url, options: [.forceRefresh])
+        } else {
+            self.imageView.kf.setImage(with: url)
+        }
 
         lookId = look.id
 

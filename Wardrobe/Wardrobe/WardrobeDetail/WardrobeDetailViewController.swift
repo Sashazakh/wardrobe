@@ -20,6 +20,8 @@ final class WardrobeDetailViewController: UIViewController {
 
     private var isReloadDataNeed: Bool = false
 
+    private var menuIsDropped: Bool?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -55,6 +57,7 @@ final class WardrobeDetailViewController: UIViewController {
         setupMoreButtonLayout()
         setupCollectionLayout()
         setupFlowLayout()
+        layoutDropMenuView()
     }
 
     // MARK: Settuping views
@@ -206,6 +209,18 @@ final class WardrobeDetailViewController: UIViewController {
         }
     }
 
+    private func layoutDropMenuView() {
+        guard let isDropping = menuIsDropped else {
+            return
+        }
+
+        if isDropping {
+            showDropDownMenu()
+        } else {
+            hideDropDownMenu()
+        }
+    }
+
     // MARK: Drop down menu functions
 
     private func showDropDownMenu() {
@@ -256,6 +271,18 @@ final class WardrobeDetailViewController: UIViewController {
         tapOnHeaderViewGestureRecognizer.isEnabled = false
     }
 
+    func showDropMenuReloadLayout() {
+        menuIsDropped = true
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+    }
+
+    func hideDropMenuReloadLayout() {
+        menuIsDropped = false
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+    }
+
     // MARK: Button actions
 
     @objc func dropDownMenuTap(_ sender: Any) {
@@ -266,10 +293,10 @@ final class WardrobeDetailViewController: UIViewController {
         } else {
             if didTap {
                 enableGesture()
-                showDropDownMenu()
+                showDropMenuReloadLayout()
             } else {
                 disableGesture()
-                hideDropDownMenu()
+                hideDropMenuReloadLayout()
             }
         }
     }
@@ -286,7 +313,7 @@ final class WardrobeDetailViewController: UIViewController {
 extension WardrobeDetailViewController: WardrobeDetailViewInput {
     func hideDropMenu() {
         disableGesture()
-        hideDropDownMenu()
+        hideDropMenuReloadLayout()
     }
 
     func reloadDataWithAnimation() {
@@ -322,13 +349,15 @@ extension WardrobeDetailViewController: WardrobeDetailViewInput {
 extension WardrobeDetailViewController: UICollectionViewDelegate,
                                         UICollectionViewDataSource,
                                         UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         var totalNumberOfCells = output?.getNumberOfLooks() ?? 0
         totalNumberOfCells += 1
         return totalNumberOfCells
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var numberOfLooks = output?.getNumberOfLooks() ?? 0
         numberOfLooks += 1
         if indexPath.row == numberOfLooks - 1 || numberOfLooks == 0 {
@@ -343,7 +372,7 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
                 return UICollectionViewCell()
             }
 
-            cell.configureCell(with: look, output: output)
+            cell.configureCell(with: look, output: output, needForceRefresh: isReloadDataNeed)
             return cell
         }
     }

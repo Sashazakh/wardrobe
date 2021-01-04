@@ -32,6 +32,22 @@ protocol DataServiceInput {
     func getAllLookClothes(with id: Int,
                            completion: @escaping (Result<LookRaw, NetworkError>) -> Void)
 
+    func getLookMetadata(lookID: Int,
+                         completion: @escaping (Result<LookMetadataRaw, NetworkError>) -> Void)
+
+    func updateLookMetadata(lookID: Int,
+                            name: String?,
+                            imageData: Data?,
+                            completion: @escaping (SingleResult<NetworkError>) -> Void)
+
+    func getWardrobeMetadata(wardrobeID: Int,
+                             completion: @escaping (Result<WardrobeMetadataRaw, NetworkError>) -> Void)
+
+    func updateWardrobeMetadata(wardrobeID: Int,
+                                name: String?,
+                                imageData: Data?,
+                                completion: @escaping (SingleResult<NetworkError>) -> Void)
+
     func createLook(wardrobeID: Int,
                     name: String,
                     imageData: Data?,

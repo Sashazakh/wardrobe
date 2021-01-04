@@ -2,8 +2,8 @@ import UIKit
 import PinLayout
 import Kingfisher
 
-final class EditLookViewController: UIViewController {
-    var output: EditLookViewOutput?
+final class EditWardrobeViewController: UIViewController {
+    var output: EditWardrobeViewOutput?
 
     private weak var backgroundView: UIView!
 
@@ -11,11 +11,11 @@ final class EditLookViewController: UIViewController {
 
     private weak var goBackButton: UIButton!
 
-    private weak var lookNameTextField: UITextField!
+    private weak var wardrobeNameTextField: UITextField!
 
-    private weak var lookPhotoImageView: UIImageView!
+    private weak var wardrobePhotoImageView: UIImageView!
 
-    private weak var editLookButton: UIButton!
+    private weak var editWardrobeButton: UIButton!
 
     private var imagePickerController: UIImagePickerController!
 
@@ -42,9 +42,9 @@ final class EditLookViewController: UIViewController {
         setupBackgroundView()
         setupTitleLabel()
         setupGoBackButton()
-        setupLookNameTextField()
-        setupLookPhotoImageView()
-        setupEditLookButton()
+        setupWardrobeNameTextField()
+        setupWardrobePhotoImageView()
+        setupEditWardrobeButton()
         setupImagePickerController()
     }
 
@@ -67,7 +67,7 @@ final class EditLookViewController: UIViewController {
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .center
-        titleLabel.text = "Редактировать предмет"
+        titleLabel.text = "Редактировать гардероб"
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.1
         titleLabel.numberOfLines = 0
@@ -88,47 +88,47 @@ final class EditLookViewController: UIViewController {
         goBackButton.addTarget(self, action: #selector(didTapGoBackButton), for: .touchUpInside)
     }
 
-    private func setupLookNameTextField() {
+    private func setupWardrobeNameTextField() {
         let textField = UITextField.customTextField(placeholder: "Название (обязательно)")
 
-        lookNameTextField = textField
-        backgroundView.addSubview(lookNameTextField)
+        wardrobeNameTextField = textField
+        backgroundView.addSubview(wardrobeNameTextField)
     }
 
-    private func setupLookPhotoImageView() {
+    private func setupWardrobePhotoImageView() {
         let imageView = UIImageView()
 
-        lookPhotoImageView = imageView
-        backgroundView.addSubview(lookPhotoImageView)
+        wardrobePhotoImageView = imageView
+        backgroundView.addSubview(wardrobePhotoImageView)
 
-        lookPhotoImageView.backgroundColor = .white
-        lookPhotoImageView.tintColor = .gray
-        lookPhotoImageView.layer.cornerRadius = 15
-        lookPhotoImageView.contentMode = .scaleToFill
-        lookPhotoImageView.clipsToBounds = true
+        wardrobePhotoImageView.backgroundColor = .white
+        wardrobePhotoImageView.tintColor = .gray
+        wardrobePhotoImageView.layer.cornerRadius = 15
+        wardrobePhotoImageView.contentMode = .scaleToFill
+        wardrobePhotoImageView.clipsToBounds = true
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapEditImageView))
 
         tapRecognizer.numberOfTapsRequired = 1
-        lookPhotoImageView.addGestureRecognizer(tapRecognizer)
-        lookPhotoImageView.isUserInteractionEnabled = true
+        wardrobePhotoImageView.addGestureRecognizer(tapRecognizer)
+        wardrobePhotoImageView.isUserInteractionEnabled = true
     }
 
-    private func setupEditLookButton() {
+    private func setupEditWardrobeButton() {
         let button = UIButton()
 
-        editLookButton = button
-        view.addSubview(editLookButton)
+        editWardrobeButton = button
+        view.addSubview(editWardrobeButton)
 
-        editLookButton.backgroundColor = GlobalColors.mainBlueScreen
-        editLookButton.layer.cornerRadius = 20
-        editLookButton.dropShadow()
+        editWardrobeButton.backgroundColor = GlobalColors.mainBlueScreen
+        editWardrobeButton.layer.cornerRadius = 20
+        editWardrobeButton.dropShadow()
 
-        editLookButton.titleLabel?.font = UIFont(name: "DMSans-Bold", size: 17)
-        editLookButton.setTitleColor(.white, for: .normal)
-        editLookButton.setTitle("Применить", for: .normal)
+        editWardrobeButton.titleLabel?.font = UIFont(name: "DMSans-Bold", size: 17)
+        editWardrobeButton.setTitleColor(.white, for: .normal)
+        editWardrobeButton.setTitle("Применить", for: .normal)
 
-        editLookButton.addTarget(self, action: #selector(didTapEditLookButton), for: .touchUpInside)
+        editWardrobeButton.addTarget(self, action: #selector(didTapEditLookButton), for: .touchUpInside)
     }
 
     private func setupImagePickerController() {
@@ -144,9 +144,9 @@ final class EditLookViewController: UIViewController {
         layoutBackgroundView()
         layoutTitleLabel()
         layoutGoBackButton()
-        layoutLookNameTextField()
-        layoutLookPhotoImageView()
-        layoutEditLookButton()
+        layoutWardrobeNameTextField()
+        layoutWardrobePhotoImageView()
+        layoutEditWardrobeButton()
     }
 
     private func layoutBackgroundView() {
@@ -174,24 +174,24 @@ final class EditLookViewController: UIViewController {
             .left(5%)
     }
 
-    private func layoutLookNameTextField() {
-        lookNameTextField.pin
+    private func layoutWardrobeNameTextField() {
+        wardrobeNameTextField.pin
             .below(of: titleLabel).marginTop(6%)
             .hCenter()
             .width(90%)
             .height(8%)
     }
 
-    private func layoutLookPhotoImageView() {
-        lookPhotoImageView.pin
-            .below(of: lookNameTextField).marginTop(7%)
+    private func layoutWardrobePhotoImageView() {
+        wardrobePhotoImageView.pin
+            .below(of: wardrobeNameTextField).marginTop(7%)
             .hCenter()
             .width(80%)
             .bottom(7%)
     }
 
-    private func layoutEditLookButton() {
-        editLookButton.pin
+    private func layoutEditWardrobeButton() {
+        editWardrobeButton.pin
             .below(of: backgroundView).marginTop(4%)
             .hCenter()
             .width(90%)
@@ -200,7 +200,7 @@ final class EditLookViewController: UIViewController {
 
     @objc
     private func didTapEditLookButton() {
-        output?.didTapEditLookButton()
+        output?.didTapEditWardrobeButton()
     }
 
     @objc
@@ -219,7 +219,7 @@ final class EditLookViewController: UIViewController {
     }
 }
 
-extension EditLookViewController: EditLookViewInput {
+extension EditWardrobeViewController: EditWardrobeViewInput {
     func showPickPhotoAlert() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
@@ -245,34 +245,34 @@ extension EditLookViewController: EditLookViewInput {
         present(alert, animated: true, completion: nil)
     }
 
-    func setLookName(name: String) {
-        lookNameTextField.text = name
+    func setWardrobeName(name: String) {
+        wardrobeNameTextField.text = name
     }
 
-    func setLookImage(imageData: Data?) {
+    func setWardrobeImage(imageData: Data?) {
         guard let data = imageData else {
-            lookPhotoImageView.image = UIImage(named: "addPhoto")
+            wardrobePhotoImageView.image = UIImage(named: "addPhoto")
             return
         }
 
-        lookPhotoImageView.image = UIImage(data: data)
+        wardrobePhotoImageView.image = UIImage(data: data)
     }
 
-    func setLookImage(url: URL?) {
+    func setWardrobeImage(url: URL?) {
         guard let url = url else {
-            lookPhotoImageView.image = UIImage(named: "addPhoto")
+            wardrobePhotoImageView.image = UIImage(named: "addPhoto")
             return
         }
 
-        lookPhotoImageView.kf.setImage(with: url, options: [.forceRefresh])
+        wardrobePhotoImageView.kf.setImage(with: url, options: [.forceRefresh])
     }
 
-    func getLookImageData() -> Data? {
-        return lookPhotoImageView.image?.jpegData(compressionQuality: 1)
+    func getWardrobeImageData() -> Data? {
+        return wardrobePhotoImageView.image?.jpegData(compressionQuality: 1)
     }
 
-    func getLookName() -> String? {
-        return lookNameTextField.text
+    func getWardrobeName() -> String? {
+        return wardrobeNameTextField.text
     }
 
     func disableKeyboard() {
@@ -280,7 +280,7 @@ extension EditLookViewController: EditLookViewInput {
     }
 }
 
-extension EditLookViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditWardrobeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private func alertAction(type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
         return UIAlertAction(title: title, style: .default) { [unowned self] _ in
             imagePickerController.sourceType = type
@@ -313,7 +313,7 @@ extension EditLookViewController: UIImagePickerControllerDelegate, UINavigationC
     }
 }
 
-extension EditLookViewController {
+extension EditWardrobeViewController {
     private struct Constants {
         struct EditItemImageView {
             static let compression: CGFloat = 0.1

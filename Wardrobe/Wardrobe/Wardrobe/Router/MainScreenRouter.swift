@@ -5,6 +5,12 @@ final class MainScreenRouter {
 }
 
 extension MainScreenRouter: MainScreenRouterInput {
+    func showEditWardrobe(with wardrobeId: Int) {
+        let lookVc = EditWardrobeContainer.assemble(with: EditWardrobeContext(wardrobeID: wardrobeId)).viewController
+
+        viewController?.navigationController?.pushViewController(lookVc, animated: true)
+    }
+
     func showDetailWardrope(id: Int, name: String) {
         let vc = WardrobeDetailContainer.assemble(with: WardrobeDetailContext(
                                                     wardrobeId: id,

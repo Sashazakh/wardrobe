@@ -1,10 +1,10 @@
 import UIKit
 
-final class EditLookRouter {
+final class EditWardrobeRouter {
     weak var viewController: UIViewController?
 }
 
-extension EditLookRouter: EditLookRouterInput {
+extension EditWardrobeRouter: EditWardrobeRouterInput {
     func goBack() {
         viewController?.navigationController?.popViewController(animated: true)
     }

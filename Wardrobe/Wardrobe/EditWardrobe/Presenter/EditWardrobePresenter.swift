@@ -1,29 +1,29 @@
 import Foundation
 
-final class EditLookPresenter {
-    weak var view: EditLookViewInput?
+final class EditWardrobePresenter {
+    weak var view: EditWardrobeViewInput?
 
-    private let router: EditLookRouterInput
+    private let router: EditWardrobeRouterInput
 
-    private let interactor: EditLookInteractorInput
+    private let interactor: EditWardrobeInteractorInput
 
-    private var model: EditLookPresenterData?
+    private var model: EditWardrobePresenterData?
 
     private var imageChanged: Bool = false
 
-    init(router: EditLookRouterInput, interactor: EditLookInteractorInput) {
+    init(router: EditWardrobeRouterInput, interactor: EditWardrobeInteractorInput) {
         self.router = router
         self.interactor = interactor
     }
 }
 
-extension EditLookPresenter: EditLookViewOutput {
+extension EditWardrobePresenter: EditWardrobeViewOutput {
     func didTapGoBackButton() {
         router.goBack()
     }
 
     func didLoadView() {
-        interactor.fetchLookData()
+        interactor.fetchWardrobeData()
     }
 
     func userDidSetImage(imageData: Data?) {
@@ -32,21 +32,21 @@ extension EditLookPresenter: EditLookViewOutput {
         }
 
         imageChanged = true
-        view?.setLookImage(imageData: imageData)
+        view?.setWardrobeImage(imageData: imageData)
     }
 
     func didTapEditImageView() {
         view?.showPickPhotoAlert()
     }
 
-    func didTapEditLookButton() {
-        guard let itemName = view?.getLookName(),
+    func didTapEditWardrobeButton() {
+        guard let itemName = view?.getWardrobeName(),
               !itemName.isEmpty else {
             view?.showAlert(title: "Ошибка", message: "Введите название предмета")
             return
         }
 
-        interactor.saveLookDataChanges(name: itemName, imageData: imageChanged ? view?.getLookImageData() : nil)
+        interactor.saveWardrobeDataChanges(name: itemName, imageData: imageChanged ? view?.getWardrobeImageData() : nil)
     }
 
     func didTapView() {
@@ -54,32 +54,32 @@ extension EditLookPresenter: EditLookViewOutput {
     }
 }
 
-extension EditLookPresenter: EditLookInteractorOutput {
-    func didSavedLookData() {
+extension EditWardrobePresenter: EditWardrobeInteractorOutput {
+    func didSavedWardrobeData() {
         router.goBack()
     }
 
-    func didReceivedLookData() {
+    func didReceivedWardrobeData() {
         guard let model = model else {
             return
         }
 
-        view?.setLookName(name: model.name)
+        view?.setWardrobeName(name: model.name)
 
         guard let urlString = model.imageURL,
               let imageURL = URL(string: urlString + "&apikey=\(AuthService.shared.getApiKey())") else {
-            view?.setLookImage(url: nil)
+            view?.setWardrobeImage(url: nil)
             return
         }
 
-        view?.setLookImage(url: imageURL)
+        view?.setWardrobeImage(url: imageURL)
     }
 
     func showAlert(title: String, message: String) {
         view?.showAlert(title: title, message: message)
     }
 
-    func updateModel(model: EditLookPresenterData) {
+    func updateModel(model: EditWardrobePresenterData) {
         self.model = model
     }
 }

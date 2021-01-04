@@ -250,6 +250,225 @@ extension DataService: DataServiceInput {
 
     // MARK: Wardrobe detail
 
+    func getLookMetadata(lookID: Int,
+                         completion: @escaping (Result<LookMetadataRaw, NetworkError>) -> Void) {
+        let request = AF.request(getBaseURL() + "getLookById?" + "look_id=\(lookID)" + "&apikey=\(getApiKey())")
+        var result = Result<LookMetadataRaw, NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.responseDecodable(of: [LookMetadataRaw].self) { (response) in
+            switch response.result {
+            case .success(let data):
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    result.data = data.first
+                case ResponseCode.error.code:
+                    result.error = .lookNotExist
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+
+                completion(result)
+            }
+
+            completion(result)
+        }
+    }
+
+    func updateLookMetadata(lookID: Int,
+                            name: String?,
+                            imageData: Data?,
+                            completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        var result = SingleResult<NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        let parameters: [String: String] = [
+            "look_id": "\(lookID)",
+            "apikey": "\(getApiKey())"
+        ]
+
+        _ = AF.upload(multipartFormData: { multipartFormData in
+            for (key, value) in parameters {
+                if let valueData = value.data(using: String.Encoding.utf8) {
+                    multipartFormData.append(valueData, withName: key)
+                }
+            }
+
+            if let newName = name,
+               let nameData = newName.data(using: String.Encoding.utf8) {
+                multipartFormData.append(nameData, withName: "new_name")
+            }
+
+            if let data = imageData {
+                multipartFormData.append(data, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+            }
+        }, to: getBaseURL() + "updateLook").response { (response) in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    ()
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+
+                completion(result)
+            }
+
+            completion(result)
+        }
+    }
+
+    func getWardrobeMetadata(wardrobeID: Int,
+                             completion: @escaping (Result<WardrobeMetadataRaw, NetworkError>) -> Void) {
+        let request = AF.request(getBaseURL() + "getWardrobeById?" + "wardrobe_id=\(wardrobeID)" + "&apikey=\(getApiKey())")
+        var result = Result<WardrobeMetadataRaw, NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        request.responseDecodable(of: [WardrobeMetadataRaw].self) { (response) in
+            switch response.result {
+            case .success(let data):
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    result.data = data.first
+                case ResponseCode.error.code:
+                    result.error = .lookNotExist
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+
+                completion(result)
+            }
+
+            completion(result)
+        }
+
+    }
+
+    func updateWardrobeMetadata(wardrobeID: Int,
+                                name: String?,
+                                imageData: Data?,
+                                completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        var result = SingleResult<NetworkError>()
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        let parameters: [String: String] = [
+            "wardrobe_id": "\(wardrobeID)",
+            "apikey": "\(getApiKey())"
+        ]
+
+        _ = AF.upload(multipartFormData: { multipartFormData in
+            for (key, value) in parameters {
+                if let valueData = value.data(using: String.Encoding.utf8) {
+                    multipartFormData.append(valueData, withName: key)
+                }
+            }
+
+            if let newName = name,
+               let nameData = newName.data(using: String.Encoding.utf8) {
+                multipartFormData.append(nameData, withName: "new_name")
+            }
+
+            if let data = imageData {
+                multipartFormData.append(data, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
+            }
+        }, to: getBaseURL() + "updateWardrobe").response { (response) in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    ()
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+
+                completion(result)
+            }
+
+            completion(result)
+        }
+    }
+
     func deleteLook(lookId: Int,
                     completion: @escaping (SingleResult<NetworkError>) -> Void) {
         let url = getBaseURL() + "removeLook?look_id=\(lookId)&apikey=\(getApiKey())"
