@@ -242,8 +242,8 @@ extension CreateWardrobeViewController {
 
         imageView.layer.cornerRadius = size / 2
 
-        let width = imageView.frame.width * 0.2
-        let height = imageView.frame.height * 0.2
+//        let width = imageView.frame.width * 0.2
+//        let height = imageView.frame.height * 0.2
         // imageView.imageEdgeInsets = UIEdgeInsets(top: height, left: width, bottom: height, right: width)
     }
 

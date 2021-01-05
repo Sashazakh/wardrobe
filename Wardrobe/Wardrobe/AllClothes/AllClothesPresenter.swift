@@ -27,8 +27,9 @@ extension AllClothesPresenter: AllClothesViewOutput {
     }
 
     func didTapMoreMenuButton() {
+        guard let view = self.view else { return }
         menuIsDropped.toggle()
-        menuIsDropped ? view?.showDropMenu() : view?.hideDropMenu()
+        menuIsDropped ? view.showDropMenu() : view.hideDropMenu()
     }
     func didTapNewCategoryButton() {
         guard var model = self.model else { return }
@@ -42,8 +43,15 @@ extension AllClothesPresenter: AllClothesViewOutput {
     }
 
     func didTapEditButton() {
-         view?.toggleEditMode()
-         view?.reloadData()
+        guard let view = self.view else { return }
+        view.toggleEditMode()
+        if view.getEditMode() {
+            didTapMoreMenuButton()
+            view.changeEditButton(state: .accept)
+        } else {
+            view.changeEditButton(state: .edit)
+        }
+        view.reloadData()
     }
 
     func didTapAddItem(category: String) {
