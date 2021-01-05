@@ -32,6 +32,11 @@ final class MainScreenPresenter {
         self.router = router
         self.interactor = interactor
     }
+
+    private func isCreator(modelLogin: String) -> Bool {
+        let userLogin = interactor.getUserLogin()
+        return modelLogin == userLogin ? true : false
+    }
 }
 
 extension MainScreenPresenter: MainScreenViewOutput {
@@ -43,8 +48,20 @@ extension MainScreenPresenter: MainScreenViewOutput {
         interactor.loadUserWardobes()
     }
 
-    func didDeleteWardrobeTap(with id: Int) {
-        interactor.deleteWardrobe(with: id)
+    func didDeleteWardrobeTap(with wardrobe: WardrobeData) {
+        let message = isCreator(modelLogin: wardrobe.wardrobeOwner)
+            ? Constants.deleteWardrobeWarningCreator : Constants.deleteWardrobeWarningNotCreator
+
+        let alert = UIAlertController(title: Constants.headDeleteWarningMessage,
+                                      message: message,
+                                      preferredStyle: UIAlertController.Style.alert )
+        let reset = UIAlertAction(title: "Удалить", style: .default) { [self] (_) in
+            self.interactor.deleteWardrobe(with: wardrobe.id)
+        }
+        alert.addAction(reset)
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(cancel)
+        view?.showAlert(alert: alert)
     }
 
     func didLoadView() {
@@ -118,5 +135,13 @@ extension MainScreenPresenter: MainScreenInteractorOutput {
 
     func didDelete() {
         interactor.loadUserWardobes()
+    }
+}
+
+extension MainScreenPresenter {
+    struct Constants {
+        static let headDeleteWarningMessage: String = "Удаление гардероба"
+        static let deleteWardrobeWarningNotCreator: String = "Вы собираетесь удалить гардероб. Возратить его заново можно только по приглашению."
+        static let deleteWardrobeWarningCreator: String = "Вы собираетесь удалить гардероб.  Все данные будут потеряны."
     }
 }

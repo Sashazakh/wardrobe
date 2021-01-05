@@ -27,6 +27,11 @@ final class MainScreenInteractor {
 }
 
 extension MainScreenInteractor: MainScreenInteractorInput {
+    func getUserLogin() -> String {
+        guard let userLogin = DataService.shared.getUserLogin() else { return "" }
+        return userLogin
+    }
+
     func deleteWardrobe(with id: Int) {
         DataService.shared.deleteWardrobe(with: id) { [weak self] result in
             guard let self = self else { return }

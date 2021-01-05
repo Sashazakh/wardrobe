@@ -20,7 +20,7 @@ protocol WardrobeDetailViewOutput: class {
     func didEditButtonTap()
     func isEditButtonTapped() -> Bool
     func refreshData()
-    func didDeleteLookTap(lookId: Int)
+    func didDeleteLookTap(with lookData: WardrobeDetailData)
     func didEditLookTap(at indexPath: IndexPath)
 }
 

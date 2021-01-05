@@ -29,7 +29,7 @@ protocol MainScreenViewOutput: class {
     func wardrobe(at indexPath: IndexPath) -> WardrobeData?
     func didEditButtonTap()
     func isEditButtonTapped() -> Bool
-    func didDeleteWardrobeTap(with id: Int)
+    func didDeleteWardrobeTap(with wardrobe: WardrobeData)
     func refreshData()
     func didEditWardrobeTap(at indexPath: IndexPath)
 }
@@ -38,6 +38,7 @@ protocol MainScreenInteractorInput: class {
     func loadUserWardobes()
     func loadUserData()
     func deleteWardrobe(with id: Int)
+    func getUserLogin() -> String
 }
 
 protocol MainScreenInteractorOutput: class {

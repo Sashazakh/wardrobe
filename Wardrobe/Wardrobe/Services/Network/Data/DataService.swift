@@ -63,10 +63,6 @@ extension DataService: DataServiceInput {
         }
     }
 
-    func changePassword(newPassword: Int) {
-
-    }
-
     func changePhoto(newPhotoData: Data,
                      completion: @escaping (Result<ResponseEditString, NetworkError>) -> Void) {
         guard let user = getUserLogin() else { return }

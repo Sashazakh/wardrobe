@@ -16,6 +16,8 @@ class DetailViewCell: WardrobeCell {
 
     private var lookId: Int?
 
+    private var lookModel: WardrobeDetailData?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -83,12 +85,13 @@ class DetailViewCell: WardrobeCell {
 
         self.output = output
         checkDeleteButton()
+        lookModel = look
     }
     // MARK: User actions
 
     @objc private func didTapDeleteMarkButton(_ sender: Any) {
-        guard let lookId = lookId else { return }
+        guard let lookModel = lookModel else { return }
 
-        output?.didDeleteLookTap(lookId: lookId)
+        output?.didDeleteLookTap(with: lookModel)
     }
 }

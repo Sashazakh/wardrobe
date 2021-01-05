@@ -33,8 +33,17 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
         router.showEditLook(with: looks[indexPath.row].id)
     }
 
-    func didDeleteLookTap(lookId: Int) {
-        interactor.deleteLook(lookId: lookId)
+    func didDeleteLookTap(with lookData: WardrobeDetailData) {
+        let alert = UIAlertController(title: Constants.headDeleteWarningMessage,
+                                      message: Constants.deleteWardrobeWarningMessage,
+                                      preferredStyle: UIAlertController.Style.alert )
+        let reset = UIAlertAction(title: "Удалить", style: .default) { [self] (_) in
+            self.interactor.deleteLook(lookId: lookData.id)
+        }
+        alert.addAction(reset)
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(cancel)
+        view?.showAlert(alert: alert)
     }
 
     func refreshData() {
@@ -106,5 +115,12 @@ extension WardrobeDetailPresenter: WardrobeDetailInteractorOutput {
 
     func didReceive(with looks: [WardrobeDetailData]) {
         self.looks = looks
+    }
+}
+
+extension WardrobeDetailPresenter {
+    private struct Constants {
+        static let headDeleteWarningMessage: String = "Удаление набора"
+        static let deleteWardrobeWarningMessage: String = "Вы собираетесь удалить набор. Все данные будут потеряны."
     }
 }
