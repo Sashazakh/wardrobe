@@ -15,7 +15,7 @@ final class WardrobeUsersPresenter {
     private var wardrobeUsers: [WardrobeUserData] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.view?.reloadData()
+                self.view?.reloadDataWithAnimation()
             }
         }
     }

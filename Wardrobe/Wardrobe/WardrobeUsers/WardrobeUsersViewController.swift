@@ -30,6 +30,7 @@ final class WardrobeUsersViewController: UIViewController {
 
         output?.didLoadView()
     }
+
     override func viewDidLayoutSubviews() {
         super .viewDidLayoutSubviews()
 
@@ -201,6 +202,7 @@ extension WardrobeUsersViewController: WardrobeUsersViewInput {
     }
 
     func reloadDataWithAnimation() {
+        refreshControl.endRefreshing()
         isReloadDataNeed = true
         collectionView.reloadData()
     }
@@ -260,8 +262,8 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
-    -> CGSize {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = screenBounds.width * 0.354
         let cellHeight = screenBounds.height * 0.2558
         return CGSize(width: cellWidth, height: cellHeight)

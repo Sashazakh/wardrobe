@@ -23,6 +23,7 @@ class DetailViewCell: WardrobeCell {
 
         setupViews()
     }
+
     required init?(coder: NSCoder) {
         return nil
     }
@@ -31,6 +32,7 @@ class DetailViewCell: WardrobeCell {
         super.layoutSubviews()
 
         layoutDeleteButtonLayout()
+        checkDeleteButton()
     }
 
     func setupViews() {
@@ -120,8 +122,9 @@ class DetailViewCell: WardrobeCell {
         lookId = look.id
 
         self.output = output
-        checkDeleteButton()
         lookModel = look
+        setNeedsLayout()
+        layoutIfNeeded()
     }
     // MARK: User actions
 

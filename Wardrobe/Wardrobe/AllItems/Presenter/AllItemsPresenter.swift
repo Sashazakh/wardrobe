@@ -69,6 +69,7 @@ extension AllItemsPresenter: AllItemsViewOutput {
     }
 
     func setSelection(categoryIndex: Int, itemIndex: Int, isSelected: Bool) {
+        print(itemIndex, isSelected)
         self.isSelected?[categoryIndex][itemIndex] = isSelected
         view?.loadData()
     }

@@ -296,6 +296,7 @@ extension MainScreenViewController: MainScreenViewInput {
     }
 
     func reloadDataWithAnimation() {
+        refreshControl.endRefreshing()
         isReloadDataNeed = true
         collectionView.reloadData()
     }

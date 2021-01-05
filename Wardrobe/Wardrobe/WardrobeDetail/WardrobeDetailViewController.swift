@@ -317,6 +317,7 @@ extension WardrobeDetailViewController: WardrobeDetailViewInput {
     }
 
     func reloadDataWithAnimation() {
+        refreshControl.endRefreshing()
         isReloadDataNeed = true
         collectionView.reloadData()
     }

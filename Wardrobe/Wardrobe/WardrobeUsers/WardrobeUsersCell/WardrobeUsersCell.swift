@@ -31,6 +31,7 @@ class WardrobeUsersCell: UICollectionViewCell {
         super.layoutSubviews()
 
         setupLayoutViews()
+        checkDeleteButton()
     }
 
     private func setupViews() {
@@ -206,7 +207,8 @@ class WardrobeUsersCell: UICollectionViewCell {
         }
 
         self.output = output
-        checkDeleteButton()
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 
     // MARK: Actions
