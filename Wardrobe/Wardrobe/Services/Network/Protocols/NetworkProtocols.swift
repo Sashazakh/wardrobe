@@ -106,4 +106,6 @@ protocol DataServiceInput {
 
     func removeItem(id: Int,
                     completion: @escaping (SingleResult<NetworkError>) -> Void)
+
+    func cleanCache()
 }
