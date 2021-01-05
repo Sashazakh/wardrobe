@@ -18,6 +18,7 @@ protocol AllClothesViewOutput: class {
     func didTapEditButton()
     func didTapNewCategoryButton()
     func deleteItem(id: Int)
+    func didRefreshRequested()
 }
 
 protocol AllClothesInteractorInput: class {

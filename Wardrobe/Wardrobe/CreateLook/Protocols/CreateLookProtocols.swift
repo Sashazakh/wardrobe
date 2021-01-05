@@ -4,6 +4,8 @@ protocol CreateLookViewInput: AnyObject {
     func showAlert(title: String, message: String)
 
     func loadData()
+
+    func showNoItemsLabel()
 }
 
 protocol CreateLookViewOutput: AnyObject {

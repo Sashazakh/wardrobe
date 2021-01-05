@@ -36,6 +36,16 @@ extension CreateLookPresenter: CreateLookViewOutput {
             }
         }
 
+        if model.categories.isEmpty {
+            router.showWardrobeDetailScreen()
+            return
+        }
+
+        if ids.isEmpty {
+            view?.showAlert(title: "Ошибка", message: "Не выбрано ни одного предмета")
+            return
+        }
+
         router.showSetupLookScreen(wardrobeID: interactor.getWardrobeID(), itemsID: ids)
     }
 
@@ -85,7 +95,15 @@ extension CreateLookPresenter: CreateLookInteractorOutput {
     }
 
     func allItemsSuccesfullyReceived() {
-        view?.loadData()
+        guard let model = model else {
+            return
+        }
+
+        if model.categories.isEmpty {
+            view?.showNoItemsLabel()
+        } else {
+            view?.loadData()
+        }
     }
 
     func showAlert(title: String, message: String) {

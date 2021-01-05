@@ -14,6 +14,8 @@ final class CreateLookViewController: UIViewController {
 
     private weak var allItemsTableView: UITableView!
 
+    private weak var noItemsLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +33,7 @@ final class CreateLookViewController: UIViewController {
         layoutBackToWardrobeDetailButton()
         layoutConfirmButton()
         layoutLookTableView()
+        layoutNoItemsLabel()
     }
 
     private func setupView() {
@@ -43,6 +46,7 @@ final class CreateLookViewController: UIViewController {
         setupBackToWardrobeDetailButton()
         setupConfirmButton()
         setupLookTableView()
+        setupNoItemsLabel()
     }
 
     private func setupBackgroundView() {
@@ -128,6 +132,22 @@ final class CreateLookViewController: UIViewController {
         allItemsTableView.refreshControl = refreshControl
     }
 
+    private func setupNoItemsLabel() {
+        let label = UILabel()
+
+        noItemsLabel = label
+        view.addSubview(noItemsLabel)
+
+        noItemsLabel.font = UIFont(name: "DMSans-Bold", size: 25)
+        noItemsLabel.textColor = GlobalColors.darkColor
+        noItemsLabel.textAlignment = .center
+        noItemsLabel.text = "У Вас нет доступных предметов."
+        noItemsLabel.adjustsFontSizeToFitWidth = true
+        noItemsLabel.minimumScaleFactor = 0.1
+        noItemsLabel.numberOfLines = .zero
+        noItemsLabel.isHidden = true
+    }
+
     private func layoutBackgroundView() {
         backgroundView.pin
             .top(.zero)
@@ -191,6 +211,14 @@ final class CreateLookViewController: UIViewController {
         view.layer.addSublayer(gradientLayerDown)
     }
 
+    private func layoutNoItemsLabel() {
+        noItemsLabel.pin
+            .hCenter()
+            .vCenter()
+            .width(70%)
+            .height(4%)
+    }
+
     @objc
     private func didTapBackToWardrobeDetailButton() {
         output?.didTapBackToWardrobeDetailButton()
@@ -220,6 +248,11 @@ extension CreateLookViewController: CreateLookViewInput {
     func loadData() {
         allItemsTableView.refreshControl?.endRefreshing()
         allItemsTableView.reloadData()
+    }
+
+    func showNoItemsLabel() {
+        allItemsTableView.isHidden = true
+        noItemsLabel.isHidden = false
     }
 }
 

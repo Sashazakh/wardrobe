@@ -80,7 +80,15 @@ extension AllItemsPresenter: AllItemsViewOutput {
 
 extension AllItemsPresenter: AllItemsInteractorOutput {
     func userItemsDidReceived() {
-        view?.loadData()
+        guard let model = model else {
+            return
+        }
+
+        if model.categories.count == .zero {
+            view?.showNoItemsLabel()
+        } else {
+            view?.loadData()
+        }
     }
 
     func showAlert(title: String, message: String) {
