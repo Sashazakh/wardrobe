@@ -51,6 +51,7 @@ class DetailViewCell: WardrobeCell {
         deleteMarkButton.addTarget(self, action: #selector(didTapDeleteMarkButton), for: .touchUpInside)
         deleteMarkButton.backgroundColor = GlobalColors.redCancelColor
         deleteMarkButton.layer.cornerRadius = 10
+        deleteMarkButton.isHidden = true
     }
 
     // MARK: Setup layout
@@ -66,9 +67,44 @@ class DetailViewCell: WardrobeCell {
     private func checkDeleteButton() {
         if let output = output {
             if output.isEditButtonTapped() {
+                UIView.animate(withDuration: 0, animations: {
+                    self.deleteMarkButton.pin
+                        .top(3%)
+                        .right(7%)
+                        .width(10)
+                        .height(10)
+                    self.deleteMarkButton.alpha = 0
+                }, completion: { (_) in
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.deleteMarkButton.pin
+                            .top(3%)
+                            .right(3%)
+                            .width(20)
+                            .height(20)
+                        self.deleteMarkButton.alpha = 1
+                    })
+                })
                 deleteMarkButton.isHidden = false
             } else {
-                deleteMarkButton.isHidden = true
+                UIView.animate(withDuration: 0, animations: {
+                    self.deleteMarkButton.pin
+                        .top(3%)
+                        .right(3%)
+                        .width(20)
+                        .height(20)
+                    self.deleteMarkButton.alpha = 1
+                }, completion: { (_) in
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.deleteMarkButton.pin
+                            .top(3%)
+                            .right(3%)
+                            .width(0)
+                            .height(0)
+                        self.deleteMarkButton.alpha = 0
+                    }, completion: { (_) in
+                        self.deleteMarkButton.isHidden = true
+                    })
+                })
             }
         }
     }

@@ -167,7 +167,7 @@ final class WardrobeDetailViewController: UIViewController {
         titleLabel.pin
             .top(40%)
             .hCenter()
-            .width(50%)
+            .width(70%)
             .height(50)
     }
 
@@ -393,12 +393,7 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
         guard var countOfCells = output?.getNumberOfLooks() else { return }
         countOfCells += 1
         if isReloadDataNeed {
-            if indexPath.row != countOfCells - 1 {
-                cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-                    UIView.animate(withDuration: 0.3) {
-                        cell.transform = CGAffineTransform.identity
-                    }
-            } else {
+            if indexPath.row == countOfCells - 1 {
                 isReloadDataNeed = !isReloadDataNeed
             }
         } else {

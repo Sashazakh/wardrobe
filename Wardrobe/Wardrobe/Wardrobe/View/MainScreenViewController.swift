@@ -123,7 +123,7 @@ final class MainScreenViewController: UIViewController {
         let label = UILabel()
         nameLabel = label
         nameLabel.textAlignment = .center
-        nameLabel.numberOfLines = 2
+        nameLabel.numberOfLines = 0
         nameLabel.textColor = GlobalColors.darkColor
         nameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
         self.view.addSubview(nameLabel)
@@ -224,13 +224,13 @@ final class MainScreenViewController: UIViewController {
         nameLabel.pin
             .below(of: outerImageView, aligned: .center)
             .marginTop(1.3%)
-            .height(6.7%)
-            .width(60%)
+            .sizeToFit()
     }
 
     private func setupCollectionLayout() {
         collectionView.pin
             .below(of: [nameLabel])
+            .marginTop(1.3%)
             .right()
             .left()
             .bottom()
@@ -306,8 +306,7 @@ extension MainScreenViewController: MainScreenViewInput {
 
     func setUserName(name: String?) {
         if let name = name {
-            let text = name.split(separator: " ")
-            nameLabel.text = text.joined(separator: "\n")
+            nameLabel.text = name
         }
     }
 

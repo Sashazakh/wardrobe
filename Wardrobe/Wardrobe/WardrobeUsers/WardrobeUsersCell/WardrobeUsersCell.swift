@@ -13,6 +13,8 @@ class WardrobeUsersCell: UICollectionViewCell {
 
     private var login: String?
 
+    private var btnSize: CGFloat?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -96,6 +98,7 @@ class WardrobeUsersCell: UICollectionViewCell {
         deleteButton.tintColor = GlobalColors.backgroundColor
         deleteButton.backgroundColor = GlobalColors.redCancelColor
         deleteButton.addTarget(self, action: #selector(didUserDeleteButtonTapped(_:)), for: .touchUpInside)
+        deleteButton.isHidden = true
         contentView.addSubview(deleteButton)
     }
 
@@ -124,13 +127,14 @@ class WardrobeUsersCell: UICollectionViewCell {
     }
 
     private func setupDeleteButtonLayout() {
-        let btnSize = contentView.frame.height * 0.1
+        btnSize = contentView.frame.height * 0.1
+        guard let size = btnSize else { return }
         outerView.backgroundColor = .white
         deleteButton.pin
             .after(of: outerView, aligned: .top)
-            .width(btnSize)
-            .height(btnSize)
-            .marginLeft(-(btnSize / 3 + btnSize / 2))
+            .width(size)
+            .height(size)
+            .marginLeft(-(size / 3 + size / 2))
             .marginVertical(-6)
 
         deleteButton.layer.cornerRadius = deleteButton.frame.height / 2
@@ -139,9 +143,45 @@ class WardrobeUsersCell: UICollectionViewCell {
     private func checkDeleteButton() {
         if let output = output {
             if output.isEditButtonTapped() {
+                guard let size = btnSize else { return }
+                UIView.animate(withDuration: 0, animations: {
+                    self.deleteButton.pin
+                        .top(3%)
+                        .right(7%)
+                        .width(10)
+                        .height(10)
+                    self.deleteButton.alpha = 0
+                }, completion: { (_) in
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.deleteButton.pin
+                            .top(3%)
+                            .right(3%)
+                            .width(size)
+                            .height(size)
+                        self.deleteButton.alpha = 1
+                    })
+                })
                 deleteButton.isHidden = false
             } else {
-                deleteButton.isHidden = true
+                UIView.animate(withDuration: 0, animations: {
+                    self.deleteButton.pin
+                        .top(3%)
+                        .right(3%)
+                        .width(20)
+                        .height(20)
+                    self.deleteButton.alpha = 1
+                }, completion: { (_) in
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.deleteButton.pin
+                            .top(3%)
+                            .right(3%)
+                            .width(0)
+                            .height(0)
+                        self.deleteButton.alpha = 0
+                    }, completion: { (_) in
+                        self.deleteButton.isHidden = true
+                    })
+                })
             }
         }
     }
