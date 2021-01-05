@@ -58,7 +58,7 @@ extension MainTabBarContainer {
 
         struct AllClothesBarItem {
             static let title: String = "Мои вещи"
-            static let image = UIImage(systemName: "ladybug.fill")
+            static let image = UIImage(systemName: "cube.box.fill")
             static let tag: Int = 1
         }
 
