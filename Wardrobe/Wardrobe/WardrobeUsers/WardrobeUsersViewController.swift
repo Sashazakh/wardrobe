@@ -284,8 +284,8 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
                 isReloadDataNeed = !isReloadDataNeed
             }
         } else {
-            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                UIView.animate(withDuration: 0.4) {
+            cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                UIView.animate(withDuration: 0.5) {
                     cell.transform = CGAffineTransform.identity
                 }
         }
