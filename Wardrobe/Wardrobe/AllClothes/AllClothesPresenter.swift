@@ -92,6 +92,11 @@ extension AllClothesPresenter: AllClothesViewOutput {
     func didTapItem(itemId: Int) {
         router.showEditItemScreen(itemId: itemId)
     }
+
+    func forceHideDropView() {
+        menuIsDropped = false
+        view?.hideDropMenu()
+    }
 }
 
 extension AllClothesPresenter: AllClothesInteractorOutput {

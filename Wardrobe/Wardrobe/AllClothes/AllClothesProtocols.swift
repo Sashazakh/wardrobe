@@ -21,6 +21,7 @@ protocol AllClothesViewOutput: class {
     func didTapNewCategoryButton()
     func deleteItem(id: Int)
     func didRefreshRequested()
+    func forceHideDropView()
 }
 
 protocol AllClothesInteractorInput: class {

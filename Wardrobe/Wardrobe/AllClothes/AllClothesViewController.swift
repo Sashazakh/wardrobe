@@ -30,6 +30,12 @@ final class AllClothesViewController: UIViewController {
         output?.didLoadView()
 	}
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        output?.forceHideDropView()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layoutUI()
