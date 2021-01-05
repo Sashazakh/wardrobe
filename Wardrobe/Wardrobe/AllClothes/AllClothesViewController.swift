@@ -38,6 +38,10 @@ final class AllClothesViewController: UIViewController {
     @objc private func didTapMoreButton() {
         output?.didTapMoreMenuButton()
     }
+
+    @objc private func didRefreshRequested() {
+        output?.didRefreshRequested()
+    }
 }
 
 extension AllClothesViewController {
@@ -140,6 +144,14 @@ extension AllClothesViewController {
                                                   bottom: 0,
                                                   right: 0)
         categoriesTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
+
+        let refreshControl = UIRefreshControl()
+
+        refreshControl.addTarget(self,
+                                 action: #selector(didRefreshRequested),
+                                 for: .valueChanged)
+        categoriesTableView.refreshControl = refreshControl
+
         view.addSubview(categoriesTableView)
     }
 
@@ -287,6 +299,7 @@ extension AllClothesViewController: AllClothesViewInput {
     }
 
     func reloadData() {
+        self.categoriesTableView.refreshControl?.endRefreshing()
         self.categoriesTableView.reloadData()
     }
 

@@ -3,6 +3,8 @@ import Foundation
 protocol AllItemsViewInput: AnyObject {
     func showAlert(title: String, message: String)
 
+    func showNoItemsLabel()
+
     func loadData()
 }
 
