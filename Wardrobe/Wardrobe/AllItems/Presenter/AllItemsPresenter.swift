@@ -72,6 +72,10 @@ extension AllItemsPresenter: AllItemsViewOutput {
         self.isSelected?[categoryIndex][itemIndex] = isSelected
         view?.loadData()
     }
+
+    func didRefreshRequested() {
+        interactor.fetchUserItems()
+    }
 }
 
 extension AllItemsPresenter: AllItemsInteractorOutput {

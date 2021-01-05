@@ -119,6 +119,13 @@ final class CreateLookViewController: UIViewController {
                                                   right: 0)
         allItemsTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
         allItemsTableView.backgroundColor = .white
+
+        let refreshControl = UIRefreshControl()
+
+        refreshControl.addTarget(self,
+                                 action: #selector(didRequestRefresh),
+                                 for: .valueChanged)
+        allItemsTableView.refreshControl = refreshControl
     }
 
     private func layoutBackgroundView() {
@@ -193,6 +200,11 @@ final class CreateLookViewController: UIViewController {
     private func didTapConfirmButton() {
         output?.didTapConfirmButton()
     }
+
+    @objc
+    private func didRequestRefresh() {
+        output?.didRequestRefresh()
+    }
 }
 
 extension CreateLookViewController: CreateLookViewInput {
@@ -206,6 +218,7 @@ extension CreateLookViewController: CreateLookViewInput {
     }
 
     func loadData() {
+        allItemsTableView.refreshControl?.endRefreshing()
         allItemsTableView.reloadData()
     }
 }

@@ -18,6 +18,8 @@ protocol AllItemsViewOutput: AnyObject {
     func viewModel(index: Int) -> AllItemsTableViewCellViewModel
 
     func setSelection(categoryIndex: Int, itemIndex: Int, isSelected: Bool)
+
+    func didRefreshRequested()
 }
 
 protocol AllItemsInteractorInput: AnyObject {
