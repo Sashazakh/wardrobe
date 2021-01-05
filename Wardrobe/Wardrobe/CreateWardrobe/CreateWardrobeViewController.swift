@@ -8,6 +8,7 @@ final class CreateWardrobeViewController: UIViewController, UINavigationControll
     private weak var wardrobeNameTextField: UITextField!
     private weak var wardrobeDescriptionTextView: UITextView!
     private weak var imageButton: UIButton!
+    private weak var imageView: UIImageView!
     private weak var addButton: UIButton!
     private weak var imagePickButton: UIButton!
     private var tapOnMainViewGestureRecognizer: UITapGestureRecognizer!
@@ -42,12 +43,13 @@ extension CreateWardrobeViewController {
         setupPageTitle()
         setupBackButton()
         setupWardrobeNameTextField()
-        setupImageButton()
+        setupImageView()
         setupAddButton()
         setupWardrobeDescription()
         setupImagePickButton()
         setupRecognizers()
         setupImagePicker()
+        setupImageButton()
     }
 
     private func layoutUI() {
@@ -57,8 +59,9 @@ extension CreateWardrobeViewController {
         layoutWardrobeNameTextField()
         layoutWardrobeDescription()
         layoutImagePickButton()
-        layoutImageButton()
+        layoutImageView()
         layoutAddButton()
+        layoutImageButton()
     }
 
     private func setupImagePicker() {
@@ -201,32 +204,47 @@ extension CreateWardrobeViewController {
         let button = UIButton()
         self.imageButton = button
         imageButton.setImage(UIImage(systemName: "camera.fill"), for: .normal)
-        imageButton.backgroundColor = GlobalColors.photoFillColor
-        imageButton.contentVerticalAlignment = .fill
-        imageButton.contentHorizontalAlignment = .fill
-        imageButton.imageView?.contentMode = .scaleAspectFit
-        imageButton.tintColor = GlobalColors.darkColor
         imageButton.isUserInteractionEnabled = false
-        imageButton.dropShadow()
-
-        headerView.addSubview(imageButton)
+        imageButton.tintColor = .gray
+        imageView.addSubview(imageButton)
     }
 
     private func layoutImageButton() {
+        imageButton.pin
+            .height(50%)
+            .width(50%)
+            .center()
+
+    }
+
+    // image View
+
+    private func setupImageView() {
+        let view = UIImageView()
+        self.imageView = view
+        imageView.backgroundColor = .white
+        imageView.contentMode = .scaleToFill
+        imageView.tintColor = GlobalColors.darkColor
+        imageView.isUserInteractionEnabled = false
+        imageView.dropShadow()
+        headerView.addSubview(imageView)
+    }
+
+    private func layoutImageView() {
 
         let size = view.frame.height * 0.06
-        imageButton.pin
+        imageView.pin
             .below(of: wardrobeDescriptionTextView, aligned: .start)
             .size(size)
 
-        imageButton.pin
-            .top(imagePickButton.frame.midY - imageButton.bounds.height / 2)
+        imageView.pin
+            .top(imagePickButton.frame.midY - imageView.bounds.height / 2)
 
-        imageButton.layer.cornerRadius = size / 2
+        imageView.layer.cornerRadius = size / 2
 
-        let width = imageButton.frame.width * 0.2
-        let height = imageButton.frame.height * 0.2
-        imageButton.imageEdgeInsets = UIEdgeInsets(top: height, left: width, bottom: height, right: width)
+        let width = imageView.frame.width * 0.2
+        let height = imageView.frame.height * 0.2
+        // imageView.imageEdgeInsets = UIEdgeInsets(top: height, left: width, bottom: height, right: width)
     }
 
     // image pick button
@@ -346,10 +364,10 @@ extension CreateWardrobeViewController: UIImagePickerControllerDelegate {
 
         private func chooseHowToPickImage() {
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            if let action = self.action(for: .camera, title: "Camera") {
+            if let action = self.action(for: .camera, title: "Камера") {
                        alertController.addAction(action)
             }
-            if let action = self.action(for: .savedPhotosAlbum, title: "Photo library") {
+            if let action = self.action(for: .savedPhotosAlbum, title: "Галлерея") {
                        alertController.addAction(action)
             }
 
@@ -364,10 +382,12 @@ extension CreateWardrobeViewController: UIImagePickerControllerDelegate {
             }
             if let imgData = img.jpegData(compressionQuality: 0.1) {
                 output?.didImageLoaded(image: imgData)
-                imageButton.imageEdgeInsets = UIEdgeInsets()// UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                imageButton.setImage(img, for: .normal)
-                imageButton.contentMode = .scaleToFill
-                imageButton.clipsToBounds = true
+                // imageView.imageEdgeInsets = UIEdgeInsets()// UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                // imageView.setImage(img, for: .normal)
+                imageButton.isHidden = true
+                imageView.image = img
+                imageView.contentMode = .scaleToFill
+                imageView.clipsToBounds = true
             }
 
         }
