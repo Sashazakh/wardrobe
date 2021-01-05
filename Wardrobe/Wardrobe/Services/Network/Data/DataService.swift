@@ -1,5 +1,5 @@
 import Alamofire
-import UIKit
+import Kingfisher
 
 final class DataService: NetworkService {
 
@@ -1231,5 +1231,9 @@ extension DataService: DataServiceInput {
 
     func setNewUserName(newName: String) {
         UserDefaults.standard.setValue(newName, forKey: Constants.userNameKey)
+    }
+
+    func cleanCache() {
+        ImageCache.default.clearCache()
     }
 }

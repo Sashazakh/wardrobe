@@ -20,6 +20,8 @@ final class SetupLookViewController: UIViewController {
 
     private var imagePickerController: UIImagePickerController!
 
+    private var photoDidChanged: Bool = false
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -276,7 +278,7 @@ extension SetupLookViewController: SetupLookViewInput {
     }
 
     func getLookImage() -> Data? {
-        return lookPhotoImageView.image?.jpegData(compressionQuality: 1)
+        return photoDidChanged ? lookPhotoImageView.image?.jpegData(compressionQuality: 1) : nil
     }
 
     func showAlert(title: String, message: String) {
@@ -304,6 +306,7 @@ extension SetupLookViewController: UIImagePickerControllerDelegate, UINavigation
             return
         }
 
+        photoDidChanged = true
         output?.userDidSetImage(imageData: image.jpegData(compressionQuality: Constants.LookPhotoImageView.compression))
     }
 

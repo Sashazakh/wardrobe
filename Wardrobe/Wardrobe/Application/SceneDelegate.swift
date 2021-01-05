@@ -10,6 +10,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
+        DataService.shared.cleanCache()
+
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
 
