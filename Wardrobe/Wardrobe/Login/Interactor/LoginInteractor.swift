@@ -27,7 +27,7 @@ extension LoginInteractor: LoginInteractorInput {
                 case .networkNotReachable:
                     self?.output?.showAlert(title: "Ошибка", message: "Не удается подключиться")
                 case .userNotExist:
-                    self?.output?.showAlert(title: "Ошибка", message: "Пользователь не найден")
+                    self?.output?.showAlert(title: "Ошибка", message: "Неверный логин или пароль")
                 default:
                     self?.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
                 }

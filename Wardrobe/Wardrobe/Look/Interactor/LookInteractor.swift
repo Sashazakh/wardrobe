@@ -26,10 +26,18 @@ final class LookInteractor {
             categories[item.category]?.append(itemData)
         }
 
+        var categoriesArray: [(String, [ItemData])] = categories.map {
+            return ($0.key, $0.value)
+        }
+
+        categoriesArray.sort {
+            $0.0 < $1.0
+        }
+
         return LookData(lookName: model.lookName,
-                        categories: categories.map {
-                            return CategoryData(categoryName: $0.key,
-                                                items: $0.value)
+                        categories: categoriesArray.map {
+                            return CategoryData(categoryName: $0.0,
+                                                items: $0.1)
                         })
     }
 
