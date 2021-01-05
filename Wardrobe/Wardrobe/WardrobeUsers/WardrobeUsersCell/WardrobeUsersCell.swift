@@ -31,6 +31,7 @@ class WardrobeUsersCell: UICollectionViewCell {
         super.layoutSubviews()
 
         setupLayoutViews()
+        checkDeleteButton()
     }
 
     private func setupViews() {
@@ -196,7 +197,7 @@ class WardrobeUsersCell: UICollectionViewCell {
         nameLabel.text = wardrobeUser.name
 
         if let url = URL(string: wardrobeUser.imageUrl ?? "") {
-            if !isNeedRefresh {
+            if isNeedRefresh {
                 self.avatarImageView.kf.setImage(with: url, options: [.forceRefresh])
             } else {
                 self.avatarImageView.kf.setImage(with: url)
@@ -206,7 +207,8 @@ class WardrobeUsersCell: UICollectionViewCell {
         }
 
         self.output = output
-        checkDeleteButton()
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 
     // MARK: Actions

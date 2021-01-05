@@ -24,6 +24,7 @@ class MainScreenCell: WardrobeCell {
         super.layoutSubviews()
 
         layoutDeleteButtonLayout()
+        checkDeleteButton()
     }
 
     func setupViews() {
@@ -60,24 +61,67 @@ class MainScreenCell: WardrobeCell {
     private func checkDeleteButton() {
         if let output = output {
             if output.isEditButtonTapped() {
+                UIView.animate(withDuration: 0, animations: {
+                    self.deleteMarkButton.pin
+                        .top(3%)
+                        .right(7%)
+                        .width(10)
+                        .height(10)
+                    self.deleteMarkButton.alpha = 0
+                }, completion: { (_) in
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.deleteMarkButton.pin
+                            .top(3%)
+                            .right(3%)
+                            .width(20)
+                            .height(20)
+                        self.deleteMarkButton.alpha = 1
+                    })
+                })
                 deleteMarkButton.isHidden = false
             } else {
-                deleteMarkButton.isHidden = true
+                UIView.animate(withDuration: 0, animations: {
+                    self.deleteMarkButton.pin
+                        .top(3%)
+                        .right(3%)
+                        .width(20)
+                        .height(20)
+                    self.deleteMarkButton.alpha = 1
+                }, completion: { (_) in
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.deleteMarkButton.pin
+                            .top(3%)
+                            .right(3%)
+                            .width(0)
+                            .height(0)
+                        self.deleteMarkButton.alpha = 0
+                    }, completion: { (_) in
+                        self.deleteMarkButton.isHidden = true
+                    })
+                })
             }
         }
     }
 
     // MARK: Public functions
 
-    public func configureCell(wardobeData: WardrobeData, output: MainScreenViewOutput?) {
+    public func configureCell(wardobeData: WardrobeData,
+                              output: MainScreenViewOutput?,
+                              isRefreshNeed: Bool) {
         titleLable.text = wardobeData.name
 
-        let url = URL(string: wardobeData.imageUrl ?? "")
-        self.imageView.kf.setImage(with: url)
+        if let url = URL(string: wardobeData.imageUrl ?? "") {
+            if isRefreshNeed {
+                self.imageView.kf.setImage(with: url, options: [.forceRefresh])
+            } else {
+                self.imageView.kf.setImage(with: url)
+            }
+        }
 
         self.output = output
-        checkDeleteButton()
         self.wardrobeDataModel = wardobeData
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 
     // MARK: User actions

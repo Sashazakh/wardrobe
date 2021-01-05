@@ -13,7 +13,7 @@ final class WardrobeDetailPresenter {
     var looks: [WardrobeDetailData] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.view?.reloadData()
+                self.view?.reloadDataWithAnimation()
             }
         }
     }

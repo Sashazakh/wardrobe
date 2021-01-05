@@ -17,7 +17,7 @@ final class MainScreenPresenter {
     private var userWardrobes: [WardrobeData] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.view?.reloadData()
+                self.view?.reloadDataWithAnimation()
             }
         }
     }

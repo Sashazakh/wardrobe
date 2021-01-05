@@ -19,6 +19,8 @@ final class WardrobeUsersViewController: UIViewController {
 
     private var isReloadDataNeed: Bool = false
 
+    private var isNeedRefresh: Bool = false
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -30,6 +32,7 @@ final class WardrobeUsersViewController: UIViewController {
 
         output?.didLoadView()
     }
+
     override func viewDidLayoutSubviews() {
         super .viewDidLayoutSubviews()
 
@@ -185,6 +188,7 @@ final class WardrobeUsersViewController: UIViewController {
     }
 
     @objc func refreshData(_ sender: Any) {
+        isNeedRefresh = true
         output?.refreshData()
     }
 }
@@ -201,6 +205,7 @@ extension WardrobeUsersViewController: WardrobeUsersViewInput {
     }
 
     func reloadDataWithAnimation() {
+        refreshControl.endRefreshing()
         isReloadDataNeed = true
         collectionView.reloadData()
     }
@@ -240,6 +245,7 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
                                                                     for: indexPath)
                                                                     as? AddUserCell
             else { return UICollectionViewCell() }
+            isNeedRefresh = false
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
@@ -254,14 +260,14 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
 
             cell.configureCell(wardrobeUser: user,
                                output: output,
-                               isNeedRefresh: isReloadDataNeed)
+                               isNeedRefresh: isNeedRefresh)
             return cell
         }
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
-    -> CGSize {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = screenBounds.width * 0.354
         let cellHeight = screenBounds.height * 0.2558
         return CGSize(width: cellWidth, height: cellHeight)
@@ -282,8 +288,8 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
                 isReloadDataNeed = !isReloadDataNeed
             }
         } else {
-            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                UIView.animate(withDuration: 0.4) {
+            cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                UIView.animate(withDuration: 0.5) {
                     cell.transform = CGAffineTransform.identity
                 }
         }

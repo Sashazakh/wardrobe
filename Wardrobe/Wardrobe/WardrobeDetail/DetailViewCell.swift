@@ -23,6 +23,7 @@ class DetailViewCell: WardrobeCell {
 
         setupViews()
     }
+
     required init?(coder: NSCoder) {
         return nil
     }
@@ -31,6 +32,7 @@ class DetailViewCell: WardrobeCell {
         super.layoutSubviews()
 
         layoutDeleteButtonLayout()
+        checkDeleteButton()
     }
 
     func setupViews() {
@@ -112,16 +114,24 @@ class DetailViewCell: WardrobeCell {
     // MARK: Public functions
 
     func configureCell(with look: WardrobeDetailData,
-                       output: WardrobeDetailViewOutput?) {
+                       output: WardrobeDetailViewOutput?,
+                       isRefreshNeed: Bool) {
         titleLable.text = look.name
 
-        let url = URL(string: look.imageUrl ?? "")
-        self.imageView.kf.setImage(with: url)
+        if let url = URL(string: look.imageUrl ?? "") {
+            if isRefreshNeed {
+                self.imageView.kf.setImage(with: url, options: [.forceRefresh])
+            } else {
+                self.imageView.kf.setImage(with: url)
+            }
+        }
+
         lookId = look.id
 
         self.output = output
-        checkDeleteButton()
         lookModel = look
+        setNeedsLayout()
+        layoutIfNeeded()
     }
     // MARK: User actions
 

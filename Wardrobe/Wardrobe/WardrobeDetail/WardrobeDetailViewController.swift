@@ -22,6 +22,8 @@ final class WardrobeDetailViewController: UIViewController {
 
     private var menuIsDropped: Bool?
 
+    private var isRefreshNeed: Bool = false
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -306,6 +308,7 @@ final class WardrobeDetailViewController: UIViewController {
     }
 
     @objc func refreshData() {
+        isRefreshNeed = true
         output?.refreshData()
     }
 }
@@ -317,6 +320,7 @@ extension WardrobeDetailViewController: WardrobeDetailViewInput {
     }
 
     func reloadDataWithAnimation() {
+        refreshControl.endRefreshing()
         isReloadDataNeed = true
         collectionView.reloadData()
     }
@@ -362,6 +366,7 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
         numberOfLooks += 1
         if indexPath.row == numberOfLooks - 1 || numberOfLooks == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddWardrobeCell.identifier, for: indexPath)
+            isRefreshNeed = false
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WardrobeDetail", for: indexPath) as? DetailViewCell else {
@@ -372,7 +377,7 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
                 return UICollectionViewCell()
             }
 
-            cell.configureCell(with: look, output: output)
+            cell.configureCell(with: look, output: output, isRefreshNeed: isRefreshNeed)
             return cell
         }
     }
@@ -397,8 +402,8 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
                 isReloadDataNeed = !isReloadDataNeed
             }
         } else {
-            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                UIView.animate(withDuration: 0.4) {
+            cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                UIView.animate(withDuration: 0.5) {
                     cell.transform = CGAffineTransform.identity
                 }
         }
