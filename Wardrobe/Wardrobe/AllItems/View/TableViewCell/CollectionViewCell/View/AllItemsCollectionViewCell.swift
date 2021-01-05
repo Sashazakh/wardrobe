@@ -49,8 +49,6 @@ final class AllItemsCollectionViewCell: WardrobeCell {
 
         isAdding = model.isSelected
 
-        setCellStyle(isAdding: isAdding)
-
         guard let url = URL(string: (model.item.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
             return
         }
@@ -59,24 +57,7 @@ final class AllItemsCollectionViewCell: WardrobeCell {
     }
 
     private func layoutDeleteMarkImageView() {
-        stateButton.pin
-            .top(3%)
-            .right(3%)
-            .width(20)
-            .height(20)
-    }
-
-    private func setCellStyle(isAdding: Bool) {
-        if !isAdding {
-            stateButton.setImage(UIImage(systemName: "plus",
-                                            withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
-                                            for: .normal)
-            stateButton.backgroundColor = .systemGreen
-            transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-            UIView.animate(withDuration: 0.2) {
-                self.transform = CGAffineTransform.identity
-            }
-        } else {
+        if isAdding {
             stateButton.setImage(UIImage(systemName: "minus",
                                             withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
                                             for: .normal)
@@ -84,17 +65,22 @@ final class AllItemsCollectionViewCell: WardrobeCell {
                                                   green: 98 / 255,
                                                   blue: 98 / 255,
                                                   alpha: 1)
-            transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-            UIView.animate(withDuration: 0.2) {
-                self.transform = CGAffineTransform.identity
-            }
+        } else {
+            stateButton.setImage(UIImage(systemName: "plus",
+                                            withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                                            for: .normal)
+            stateButton.backgroundColor = .systemGreen
         }
+
+        stateButton.pin
+            .top(3%)
+            .right(3%)
+            .width(20)
+            .height(20)
     }
 
     @objc
     private func didTapStateButton() {
-        isAdding = !isAdding
-        setCellStyle(isAdding: isAdding)
-        output?.changeSelection(isSelected: isAdding)
+        output?.changeSelection()
     }
 }

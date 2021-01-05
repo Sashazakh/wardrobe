@@ -9,7 +9,7 @@ final class AllItemsTableViewCellPresenter {
         self.index = index
     }
 
-    public func changeSelection(collectionIndex: Int, isSelected: Bool) {
-        output?.setSelection(categoryIndex: index, itemIndex: collectionIndex, isSelected: isSelected)
+    public func changeSelection(collectionIndex: Int) {
+        output?.setSelection(categoryIndex: index, itemIndex: collectionIndex)
     }
 }

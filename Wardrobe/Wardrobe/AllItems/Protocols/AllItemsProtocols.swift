@@ -19,7 +19,7 @@ protocol AllItemsViewOutput: AnyObject {
 
     func viewModel(index: Int) -> AllItemsTableViewCellViewModel
 
-    func setSelection(categoryIndex: Int, itemIndex: Int, isSelected: Bool)
+    func setSelection(categoryIndex: Int, itemIndex: Int)
 
     func didRefreshRequested()
 }
