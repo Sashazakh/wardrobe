@@ -20,6 +20,8 @@ final class MainScreenViewController: UIViewController {
 
     private var isReloadDataNeed: Bool = false
 
+    private var isRefreshNeed: Bool = false
+
     // MARK: Vc lifecycle
 
     override func viewDidLoad() {
@@ -281,6 +283,7 @@ final class MainScreenViewController: UIViewController {
     }
 
     @objc private func refreshData(_ sender: Any) {
+        isRefreshNeed = true
         output?.refreshData()
     }
 }
@@ -348,6 +351,7 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
         numberOfWardobes += 1
         if indexPath.row == numberOfWardobes - 1 || numberOfWardobes == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddWardrobeCell.identifier, for: indexPath)
+            isRefreshNeed = false
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainScreenCell", for: indexPath) as? MainScreenCell else {
@@ -358,7 +362,9 @@ extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDa
                 return UICollectionViewCell()
             }
 
-            cell.configureCell(wardobeData: wardobe, output: output)
+            cell.configureCell(wardobeData: wardobe,
+                               output: output,
+                               isRefreshNeed: isRefreshNeed)
             return cell
         }
     }

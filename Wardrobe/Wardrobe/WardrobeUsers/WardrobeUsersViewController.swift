@@ -19,6 +19,8 @@ final class WardrobeUsersViewController: UIViewController {
 
     private var isReloadDataNeed: Bool = false
 
+    private var isNeedRefresh: Bool = false
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -186,6 +188,7 @@ final class WardrobeUsersViewController: UIViewController {
     }
 
     @objc func refreshData(_ sender: Any) {
+        isNeedRefresh = true
         output?.refreshData()
     }
 }
@@ -242,6 +245,7 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
                                                                     for: indexPath)
                                                                     as? AddUserCell
             else { return UICollectionViewCell() }
+            isNeedRefresh = false
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
@@ -256,7 +260,7 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
 
             cell.configureCell(wardrobeUser: user,
                                output: output,
-                               isNeedRefresh: isReloadDataNeed)
+                               isNeedRefresh: isNeedRefresh)
             return cell
         }
     }

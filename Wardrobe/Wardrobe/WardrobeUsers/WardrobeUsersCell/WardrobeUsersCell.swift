@@ -197,7 +197,7 @@ class WardrobeUsersCell: UICollectionViewCell {
         nameLabel.text = wardrobeUser.name
 
         if let url = URL(string: wardrobeUser.imageUrl ?? "") {
-            if !isNeedRefresh {
+            if isNeedRefresh {
                 self.avatarImageView.kf.setImage(with: url, options: [.forceRefresh])
             } else {
                 self.avatarImageView.kf.setImage(with: url)

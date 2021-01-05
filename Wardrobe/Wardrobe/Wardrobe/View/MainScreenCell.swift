@@ -105,11 +105,18 @@ class MainScreenCell: WardrobeCell {
 
     // MARK: Public functions
 
-    public func configureCell(wardobeData: WardrobeData, output: MainScreenViewOutput?) {
+    public func configureCell(wardobeData: WardrobeData,
+                              output: MainScreenViewOutput?,
+                              isRefreshNeed: Bool) {
         titleLable.text = wardobeData.name
 
-        let url = URL(string: wardobeData.imageUrl ?? "")
-        self.imageView.kf.setImage(with: url)
+        if let url = URL(string: wardobeData.imageUrl ?? "") {
+            if isRefreshNeed {
+                self.imageView.kf.setImage(with: url, options: [.forceRefresh])
+            } else {
+                self.imageView.kf.setImage(with: url)
+            }
+        }
 
         self.output = output
         self.wardrobeDataModel = wardobeData
