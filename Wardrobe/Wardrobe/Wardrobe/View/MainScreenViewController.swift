@@ -313,6 +313,7 @@ extension MainScreenViewController: MainScreenViewInput {
 
     func setUserImage(with imageUrl: URL?) {
         if let imageUrl = imageUrl {
+            avatarImageView.contentMode = .scaleToFill
             avatarImageView.kf.setImage(with: imageUrl)
         } else {
             avatarImageView.image = UIImage(named: "no_photo")

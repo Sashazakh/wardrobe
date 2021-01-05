@@ -92,7 +92,7 @@ extension SettingsPresenter: SettingsInteractorOutput {
         var img = imageUrl
         img += "&apikey=" + DataService.shared.getApiKey()
         KingfisherManager.shared.cache.removeImage(forKey: img)
-        view?.refreshImage(with: URL(string: img))
+        view?.setUserImage(with: URL(string: img))
     }
 
     func didReceive(name: String?, imageUrl: String?) {

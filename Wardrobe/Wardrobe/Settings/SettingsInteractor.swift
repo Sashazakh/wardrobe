@@ -28,6 +28,9 @@ extension SettingsInteractor: SettingsInteractorInput {
             }
 
             guard let data = result.data else { return }
+            if AuthService.shared.getUserImageURL() == nil {
+                AuthService.shared.setImageUrl(imageUrl: data.imageUrl)
+            }
             self.output?.upadateImage(imageUrl: data.imageUrl)
         }
     }

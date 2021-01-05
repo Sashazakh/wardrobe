@@ -24,6 +24,8 @@ protocol AuthServiceInput {
                completion: @escaping (Result<LoginResponse, NetworkError>) -> Void)
 
     func isAuthorized(completion: @escaping (Result<Bool, NetworkError>) -> Void)
+
+    func setImageUrl(imageUrl: String?)
 }
 
 protocol DataServiceInput {

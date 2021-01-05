@@ -203,4 +203,10 @@ extension AuthService: AuthServiceInput {
               completion(result)
           }
       }
+
+    func setImageUrl(imageUrl: String?) {
+        guard let imageUrl = imageUrl else { return }
+
+        UserDefaults.standard.setValue(imageUrl, forKey: Constants.imageURLKey)
+    }
 }
