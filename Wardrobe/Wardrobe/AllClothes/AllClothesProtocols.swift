@@ -5,6 +5,8 @@ protocol AllClothesViewInput: class {
     func toggleEditMode()
     func showDropMenu()
     func hideDropMenu()
+    func changeEditButton(state: EditButtonState)
+    func getEditMode() -> Bool
 }
 
 protocol AllClothesViewOutput: class {
