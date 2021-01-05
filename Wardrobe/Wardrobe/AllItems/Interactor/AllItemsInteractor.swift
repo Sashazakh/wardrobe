@@ -30,8 +30,16 @@ final class AllItemsInteractor {
             }
         }
 
-        return AllItemsData(categories: uniqueCategories.map { cortege in
-            return CategoryData(categoryName: cortege.key, items: cortege.value)
+        var categoriesArray: [(String, [ItemData])] = uniqueCategories.map {
+            return ($0.key, $0.value)
+        }
+
+        categoriesArray.sort {
+            $0.0 < $1.0
+        }
+
+        return AllItemsData(categories: categoriesArray.map { cortege in
+            return CategoryData(categoryName: cortege.0, items: cortege.1)
         })
     }
 
