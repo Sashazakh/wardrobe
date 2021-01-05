@@ -189,26 +189,6 @@ final class CreateLookViewController: UIViewController {
             .hCenter()
             .width(100%)
             .bottom(tabBarController?.tabBar.frame.height ?? 0)
-
-        let gradientLayerUp = CAGradientLayer()
-
-        gradientLayerUp.frame = CGRect(x: .zero,
-                                     y: allItemsTableView.frame.minY,
-                                     width: allItemsTableView.bounds.width,
-                                     height: 4)
-        gradientLayerUp.colors = [GlobalColors.mainBlueScreen.cgColor,
-                                  UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
-        view.layer.addSublayer(gradientLayerUp)
-
-        let gradientLayerDown = CAGradientLayer()
-
-        gradientLayerDown.frame = CGRect(x: .zero,
-                                     y: allItemsTableView.frame.maxY - 4,
-                                     width: allItemsTableView.bounds.width,
-                                     height: 4)
-        gradientLayerDown.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
-                                    UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
-        view.layer.addSublayer(gradientLayerDown)
     }
 
     private func layoutNoItemsLabel() {
