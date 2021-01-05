@@ -154,7 +154,10 @@ extension ItemCollectionCell: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let data = localModel?.items[indexPath.row] else { return }
-        output?.didTapItem(itemId: data.clothesID)
+        guard let editMode = self.editMode else { return }
+        if editMode {
+            output?.didTapItem(itemId: data.clothesID)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)
