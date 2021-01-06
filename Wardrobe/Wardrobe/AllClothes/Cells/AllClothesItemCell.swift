@@ -121,8 +121,8 @@ class AllClothesItemCell: WardrobeCell {
                 }
             }
         } else {
-            self.imageView.contentMode = .center
-            self.imageView.image = UIImage(named: "fashion")
+            self.imageView.contentMode = .scaleAspectFit
+            self.imageView.image = GlobalConstants.deafultClothesImage
         }
     }
 }

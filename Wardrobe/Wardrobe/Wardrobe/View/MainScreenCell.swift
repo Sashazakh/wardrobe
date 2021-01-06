@@ -113,8 +113,8 @@ class MainScreenCell: WardrobeCell {
             self.imageView.contentMode = .scaleToFill
             self.imageView.kf.setImage(with: url)
         } else {
-            self.imageView.contentMode = .center
-            self.imageView.image = UIImage(named: "fashion")
+            self.imageView.contentMode = .scaleAspectFit
+            self.imageView.image = GlobalConstants.deafultClothesImage
         }
 
         self.output = output
