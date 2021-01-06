@@ -11,4 +11,9 @@ struct GlobalConstants {
         let height = width * 2
         return CGSize(width: width, height: height)
     }
+
+    static var deafultClothesImage: UIImage? = {
+        let image = UIImage(named: "clothesDefault")
+        return image
+    }()
 }

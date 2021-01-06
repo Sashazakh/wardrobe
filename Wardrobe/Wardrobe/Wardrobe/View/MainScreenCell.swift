@@ -10,6 +10,8 @@ class MainScreenCell: WardrobeCell {
 
     private var wardrobeDataModel: WardrobeData?
 
+    private var isneedWardrobeReload: Bool?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
