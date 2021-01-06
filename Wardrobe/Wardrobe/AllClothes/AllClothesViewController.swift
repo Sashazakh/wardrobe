@@ -291,7 +291,7 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension AllClothesViewController: AllClothesViewInput {
     func tableViewScrollTo(row: Int) {
-        categoriesTableView?.scrollToRow(at: IndexPath(row: row, section: 0), at: .top, animated: true)
+        categoriesTableView?.scrollToRow(at: IndexPath(row: row, section: 0), at: .middle, animated: true)
     }
 
     func getEditMode() -> Bool {
