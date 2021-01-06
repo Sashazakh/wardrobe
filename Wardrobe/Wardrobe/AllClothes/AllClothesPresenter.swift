@@ -44,7 +44,8 @@ extension AllClothesPresenter: AllClothesViewOutput {
             }
             model.categories.append(CategoryData(categoryName: category, items: []))
             self.model = model
-            for i in 0..<model.categories.count where model.categories[i].categoryName == category {
+            guard let newmodel = self.model else { return }
+            for i in 0..<newmodel.categories.count where newmodel.categories[i].categoryName == category {
                 self.view?.tableViewScrollTo(row: i)
                 return
             }
