@@ -55,7 +55,12 @@ final class CreateLookCollectionViewCell: WardrobeCell {
             return
         }
 
-        imageView.kf.setImage(with: url)
+        if model.needsToRefresh {
+            imageView.kf.setImage(with: url, options: [.forceRefresh])
+            output?.didRefreshCache()
+        } else {
+            imageView.kf.setImage(with: url)
+        }
     }
 
     private func layoutDeleteMarkImageView() {

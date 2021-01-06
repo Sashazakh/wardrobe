@@ -61,6 +61,7 @@ extension AllItemsPresenter: AllItemsViewOutput {
 
         for i in .zero..<model.categories[index].items.count {
             itemModels.append(AllItemsCollectionViewCellViewModel(isSelected: isSelected?[index][i] ?? false,
+                                                                  needsToRefresh: false,
                                                                   item: model.categories[index].items[i]))
         }
 

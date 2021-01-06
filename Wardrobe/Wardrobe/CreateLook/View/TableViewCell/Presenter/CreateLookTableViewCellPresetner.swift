@@ -12,4 +12,8 @@ final class CreateLookTableViewCellPresenter {
     public func changeSelection(collectionIndex: Int, isSelected: Bool) {
         output?.setSelection(categoryIndex: index, itemIndex: collectionIndex, isSelected: isSelected)
     }
+
+    public func didRefreshCache(collectionIndex: Int) {
+        output?.didRefreshCache(categoryIndex: index, itemIndex: collectionIndex)
+    }
 }
