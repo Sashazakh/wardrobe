@@ -31,13 +31,9 @@ final class LookViewController: UIViewController {
 
         setupView()
         setupSubviews()
-	}
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
 
         output?.didLoadView()
-    }
+	}
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
