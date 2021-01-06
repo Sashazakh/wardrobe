@@ -6,6 +6,7 @@ protocol AllClothesViewInput: class {
     func showDropMenu()
     func hideDropMenu()
     func changeEditButton(state: EditButtonState)
+    func tableViewScrollTo(row: Int)
     func getEditMode() -> Bool
 }
 
