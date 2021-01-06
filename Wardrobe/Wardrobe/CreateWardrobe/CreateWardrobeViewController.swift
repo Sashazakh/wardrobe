@@ -6,7 +6,6 @@ final class CreateWardrobeViewController: UIViewController, UINavigationControll
     private weak var pageTitle: UILabel!
     private weak var backButton: UIButton!
     private weak var wardrobeNameTextField: UITextField!
-    private weak var wardrobeDescriptionTextView: UITextView!
     private weak var imageButton: UIButton!
     private weak var imageView: UIImageView!
     private weak var addButton: UIButton!
@@ -45,7 +44,6 @@ extension CreateWardrobeViewController {
         setupWardrobeNameTextField()
         setupImageView()
         setupAddButton()
-        setupWardrobeDescription()
         setupImagePickButton()
         setupRecognizers()
         setupImagePicker()
@@ -57,7 +55,6 @@ extension CreateWardrobeViewController {
         layoutPageTitle()
         layoutBackButton()
         layoutWardrobeNameTextField()
-        layoutWardrobeDescription()
         layoutImagePickButton()
         layoutImageView()
         layoutAddButton()
@@ -94,15 +91,17 @@ extension CreateWardrobeViewController {
     }
 
     private func layoutBackButton() {
-        backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        backButton.setImage(UIImage(systemName: "chevron.backward",
+                                      withConfiguration: UIImage.SymbolConfiguration(weight: .bold)),
+                                      for: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
         backButton.addTarget(self, action: #selector(didBackButtonTap(_:)),
                              for: .touchUpInside)
         backButton.pin
-            .height(pageTitle.frame.height * 0.85)
-            .width(5%)
+            .height(25)
+            .width(20)
             .before(of: pageTitle, aligned: .center)
             .left(3%)
     }
@@ -121,8 +120,8 @@ extension CreateWardrobeViewController {
             .top()
             .left()
             .right()
-            .height(50%)
-        headerView.roundLowerCorners(40)
+            .height(30%)
+        headerView.roundLowerCorners(35)
         headerView.dropShadow()
     }
 
@@ -141,10 +140,10 @@ extension CreateWardrobeViewController {
     private func layoutPageTitle() {
         pageTitle.textColor = GlobalColors.backgroundColor
         pageTitle.pin
-            .top(11%)
+            .top(20%)
             .hCenter()
             .width(50%)
-            .height(7%)
+            .height(10%)
     }
 
     // Item name text field
@@ -160,42 +159,10 @@ extension CreateWardrobeViewController {
     private func layoutWardrobeNameTextField() {
         wardrobeNameTextField.pin
             .below(of: pageTitle)
-            .marginTop(5%)
+            .marginTop(10%)
             .hCenter()
             .width(90%)
-            .height(10%)
-    }
-
-    // Wardrobe description
-
-    private func setupWardrobeDescription() {
-        let textVIew = UITextView()
-
-        self.wardrobeDescriptionTextView = textVIew
-        wardrobeDescriptionTextView.delegate = self
-        wardrobeDescriptionTextView.layer.cornerRadius = 10
-        wardrobeDescriptionTextView.layer.borderWidth = 1
-        wardrobeDescriptionTextView.layer.borderColor = UIColor.white.cgColor
-        wardrobeDescriptionTextView.backgroundColor = UIColor.white
-        wardrobeDescriptionTextView.font = UIFont(name: "DMSans-Regular", size: 15)
-
-        wardrobeDescriptionTextView.delegate = self
-
-        wardrobeDescriptionTextView.text = "Описание"
-        wardrobeDescriptionTextView.textColor = UIColor.gray
-        wardrobeDescriptionTextView.autocorrectionType = .no
-
-        wardrobeDescriptionTextView.textContainer.lineFragmentPadding = 10
-
-        headerView.addSubview(wardrobeDescriptionTextView)
-    }
-
-    private func layoutWardrobeDescription() {
-        wardrobeDescriptionTextView.pin
-            .width(of: wardrobeNameTextField)
-            .height(30%)
-            .below(of: wardrobeNameTextField).marginTop(5%)
-            .hCenter()
+            .height(17%)
     }
 
     // image Button
@@ -234,7 +201,7 @@ extension CreateWardrobeViewController {
 
         let size = view.frame.height * 0.06
         imageView.pin
-            .below(of: wardrobeDescriptionTextView, aligned: .start)
+            .below(of: wardrobeNameTextField, aligned: .start)
             .size(size)
 
         imageView.pin
@@ -242,8 +209,8 @@ extension CreateWardrobeViewController {
 
         imageView.layer.cornerRadius = size / 2
 
-        let width = imageView.frame.width * 0.2
-        let height = imageView.frame.height * 0.2
+//        let width = imageView.frame.width * 0.2
+//        let height = imageView.frame.height * 0.2
         // imageView.imageEdgeInsets = UIEdgeInsets(top: height, left: width, bottom: height, right: width)
     }
 
@@ -268,8 +235,8 @@ extension CreateWardrobeViewController {
         imagePickButton.pin
             .width(65%)
             .right(5%)
-            .height(9%)
-            .below(of: wardrobeDescriptionTextView).marginTop(11%)
+            .height(15%)
+            .below(of: wardrobeNameTextField).marginTop(13%)
 
         let height = imagePickButton.frame.height
 
@@ -306,8 +273,12 @@ extension CreateWardrobeViewController {
 
     @objc private func didAddButtonTap(_ sender: Any) {
         guard let wardrobeName = wardrobeNameTextField.text,
-              let wardrobeDescription = wardrobeDescriptionTextView.text else { return }
-        output?.addWardrobe(name: wardrobeName, description: wardrobeDescription)
+              !wardrobeName.isEmpty else {
+            showALert(title: "Ошибка", message: "Введите название гардероба")
+            return
+        }
+
+        output?.addWardrobe(name: wardrobeName)
     }
 
     @objc private func didBackButtonTap(_ sender: Any) {

@@ -26,10 +26,9 @@ final class CreateWardrobePresenter {
 }
 
 extension CreateWardrobePresenter: CreateWardrobeViewOutput {
-    func addWardrobe(name: String, description: String) {
+    func addWardrobe(name: String) {
         interactor.addWardrobe(with:
                                 CreateWardobeData(name: name,
-                                                  description: description,
                                                   imageData: imgData),
                                for: userLogin ?? "")
     }

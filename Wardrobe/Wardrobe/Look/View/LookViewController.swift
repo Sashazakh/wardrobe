@@ -82,7 +82,6 @@ final class LookViewController: UIViewController {
         lookName.font = UIFont(name: "DMSans-Bold", size: 25)
         lookName.textColor = .white
         lookName.textAlignment = .center
-        lookName.text = "Набор\n\"Гулянка\""
         lookName.adjustsFontSizeToFitWidth = true
         lookName.minimumScaleFactor = 0.1
         lookName.numberOfLines = 0

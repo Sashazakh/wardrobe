@@ -1,11 +1,3 @@
-//
-//  CreateWardrobeInteractor.swift
-//  Wardrobe
-//
-//  Created by kymblc on 19.12.2020.
-//  
-//
-
 import Foundation
 
 final class CreateWardrobeInteractor {
@@ -30,7 +22,7 @@ extension CreateWardrobeInteractor: CreateWardrobeInteractorInput {
 
         DataService.shared.addWardrobe(login: user,
                                        name: wardrobe.name,
-                                       description: wardrobe.description,
+                                       description: String(),
                                        imageData: wardrobe.imageData) {  [weak self] result in
             guard let self = self else { return }
 

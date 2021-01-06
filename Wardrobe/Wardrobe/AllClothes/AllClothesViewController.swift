@@ -30,6 +30,12 @@ final class AllClothesViewController: UIViewController {
         output?.didLoadView()
 	}
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        output?.forceHideDropView()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         layoutUI()
@@ -37,6 +43,10 @@ final class AllClothesViewController: UIViewController {
 
     @objc private func didTapMoreButton() {
         output?.didTapMoreMenuButton()
+    }
+
+    @objc private func didTapEditButton() {
+        output?.didTapEditButton()
     }
 
     @objc private func didRefreshRequested() {
@@ -280,6 +290,10 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension AllClothesViewController: AllClothesViewInput {
+    func getEditMode() -> Bool {
+        return self.editMode
+    }
+
     func showDropMenu() {
         enableGesture()
         menuIsDropped = true
@@ -303,4 +317,19 @@ extension AllClothesViewController: AllClothesViewInput {
         self.categoriesTableView.reloadData()
     }
 
+    func changeEditButton(state: EditButtonState) {
+        switch state {
+        case .edit:
+            moreButton.setImage(UIImage(named: "more",
+                                         in: Bundle.main,
+                                         with: UIImage.SymbolConfiguration(weight: .bold)),
+                                         for: .normal)
+            moreButton.removeTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
+            moreButton.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
+        case .accept:
+            moreButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+            moreButton.removeTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
+            moreButton.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
+        }
+    }
 }
