@@ -105,11 +105,7 @@ extension SettingsPresenter: SettingsInteractorOutput {
         } else {
             view?.setUserImage(with: nil)
         }
-        if let userLofin = userLogin {
-            view?.setUserLogin(login: userLogin)
-        } else {
-            view?.setUserLogin(login: nil)
-        }
+        view?.setUserLogin(login: userLogin)
     }
 
    func showAlert(title: String, message: String) {
