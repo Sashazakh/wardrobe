@@ -16,7 +16,7 @@ protocol CreateWardrobeViewInput: class {
 
 protocol CreateWardrobeViewOutput: class {
     func didImageLoaded(image: Data)
-    func addWardrobe(name: String, description: String)
+    func addWardrobe(name: String)
 }
 
 protocol CreateWardrobeInteractorInput: class {
