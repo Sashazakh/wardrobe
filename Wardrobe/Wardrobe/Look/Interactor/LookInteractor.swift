@@ -159,6 +159,8 @@ extension LookInteractor: LookInteractorInput {
             }
         }
 
+        lookData.categories.sort { $0.categoryName < $1.categoryName }
+
         self.lookData = lookData
         self.output?.updateModel(model: lookData)
 
