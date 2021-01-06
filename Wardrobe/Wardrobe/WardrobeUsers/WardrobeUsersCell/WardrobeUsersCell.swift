@@ -190,18 +190,13 @@ class WardrobeUsersCell: UICollectionViewCell {
     // MARK: Public functions
 
     func configureCell(wardrobeUser: WardrobeUserData,
-                       output: WardrobeUsersViewOutput?,
-                       isNeedRefresh: Bool) {
+                       output: WardrobeUsersViewOutput?) {
         login = wardrobeUser.login
 
         nameLabel.text = wardrobeUser.name
 
         if let url = URL(string: wardrobeUser.imageUrl ?? "") {
-            if isNeedRefresh {
-                self.avatarImageView.kf.setImage(with: url, options: [.forceRefresh])
-            } else {
-                self.avatarImageView.kf.setImage(with: url)
-            }
+            self.avatarImageView.kf.setImage(with: url)
         } else {
             self.avatarImageView.image = UIImage(named: "no_photo")
         }

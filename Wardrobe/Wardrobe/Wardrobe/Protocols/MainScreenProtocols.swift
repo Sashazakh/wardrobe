@@ -39,6 +39,7 @@ protocol MainScreenInteractorInput: class {
     func loadUserData()
     func deleteWardrobe(with id: Int)
     func getUserLogin() -> String
+    func cleanImageCache(for models: [WardrobeData])
 }
 
 protocol MainScreenInteractorOutput: class {

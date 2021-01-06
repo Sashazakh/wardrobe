@@ -23,6 +23,7 @@ protocol WardrobeUsersViewOutput: class {
 protocol WardrobeUsersInteractorInput: class {
     func loadWardrobeUsers(with wardrobeId: Int)
     func deleteUser(login: String, wardrobeId: Int)
+    func cleanImageCache(for models: [WardrobeUserData])
 }
 
 protocol WardrobeUsersInteractorOutput: class {

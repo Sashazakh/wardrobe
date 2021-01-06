@@ -244,7 +244,7 @@ final class SettingsViewController: UIViewController {
             .below(of: fullNameLabel, aligned: .center)
             .marginTop(1.3%)
             .width(95%)
-            .height(15)
+            .height(17)
     }
 
     private func setupTableViewLayout() {

@@ -1,4 +1,5 @@
 import Foundation
+import Kingfisher
 
 final class EditItemPresenter {
 	weak var view: EditItemViewInput?
@@ -50,6 +51,11 @@ extension EditItemPresenter: EditItemViewOutput {
     }
 
     func didSavedItemData() {
+        if let urlString = model?.imageURL {
+            let cacheKey = urlString + "&apikey=\(AuthService.shared.getApiKey())"
+            KingfisherManager.shared.cache.removeImage(forKey: cacheKey)
+        }
+
         router.goBack()
     }
 

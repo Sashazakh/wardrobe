@@ -114,8 +114,13 @@ class MyInvitesCell: UITableViewCell {
     func configureCell(with invite: MyInvitesData) {
         let resultString = invite.login + Constants.constText + invite.name
         infoLabel.text = resultString
-        guard let url = URL(string: invite.imageUrl ?? "") else { return }
-        wardobeImageView.kf.setImage(with: url)
+        if let url = URL(string: invite.imageUrl ?? "") {
+            self.wardobeImageView.contentMode = .scaleToFill
+            self.wardobeImageView.kf.setImage(with: url)
+        } else {
+            self.wardobeImageView.contentMode = .center
+            self.wardobeImageView.image = UIImage(named: "fashion")
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 import Foundation
+import Kingfisher
 
 final class WardrobeDetailInteractor {
 	weak var output: WardrobeDetailInteractorOutput?
@@ -47,5 +48,14 @@ extension WardrobeDetailInteractor: WardrobeDetailInteractorInput {
 
             self.handleLook(with: wardobes)
         })
+    }
+
+    func cleanImageCache(for models: [WardrobeDetailData]) {
+        for model in models {
+            if let urlString = model.imageUrl {
+                let cacheKey = urlString
+                KingfisherManager.shared.cache.removeImage(forKey: cacheKey)
+            }
+        }
     }
 }

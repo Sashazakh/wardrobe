@@ -106,17 +106,12 @@ class MainScreenCell: WardrobeCell {
     // MARK: Public functions
 
     public func configureCell(wardobeData: WardrobeData,
-                              output: MainScreenViewOutput?,
-                              isRefreshNeed: Bool) {
+                              output: MainScreenViewOutput?) {
         titleLable.text = wardobeData.name
 
         if let url = URL(string: wardobeData.imageUrl ?? "") {
             self.imageView.contentMode = .scaleToFill
-            if isRefreshNeed {
-                self.imageView.kf.setImage(with: url, options: [.forceRefresh])
-            } else {
-                self.imageView.kf.setImage(with: url)
-            }
+            self.imageView.kf.setImage(with: url)
         } else {
             self.imageView.contentMode = .center
             self.imageView.image = UIImage(named: "fashion")

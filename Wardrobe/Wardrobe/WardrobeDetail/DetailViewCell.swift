@@ -114,17 +114,12 @@ class DetailViewCell: WardrobeCell {
     // MARK: Public functions
 
     func configureCell(with look: WardrobeDetailData,
-                       output: WardrobeDetailViewOutput?,
-                       isRefreshNeed: Bool) {
+                       output: WardrobeDetailViewOutput?) {
         titleLable.text = look.name
 
         if let url = URL(string: look.imageUrl ?? "") {
             self.imageView.contentMode = .scaleToFill
-            if isRefreshNeed {
-                self.imageView.kf.setImage(with: url, options: [.forceRefresh])
-            } else {
-                self.imageView.kf.setImage(with: url)
-            }
+            self.imageView.kf.setImage(with: url)
         } else {
             self.imageView.contentMode = .center
             self.imageView.image = UIImage(named: "fashion")

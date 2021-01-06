@@ -51,11 +51,15 @@ final class CreateLookCollectionViewCell: WardrobeCell {
 
         setCellStyle(isAdding: isAdding)
 
-        guard let url = URL(string: (model.item.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
-            return
+        if let url = model.item.imageURL {
+            if let url = URL(string: (url) + "&apikey=\(AuthService.shared.getApiKey())") {
+                self.imageView.contentMode = .scaleToFill
+                self.imageView.kf.setImage(with: url)
+            }
+        } else {
+            self.imageView.contentMode = .center
+            self.imageView.image = UIImage(named: "fashion")
         }
-
-        imageView.kf.setImage(with: url)
     }
 
     private func layoutDeleteMarkImageView() {

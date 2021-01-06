@@ -30,6 +30,7 @@ final class WardrobeUsersPresenter {
 
 extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
     func refreshData() {
+        interactor.cleanImageCache(for: wardrobeUsers)
         guard let wardrobeId = wardrobeId else { return }
         interactor.loadWardrobeUsers(with: wardrobeId)
     }
