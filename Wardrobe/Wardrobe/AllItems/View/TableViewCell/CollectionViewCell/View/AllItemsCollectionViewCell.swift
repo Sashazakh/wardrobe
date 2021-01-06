@@ -49,15 +49,19 @@ final class AllItemsCollectionViewCell: WardrobeCell {
 
         isAdding = model.isSelected
 
-        guard let url = URL(string: (model.item.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
-            return
-        }
-
-        if model.needsToRefresh {
-            imageView.kf.setImage(with: url, options: [.forceRefresh])
-            output?.didRefreshCache()
+        if let url = model.item.imageURL {
+            if let url = URL(string: (url) + "&apikey=\(AuthService.shared.getApiKey())") {
+                self.imageView.contentMode = .scaleToFill
+                if model.needsToRefresh {
+                    imageView.kf.setImage(with: url, options: [.forceRefresh])
+                    output?.didRefreshCache()
+                } else {
+                    imageView.kf.setImage(with: url)
+                }
+            }
         } else {
-            imageView.kf.setImage(with: url)
+            self.imageView.contentMode = .center
+            self.imageView.image = UIImage(named: "fashion")
         }
     }
 

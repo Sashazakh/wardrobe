@@ -118,7 +118,7 @@ class MyInvitesCell: UITableViewCell {
             self.wardobeImageView.contentMode = .scaleToFill
             self.wardobeImageView.kf.setImage(with: url)
         } else {
-            self.wardobeImageView.contentMode = .center
+            self.wardobeImageView.contentMode = .scaleAspectFit
             self.wardobeImageView.image = UIImage(named: "fashion")
         }
     }
