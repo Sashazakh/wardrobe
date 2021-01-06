@@ -338,11 +338,11 @@ extension CreateWardrobeViewController: UIImagePickerControllerDelegate {
             if let action = self.action(for: .camera, title: "Камера") {
                        alertController.addAction(action)
             }
-            if let action = self.action(for: .savedPhotosAlbum, title: "Галлерея") {
+            if let action = self.action(for: .savedPhotosAlbum, title: "Галерея") {
                        alertController.addAction(action)
             }
 
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }
 
