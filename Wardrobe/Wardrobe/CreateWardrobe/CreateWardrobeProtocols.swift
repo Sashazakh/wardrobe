@@ -12,6 +12,8 @@ import UIKit
 protocol CreateWardrobeViewInput: class {
     func showALert(title: String, message: String)
     func popView()
+    func disableAddButtonInteraction()
+    func enableAddButtonInteraction()
 }
 
 protocol CreateWardrobeViewOutput: class {

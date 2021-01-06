@@ -27,6 +27,7 @@ final class CreateWardrobePresenter {
 
 extension CreateWardrobePresenter: CreateWardrobeViewOutput {
     func addWardrobe(name: String) {
+        view?.disableAddButtonInteraction()
         interactor.addWardrobe(with:
                                 CreateWardobeData(name: name,
                                                   imageData: imgData),
@@ -46,6 +47,7 @@ extension CreateWardrobePresenter: CreateWardrobeInteractorOutput {
 
     func showAlert(title: String, message: String) {
         view?.showALert(title: title, message: message)
+        view?.enableAddButtonInteraction()
     }
 
 }

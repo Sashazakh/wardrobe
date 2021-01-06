@@ -119,7 +119,7 @@ class MyInvitesCell: UITableViewCell {
             self.wardobeImageView.kf.setImage(with: url)
         } else {
             self.wardobeImageView.contentMode = .scaleAspectFit
-            self.wardobeImageView.image = UIImage(named: "fashion")
+            self.wardobeImageView.image = GlobalConstants.deafultClothesImage
         }
     }
 }
