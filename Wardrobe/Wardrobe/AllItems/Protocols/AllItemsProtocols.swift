@@ -21,6 +21,8 @@ protocol AllItemsViewOutput: AnyObject {
 
     func setSelection(categoryIndex: Int, itemIndex: Int)
 
+    func didRefreshed(categoryIndex: Int, itemIndex: Int)
+
     func didRefreshRequested()
 }
 

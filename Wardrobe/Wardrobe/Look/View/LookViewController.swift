@@ -283,7 +283,7 @@ final class LookViewController: UIViewController {
 
     @objc
     private func didRequestRefresh() {
-        output?.didLoadView()
+        output?.didRequestRefresh()
     }
 }
 

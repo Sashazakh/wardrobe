@@ -12,4 +12,8 @@ final class AllItemsTableViewCellPresenter {
     public func changeSelection(collectionIndex: Int) {
         output?.setSelection(categoryIndex: index, itemIndex: collectionIndex)
     }
+
+    public func didRefreshCache(collectionIndex: Int) {
+        output?.didRefreshed(categoryIndex: index, itemIndex: collectionIndex)
+    }
 }
