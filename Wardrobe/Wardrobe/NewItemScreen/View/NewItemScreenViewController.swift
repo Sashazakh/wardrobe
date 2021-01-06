@@ -102,14 +102,19 @@ extension NewItemScreenViewController {
 
     private func layoutBackButton() {
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        let config = UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
+        backButton.setPreferredSymbolConfiguration(config, forImageIn: .normal)
         backButton.tintColor = GlobalColors.backgroundColor
         backButton.contentVerticalAlignment = .fill
         backButton.contentHorizontalAlignment = .fill
+
         backButton.pin
-            .height(pageTitle.frame.height * 0.85)
-            .width(5%)
-            .before(of: pageTitle, aligned: .center)
-            .left(3%)
+            .height(25)
+            .width(20)
+
+        backButton.pin
+            .top(pageTitle.frame.midY - backButton.bounds.height / 2)
+            .left(5%)
     }
 
     // Header View
@@ -254,14 +259,14 @@ extension NewItemScreenViewController: UIImagePickerControllerDelegate {
 
         private func chooseHowToPickImage() {
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            if let action = self.action(for: .camera, title: "Camera") {
+            if let action = self.action(for: .camera, title: "Камера") {
                        alertController.addAction(action)
             }
-            if let action = self.action(for: .savedPhotosAlbum, title: "Photo library") {
+            if let action = self.action(for: .savedPhotosAlbum, title: "Галерея") {
                        alertController.addAction(action)
             }
 
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }
 
