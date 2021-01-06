@@ -45,6 +45,7 @@ extension MainScreenPresenter: MainScreenViewOutput {
     }
 
     func refreshData() {
+        interactor.cleanImageCache(for: userWardrobes)
         interactor.loadUserWardobes()
     }
 

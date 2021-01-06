@@ -27,6 +27,7 @@ protocol WardrobeDetailViewOutput: class {
 protocol WardrobeDetailInteractorInput: class {
     func loadLooks(with wardrobeId: Int)
     func deleteLook(lookId: Int)
+    func cleanImageCache(for models: [WardrobeDetailData])
 }
 
 protocol WardrobeDetailInteractorOutput: class {

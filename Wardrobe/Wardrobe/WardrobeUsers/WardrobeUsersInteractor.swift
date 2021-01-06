@@ -1,4 +1,5 @@
 import Foundation
+import Kingfisher
 
 final class WardrobeUsersInteractor {
 	weak var output: WardrobeUsersInteractorOutput?
@@ -19,6 +20,15 @@ final class WardrobeUsersInteractor {
 }
 
 extension WardrobeUsersInteractor: WardrobeUsersInteractorInput {
+    func cleanImageCache(for models: [WardrobeUserData]) {
+        for model in models {
+            if let urlString = model.imageUrl {
+                let cacheKey = urlString
+                KingfisherManager.shared.cache.removeImage(forKey: cacheKey)
+            }
+        }
+    }
+
     func deleteUser(login: String, wardrobeId: Int) {
         DataService.shared.deleteUserFromWardrobe(wardrobeId: wardrobeId,
                                                   login: login) { [weak self](result) in

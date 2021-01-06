@@ -1,12 +1,5 @@
-//
-//  MainScreenInteractor.swift
-//  Wardrobe
-//
-//  Created by  Alexandr Zakharov on 18.12.2020.
-//  
-//
-
 import Foundation
+import Kingfisher
 
 final class MainScreenInteractor {
 	weak var output: MainScreenInteractorOutput?
@@ -66,5 +59,14 @@ extension MainScreenInteractor: MainScreenInteractorInput {
         let name = AuthService.shared.getUserName()
         let image = AuthService.shared.getUserImageURL()
         output?.didReceive(name: name, imageUrl: image)
+    }
+
+    func cleanImageCache(for models: [WardrobeData]) {
+        for model in models {
+            if let urlString = model.imageUrl {
+                let cacheKey = urlString
+                KingfisherManager.shared.cache.removeImage(forKey: cacheKey)
+            }
+        }
     }
 }

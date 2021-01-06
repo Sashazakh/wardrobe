@@ -22,8 +22,6 @@ final class WardrobeDetailViewController: UIViewController {
 
     private var menuIsDropped: Bool?
 
-    private var isRefreshNeed: Bool = false
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -309,7 +307,6 @@ final class WardrobeDetailViewController: UIViewController {
     }
 
     @objc func refreshData() {
-        isRefreshNeed = true
         output?.refreshData()
     }
 }
@@ -367,7 +364,6 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
         numberOfLooks += 1
         if indexPath.row == numberOfLooks - 1 || numberOfLooks == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddWardrobeCell.identifier, for: indexPath)
-            isRefreshNeed = false
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WardrobeDetail", for: indexPath) as? DetailViewCell else {
@@ -378,7 +374,7 @@ extension WardrobeDetailViewController: UICollectionViewDelegate,
                 return UICollectionViewCell()
             }
 
-            cell.configureCell(with: look, output: output, isRefreshNeed: isRefreshNeed)
+            cell.configureCell(with: look, output: output)
             return cell
         }
     }

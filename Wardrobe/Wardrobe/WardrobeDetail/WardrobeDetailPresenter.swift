@@ -47,6 +47,7 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
     }
 
     func refreshData() {
+        interactor.cleanImageCache(for: looks)
         guard let wardrobeId = wardrobeId else { return }
         interactor.loadLooks(with: wardrobeId)
     }

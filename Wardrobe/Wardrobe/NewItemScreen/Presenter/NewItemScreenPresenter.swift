@@ -22,6 +22,7 @@ extension NewItemScreenPresenter: NewItemScreenViewOutput {
         guard let itemName = view?.getItemName(),
               !itemName.isEmpty else {
             view?.showAlert(title: "Ошибка", message: "Введите название предмета")
+            view?.turnOnButtonInteraction()
             return
         }
 
@@ -36,6 +37,7 @@ extension NewItemScreenPresenter: NewItemScreenViewOutput {
 extension NewItemScreenPresenter: NewItemScreenInteractorOutput {
     func showAlert(title: String, message: String) {
         view?.showAlert(title: title, message: message)
+        view?.turnOnButtonInteraction()
     }
 
     func didItemAdded() {

@@ -8,6 +8,8 @@ protocol NewItemScreenViewInput: AnyObject {
 
     func showAlert(title: String, message: String)
 
+    func turnOnButtonInteraction()
+
     func disableKeyboard()
 }
 
