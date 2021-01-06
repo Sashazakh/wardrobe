@@ -252,6 +252,14 @@ extension SetupLookViewController: SetupLookViewInput {
         view.endEditing(true)
     }
 
+    func disableSetupButtonInteraction() {
+        setupLookButton.isUserInteractionEnabled = false
+    }
+
+    func enableSetupButtonInteraction() {
+        setupLookButton.isUserInteractionEnabled = true
+    }
+
     func setLookImage(imageData: Data) {
         lookPhotoImageView.contentMode = .scaleToFill
         lookPhotoImageView.image = UIImage(data: imageData)

@@ -22,9 +22,12 @@ extension SetupLookPresenter: SetupLookViewOutput {
     }
 
     func didTapSetupLookButton() {
+        view?.disableSetupButtonInteraction()
+
         guard let lookName = view?.getLookName(),
               !lookName.isEmpty else {
             view?.showAlert(title: "Ошибка", message: "Введите имя набора")
+            view?.enableSetupButtonInteraction()
             return
         }
 
@@ -53,5 +56,6 @@ extension SetupLookPresenter: SetupLookInteractorOutput {
 
     func showAlert(title: String, message: String) {
         view?.showAlert(title: title, message: message)
+        view?.enableSetupButtonInteraction()
     }
 }

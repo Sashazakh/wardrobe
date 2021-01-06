@@ -11,6 +11,10 @@ protocol SetupLookViewInput: AnyObject {
 
     func showAlert(title: String, message: String)
 
+    func disableSetupButtonInteraction()
+
+    func enableSetupButtonInteraction()
+
     func disableKeyboard()
 }
 
