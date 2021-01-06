@@ -13,6 +13,7 @@ final class AllClothesViewController: UIViewController {
     private var tapOnHeaderViewGestureRecognizer: UITapGestureRecognizer!
     private var menuIsDropped: Bool?
     var editMode: Bool = false
+    var state: EditButtonState?
 
 	var output: AllClothesViewOutput?
 
@@ -21,6 +22,9 @@ final class AllClothesViewController: UIViewController {
 
         view.setNeedsLayout()
         view.layoutIfNeeded()
+        if let state = state {
+            changeEditButton(state: state)
+        }
         output?.didLoadView()
     }
 
@@ -318,6 +322,7 @@ extension AllClothesViewController: AllClothesViewInput {
     }
 
     func changeEditButton(state: EditButtonState) {
+        self.state = state
         switch state {
         case .edit:
             moreButton.setImage(UIImage(named: "more",
