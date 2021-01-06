@@ -11,6 +11,10 @@ final class AllItemsPresenter {
 
     private var isSelected: [[Bool]]?
 
+    private var needsToRefresh: [[Bool]]?
+
+    private var refreshRequested: Bool = false
+
     init(router: AllItemsRouterInput, interactor: AllItemsInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -61,7 +65,18 @@ extension AllItemsPresenter: AllItemsViewOutput {
 
         for i in .zero..<model.categories[index].items.count {
             itemModels.append(AllItemsCollectionViewCellViewModel(isSelected: isSelected?[index][i] ?? false,
+                                                                  needsToRefresh: needsToRefresh?[index][i] ?? false,
                                                                   item: model.categories[index].items[i]))
+        }
+
+        if refreshRequested {
+            self.needsToRefresh = [[Bool]](repeating: [], count: model.categories.count)
+
+            for i in .zero..<model.categories.count {
+                self.needsToRefresh?[i] = [Bool](repeating: true, count: model.categories[i].items.count)
+            }
+
+            refreshRequested = false
         }
 
         return AllItemsTableViewCellViewModel(sectionName: model.categories[index].categoryName,
@@ -77,7 +92,12 @@ extension AllItemsPresenter: AllItemsViewOutput {
         view?.loadData()
     }
 
+    func didRefreshed(categoryIndex: Int, itemIndex: Int) {
+        self.needsToRefresh?[categoryIndex][itemIndex] = false
+    }
+
     func didRefreshRequested() {
+        refreshRequested = true
         interactor.fetchUserItems()
     }
 }

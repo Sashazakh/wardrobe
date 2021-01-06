@@ -11,6 +11,8 @@ final class LookPresenter {
 
     private var menuIsDropped: Bool = false
 
+    private var refreshNeeded: Bool = false
+
     private var model: LookData?
 
     init(router: LookRouterInput, interactor: LookInteractorInput) {
@@ -40,6 +42,7 @@ extension LookPresenter: LookViewOutput {
     }
 
     func didRequestRefresh() {
+        refreshNeeded = true
         interactor.fetchLook()
     }
 
@@ -91,6 +94,11 @@ extension LookPresenter: LookInteractorOutput {
     }
 
     func lookDidReceived() {
+        if refreshNeeded {
+            interactor.refreshImageCache()
+            refreshNeeded = false
+        }
+
         view?.setLookTitle(with: model?.lookName ?? String())
         view?.loadData()
     }

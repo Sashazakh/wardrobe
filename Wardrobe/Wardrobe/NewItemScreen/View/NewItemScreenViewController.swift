@@ -235,6 +235,7 @@ extension NewItemScreenViewController {
     @objc
     private func didTapAddButton() {
         output?.didTapAddButton()
+        addButton.isUserInteractionEnabled = false
     }
 
     @objc
@@ -291,6 +292,10 @@ extension NewItemScreenViewController: UIImagePickerControllerDelegate {
 }
 
 extension NewItemScreenViewController: NewItemScreenViewInput {
+    func turnOnButtonInteraction() {
+        addButton.isUserInteractionEnabled = true
+    }
+
     func getItemName() -> String? {
         return itemNameTextField.text
     }

@@ -12,4 +12,8 @@ final class AllItemsCollectionViewCellPresenter {
     public func changeSelection() {
         output?.changeSelection(collectionIndex: index)
     }
+
+    public func didRefreshCache() {
+        output?.didRefreshCache(collectionIndex: index)
+    }
 }

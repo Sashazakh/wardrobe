@@ -1,4 +1,5 @@
 import Foundation
+import Kingfisher
 
 final class LookInteractor {
 	weak var output: LookInteractorOutput?
@@ -185,6 +186,24 @@ extension LookInteractor: LookInteractorInput {
             }
 
             self.output?.lookDidReceived()
+        }
+    }
+
+    func refreshImageCache() {
+        guard let categories = lookData?.categories else {
+            return
+        }
+
+        categories.forEach { cortege in
+            cortege.items.forEach { itemData in
+                guard let url = itemData.imageURL else {
+                    return
+                }
+
+                let cacheKey = url + "&apikey=\(AuthService.shared.getApiKey())"
+
+                KingfisherManager.shared.cache.removeImage(forKey: cacheKey)
+            }
         }
     }
 }

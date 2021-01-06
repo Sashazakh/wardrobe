@@ -48,6 +48,8 @@ protocol LookInteractorInput: AnyObject {
     func appendItemsToLook(items: [ItemData])
 
     func deleteItems(categoryIndex: Int, itemIndex: Int)
+
+    func refreshImageCache()
 }
 
 protocol LookInteractorOutput: AnyObject {

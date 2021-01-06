@@ -12,4 +12,8 @@ final class CreateLookCollectionViewCellPresenter {
     public func changeSelection(isSelected: Bool) {
         output?.changeSelection(collectionIndex: index, isSelected: isSelected)
     }
+
+    public func didRefreshCache() {
+        output?.didRefreshCache(collectionIndex: index)
+    }
 }

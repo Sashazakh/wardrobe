@@ -11,6 +11,10 @@ final class CreateLookPresenter {
 
     private var isSelected: [[Bool]]?
 
+    private var needsToRefresh: [[Bool]]?
+
+    private var resfreshRequested: Bool = false
+
     init(router: CreateLookRouterInput, interactor: CreateLookInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -66,6 +70,7 @@ extension CreateLookPresenter: CreateLookViewOutput {
 
         for i in .zero..<model.categories[index].items.count {
             itemModels.append(AllItemsCollectionViewCellViewModel(isSelected: isSelected?[index][i] ?? false,
+                                                                  needsToRefresh: needsToRefresh?[index][i] ?? false,
                                                                   item: model.categories[index].items[i]))
         }
 
@@ -78,7 +83,12 @@ extension CreateLookPresenter: CreateLookViewOutput {
         view?.loadData()
     }
 
+    func didRefreshCache(categoryIndex: Int, itemIndex: Int) {
+        self.needsToRefresh?[categoryIndex][itemIndex] = false
+    }
+
     func didRequestRefresh() {
+        resfreshRequested = true
         interactor.fetchAllItems()
     }
 }
@@ -91,6 +101,16 @@ extension CreateLookPresenter: CreateLookInteractorOutput {
 
         for i in .zero..<model.categories.count {
             self.isSelected?[i] = [Bool](repeating: false, count: model.categories[i].items.count)
+        }
+
+        if resfreshRequested {
+            self.needsToRefresh = [[Bool]](repeating: [], count: model.categories.count)
+
+            for i in .zero..<model.categories.count {
+                self.needsToRefresh?[i] = [Bool](repeating: true, count: model.categories[i].items.count)
+            }
+
+            resfreshRequested = false
         }
     }
 

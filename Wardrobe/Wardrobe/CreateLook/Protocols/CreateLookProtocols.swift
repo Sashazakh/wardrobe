@@ -21,6 +21,8 @@ protocol CreateLookViewOutput: AnyObject {
 
     func setSelection(categoryIndex: Int, itemIndex: Int, isSelected: Bool)
 
+    func didRefreshCache(categoryIndex: Int, itemIndex: Int)
+
     func didRequestRefresh()
 }
 
