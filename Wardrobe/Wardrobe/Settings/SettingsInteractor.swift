@@ -56,6 +56,9 @@ extension SettingsInteractor: SettingsInteractorInput {
     func loadUserData() {
         let name = AuthService.shared.getUserName()
         let image = AuthService.shared.getUserImageURL()
-        output?.didReceive(name: name, imageUrl: image)
+        let login = AuthService.shared.getUserLogin()
+        output?.didReceive(name: name,
+                           imageUrl: image,
+                           userLogin: login)
     }
 }

@@ -104,11 +104,15 @@ final class LookCollectionViewCell: WardrobeCell {
 
     public func configure(model: ItemData) {
         titleLable.text = model.clothesName
-        guard let url = URL(string: (model.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
-            return
+        if let url = model.imageURL {
+            if let url = URL(string: (url) + "&apikey=\(AuthService.shared.getApiKey())") {
+                self.imageView.contentMode = .scaleToFill
+                self.imageView.kf.setImage(with: url)
+            }
+        } else {
+            self.imageView.contentMode = .center
+            self.imageView.image = UIImage(named: "fashion")
         }
-
-        self.imageView.kf.setImage(with: url)
     }
 
     @objc

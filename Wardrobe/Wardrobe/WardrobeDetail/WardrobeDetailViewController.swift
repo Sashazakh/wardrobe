@@ -35,6 +35,7 @@ final class WardrobeDetailViewController: UIViewController {
 
         output?.didLoadView()
     }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 

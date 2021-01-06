@@ -4,6 +4,7 @@ import UIKit
 protocol SettingsViewInput: class {
     func setUserName(name: String?)
     func setUserImage(with imageUrl: URL?)
+    func setUserLogin(login: String?)
     func showAlert(alert: UIAlertController)
 }
 
@@ -27,7 +28,7 @@ protocol SettingsInteractorOutput: class {
     func didNameChanged()
     func showAlert(title: String, message: String)
     func upadateImage(imageUrl: String)
-    func didReceive(name: String?, imageUrl: String?)
+    func didReceive(name: String?, imageUrl: String?, userLogin: String?)
 }
 
 protocol SettingsRouterInput: class {

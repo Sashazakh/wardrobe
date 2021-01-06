@@ -26,6 +26,7 @@ final class SettingsViewController: UIViewController {
     private weak var avatarImageView: UIImageView!
     private weak var imageButton: UIButton!
     private weak var fullNameLabel: UILabel!
+    private weak var userLoginLabel: UILabel!
     private weak var tableView: UITableView!
     private let pickerController: UIImagePickerController = UIImagePickerController()
 
@@ -58,6 +59,7 @@ final class SettingsViewController: UIViewController {
         setupAvatarView()
         setupImageButton()
         setupFullNameLabel()
+        setupUserLoginLabel()
         setupImagePicker()
         setupTableView()
     }
@@ -68,6 +70,7 @@ final class SettingsViewController: UIViewController {
         setupBackButtonLayout()
         setupAvatarViewLayout()
         setupFullNameLayout()
+        setupUserLoginLayout()
         setupTableViewLayout()
     }
 
@@ -156,6 +159,15 @@ final class SettingsViewController: UIViewController {
         self.view.addSubview(fullNameLabel)
     }
 
+    private func setupUserLoginLabel() {
+        let lbl = UILabel()
+        userLoginLabel = lbl
+        userLoginLabel.textColor = GlobalColors.darkColor
+        userLoginLabel.textAlignment = .center
+        userLoginLabel.font = UIFont(name: "DMSans-Bold", size: 15)
+        self.view.addSubview(userLoginLabel)
+    }
+
     private func setupTableView() {
         let table = UITableView()
         tableView = table
@@ -227,9 +239,17 @@ final class SettingsViewController: UIViewController {
             .height(15)
     }
 
+    private func setupUserLoginLayout() {
+        userLoginLabel.pin
+            .below(of: fullNameLabel, aligned: .center)
+            .marginTop(1.3%)
+            .width(95%)
+            .height(15)
+    }
+
     private func setupTableViewLayout() {
         tableView.pin
-            .below(of: fullNameLabel)
+            .below(of: userLoginLabel)
             .left()
             .right()
             .bottom()
@@ -247,6 +267,12 @@ final class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewInput {
+    func setUserLogin(login: String?) {
+        if let login = login {
+            userLoginLabel.text = login
+        }
+    }
+
     func setUserName(name: String?) {
         if let name = name {
             fullNameLabel.text = name

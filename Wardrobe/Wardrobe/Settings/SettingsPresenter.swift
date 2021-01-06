@@ -95,7 +95,7 @@ extension SettingsPresenter: SettingsInteractorOutput {
         view?.setUserImage(with: URL(string: img))
     }
 
-    func didReceive(name: String?, imageUrl: String?) {
+    func didReceive(name: String?, imageUrl: String?, userLogin: String?) {
         if let name = name {
             view?.setUserName(name: name)
         }
@@ -104,6 +104,11 @@ extension SettingsPresenter: SettingsInteractorOutput {
             view?.setUserImage(with: URL(string: imageUrl))
         } else {
             view?.setUserImage(with: nil)
+        }
+        if let userLofin = userLogin {
+            view?.setUserLogin(login: userLogin)
+        } else {
+            view?.setUserLogin(login: nil)
         }
     }
 

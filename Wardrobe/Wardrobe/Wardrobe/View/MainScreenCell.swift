@@ -111,11 +111,15 @@ class MainScreenCell: WardrobeCell {
         titleLable.text = wardobeData.name
 
         if let url = URL(string: wardobeData.imageUrl ?? "") {
+            self.imageView.contentMode = .scaleToFill
             if isRefreshNeed {
                 self.imageView.kf.setImage(with: url, options: [.forceRefresh])
             } else {
                 self.imageView.kf.setImage(with: url)
             }
+        } else {
+            self.imageView.contentMode = .center
+            self.imageView.image = UIImage(named: "fashion")
         }
 
         self.output = output

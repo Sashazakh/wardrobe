@@ -111,13 +111,18 @@ class AllClothesItemCell: WardrobeCell {
     func setData(data: ItemData, needForceRefresh: Bool = true) {
         self.localModel = data
         self.titleLable.text = data.clothesName
-        guard let url = URL(string: (data.imageURL ?? String()) + "&apikey=\(AuthService.shared.getApiKey())") else {
-            return
-        }
-        if needForceRefresh {
-            self.imageView.kf.setImage(with: url, options: [.forceRefresh])
+        if let url = data.imageURL {
+            if let url = URL(string: (url) + "&apikey=\(AuthService.shared.getApiKey())") {
+                self.imageView.contentMode = .scaleToFill
+                if needForceRefresh {
+                    self.imageView.kf.setImage(with: url, options: [.forceRefresh])
+                } else {
+                    self.imageView.kf.setImage(with: url)
+                }
+            }
         } else {
-            self.imageView.kf.setImage(with: url)
+            self.imageView.contentMode = .center
+            self.imageView.image = UIImage(named: "fashion")
         }
     }
 }
