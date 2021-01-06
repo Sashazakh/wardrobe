@@ -143,24 +143,20 @@ extension AllClothesViewController {
     // MARK: categories table view
 
     private func setupCategoriesTableView() {
+        let refreshControl = UIRefreshControl()
         let tableView = UITableView.customTableView()
         categoriesTableView = tableView
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
         categoriesTableView.separatorStyle = .none
+        categoriesTableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(didRefreshRequested), for: .valueChanged)
         categoriesTableView.register(ItemCollectionCell.self, forCellReuseIdentifier: ItemCollectionCell.reuseIdentifier)
         categoriesTableView.contentInset = UIEdgeInsets(top: 10,
                                                   left: 0,
                                                   bottom: 0,
                                                   right: 0)
         categoriesTableView.setContentOffset(CGPoint(x: .zero, y: -10), animated: true)
-
-        let refreshControl = UIRefreshControl()
-
-        refreshControl.addTarget(self,
-                                 action: #selector(didRefreshRequested),
-                                 for: .valueChanged)
-        categoriesTableView.refreshControl = refreshControl
 
         view.addSubview(categoriesTableView)
     }
@@ -290,6 +286,10 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension AllClothesViewController: AllClothesViewInput {
+    func tableViewScrollTo(row: Int) {
+        categoriesTableView?.scrollToRow(at: IndexPath(row: row, section: 0), at: .top, animated: true)
+    }
+
     func getEditMode() -> Bool {
         return self.editMode
     }
