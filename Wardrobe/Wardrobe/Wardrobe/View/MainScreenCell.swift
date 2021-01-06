@@ -10,6 +10,8 @@ class MainScreenCell: WardrobeCell {
 
     private var wardrobeDataModel: WardrobeData?
 
+    private var isneedWardrobeReload: Bool?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -114,7 +116,7 @@ class MainScreenCell: WardrobeCell {
             self.imageView.kf.setImage(with: url)
         } else {
             self.imageView.contentMode = .scaleToFill
-            self.imageView.image = UIImage(named: "fashion")
+            self.imageView.image = GlobalConstants.deafultClothesImage
         }
 
         self.output = output
