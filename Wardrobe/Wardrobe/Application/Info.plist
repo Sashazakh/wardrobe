@@ -23,7 +23,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Разрешите приложению доступ к камере</string>
 	<key>PROD_HOST</key>
-	<string>http://194.58.123.93:3000/</string>
+	<string>http://5.63.152.195:3000/</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DMSans-Medium.ttf</string>
