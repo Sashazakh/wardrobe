@@ -14,6 +14,8 @@ enum NetworkError: Error {
     case unknownError
 
     case userAlreadyInvite
+
+    case deletingOwner
 }
 
 extension NetworkError {
@@ -35,6 +37,8 @@ extension NetworkError {
             return ErrorDescription.unknownError
         case .userAlreadyInvite:
             return ErrorDescription.userAlreadyInWardrobe
+        case .deletingOwner:
+            return ErrorDescription.deletingOwner
         }
     }
 }
@@ -56,5 +60,7 @@ extension NetworkError {
         static let unknownError: String = "UnknownError"
 
         static let userAlreadyInWardrobe: String = "User already in wardrobe"
+
+        static let deletingOwner: String = "Deleting owner of wardrobe"
     }
 }

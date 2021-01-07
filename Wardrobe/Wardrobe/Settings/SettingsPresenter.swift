@@ -70,7 +70,6 @@ extension SettingsPresenter: SettingsViewOutput {
         }
             alert.addTextField { (textField) in
                 textField.placeholder = "Новое имя"
-                textField.keyboardType = .asciiCapable
             }
             alert.addAction(save)
             let cancel = UIAlertAction(title: "Отмена", style: .cancel)

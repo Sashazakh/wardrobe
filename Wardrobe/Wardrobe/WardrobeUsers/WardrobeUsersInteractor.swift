@@ -6,8 +6,8 @@ final class WardrobeUsersInteractor {
 
     private func handleError(with error: NetworkError) {
         switch error {
-        case .networkNotReachable:
-            self.output?.showAlert(title: "Ошибка", message: "Не удается подключиться")
+        case .deletingOwner:
+            self.output?.showAlert(title: "Ошибка", message: "Нельзя удалить создателя гардероба.")
         default:
             self.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
         }

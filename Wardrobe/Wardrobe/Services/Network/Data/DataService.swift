@@ -886,7 +886,7 @@ extension DataService: DataServiceInput {
                 case ResponseCode.success.code:
                     completion(result)
                 case ResponseCode.error.code:
-                    result.error = .networkNotReachable
+                    result.error = .deletingOwner
                     completion(result)
                     return
                 default:
