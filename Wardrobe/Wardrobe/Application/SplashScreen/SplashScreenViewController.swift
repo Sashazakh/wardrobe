@@ -10,6 +10,7 @@ final class SplashScreenViewController: UIViewController {
 
         setupView()
         setupSubviews()
+        sleep(Constants.sleepTime)
     }
 
     private func setupView() {
@@ -26,7 +27,7 @@ final class SplashScreenViewController: UIViewController {
         splashScreenImageView = imageView
         view.addSubview(imageView)
 
-        splashScreenImageView.image = UIImage(named: "wardrobe")
+        splashScreenImageView.image = UIImage(named: "splashscreen")
         splashScreenImageView.contentMode = .scaleToFill
     }
 
@@ -48,5 +49,11 @@ final class SplashScreenViewController: UIViewController {
         alert.addAction(okAction)
 
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension SplashScreenViewController {
+    struct Constants {
+        static let sleepTime: UInt32 = 2
     }
 }
