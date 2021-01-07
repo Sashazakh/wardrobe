@@ -9,8 +9,11 @@ final class AllItemsInteractor {
 
     private var look: LookData?
 
-    init(lookID: Int) {
+    private var ownerLogin: String
+
+    init(lookID: Int, ownerLogin: String) {
         self.lookID = lookID
+        self.ownerLogin = ownerLogin
     }
 
     private func convertToAllItemsData(model: [ItemRaw]) -> AllItemsData {
@@ -125,11 +128,7 @@ final class AllItemsInteractor {
 
 extension AllItemsInteractor: AllItemsInteractorInput {
     func fetchUserItems() {
-        guard let login = AuthService.shared.getUserLogin() else {
-            return
-        }
-
-        DataService.shared.getAllItems(for: login) { [weak self] (result) in
+        DataService.shared.getAllItems(for: ownerLogin) { [weak self] (result) in
             guard result.error == nil else {
                 guard let networkError = result.error else {
                     return

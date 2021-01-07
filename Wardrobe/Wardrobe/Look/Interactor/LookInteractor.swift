@@ -8,8 +8,11 @@ final class LookInteractor {
 
     private var lookData: LookData?
 
-    init(lookID: Int) {
+    private var ownerLogin: String
+
+    init(lookID: Int, ownerLogin: String) {
         self.lookID = lookID
+        self.ownerLogin = ownerLogin
     }
 
     private func convertToLookData(model: LookRaw) -> LookData {
@@ -93,6 +96,10 @@ extension LookInteractor: LookInteractorInput {
 
     func getLookID() -> Int {
         return lookID
+    }
+
+    func getOwnerLogin() -> String {
+        return ownerLogin
     }
 
     func deleteItems(categoryIndex: Int, itemIndex: Int) {
