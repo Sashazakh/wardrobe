@@ -35,6 +35,7 @@ final class NewItemScreenViewController: UIViewController, UINavigationControlle
     }
 
     @objc private func addImageAction(_ sender: Any) {
+        dismissKeyboard()
         chooseHowToPickImage()
     }
 
