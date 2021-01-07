@@ -11,10 +11,11 @@ extension MainScreenRouter: MainScreenRouterInput {
         viewController?.navigationController?.pushViewController(lookVc, animated: true)
     }
 
-    func showDetailWardrope(id: Int, name: String) {
+    func showDetailWardrope(id: Int, name: String, creatorLogin: String) {
         let vc = WardrobeDetailContainer.assemble(with: WardrobeDetailContext(
                                                     wardrobeId: id,
-                                                    wardrobeName: name)).viewController
+                                                    wardrobeName: name,
+                                                    creatorLogin: creatorLogin)).viewController
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 

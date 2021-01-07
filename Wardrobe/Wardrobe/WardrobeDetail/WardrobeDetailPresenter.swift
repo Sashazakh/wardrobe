@@ -9,6 +9,7 @@ final class WardrobeDetailPresenter {
 
     var wardrobeId: Int?
     var wardrobeName: String?
+    var creatorLogin: String?
 
     var looks: [WardrobeDetailData] = [] {
         didSet {
@@ -96,7 +97,8 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
 
     func didTapCreateLookCell() {
         guard let wardrobeId = wardrobeId else { return }
-        router.showCreateLookScreen(with: wardrobeId)
+        guard let creatorLogin = creatorLogin else { return }
+        router.showCreateLookScreen(wardrobeId: wardrobeId, creatorLogin: creatorLogin)
     }
 }
 

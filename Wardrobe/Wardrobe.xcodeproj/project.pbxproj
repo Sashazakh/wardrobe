@@ -2151,7 +2151,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development: Dmitry Belikov (R6L4C53VD3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dmitry Belikov (R6L4C53VD3)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HK5AZB4RPF;
 				INFOPLIST_FILE = Wardrobe/Application/Info.plist;
@@ -2162,7 +2162,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dresserApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Initial build";
+				PROVISIONING_PROFILE_SPECIFIER = "Initial build - 2";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2174,9 +2174,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development: Dmitry Belikov (R6L4C53VD3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dmitry Belikov (R6L4C53VD3)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HK5AZB4RPF;
 				INFOPLIST_FILE = Wardrobe/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2185,7 +2185,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dresserApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Initial build";
+				PROVISIONING_PROFILE_SPECIFIER = "Initial build - 2";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

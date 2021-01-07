@@ -50,7 +50,7 @@ protocol MainScreenInteractorOutput: class {
 }
 
 protocol MainScreenRouterInput: class {
-    func showDetailWardrope(id: Int, name: String)
+    func showDetailWardrope(id: Int, name: String, creatorLogin: String)
     func showSettings(login: String, name: String, imageUrl: String)
     func showAddWardobeScreen(for user: String)
     func showEditWardrobe(with wardrobeId: Int)

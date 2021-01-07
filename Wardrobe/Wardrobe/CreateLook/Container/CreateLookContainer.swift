@@ -26,4 +26,5 @@ final class CreateLookContainer {
 
 struct CreateLookContext {
     var wardrobeID: Int
+    var creatorLogin: String
 }
