@@ -300,6 +300,13 @@ extension CreateWardrobeViewController: CreateWardrobeViewInput {
         present(alert, animated: true, completion: nil)
     }
 
+    func disableAddButtonInteraction() {
+        addButton.isUserInteractionEnabled = false
+    }
+
+    func enableAddButtonInteraction() {
+        addButton.isUserInteractionEnabled = true
+    }
 }
 
 extension CreateWardrobeViewController: UITextViewDelegate {

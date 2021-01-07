@@ -1,4 +1,5 @@
 import Foundation
+import Kingfisher
 
 final class AllClothesPresenter {
 	weak var view: AllClothesViewInput?
@@ -37,8 +38,17 @@ extension AllClothesPresenter: AllClothesViewOutput {
             guard let self = self else {
                 return
             }
+            for i in 0..<model.categories.count where model.categories[i].categoryName == category {
+                self.view?.tableViewScrollTo(row: i)
+                return
+            }
             model.categories.append(CategoryData(categoryName: category, items: []))
             self.model = model
+            guard let newmodel = self.model else { return }
+            for i in 0..<newmodel.categories.count where newmodel.categories[i].categoryName == category {
+                self.view?.tableViewScrollTo(row: i)
+                return
+            }
         }
     }
 
@@ -86,6 +96,15 @@ extension AllClothesPresenter: AllClothesViewOutput {
     }
 
     func didRefreshRequested() {
+        guard let model = self.model else { return }
+        for category in model.categories {
+            for item in category.items {
+                if let urlString = item.imageURL {
+                    let cacheKey = urlString + "&apikey=\(AuthService.shared.getApiKey())"
+                    KingfisherManager.shared.cache.removeImage(forKey: cacheKey)
+                }
+            }
+        }
         interactor.getAllClothes()
     }
 

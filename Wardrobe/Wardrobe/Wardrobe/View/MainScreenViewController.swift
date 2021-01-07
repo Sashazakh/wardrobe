@@ -262,6 +262,11 @@ final class MainScreenViewController: UIViewController {
     }
 
     private func setupFlowLayout() {
+        collectionView.contentInset = UIEdgeInsets(top: 10,
+                                                   left: .zero,
+                                                   bottom: .zero,
+                                                   right: .zero)
+
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let marginSides = screenBounds.width * 0.1
             let marginBottom = screenBounds.height * 0.041
