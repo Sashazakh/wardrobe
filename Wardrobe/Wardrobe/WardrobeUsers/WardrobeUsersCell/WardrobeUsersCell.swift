@@ -15,6 +15,8 @@ class WardrobeUsersCell: UICollectionViewCell {
 
     private var btnSize: CGFloat?
 
+    private var userLogin: String?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -142,48 +144,51 @@ class WardrobeUsersCell: UICollectionViewCell {
     }
 
     private func checkDeleteButton() {
-        if let output = output {
-            if output.isEditButtonTapped() {
-                guard let size = btnSize else { return }
-                UIView.animate(withDuration: 0, animations: {
-                    self.deleteButton.pin
-                        .top(3%)
-                        .right(7%)
-                        .width(10)
-                        .height(10)
-                    self.deleteButton.alpha = 0
-                }, completion: { (_) in
-                    UIView.animate(withDuration: 0.2, animations: {
+        if let output = output, let userLogin = userLogin {
+            if !output.isCreator(with: userLogin) {
+                if output.isEditButtonTapped() {
+                    guard let size = btnSize else { return }
+                    UIView.animate(withDuration: 0, animations: {
                         self.deleteButton.pin
                             .top(3%)
-                            .right(3%)
-                            .width(size)
-                            .height(size)
-                        self.deleteButton.alpha = 1
-                    })
-                })
-                deleteButton.isHidden = false
-            } else {
-                UIView.animate(withDuration: 0, animations: {
-                    self.deleteButton.pin
-                        .top(3%)
-                        .right(3%)
-                        .width(20)
-                        .height(20)
-                    self.deleteButton.alpha = 1
-                }, completion: { (_) in
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.deleteButton.pin
-                            .top(3%)
-                            .right(3%)
-                            .width(0)
-                            .height(0)
+                            .right(7%)
+                            .width(10)
+                            .height(10)
                         self.deleteButton.alpha = 0
                     }, completion: { (_) in
-                        self.deleteButton.isHidden = true
+                        UIView.animate(withDuration: 0.2, animations: {
+                            self.deleteButton.pin
+                                .top(3%)
+                                .right(3%)
+                                .width(size)
+                                .height(size)
+                            self.deleteButton.alpha = 1
+                        })
                     })
-                })
+                    deleteButton.isHidden = false
+                } else {
+                    UIView.animate(withDuration: 0, animations: {
+                        self.deleteButton.pin
+                            .top(3%)
+                            .right(3%)
+                            .width(20)
+                            .height(20)
+                        self.deleteButton.alpha = 1
+                    }, completion: { (_) in
+                        UIView.animate(withDuration: 0.2, animations: {
+                            self.deleteButton.pin
+                                .top(3%)
+                                .right(3%)
+                                .width(0)
+                                .height(0)
+                            self.deleteButton.alpha = 0
+                        }, completion: { (_) in
+                            self.deleteButton.isHidden = true
+                        })
+                    })
+                }
             }
+
         }
     }
 
@@ -194,6 +199,7 @@ class WardrobeUsersCell: UICollectionViewCell {
         login = wardrobeUser.login
 
         nameLabel.text = wardrobeUser.name
+        userLogin = wardrobeUser.login
 
         if let url = URL(string: wardrobeUser.imageUrl ?? "") {
             self.avatarImageView.kf.setImage(with: url)

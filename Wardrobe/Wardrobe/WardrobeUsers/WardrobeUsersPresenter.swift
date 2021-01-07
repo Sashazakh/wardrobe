@@ -11,6 +11,7 @@ final class WardrobeUsersPresenter {
 
     var wardrobeId: Int?
     var wardrobeName: String?
+    var loginOfCreator: String?
 
     private var wardrobeUsers: [WardrobeUserData] = [] {
         didSet {
@@ -29,6 +30,13 @@ final class WardrobeUsersPresenter {
 }
 
 extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
+    func isCreator(with login: String) -> Bool {
+        if let loginOfCreator = loginOfCreator {
+            return loginOfCreator == login ? true : false
+        }
+        return false
+    }
+
     func refreshData() {
         interactor.cleanImageCache(for: wardrobeUsers)
         guard let wardrobeId = wardrobeId else { return }
@@ -36,8 +44,18 @@ extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
     }
 
     func didDeleteUserTap(login: String) {
-        guard let wardrobeId = wardrobeId else { return }
-        interactor.deleteUser(login: login, wardrobeId: wardrobeId)
+        let alert = UIAlertController(title: Constants.headDeleteWarningMessage,
+                                      message: Constants.deleteUserWarningMessage,
+                                      preferredStyle: UIAlertController.Style.alert )
+        let reset = UIAlertAction(title: "Удалить", style: .default) { [self] (_) in
+            guard let wardrobeId = wardrobeId else { return }
+            interactor.deleteUser(login: login, wardrobeId: wardrobeId)
+        }
+        alert.addAction(reset)
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(cancel)
+        view?.showAlert(alert: alert)
+
     }
 
     func getWardrobeUser(at indexPath: IndexPath) -> WardrobeUserData {
@@ -94,5 +112,11 @@ extension WardrobeUsersPresenter: WardrobeUsersInteractorOutput {
         alert.addAction(okAction)
         view?.showAlert(alert: alert)
     }
+}
 
+extension WardrobeUsersPresenter {
+    private struct Constants {
+        static let headDeleteWarningMessage: String = "Удаление пользователя из гардероба"
+        static let deleteUserWarningMessage: String = "Вы собираетесь пользователя из гардероба. Вы уверены?"
+    }
 }
