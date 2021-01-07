@@ -5,8 +5,11 @@ final class CreateLookInteractor {
 
     private var wardrobeID: Int
 
-    init(wardrobeID: Int) {
+    private var ownerLogin: String
+
+    init(wardrobeID: Int, ownerLogin: String) {
         self.wardrobeID = wardrobeID
+        self.ownerLogin = ownerLogin
     }
 
     private func convertToAllItemsData(model: [ItemRaw]) -> AllItemsData {
@@ -42,11 +45,7 @@ final class CreateLookInteractor {
 
 extension CreateLookInteractor: CreateLookInteractorInput {
     func fetchAllItems() {
-        guard let login = AuthService.shared.getUserLogin() else {
-            return
-        }
-
-        DataService.shared.getAllItems(for: login) { [weak self] (result) in
+        DataService.shared.getAllItems(for: ownerLogin) { [weak self] (result) in
             guard result.error == nil else {
                 guard let networkError = result.error else {
                     return

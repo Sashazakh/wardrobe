@@ -84,7 +84,7 @@ extension LookPresenter: LookViewOutput {
         menuIsDropped = false
         view?.hideDropMenu()
 
-        router.showAllItemsScreen(lookID: interactor.getLookID())
+        router.showAllItemsScreen(lookID: interactor.getLookID(), ownerLogin: interactor.getOwnerLogin())
     }
 }
 

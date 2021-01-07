@@ -45,6 +45,8 @@ protocol LookInteractorInput: AnyObject {
 
     func getLookID() -> Int
 
+    func getOwnerLogin() -> String
+
     func appendItemsToLook(items: [ItemData])
 
     func deleteItems(categoryIndex: Int, itemIndex: Int)
@@ -63,5 +65,5 @@ protocol LookInteractorOutput: AnyObject {
 protocol LookRouterInput: AnyObject {
     func showWardrobeScreen()
 
-    func showAllItemsScreen(lookID: Int)
+    func showAllItemsScreen(lookID: Int, ownerLogin: String)
 }

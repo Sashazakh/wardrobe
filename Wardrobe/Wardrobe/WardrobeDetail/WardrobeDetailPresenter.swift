@@ -92,7 +92,8 @@ extension WardrobeDetailPresenter: WardrobeDetailViewOutput {
     }
 
     func didTapLook(at indexPath: IndexPath) {
-        router.showLookScreen(with: look(at: indexPath).id)
+        guard let creatorLogin = creatorLogin else { return }
+        router.showLookScreen(with: look(at: indexPath).id, creatorLogin: creatorLogin)
     }
 
     func didTapCreateLookCell() {

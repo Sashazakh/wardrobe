@@ -6,7 +6,7 @@ final class CreateLookContainer {
 
 	class func assemble(with context: CreateLookContext) -> CreateLookContainer {
         let router = CreateLookRouter()
-        let interactor = CreateLookInteractor(wardrobeID: context.wardrobeID)
+        let interactor = CreateLookInteractor(wardrobeID: context.wardrobeID, ownerLogin: context.creatorLogin)
         let presenter = CreateLookPresenter(router: router, interactor: interactor)
         let viewController = CreateLookViewController()
 

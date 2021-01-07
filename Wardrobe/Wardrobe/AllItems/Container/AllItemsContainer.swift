@@ -6,7 +6,7 @@ final class AllItemsContainer {
 
 	class func assemble(with context: AllItemsContext) -> AllItemsContainer {
         let router = AllItemsRouter()
-        let interactor = AllItemsInteractor(lookID: context.lookID)
+        let interactor = AllItemsInteractor(lookID: context.lookID, ownerLogin: context.ownerLogin)
         let presenter = AllItemsPresenter(router: router, interactor: interactor)
         let viewController = AllItemsViewController()
 
@@ -26,4 +26,6 @@ final class AllItemsContainer {
 
 struct AllItemsContext {
     var lookID: Int
+
+    var ownerLogin: String
 }
