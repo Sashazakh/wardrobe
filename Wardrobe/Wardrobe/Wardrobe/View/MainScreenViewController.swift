@@ -108,6 +108,7 @@ final class MainScreenViewController: UIViewController {
         avatarImageView.dropShadow()
         avatarImageView.clipsToBounds = true
         avatarImageView.backgroundColor = GlobalColors.backgroundColor
+        avatarImageView.contentMode = .scaleToFill
         outerImageView.addSubview(avatarImageView)
     }
 
@@ -319,11 +320,9 @@ extension MainScreenViewController: MainScreenViewInput {
 
     func setUserImage(with imageUrl: URL?) {
         if let imageUrl = imageUrl {
-            avatarImageView.contentMode = .scaleToFill
             avatarImageView.kf.setImage(with: imageUrl)
         } else {
             avatarImageView.image = UIImage(named: "no_photo")
-            avatarImageView.contentMode = .bottom
         }
     }
 

@@ -17,6 +17,7 @@ final class WardrobeUsersContainer {
 
         presenter.wardrobeId = context.wardrobeId
         presenter.wardrobeName = context.wardrobeName
+        presenter.loginOfCreator = context.loginOfCreator
 
         return WardrobeUsersContainer(view: viewController, router: router)
 	}
@@ -30,4 +31,5 @@ final class WardrobeUsersContainer {
 struct WardrobeUsersContext {
     let wardrobeId: Int
     let wardrobeName: String
+    let loginOfCreator: String
 }
