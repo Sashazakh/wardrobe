@@ -40,6 +40,7 @@ class DropTableCell: UITableViewCell {
         contentView.backgroundColor = GlobalColors.backgroundColor
         isUserInteractionEnabled = true
         self.selectionStyle = .none
+        backgroundColor = GlobalColors.backgroundColor
     }
 
     private func setupLayout() {
