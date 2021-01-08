@@ -51,13 +51,13 @@ final class MainTabBarContainer {
 extension MainTabBarContainer {
     private struct Constants {
         struct HomeBarItem {
-            static let title: String = "Домой"
+            static let title: String = "Гардеробы"
             static let image = UIImage(systemName: "house.fill")
             static let tag: Int = 0
         }
 
         struct AllClothesBarItem {
-            static let title: String = "Мои вещи"
+            static let title: String = "Одежда"
             static let image = UIImage(systemName: "cube.box.fill")
             static let tag: Int = 1
         }
