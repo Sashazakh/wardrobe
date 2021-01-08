@@ -47,6 +47,8 @@ class MyInvitesCell: UITableViewCell {
     // MARK: Setupping cells
     private func setupContentView() {
         contentView.backgroundColor = GlobalColors.backgroundColor
+        backgroundColor = GlobalColors.backgroundColor
+        selectionStyle = .none
     }
 
     private func setupMainView() {

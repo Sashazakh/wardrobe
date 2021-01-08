@@ -67,7 +67,6 @@ extension MainScreenPresenter: MainScreenViewOutput {
 
     func didLoadView() {
         view?.startActivity()
-        interactor.loadUserData()
         interactor.loadUserWardobes()
     }
 
@@ -122,18 +121,6 @@ extension MainScreenPresenter: MainScreenInteractorOutput {
     func didReceive(with wardrobes: [WardrobeData]) {
         view?.endActivity()
         self.userWardrobes = wardrobes
-    }
-
-    func didReceive(name: String?, imageUrl: String?) {
-        if let name = name {
-            view?.setUserName(name: name)
-        }
-        if var imageUrl = imageUrl {
-            imageUrl += "&apikey=" + DataService.shared.getApiKey()
-            view?.setUserImage(with: URL(string: imageUrl))
-        } else {
-            view?.setUserImage(with: nil)
-        }
     }
 
     func didDelete() {

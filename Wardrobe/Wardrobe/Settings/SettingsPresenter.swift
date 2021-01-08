@@ -19,18 +19,31 @@ final class SettingsPresenter {
     }
 
     private func setUserData() {
-        view?.setUserName(name: userName)
         view?.setUserImage(with: URL(string: imageUrl ?? ""))
     }
 
-    private func saveName(name: String) {
-        if !name.isEmpty {
-            interactor.saveNewUserName(with: name)
+    private func checkPassword(main: String, repeatPassword: String) {
+        if main.isEmpty || repeatPassword.isEmpty {
+            self.showAlert(title: "Ошибка!", message: "Вы заполнили не все поля!")
+            return
         }
+
+        if main != repeatPassword {
+            self.showAlert(title: "Ошибка!", message: "Пароли не совпадают!")
+            return
+        }
+
+        if main.count <= 6 {
+            self.showAlert(title: "Ошибка!", message: "Длина пароля менее 6 символов!")
+            return
+        }
+
+        interactor.savePassword(with: main)
     }
 }
 
 extension SettingsPresenter: SettingsViewOutput {
+
     func didImageLoaded(imageData: Data?) {
         interactor.saveNewUserImage(with: imageData)
     }
@@ -57,19 +70,23 @@ extension SettingsPresenter: SettingsViewOutput {
                                       message: Constants.changeNameMessage,
                                       preferredStyle: UIAlertController.Style.alert)
         let save = UIAlertAction(title: "Сохранить", style: .default) { (_) in
-            var correctName = ""
-            if let nameTextField = alert.textFields?[0] {
-                if let name = nameTextField.text {
-                    if !name.isEmpty {
-                            correctName = name
-                        }
-                    }
-                }
-            self.newUserName = correctName
-            self.saveName(name: correctName)
+            var password = ""
+            if let passwordTextField = alert.textFields?[0] {
+                password = passwordTextField.text ?? ""
+            }
+            var repeatPassword = ""
+            if let repeatPasswordTextField = alert.textFields?[1] {
+                repeatPassword = repeatPasswordTextField.text ?? ""
+            }
+            self.checkPassword(main: password, repeatPassword: repeatPassword)
         }
             alert.addTextField { (textField) in
-                textField.placeholder = "Новое имя"
+                textField.placeholder = "Новый пароль"
+                textField.isSecureTextEntry = true
+            }
+            alert.addTextField { (textField) in
+                textField.placeholder = "Повторите пароль"
+                textField.isSecureTextEntry = true
             }
             alert.addAction(save)
             let cancel = UIAlertAction(title: "Отмена", style: .cancel)
@@ -94,10 +111,7 @@ extension SettingsPresenter: SettingsInteractorOutput {
         view?.setUserImage(with: URL(string: img))
     }
 
-    func didReceive(name: String?, imageUrl: String?, userLogin: String?) {
-        if let name = name {
-            view?.setUserName(name: name)
-        }
+    func didReceive(imageUrl: String?, userLogin: String?) {
         if var imageUrl = imageUrl {
             imageUrl += "&apikey=" + DataService.shared.getApiKey()
             view?.setUserImage(with: URL(string: imageUrl))
@@ -115,11 +129,6 @@ extension SettingsPresenter: SettingsInteractorOutput {
         view?.showAlert(alert: alert)
     }
 
-    func didNameChanged() {
-        guard let name = newUserName else { return }
-        view?.setUserName(name: name)
-    }
-
     func didAllKeysDeleted() {
         let scene = UIApplication.shared.connectedScenes.first
         if let sceneDelegate: SceneDelegate = (scene?.delegate as? SceneDelegate) {
@@ -132,7 +141,7 @@ extension SettingsPresenter {
     struct Constants {
         static let headLogoutWarningMessage: String = "Выход"
         static let logoutWarningMessage: String = "Вы собираетесь выйти.Ваши данные не будут удалены."
-        static let changeNameTitle: String = "Изменение имени"
-        static let changeNameMessage: String = "Введите новое имя"
+        static let changeNameTitle: String = "Изменение пароля"
+        static let changeNameMessage: String = "Введите новый пароль"
     }
 }

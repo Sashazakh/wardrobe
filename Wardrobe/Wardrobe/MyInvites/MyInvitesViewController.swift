@@ -101,6 +101,7 @@ final class MyInvitesViewController: UIViewController {
 
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         inviteTableView.refreshControl = refreshControl
+        inviteTableView.separatorColor = GlobalColors.backgroundColor
         view.addSubview(inviteTableView)
     }
 
@@ -121,13 +122,13 @@ final class MyInvitesViewController: UIViewController {
     private func setupNoInvitesLabel() {
         let noInvite = UILabel()
         noInvitesLabel = noInvite
-        noInvitesLabel.text = "У вас пока нет приглашений."
+        noInvitesLabel.text = Constants.noDataLabel
         noInvitesLabel.textAlignment = .center
         noInvitesLabel.font = UIFont(name: "DMSans-Bold", size: 20)
         noInvitesLabel.textColor = GlobalColors.darkColor
         noInvitesLabel.adjustsFontSizeToFitWidth = true
         noInvitesLabel.minimumScaleFactor = 0.1
-        noInvitesLabel.numberOfLines = 1
+        noInvitesLabel.numberOfLines = 0
         noInvitesLabel.sizeToFit()
         noInvitesLabel.isHidden = true
         view.addSubview(noInvitesLabel)
@@ -171,7 +172,8 @@ final class MyInvitesViewController: UIViewController {
     private func setupNoInvitesLabelLayout() {
         noInvitesLabel.pin
             .center()
-            .sizeToFit()
+            .height(20%)
+            .width(90%)
     }
 
     // MARK: Actions
@@ -230,5 +232,6 @@ extension MyInvitesViewController: UITableViewDelegate, UITableViewDataSource {
 extension MyInvitesViewController {
     struct Constants {
         static let titleLabel: String = "Мои приглашения"
+        static let noDataLabel: String = "Здесь появятся приглашения в гардероб от других пользователей приложения. Если вы хотите пригласить кого-то к себе, это можно сделать через меню гардероба"
     }
 }

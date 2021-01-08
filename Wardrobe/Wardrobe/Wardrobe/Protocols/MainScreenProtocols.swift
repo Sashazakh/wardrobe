@@ -12,8 +12,6 @@ import UIKit
 protocol MainScreenViewInput: class {
     func reloadDataWithAnimation()
     func reloadData()
-    func setUserName(name: String?)
-    func setUserImage(with imageUrl: URL?)
     func startActivity()
     func endActivity()
     func showAlert(alert: UIAlertController)
@@ -36,15 +34,13 @@ protocol MainScreenViewOutput: class {
 
 protocol MainScreenInteractorInput: class {
     func loadUserWardobes()
-    func loadUserData()
     func deleteWardrobe(with id: Int)
-    func getUserLogin() -> String
     func cleanImageCache(for models: [WardrobeData])
+    func getUserLogin() -> String
 }
 
 protocol MainScreenInteractorOutput: class {
     func didReceive(with wardrobes: [WardrobeData])
-    func didReceive(name: String?, imageUrl: String?)
     func showAlert(title: String, message: String)
     func didDelete()
 }

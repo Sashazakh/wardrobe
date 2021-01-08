@@ -9,7 +9,7 @@ enum SettingsSections: Int, CaseIterable {
         case .myInvites:
             return "Мои приглашения"
         case .changeName:
-            return "Изменить имя"
+            return "Изменить пароль"
         case .logout:
             return "Выйти"
         }
@@ -25,7 +25,6 @@ final class SettingsViewController: UIViewController {
     private weak var outerImageView: UIView!
     private weak var avatarImageView: UIImageView!
     private weak var imageButton: UIButton!
-    private weak var fullNameLabel: UILabel!
     private weak var userLoginLabel: UILabel!
     private weak var tableView: UITableView!
     private let pickerController: UIImagePickerController = UIImagePickerController()
@@ -58,7 +57,6 @@ final class SettingsViewController: UIViewController {
         setupBackButton()
         setupAvatarView()
         setupImageButton()
-        setupFullNameLabel()
         setupUserLoginLabel()
         setupImagePicker()
         setupTableView()
@@ -69,7 +67,6 @@ final class SettingsViewController: UIViewController {
         setupTitleLableLayout()
         setupBackButtonLayout()
         setupAvatarViewLayout()
-        setupFullNameLayout()
         setupUserLoginLayout()
         setupTableViewLayout()
     }
@@ -150,15 +147,6 @@ final class SettingsViewController: UIViewController {
         pickerController.allowsEditing = false
     }
 
-    private func setupFullNameLabel() {
-        let lbl = UILabel()
-        fullNameLabel = lbl
-        fullNameLabel.textColor = GlobalColors.darkColor
-        fullNameLabel.textAlignment = .center
-        fullNameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
-        self.view.addSubview(fullNameLabel)
-    }
-
     private func setupUserLoginLabel() {
         let lbl = UILabel()
         userLoginLabel = lbl
@@ -179,6 +167,7 @@ final class SettingsViewController: UIViewController {
                            forCellReuseIdentifier: SettingsTableViewCell.identifier)
         tableView.isScrollEnabled = false
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.separatorColor = GlobalColors.backgroundColor
         view.addSubview(tableView)
     }
 
@@ -231,17 +220,9 @@ final class SettingsViewController: UIViewController {
                                                    right: width)
     }
 
-    private func setupFullNameLayout() {
-        fullNameLabel.pin
-            .below(of: outerImageView, aligned: .center)
-            .marginTop(3.3%)
-            .width(95%)
-            .height(15)
-    }
-
     private func setupUserLoginLayout() {
         userLoginLabel.pin
-            .below(of: fullNameLabel, aligned: .center)
+            .below(of: outerImageView, aligned: .center)
             .marginTop(1.3%)
             .width(95%)
             .height(17)
@@ -250,6 +231,7 @@ final class SettingsViewController: UIViewController {
     private func setupTableViewLayout() {
         tableView.pin
             .below(of: userLoginLabel)
+            .marginTop(3%)
             .left()
             .right()
             .bottom()
@@ -270,12 +252,6 @@ extension SettingsViewController: SettingsViewInput {
     func setUserLogin(login: String?) {
         if let login = login {
             userLoginLabel.text = login
-        }
-    }
-
-    func setUserName(name: String?) {
-        if let name = name {
-            fullNameLabel.text = name
         }
     }
 
@@ -328,10 +304,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
-               return UIAlertAction(title: title, style: .default) { [unowned self] _ in
+            return UIAlertAction(title: title, style: .default) { [unowned self] _ in
                    pickerController.sourceType = type
                    present(self.pickerController, animated: true)
-               }
+            }
            }
 
         private func chooseHowToPickImage() {

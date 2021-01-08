@@ -30,6 +30,10 @@ final class WardrobeUsersPresenter {
 }
 
 extension WardrobeUsersPresenter: WardrobeUsersViewOutput {
+    func isLoadedView() -> Bool {
+        return isLoadView
+    }
+
     func isCreator(with login: String) -> Bool {
         if let loginOfCreator = loginOfCreator {
             return loginOfCreator == login ? true : false

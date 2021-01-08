@@ -108,4 +108,7 @@ protocol DataServiceInput {
                     completion: @escaping (SingleResult<NetworkError>) -> Void)
 
     func cleanCache()
+
+    func changePassword(password: String,
+                        completion: @escaping (SingleResult<NetworkError>) -> Void)
 }

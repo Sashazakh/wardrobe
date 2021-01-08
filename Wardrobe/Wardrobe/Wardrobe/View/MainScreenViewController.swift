@@ -7,9 +7,6 @@ final class MainScreenViewController: UIViewController {
     private weak var headerView: UIView!
     private weak var titleLabel: UILabel!
     private weak var settingsButton: UIButton!
-    private weak var avatarImageView: UIImageView!
-    private weak var outerImageView: UIView!
-    private weak var nameLabel: UILabel!
     private weak var collectionView: UICollectionView!
     private weak var editButton: UIButton!
     private let refreshControl = UIRefreshControl()
@@ -46,8 +43,6 @@ final class MainScreenViewController: UIViewController {
         setupLabelView()
         setupSettingsButton()
         setupEditButton()
-        setupAvatarView()
-        setupNameLabel()
         setupCollectionView()
         setupActivityIndicatorView()
     }
@@ -57,8 +52,6 @@ final class MainScreenViewController: UIViewController {
         setupTitleLabelLayout()
         setupSettingsButtonLayout()
         setupEditButtonLayout()
-        setupAvatarViewLayout()
-        setupNameLabelLayout()
         setupCollectionLayout()
         setupFlowLayout()
     }
@@ -96,38 +89,8 @@ final class MainScreenViewController: UIViewController {
         titleLabel.text = "Гардеробы"
         titleLabel.font = UIFont(name: "DMSans-Bold", size: 25)
         titleLabel.textColor = GlobalColors.backgroundColor
+        titleLabel.textAlignment = .center
         headerView.addSubview(titleLabel)
-    }
-
-    private func setupAvatarView() {
-        setupOuterView()
-        let imageView = UIImageView()
-        avatarImageView = imageView
-        avatarImageView.layer.borderWidth = 4
-        avatarImageView.layer.borderColor = GlobalColors.backgroundColor.cgColor
-        avatarImageView.dropShadow()
-        avatarImageView.clipsToBounds = true
-        avatarImageView.backgroundColor = GlobalColors.backgroundColor
-        avatarImageView.contentMode = .scaleToFill
-        outerImageView.addSubview(avatarImageView)
-    }
-
-    private func setupOuterView() {
-        let view = UIView()
-        outerImageView = view
-        outerImageView.clipsToBounds = false
-        outerImageView.dropShadow()
-        self.view.addSubview(outerImageView)
-    }
-
-    private func setupNameLabel() {
-        let label = UILabel()
-        nameLabel = label
-        nameLabel.textAlignment = .center
-        nameLabel.numberOfLines = 0
-        nameLabel.textColor = GlobalColors.darkColor
-        nameLabel.font = UIFont(name: "DMSans-Bold", size: 15)
-        self.view.addSubview(nameLabel)
     }
 
     private func setupCollectionView() {
@@ -179,14 +142,15 @@ final class MainScreenViewController: UIViewController {
             .top()
             .right()
             .left()
-            .height(23.275%)
+            .height(16%)
     }
 
     private func setupTitleLabelLayout() {
         titleLabel.pin
+            .top(40%)
             .hCenter()
-            .top(38%)
-            .sizeToFit()
+            .width(70%)
+            .height(50)
     }
 
     private func setupSettingsButtonLayout() {
@@ -209,57 +173,12 @@ final class MainScreenViewController: UIViewController {
             .right(7%)
     }
 
-    private func setupAvatarViewLayout() {
-        let imgRadius = UIScreen.main.bounds.height * 0.1477
-        outerImageView.pin
-            .below(of: headerView)
-            .margin(-imgRadius / 2)
-            .hCenter()
-            .height(imgRadius)
-            .width(imgRadius)
-        avatarImageView.pin.all()
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
-    }
-
-    private func setupNameLabelLayout() {
-        nameLabel.pin
-            .below(of: outerImageView, aligned: .center)
-            .marginTop(1.3%)
-            .width(95%)
-            .height(15)
-    }
-
     private func setupCollectionLayout() {
         collectionView.pin
-            .below(of: [nameLabel])
-            .marginTop(1.3%)
+            .below(of: headerView)
             .right()
             .left()
             .bottom()
-
-        let gradientLayerUp = CAGradientLayer()
-
-        gradientLayerUp.frame = CGRect(x: .zero,
-                                       y: collectionView.frame.minY,
-                                       width: collectionView.bounds.width,
-                                       height: 10)
-
-        gradientLayerUp.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor,
-                                  UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor]
-
-        view.layer.addSublayer(gradientLayerUp)
-
-        let gradientLayerDown = CAGradientLayer()
-
-        gradientLayerDown.frame = CGRect(x: .zero,
-                                         y: collectionView.frame.maxY - 10,
-                                         width: collectionView.bounds.width,
-                                         height: 10)
-
-        gradientLayerDown.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0).cgColor,
-                                    UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor]
-
-        view.layer.addSublayer(gradientLayerDown)
     }
 
     private func setupFlowLayout() {
@@ -310,20 +229,6 @@ extension MainScreenViewController: MainScreenViewInput {
 
     func showAlert(alert: UIAlertController) {
         self.present(alert, animated: true, completion: nil)
-    }
-
-    func setUserName(name: String?) {
-        if let name = name {
-            nameLabel.text = name
-        }
-    }
-
-    func setUserImage(with imageUrl: URL?) {
-        if let imageUrl = imageUrl {
-            avatarImageView.kf.setImage(with: imageUrl)
-        } else {
-            avatarImageView.image = UIImage(named: "no_photo")
-        }
     }
 
     func reloadData() {

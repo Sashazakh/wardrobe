@@ -107,8 +107,12 @@ final class WardrobeUsersViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isUserInteractionEnabled = true
-        collectionView.register(WardrobeUsersCell.self, forCellWithReuseIdentifier: WardrobeUsersCell.identifier)
-        collectionView.register(AddUserCell.self, forCellWithReuseIdentifier: AddUserCell.identifier)
+        collectionView.register(WardrobeUsersCell.self,
+                                forCellWithReuseIdentifier: WardrobeUsersCell.identifier)
+        collectionView.register(AddUserCell.self,
+                                forCellWithReuseIdentifier: AddUserCell.identifier)
+        collectionView.register(CreatorCell.self,
+                                forCellWithReuseIdentifier: CreatorCell.identifier)
         collectionView.backgroundColor = GlobalColors.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
 
@@ -244,19 +248,31 @@ extension WardrobeUsersViewController: UICollectionViewDelegate, UICollectionVie
             else { return UICollectionViewCell() }
             return cell
         } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-                                                                    WardrobeUsersCell.identifier,
-                                                                    for: indexPath)
-                                                                    as? WardrobeUsersCell
-            else { return UICollectionViewCell() }
-
             guard let user = output?.getWardrobeUser(at: indexPath) else {
                 return UICollectionViewCell()
             }
 
-            cell.configureCell(wardrobeUser: user,
-                               output: output)
-            return cell
+            guard let output = output else { return UICollectionViewCell() }
+            if !output.isCreator(with: user.login) {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+                                                                        WardrobeUsersCell.identifier,
+                                                                        for: indexPath)
+                                                                        as? WardrobeUsersCell
+                else { return UICollectionViewCell() }
+                cell.configureCell(wardrobeUser: user,
+                                   output: output)
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+                                                                        CreatorCell.identifier,
+                                                                        for: indexPath)
+                                                                        as? CreatorCell
+                else { return UICollectionViewCell() }
+                cell.configureCell(wardrobeUser: user,
+                                   output: output)
+                return cell
+            }
+
         }
     }
 

@@ -19,6 +19,7 @@ protocol WardrobeUsersViewOutput: class {
     func didDeleteUserTap(login: String)
     func refreshData()
     func isCreator(with login: String) -> Bool
+    func isLoadedView() -> Bool
 }
 
 protocol WardrobeUsersInteractorInput: class {

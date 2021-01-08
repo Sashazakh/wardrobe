@@ -14,6 +14,18 @@ final class SettingsInteractor {
 }
 
 extension SettingsInteractor: SettingsInteractorInput {
+    func savePassword(with passowrd: String) {
+        DataService.shared.changePassword(password: passowrd) { [weak self](result) in
+            guard let self = self else { return }
+
+            if let error = result.error {
+                self.handleError(with: error)
+            }
+
+            self.output?.showAlert(title: "Успех!", message: "Вы успешно изменили пароль!")
+        }
+    }
+
     func saveNewUserImage(with imageData: Data?) {
         guard let imageData = imageData else {
             output?.showAlert(title: "Ошибка",
@@ -44,7 +56,6 @@ extension SettingsInteractor: SettingsInteractorInput {
                 return
             }
             DataService.shared.setNewUserName(newName: name)
-            self.output?.didNameChanged()
         }
     }
 
@@ -54,11 +65,9 @@ extension SettingsInteractor: SettingsInteractorInput {
     }
 
     func loadUserData() {
-        let name = AuthService.shared.getUserName()
         let image = AuthService.shared.getUserImageURL()
         let login = AuthService.shared.getUserLogin()
-        output?.didReceive(name: name,
-                           imageUrl: image,
+        output?.didReceive(imageUrl: image,
                            userLogin: login)
     }
 }

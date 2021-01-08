@@ -38,6 +38,8 @@ class SettingsTableViewCell: UITableViewCell {
 
     private func setupCaontentView() {
         contentView.backgroundColor = GlobalColors.backgroundColor
+        backgroundColor = GlobalColors.backgroundColor
+        selectionStyle = .none
     }
 
     private func setupMainView() {

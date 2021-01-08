@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 protocol SettingsViewInput: class {
-    func setUserName(name: String?)
     func setUserImage(with imageUrl: URL?)
     func setUserLogin(login: String?)
     func showAlert(alert: UIAlertController)
@@ -21,14 +20,14 @@ protocol SettingsInteractorInput: class {
     func saveNewUserName(with name: String)
     func saveNewUserImage(with imageData: Data?)
     func loadUserData()
+    func savePassword(with password: String)
 }
 
 protocol SettingsInteractorOutput: class {
     func didAllKeysDeleted()
-    func didNameChanged()
     func showAlert(title: String, message: String)
     func upadateImage(imageUrl: String)
-    func didReceive(name: String?, imageUrl: String?, userLogin: String?)
+    func didReceive(imageUrl: String?, userLogin: String?)
 }
 
 protocol SettingsRouterInput: class {
