@@ -47,6 +47,6 @@ extension LoginInteractor: LoginInteractorInput {
 
 extension LoginInteractor {
     private struct Constants {
-        static let minPasswordSymbs: Int = 8
+        static let minPasswordSymbs: Int = 6
     }
 }
