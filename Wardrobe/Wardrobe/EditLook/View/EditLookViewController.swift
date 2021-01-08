@@ -92,6 +92,7 @@ final class EditLookViewController: UIViewController {
         let textField = UITextField.customTextField(placeholder: "Название (обязательно)")
 
         lookNameTextField = textField
+        lookNameTextField.delegate = self
         backgroundView.addSubview(lookNameTextField)
     }
 
@@ -277,6 +278,13 @@ extension EditLookViewController: EditLookViewInput {
 
     func disableKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension EditLookViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
 

@@ -92,6 +92,7 @@ final class EditWardrobeViewController: UIViewController {
         let textField = UITextField.customTextField(placeholder: "Название (обязательно)")
 
         wardrobeNameTextField = textField
+        wardrobeNameTextField.delegate = self
         backgroundView.addSubview(wardrobeNameTextField)
     }
 
@@ -277,6 +278,13 @@ extension EditWardrobeViewController: EditWardrobeViewInput {
 
     func disableKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension EditWardrobeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
 
