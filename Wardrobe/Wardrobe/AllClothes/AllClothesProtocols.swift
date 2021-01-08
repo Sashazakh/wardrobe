@@ -8,6 +8,8 @@ protocol AllClothesViewInput: class {
     func changeEditButton(state: EditButtonState)
     func tableViewScrollTo(row: Int)
     func getEditMode() -> Bool
+    func hideEmptyLabel()
+    func showEmptyLable()
 }
 
 protocol AllClothesViewOutput: class {

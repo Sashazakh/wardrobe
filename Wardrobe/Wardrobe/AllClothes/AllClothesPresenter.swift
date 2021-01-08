@@ -10,6 +10,15 @@ final class AllClothesPresenter {
                 $0.categoryName < $1.categoryName
             }
             view?.reloadData()
+            guard let model = self.model else {
+                view?.showEmptyLable()
+                return
+            }
+            if model.categories.isEmpty {
+                view?.showEmptyLable()
+            } else {
+                view?.hideEmptyLabel()
+            }
         }
     }
 
