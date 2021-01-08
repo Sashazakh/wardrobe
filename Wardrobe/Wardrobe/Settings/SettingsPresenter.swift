@@ -63,6 +63,7 @@ extension SettingsPresenter: SettingsViewOutput {
         }
             alert.addTextField { (textField) in
                 textField.placeholder = Constants.changeLoginPlaceholder
+                textField.keyboardType = .asciiCapable
             }
 
             alert.addAction(save)
@@ -110,11 +111,13 @@ extension SettingsPresenter: SettingsViewOutput {
             alert.addTextField { (textField) in
                 textField.placeholder = Constants.changePasswordMainPlaceholder
                 textField.isSecureTextEntry = true
+                textField.keyboardType = .asciiCapable
             }
 
             alert.addTextField { (textField) in
                 textField.placeholder = Constants.repeadPasswordMainPlaceholder
                 textField.isSecureTextEntry = true
+                textField.keyboardType = .asciiCapable
             }
             alert.addAction(save)
             let cancel = UIAlertAction(title: "Отмена", style: .cancel)
