@@ -10,8 +10,6 @@ final class RegisterViewController: UIViewController {
 
     private weak var loginTextField: UITextField!
 
-    private weak var fioTextField: UITextField!
-
     private weak var passwordTextField: UITextField!
 
     private weak var repeatPasswordTextField: UITextField!
@@ -48,7 +46,6 @@ final class RegisterViewController: UIViewController {
         layoutBackgroundView()
         layoutWelcomeLabel()
         layoutLoginTextField()
-        layoutFioTextField()
         layoutPasswordTextField()
         layoutRepeatPasswordTextField()
         layoutAddPhotoButton()
@@ -81,7 +78,6 @@ final class RegisterViewController: UIViewController {
         setupBackgroundView()
         setupWelcomeLabel()
         setupLoginTextField()
-        setupFioTextField()
         setupPasswordTextField()
         setupRepeatPasswordTextField()
         setupAddPhotoButton()
@@ -118,21 +114,14 @@ final class RegisterViewController: UIViewController {
     }
 
     private func setupLoginTextField() {
-        let textField = UITextField.customTextField(placeholder: "Логин (обязательно)")
+        let textField = UITextField.customTextField(placeholder: "Имя пользователя")
 
         loginTextField = textField
         backgroundView.addSubview(loginTextField)
     }
 
-    private func setupFioTextField() {
-        let textField = UITextField.customTextField(placeholder: "ФИО (обязательно)")
-
-        fioTextField = textField
-        backgroundView.addSubview(fioTextField)
-    }
-
     private func setupPasswordTextField() {
-        let textField = UITextField.customTextField(placeholder: "Пароль (обязательно)")
+        let textField = UITextField.customTextField(placeholder: "Пароль")
 
         passwordTextField = textField
         backgroundView.addSubview(passwordTextField)
@@ -141,7 +130,7 @@ final class RegisterViewController: UIViewController {
     }
 
     private func setupRepeatPasswordTextField() {
-        let textField = UITextField.customTextField(placeholder: "Повторите пароль (обязательно)")
+        let textField = UITextField.customTextField(placeholder: "Повторите пароль")
 
         repeatPasswordTextField = textField
         backgroundView.addSubview(repeatPasswordTextField)
@@ -156,7 +145,7 @@ final class RegisterViewController: UIViewController {
         view.addSubview(addPhotoButton)
 
         addPhotoButton.backgroundColor = .white
-        addPhotoButton.layer.cornerRadius = 20
+        addPhotoButton.layer.cornerRadius = (4.5%.of(55%.of(Constants.screenHeight)))
 
         addPhotoButton.titleLabel?.font = UIFont(name: "DMSans-Medium", size: 15)
         addPhotoButton.setTitleColor(GlobalColors.darkColor, for: .normal)
@@ -171,7 +160,7 @@ final class RegisterViewController: UIViewController {
         userPhotoImageView = imageView
         backgroundView.addSubview(userPhotoImageView)
 
-        userPhotoImageView.layer.cornerRadius = 30
+        userPhotoImageView.layer.cornerRadius = 17%.of(Constants.screenWidth) / 2
         userPhotoImageView.backgroundColor = .white
         userPhotoImageView.image = UIImage(systemName: "camera.fill")
         userPhotoImageView.contentMode = .center
@@ -202,7 +191,7 @@ final class RegisterViewController: UIViewController {
 
         conditionsLabel.lineBreakMode = .byWordWrapping
         conditionsLabel.font = UIFont(name: "DMSans-Regular", size: 13)
-        conditionsLabel.text = "Создавая аккаунт, вы соглашаетесь с правилами использования."
+        conditionsLabel.text = "Создавая учетную запись, вы соглашаетесь с правилами использования."
         conditionsLabel.textColor = GlobalColors.darkColor
         conditionsLabel.textAlignment = .left
         conditionsLabel.numberOfLines = .zero
@@ -268,61 +257,53 @@ final class RegisterViewController: UIViewController {
         backgroundView.pin
             .top(.zero)
             .width(100%)
-            .height(34%.of(Constants.screenHeight) + 15 + 15 + 50 + 15 + 50 + 25 + 36 + 30)
+            .height(55%.of(Constants.screenHeight) + 40)
     }
 
     private func layoutWelcomeLabel() {
         welcomeLabel.pin
-            .top(Constants.screenHeight * 0.10)
+            .top(20%)
             .hCenter()
             .width(80%)
-            .height(50)
+            .height(40)
     }
 
     private func layoutLoginTextField() {
         loginTextField.pin
-            .top(welcomeLabel.frame.maxY + 50)
+            .below(of: welcomeLabel).marginTop(10%)
             .hCenter()
             .width(90%)
-            .height(6%.of(Constants.screenHeight))
-    }
-
-    private func layoutFioTextField() {
-        fioTextField.pin
-            .top(loginTextField.frame.maxY + 15)
-            .hCenter()
-            .width(90%)
-            .height(6%.of(Constants.screenHeight))
+            .height(10%)
     }
 
     private func layoutPasswordTextField() {
         passwordTextField.pin
-            .top(fioTextField.frame.maxY + 15)
+            .below(of: loginTextField).marginTop(3%)
             .hCenter()
             .width(90%)
-            .height(6%.of(Constants.screenHeight))
+            .height(10%)
     }
 
     private func layoutRepeatPasswordTextField() {
         repeatPasswordTextField.pin
-            .top(passwordTextField.frame.maxY + 15)
+            .below(of: passwordTextField).marginTop(3%)
             .hCenter()
             .width(90%)
-            .height(6%.of(Constants.screenHeight))
+            .height(10%)
     }
 
     private func layoutAddPhotoButton() {
         addPhotoButton.pin
-            .top(repeatPasswordTextField.frame.maxY + 25)
+            .below(of: repeatPasswordTextField).marginTop(5%)
             .width(65%)
             .right(5%)
-            .height(36)
+            .height(5%)
     }
 
     private func layoutUserPhotoImageView() {
         userPhotoImageView.pin
-            .height(60)
-            .width(60)
+            .height(17%.of(Constants.screenWidth))
+            .width(17%.of(Constants.screenWidth))
 
         userPhotoImageView.pin
             .top(addPhotoButton.frame.midY - userPhotoImageView.bounds.height / 2)
@@ -331,11 +312,11 @@ final class RegisterViewController: UIViewController {
 
     private func layoutCheckBoxImageView() {
         checkBoxImageView.pin
-            .height(20)
-            .width(20)
+            .height(6%.of(Constants.screenWidth))
+            .width(6%.of(Constants.screenWidth))
 
         checkBoxImageView.pin
-            .top(backgroundView.frame.maxY + 25)
+            .below(of: backgroundView).marginTop(3%)
             .left(5%)
     }
 
@@ -345,24 +326,26 @@ final class RegisterViewController: UIViewController {
 
         conditionsLabel.pin
             .top(checkBoxImageView.frame.midY - conditionsLabel.bounds.height / 2)
-            .left(checkBoxImageView.frame.maxX + 20)
+            .right(of: checkBoxImageView).marginLeft(5%)
             .right(5%)
     }
 
     private func layoutRegisterButton() {
         registerButton.pin
-            .top(conditionsLabel.frame.maxY + 15)
+            .below(of: conditionsLabel).marginTop(2%)
             .width(90%)
             .hCenter()
-            .height(6%.of(Constants.screenHeight))
+            .height(6%)
     }
 
     private func layoutRegisteredQuestionLabel() {
         registeredQuestionLabel.pin
-            .top(registerButton.frame.maxY + 10)
+            .sizeToFit()
+
+        registeredQuestionLabel.pin
+            .below(of: registerButton).marginTop(1%)
             .left(.zero)
             .width(65%)
-            .height(20)
     }
 
     private func layoutLoginLabel() {
@@ -370,9 +353,8 @@ final class RegisterViewController: UIViewController {
             .sizeToFit()
 
         loginLabel.pin
-            .top(registerButton.frame.maxY + 10)
-            .left(registeredQuestionLabel.frame.maxX + 5)
-            .height(20)
+            .below(of: registerButton).marginTop(1%)
+            .right(of: registeredQuestionLabel).marginLeft(1%)
     }
 
     private func layoutUnderscoreView() {
@@ -439,7 +421,6 @@ extension RegisterViewController: RegisterViewInput {
         var credentials: [String: String?] = [:]
 
         credentials["login"] = loginTextField.text
-        credentials["fio"] = fioTextField.text
         credentials["password"] = passwordTextField.text
         credentials["repeatPassword"] = repeatPasswordTextField.text
 

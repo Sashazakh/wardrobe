@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "wardrobe.png",
+      "filename" : "splashscreen-2.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "wardrobe-2.png",
+      "filename" : "splashscreen-1.pdf",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "wardrobe-1.png",
+      "filename" : "splashscreen.pdf",
       "idiom" : "universal",
       "scale" : "3x"
     }

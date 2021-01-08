@@ -92,6 +92,7 @@ final class EditItemViewController: UIViewController {
         let textField = UITextField.customTextField(placeholder: "Название (обязательно)")
 
         itemNameTextField = textField
+        itemNameTextField.delegate = self
         backgroundView.addSubview(itemNameTextField)
     }
 
@@ -210,6 +211,7 @@ final class EditItemViewController: UIViewController {
 
     @objc
     private func didTapEditImageView() {
+        view.endEditing(true)
         output?.didTapEditImageView()
     }
 
@@ -318,5 +320,12 @@ extension EditItemViewController {
         struct EditItemImageView {
             static let compression: CGFloat = 0.1
         }
+    }
+}
+
+extension EditItemViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

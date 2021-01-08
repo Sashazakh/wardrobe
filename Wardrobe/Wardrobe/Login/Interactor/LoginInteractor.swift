@@ -5,7 +5,6 @@ final class LoginInteractor {
 
     private func convertToLoginData(with rawData: LoginResponse) -> LoginData {
         return LoginData(login: rawData.login,
-                         userName: rawData.userName,
                          imageURL: rawData.imageURL)
     }
 }
@@ -48,6 +47,6 @@ extension LoginInteractor: LoginInteractorInput {
 
 extension LoginInteractor {
     private struct Constants {
-        static let minPasswordSymbs: Int = 8
+        static let minPasswordSymbs: Int = 6
     }
 }

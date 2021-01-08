@@ -38,13 +38,7 @@ extension RegisterPresenter: RegisterViewOutput {
 
         guard let login = (userCredentials["login"] ?? ""),
               !login.isEmpty else {
-            view?.showAlert(title: "Ошибка", message: "Введите логин")
-            return
-        }
-
-        guard let fio = (userCredentials["fio"] ?? ""),
-              !fio.isEmpty else {
-            view?.showAlert(title: "Ошибка", message: "Введите ФИО")
+            view?.showAlert(title: "Ошибка", message: "Введите имя пользователя")
             return
         }
 
@@ -68,7 +62,6 @@ extension RegisterPresenter: RegisterViewOutput {
         let imageData = userImageIsSet ? view?.getUserImage() : nil
 
         interactor.register(login: login,
-                            fio: fio,
                             password: password,
                             imageData: imageData)
     }

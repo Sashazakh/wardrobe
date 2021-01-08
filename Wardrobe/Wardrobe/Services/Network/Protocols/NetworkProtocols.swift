@@ -3,8 +3,6 @@ import UIKit
 protocol Service {
     func getUserLogin() -> String?
 
-    func getUserName() -> String?
-
     func getUserImageURL() -> String?
 
     func dropUser()
@@ -14,7 +12,6 @@ protocol Service {
 
 protocol AuthServiceInput {
     func register(login: String,
-                  fio: String,
                   password: String,
                   imageData: Data?,
                   completion: @escaping (Result<LoginResponse, NetworkError>) -> Void)

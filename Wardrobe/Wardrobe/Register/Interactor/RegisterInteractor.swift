@@ -10,7 +10,7 @@ final class RegisterInteractor {
     }
 
     private func convertToRegisterData(with rawData: LoginResponse) -> RegisterData {
-        return RegisterData(login: rawData.login, userName: rawData.userName, imageURL: rawData.imageURL)
+        return RegisterData(login: rawData.login, imageURL: rawData.imageURL)
     }
 }
 
@@ -23,19 +23,18 @@ extension RegisterInteractor: RegisterInteractorInput {
         return termsAccepted
     }
 
-    func register(login: String, fio: String, password: String, imageData: Data?) {
+    func register(login: String, password: String, imageData: Data?) {
         guard termsAccepted else {
             output?.showAlert(title: "Ошибка", message: "Примите пользовательское соглашение")
             return
         }
 
         guard password.count >= Constants.minPasswordSymbs else {
-            output?.showAlert(title: "Ошибка", message: "Пароль должен содержать не менее 8 символов")
+            output?.showAlert(title: "Ошибка", message: "Пароль должен содержать не менее \(Constants.minPasswordSymbs) символов")
             return
         }
 
         AuthService.shared.register(login: login,
-                                    fio: fio,
                                     password: password,
                                     imageData: imageData) { [weak self] result in
             guard result.error == nil else {
@@ -68,6 +67,6 @@ extension RegisterInteractor: RegisterInteractorInput {
 
 extension RegisterInteractor {
     private struct Constants {
-        static let minPasswordSymbs: Int = 8
+        static let minPasswordSymbs: Int = 6
     }
 }
