@@ -240,8 +240,8 @@ extension NewItemScreenViewController {
 
     @objc
     private func didTapAddButton() {
-        output?.didTapAddButton()
         addButton.isUserInteractionEnabled = false
+        output?.didTapAddButton()
     }
 
     @objc
