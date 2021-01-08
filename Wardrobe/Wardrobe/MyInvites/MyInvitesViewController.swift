@@ -1,11 +1,3 @@
-//
-//  MyInvitesViewController.swift
-//  Wardrobe
-//
-//  Created by  Alexandr Zakharov on 28.12.2020.
-//  
-//
-
 import UIKit
 import PinLayout
 
@@ -69,8 +61,6 @@ final class MyInvitesViewController: UIViewController {
         let viewHeader = UIView()
         headerView = viewHeader
         headerView.backgroundColor = GlobalColors.mainBlueScreen
-//        headerView.dropShadow()
-//        headerView.roundLowerCorners(40)
         view.addSubview(headerView)
     }
 

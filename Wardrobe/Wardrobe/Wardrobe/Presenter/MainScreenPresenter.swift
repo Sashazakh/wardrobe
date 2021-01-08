@@ -131,7 +131,7 @@ extension MainScreenPresenter: MainScreenInteractorOutput {
 extension MainScreenPresenter {
     struct Constants {
         static let headDeleteWarningMessage: String = "Удаление гардероба"
-        static let deleteWardrobeWarningNotCreator: String = "Вы собираетесь удалить гардероб. Возратить его заново можно только по приглашению."
+        static let deleteWardrobeWarningNotCreator: String = "Вы собираетесь удалить гардероб. Вернуть его можно только по приглашению."
         static let deleteWardrobeWarningCreator: String = "Вы собираетесь удалить гардероб.  Все данные будут потеряны."
     }
 }

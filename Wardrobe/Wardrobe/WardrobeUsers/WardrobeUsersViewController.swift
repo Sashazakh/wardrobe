@@ -65,8 +65,6 @@ final class WardrobeUsersViewController: UIViewController {
         let viewHeader = UIView()
         headerView = viewHeader
         headerView.backgroundColor = GlobalColors.mainBlueScreen
-//        headerView.dropShadow()
-//        headerView.roundLowerCorners(40)
         view.addSubview(headerView)
     }
 
@@ -147,7 +145,7 @@ final class WardrobeUsersViewController: UIViewController {
         titleLabel.pin
             .top(40%)
             .hCenter()
-            .width(80%)
+            .width(75%)
             .height(50)
     }
 

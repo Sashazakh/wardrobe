@@ -27,7 +27,7 @@ extension InviteInteractor: InviteInteractorInput {
             }
 
             self.output?.showAlert(title: "",
-                                   message: "Пользователю отправлено приглашение")
+                                   message: "Приглашение отправлено!")
         }
     }
 }
