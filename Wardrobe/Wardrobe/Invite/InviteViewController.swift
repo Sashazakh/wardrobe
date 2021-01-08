@@ -134,7 +134,7 @@ extension InviteViewController {
     // loginTextField
 
     private func setupLoginTextField() {
-        let textField = UITextField.customTextField(placeholder: "Логин пользователя")
+        let textField = UITextField.customTextField(placeholder: "Имя пользователя")
         self.loginTextField = textField
         loginTextField.delegate = self
         headerView.addSubview(loginTextField)
