@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "splashscreen-2.pdf",
+      "filename" : "dresser.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "splashscreen-1.pdf",
+      "filename" : "dresser-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "splashscreen.pdf",
+      "filename" : "dresser-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

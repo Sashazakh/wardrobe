@@ -1,9 +1,9 @@
 import UIKit
 
 struct GlobalColors {
-    static let mainBlueScreen = UIColor(red: 128 / 255,
-                                        green: 161 / 255,
-                                        blue: 212 / 255,
+    static let mainBlueScreen = UIColor(red: 116 / 255,
+                                        green: 116 / 255,
+                                        blue: 116 / 255,
                                         alpha: 1)
 
     static let backgroundColor = UIColor(red: 254 / 255,
@@ -36,5 +36,8 @@ struct GlobalColors {
                                             blue: 249 / 255,
                                             alpha: 1)
 
-    static let tabBarBlueScreen: UIColor = #colorLiteral(red: 0.2705882353, green: 0.4117647059, blue: 0.5647058824, alpha: 1)
+    static let tabBarBlueScreen: UIColor = UIColor(red: 116 / 255,
+                                                   green: 116 / 255,
+                                                   blue: 116 / 255,
+                                                   alpha: 1)
 }

@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,25 +14,22 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashscreen" translatesAutoresizingMaskIntoConstraints="NO" id="rbP-yU-lqZ">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dresser" translatesAutoresizingMaskIntoConstraints="NO" id="22P-et-USP">
+                    <rect key="frame" x="49.5" y="367.5" width="315" height="295.5"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="rbP-yU-lqZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="h9z-3o-tMF"/>
-                <constraint firstItem="rbP-yU-lqZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="n5j-wd-OuG"/>
-                <constraint firstAttribute="trailing" secondItem="rbP-yU-lqZ" secondAttribute="trailing" id="td1-I6-4fJ"/>
-                <constraint firstAttribute="bottom" secondItem="rbP-yU-lqZ" secondAttribute="bottom" id="zR8-X8-Tfb"/>
+                <constraint firstItem="22P-et-USP" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="5nw-14-7UT"/>
+                <constraint firstItem="22P-et-USP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.15" id="mHH-wE-SEY"/>
+                <constraint firstItem="22P-et-USP" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.33" id="s9a-xU-E9g"/>
+                <constraint firstItem="22P-et-USP" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.76" id="vD0-1E-OKk"/>
             </constraints>
             <point key="canvasLocation" x="44.927536231884062" y="103.79464285714285"/>
         </view>
     </objects>
     <resources>
-        <image name="splashscreen" width="187.5" height="406"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="dresser" width="590" height="584"/>
     </resources>
 </document>
