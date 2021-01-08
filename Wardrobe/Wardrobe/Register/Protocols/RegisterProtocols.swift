@@ -30,6 +30,8 @@ protocol RegisterViewOutput: AnyObject {
     func userDidSetImage(imageData: Data?)
 
     func didTapView()
+
+    func didTapConditionsLabel()
 }
 
 protocol RegisterInteractorInput: AnyObject {
@@ -54,4 +56,6 @@ protocol RegisterRouterInput: AnyObject {
     func showLoginScreen()
 
     func showWardrobeScreen(model: RegisterData)
+
+    func showTermsAndConditions()
 }

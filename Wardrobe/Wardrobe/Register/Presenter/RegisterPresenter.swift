@@ -18,6 +18,10 @@ final class RegisterPresenter {
 }
 
 extension RegisterPresenter: RegisterViewOutput {
+    func didTapConditionsLabel() {
+        router.showTermsAndConditions()
+    }
+
     func didTapCheckBox() {
         interactor.toggleTermsState()
         interactor.termsAreAccepted() ? view?.setCheckBoxChecked() : view?.setCheckBoxUnchecked()
