@@ -31,7 +31,7 @@ extension SettingsInteractor: SettingsInteractorInput {
 
             self.saveNewLogin(with: login)
             self.output?.didSucessedUpdate(with: login)
-            self.output?.showAlert(title: "Поздравляем!", message: "Вы успешно изменили логин!")
+            self.output?.showAlert(title: "", message: "Вы успешно изменили логин!")
         }
     }
 
@@ -44,7 +44,7 @@ extension SettingsInteractor: SettingsInteractorInput {
                 return
             }
 
-            self.output?.showAlert(title: "Поздравляем!", message: "Вы успешно изменили пароль!")
+            self.output?.showAlert(title: "", message: "Вы успешно изменили пароль!")
         }
     }
 
