@@ -198,4 +198,10 @@ extension AuthService: AuthServiceInput {
 
         UserDefaults.standard.setValue(imageUrl, forKey: Constants.imageURLKey)
     }
+
+    func setUserLogin(login: String?) {
+        guard let login = login else { return }
+
+        UserDefaults.standard.setValue(login, forKey: Constants.loginKey)
+    }
 }

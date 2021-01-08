@@ -2,13 +2,15 @@ import UIKit
 import PinLayout
 
 enum SettingsSections: Int, CaseIterable {
-    case  myInvites = 0, changeName, logout
+    case  myInvites = 0, changeLogin, changePassword, logout
 
     var info: String {
         switch self {
         case .myInvites:
             return "Мои приглашения"
-        case .changeName:
+        case .changeLogin:
+            return "Изменить логин"
+        case .changePassword:
             return "Изменить пароль"
         case .logout:
             return "Выйти"
@@ -291,9 +293,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch SettingsSections(rawValue: indexPath.row) {
         case .myInvites:
-            output?.didmyInvitesButtonTap()
-        case .changeName:
-            output?.didChangeNameTapped()
+            output?.didMyInvitesButtonTap()
+        case .changeLogin:
+            output?.didChangeLoginTapped()
+        case .changePassword:
+            output?.didChangePasswordTapped()
         case .logout:
             output?.didLogoutTapped()
         case .none:

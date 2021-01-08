@@ -11,9 +11,27 @@ final class SettingsInteractor {
             self.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
         }
     }
+
+    private func saveNewLogin(with login: String) {
+        AuthService.shared.setUserLogin(login: login)
+    }
 }
 
 extension SettingsInteractor: SettingsInteractorInput {
+    func changeUserLogin(with login: String) {
+        DataService.shared.changeUserLogin(with: login) { [weak self](result) in
+            guard let self = self else { return }
+
+            if let error = result.error {
+                self.handleError(with: error)
+            }
+
+            self.saveNewLogin(with: login)
+            self.output?.didSucessedUpdate(with: login)
+            self.output?.showAlert(title: "Поздравляем!", message: "Вы успешно изменили логин!")
+        }
+    }
+
     func savePassword(with passowrd: String) {
         DataService.shared.changePassword(password: passowrd) { [weak self](result) in
             guard let self = self else { return }
@@ -22,7 +40,7 @@ extension SettingsInteractor: SettingsInteractorInput {
                 self.handleError(with: error)
             }
 
-            self.output?.showAlert(title: "Успех!", message: "Вы успешно изменили пароль!")
+            self.output?.showAlert(title: "Поздравляем!", message: "Вы успешно изменили пароль!")
         }
     }
 

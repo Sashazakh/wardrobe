@@ -11,8 +11,6 @@ final class SettingsPresenter {
     var userName: String?
     var imageUrl: String?
 
-    private var newUserName: String?
-
     init(router: SettingsRouterInput, interactor: SettingsInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -33,16 +31,45 @@ final class SettingsPresenter {
             return
         }
 
-        if main.count <= 6 {
+        if main.count <= Constants.numberOfSymbolsInPassword {
             self.showAlert(title: "Ошибка!", message: "Длина пароля менее 6 символов!")
             return
         }
 
         interactor.savePassword(with: main)
     }
+
+    private func checkNewLogin(with login: String) {
+        if login.isEmpty {
+            self.showAlert(title: "Ошибка!", message: "Вы не ввели логин.")
+            return
+        }
+        interactor.changeUserLogin(with: login)
+    }
 }
 
 extension SettingsPresenter: SettingsViewOutput {
+    func didChangeLoginTapped() {
+        let alert = UIAlertController(title: Constants.changeNameTitle,
+                                      message: Constants.changeNameMessage,
+                                      preferredStyle: UIAlertController.Style.alert)
+        let save = UIAlertAction(title: "Сохранить", style: .default) { (_) in
+            var login = ""
+            if let loginTextField = alert.textFields?[0] {
+                login = loginTextField.text ?? ""
+            }
+
+            self.checkNewLogin(with: login)
+        }
+            alert.addTextField { (textField) in
+                textField.placeholder = Constants.changeLoginPlaceholder
+            }
+
+            alert.addAction(save)
+            let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+            alert.addAction(cancel)
+            view?.showAlert(alert: alert)
+    }
 
     func didImageLoaded(imageData: Data?) {
         interactor.saveNewUserImage(with: imageData)
@@ -65,9 +92,9 @@ extension SettingsPresenter: SettingsViewOutput {
         interactor.loadUserData()
     }
 
-    func didChangeNameTapped() {
-        let alert = UIAlertController(title: Constants.changeNameTitle,
-                                      message: Constants.changeNameMessage,
+    func didChangePasswordTapped() {
+        let alert = UIAlertController(title: Constants.changePasswordTitle,
+                                      message: Constants.changePasswordMessage,
                                       preferredStyle: UIAlertController.Style.alert)
         let save = UIAlertAction(title: "Сохранить", style: .default) { (_) in
             var password = ""
@@ -81,11 +108,7 @@ extension SettingsPresenter: SettingsViewOutput {
             self.checkPassword(main: password, repeatPassword: repeatPassword)
         }
             alert.addTextField { (textField) in
-                textField.placeholder = "Новый пароль"
-                textField.isSecureTextEntry = true
-            }
-            alert.addTextField { (textField) in
-                textField.placeholder = "Повторите пароль"
+                textField.placeholder = Constants.changeLoginPlaceholder
                 textField.isSecureTextEntry = true
             }
             alert.addAction(save)
@@ -98,12 +121,16 @@ extension SettingsPresenter: SettingsViewOutput {
         interactor.saveNewUserImage(with: imageData)
     }
 
-    func didmyInvitesButtonTap() {
+    func didMyInvitesButtonTap() {
         router.showMyInvites()
     }
 }
 
 extension SettingsPresenter: SettingsInteractorOutput {
+    func didSucessedUpdate(with login: String) {
+        view?.setUserLogin(login: login)
+    }
+
     func upadateImage(imageUrl: String) {
         var img = imageUrl
         img += "&apikey=" + DataService.shared.getApiKey()
@@ -141,7 +168,13 @@ extension SettingsPresenter {
     struct Constants {
         static let headLogoutWarningMessage: String = "Выход"
         static let logoutWarningMessage: String = "Вы собираетесь выйти.Ваши данные не будут удалены."
-        static let changeNameTitle: String = "Изменение пароля"
-        static let changeNameMessage: String = "Введите новый пароль"
+        static let changePasswordTitle: String = "Изменение пароля"
+        static let changePasswordMessage: String = "Введите новый пароль"
+        static let changePasswordMainPlaceholder: String = "Новый пароль"
+        static let repeadPasswordMainPlaceholder: String = "Повторите пароль"
+        static let changeNameTitle: String = "Изменение логина"
+        static let changeNameMessage: String = "Введите новый логин"
+        static let changeLoginPlaceholder: String = "Новый логин"
+        static let numberOfSymbolsInPassword: Int = 6
     }
 }

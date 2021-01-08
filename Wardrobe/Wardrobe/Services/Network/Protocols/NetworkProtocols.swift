@@ -108,4 +108,7 @@ protocol DataServiceInput {
 
     func changePassword(password: String,
                         completion: @escaping (SingleResult<NetworkError>) -> Void)
+
+    func changeUserLogin(with newLogin: String,
+                         completion: @escaping (SingleResult<NetworkError>) -> Void)
 }

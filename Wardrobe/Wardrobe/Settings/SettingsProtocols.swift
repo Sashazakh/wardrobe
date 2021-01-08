@@ -10,9 +10,10 @@ protocol SettingsViewInput: class {
 protocol SettingsViewOutput: class {
     func didImageLoaded(imageData: Data?)
     func didLoadView()
-    func didChangeNameTapped()
+    func didChangePasswordTapped()
+    func didChangeLoginTapped()
     func didLogoutTapped()
-    func didmyInvitesButtonTap()
+    func didMyInvitesButtonTap()
 }
 
 protocol SettingsInteractorInput: class {
@@ -21,6 +22,7 @@ protocol SettingsInteractorInput: class {
     func saveNewUserImage(with imageData: Data?)
     func loadUserData()
     func savePassword(with password: String)
+    func changeUserLogin(with login: String)
 }
 
 protocol SettingsInteractorOutput: class {
@@ -28,6 +30,7 @@ protocol SettingsInteractorOutput: class {
     func showAlert(title: String, message: String)
     func upadateImage(imageUrl: String)
     func didReceive(imageUrl: String?, userLogin: String?)
+    func didSucessedUpdate(with login: String)
 }
 
 protocol SettingsRouterInput: class {

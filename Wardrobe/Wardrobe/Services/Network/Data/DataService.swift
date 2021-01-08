@@ -155,6 +155,60 @@ extension DataService: DataServiceInput {
             }
         }
     }
+
+    func changeUserLogin(with newLogin: String,
+                         completion: @escaping (SingleResult<NetworkError>) -> Void) {
+
+        guard let lastLogin = getUserLogin() else { return }
+        let url = getBaseURL() + "changeLoginTimeBomb"
+
+        var result = SingleResult<NetworkError>()
+
+        let parametrs: [String: String] =
+            ["last_login": lastLogin,
+             "new_login": newLogin,
+             "apikey": getApiKey()]
+
+        guard NetworkReachabilityManager()?.isReachable ?? false else {
+            result.error = .networkNotReachable
+            completion(result)
+            return
+        }
+
+        let request = AF.request(url, method: .post, parameters: parametrs)
+
+        request.response { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else {
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+
+                switch statusCode {
+                case ResponseCode.success.code:
+                    completion(result)
+                case ResponseCode.error.code:
+                    result.error = .networkNotReachable
+                    completion(result)
+                    return
+                default:
+                    result.error = .unknownError
+                    completion(result)
+                    return
+                }
+            case .failure(let error):
+                if error.isInvalidURLError {
+                    result.error = .connectionToServerError
+                } else {
+                    result.error = .unknownError
+                }
+            }
+        }
+
+    }
+
     // MARK: Wardrobe
 
     func getUserWardrobes(completion: @escaping (Result<[WardrobeRaw], NetworkError>) -> Void) {
