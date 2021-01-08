@@ -262,6 +262,7 @@ extension SettingsViewController: SettingsViewInput {
             avatarImageView.kf.setImage(with: imageUrl, options: [.fromMemoryCacheOrRefresh])
         } else {
             avatarImageView.image = UIImage(named: "no_photo")
+            avatarImageView.tintColor = GlobalColors.mainBlueScreen
         }
     }
 

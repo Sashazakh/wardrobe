@@ -20,8 +20,7 @@ final class CreateWardrobeInteractor {
 extension CreateWardrobeInteractor: CreateWardrobeInteractorInput {
     func addWardrobe(with wardrobe: CreateWardobeData, for user: String) {
 
-        DataService.shared.addWardrobe(login: user,
-                                       name: wardrobe.name,
+        DataService.shared.addWardrobe(name: wardrobe.name,
                                        description: String(),
                                        imageData: wardrobe.imageData) {  [weak self] result in
             guard let self = self else { return }

@@ -45,7 +45,7 @@ extension DataService: DataServiceInput {
                 case ResponseCode.success.code:
                     completion(result)
                 case ResponseCode.error.code:
-                    result.error = .networkNotReachable
+                    result.error = .userAlreadyExist
                     completion(result)
                     return
                 default:
@@ -59,6 +59,7 @@ extension DataService: DataServiceInput {
                 } else {
                     result.error = .unknownError
                 }
+                completion(result)
             }
         }
     }
@@ -190,7 +191,7 @@ extension DataService: DataServiceInput {
                 case ResponseCode.success.code:
                     completion(result)
                 case ResponseCode.error.code:
-                    result.error = .networkNotReachable
+                    result.error = .userAlreadyExist
                     completion(result)
                     return
                 default:
@@ -204,6 +205,7 @@ extension DataService: DataServiceInput {
                 } else {
                     result.error = .unknownError
                 }
+                completion(result)
             }
         }
 
@@ -242,11 +244,12 @@ extension DataService: DataServiceInput {
         }
     }
 
-    func addWardrobe(login: String,
-                     name: String,
+    func addWardrobe(name: String,
                      description: String,
                      imageData: Data?,
                      completion: @escaping (SingleResult<NetworkError>) -> Void) {
+        guard let login = getUserLogin() else { return }
+
         let parameters: [String: String] = [
             "login": "\(login)",
             "wardrobe_name": "\(name)",

@@ -7,6 +7,8 @@ final class SettingsInteractor {
         switch error {
         case .networkNotReachable:
             self.output?.showAlert(title: "Ошибка", message: "Не удается подключиться")
+        case .userAlreadyExist:
+            self.output?.showAlert(title: "Ошибка", message: "Пользователь уже существует")
         default:
             self.output?.showAlert(title: "Ошибка", message: "Мы скоро все починим")
         }
@@ -24,6 +26,7 @@ extension SettingsInteractor: SettingsInteractorInput {
 
             if let error = result.error {
                 self.handleError(with: error)
+                return
             }
 
             self.saveNewLogin(with: login)
@@ -38,6 +41,7 @@ extension SettingsInteractor: SettingsInteractorInput {
 
             if let error = result.error {
                 self.handleError(with: error)
+                return
             }
 
             self.output?.showAlert(title: "Поздравляем!", message: "Вы успешно изменили пароль!")
@@ -55,6 +59,7 @@ extension SettingsInteractor: SettingsInteractorInput {
 
             if let error = result.error {
                 self.handleError(with: error)
+                return
             }
 
             guard let data = result.data else { return }
