@@ -31,7 +31,7 @@ final class SettingsPresenter {
             return
         }
 
-        if main.count <= Constants.numberOfSymbolsInPassword {
+        if main.count < Constants.numberOfSymbolsInPassword {
             self.showAlert(title: "Ошибка!", message: "Длина пароля менее 6 символов!")
             return
         }
@@ -108,7 +108,12 @@ extension SettingsPresenter: SettingsViewOutput {
             self.checkPassword(main: password, repeatPassword: repeatPassword)
         }
             alert.addTextField { (textField) in
-                textField.placeholder = Constants.changeLoginPlaceholder
+                textField.placeholder = Constants.changePasswordMainPlaceholder
+                textField.isSecureTextEntry = true
+            }
+
+            alert.addTextField { (textField) in
+                textField.placeholder = Constants.repeadPasswordMainPlaceholder
                 textField.isSecureTextEntry = true
             }
             alert.addAction(save)
