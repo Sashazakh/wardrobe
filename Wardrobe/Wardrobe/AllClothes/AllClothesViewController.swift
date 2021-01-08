@@ -94,7 +94,7 @@ extension AllClothesViewController {
             .top()
             .left()
             .right()
-            .height(14%)
+            .height(16%)
         // headerView.roundLowerCorners(40)
         // headerView.dropShadow()
     }
