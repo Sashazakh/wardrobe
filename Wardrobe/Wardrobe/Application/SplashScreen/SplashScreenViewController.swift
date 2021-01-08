@@ -27,7 +27,7 @@ final class SplashScreenViewController: UIViewController {
         splashScreenImageView = imageView
         view.addSubview(imageView)
 
-        splashScreenImageView.image = UIImage(named: "splashscreen")
+        splashScreenImageView.image = UIImage(named: "dresser")
         splashScreenImageView.contentMode = .scaleToFill
     }
 
@@ -39,7 +39,12 @@ final class SplashScreenViewController: UIViewController {
 
     private func layoutSplashScreenImageView() {
         splashScreenImageView.pin
-            .all()
+            .hCenter()
+            .width(76%)
+            .height(33%)
+
+        splashScreenImageView.pin
+            .top(view.bounds.midY * 1.15 - splashScreenImageView.bounds.height / 2)
     }
 
     func showAlert(title: String, message: String) {
