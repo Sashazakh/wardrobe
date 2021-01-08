@@ -92,6 +92,8 @@ final class LoginViewController: UIViewController {
 
         loginTextField = textField
         backgroundView.addSubview(loginTextField)
+
+        loginTextField.keyboardType = .asciiCapable
     }
 
     private func setupPasswordTextField() {
@@ -101,6 +103,7 @@ final class LoginViewController: UIViewController {
         backgroundView.addSubview(passwordTextField)
 
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.keyboardType = .asciiCapable
     }
 
     private func setupLoginButton() {

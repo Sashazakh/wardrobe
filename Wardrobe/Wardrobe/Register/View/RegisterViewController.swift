@@ -32,13 +32,27 @@ final class RegisterViewController: UIViewController {
 
     private var imagePickerController: UIImagePickerController!
 
+    private var keyboardOffset: CGFloat?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
         setupView()
         setupSubviews()
+        setupKeyboardHandling()
         setupImagePicker()
 	}
+
+    private func setupKeyboardHandling() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -118,6 +132,8 @@ final class RegisterViewController: UIViewController {
 
         loginTextField = textField
         backgroundView.addSubview(loginTextField)
+
+        loginTextField.keyboardType = .asciiCapable
     }
 
     private func setupPasswordTextField() {
@@ -127,6 +143,7 @@ final class RegisterViewController: UIViewController {
         backgroundView.addSubview(passwordTextField)
 
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.keyboardType = .asciiCapable
     }
 
     private func setupRepeatPasswordTextField() {
@@ -136,16 +153,17 @@ final class RegisterViewController: UIViewController {
         backgroundView.addSubview(repeatPasswordTextField)
 
         repeatPasswordTextField.isSecureTextEntry = true
+        repeatPasswordTextField.keyboardType = .asciiCapable
     }
 
     private func setupAddPhotoButton() {
         let button = UIButton()
 
         addPhotoButton = button
-        view.addSubview(addPhotoButton)
+        backgroundView.addSubview(addPhotoButton)
 
         addPhotoButton.backgroundColor = .white
-        addPhotoButton.layer.cornerRadius = (4.5%.of(55%.of(Constants.screenHeight)))
+        addPhotoButton.layer.cornerRadius = (8%.of(55%.of(Constants.screenHeight))) / 2
 
         addPhotoButton.titleLabel?.font = UIFont(name: "DMSans-Medium", size: 15)
         addPhotoButton.setTitleColor(GlobalColors.darkColor, for: .normal)
@@ -254,10 +272,17 @@ final class RegisterViewController: UIViewController {
     }
 
     private func layoutBackgroundView() {
-        backgroundView.pin
-            .top(.zero)
-            .width(100%)
-            .height(55%.of(Constants.screenHeight) + 40)
+        if let offset = keyboardOffset {
+            backgroundView.pin
+                .top(-offset)
+                .width(100%)
+                .height(55%.of(Constants.screenHeight) + 40)
+        } else {
+            backgroundView.pin
+                .top(.zero)
+                .width(100%)
+                .height(55%.of(Constants.screenHeight) + 40)
+        }
     }
 
     private func layoutWelcomeLabel() {
@@ -294,10 +319,10 @@ final class RegisterViewController: UIViewController {
 
     private func layoutAddPhotoButton() {
         addPhotoButton.pin
-            .below(of: repeatPasswordTextField).marginTop(5%)
+            .below(of: repeatPasswordTextField).marginTop(8.5%)
             .width(65%)
             .right(5%)
-            .height(5%)
+            .height(8%)
     }
 
     private func layoutUserPhotoImageView() {
@@ -363,6 +388,31 @@ final class RegisterViewController: UIViewController {
             .height(1)
             .left(loginLabel.frame.minX)
             .right(Constants.screenWidth - loginLabel.frame.maxX)
+    }
+
+    @objc
+    private func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+
+        let keyboardFrame = keyboardSize.cgRectValue
+
+        if Constants.screenHeight - keyboardFrame.height - 5 <= registerButton.frame.maxY {
+            keyboardOffset = registerButton.frame.maxY - (Constants.screenHeight - keyboardFrame.height - 5)
+        }
+
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+    }
+
+    @objc
+    private func keyboardWillHide(notification: NSNotification) {
+        keyboardOffset = nil
+
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
 
     @objc
