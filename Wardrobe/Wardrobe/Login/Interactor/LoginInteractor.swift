@@ -5,7 +5,6 @@ final class LoginInteractor {
 
     private func convertToLoginData(with rawData: LoginResponse) -> LoginData {
         return LoginData(login: rawData.login,
-                         userName: rawData.userName,
                          imageURL: rawData.imageURL)
     }
 }

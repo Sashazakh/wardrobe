@@ -16,7 +16,7 @@ final class MainScreenContainer {
         router.viewController = viewController
 
         presenter.userLogin = context.login
-        presenter.userName = context.userName
+        presenter.userName = "Хардкод"
         presenter.imageUrlString = (context.umageURL ?? "") + "&apikey=" + DataService.shared.getApiKey()
         return MainScreenContainer(view: viewController, router: router)
 	}
@@ -29,8 +29,6 @@ final class MainScreenContainer {
 
 struct MainScreenContext {
     var login: String
-
-    var userName: String
 
     var umageURL: String?
 }

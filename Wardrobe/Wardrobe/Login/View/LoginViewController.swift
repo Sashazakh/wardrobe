@@ -88,7 +88,7 @@ final class LoginViewController: UIViewController {
     }
 
     private func setupLoginTextField() {
-        let textField = UITextField.customTextField(placeholder: "Логин")
+        let textField = UITextField.customTextField(placeholder: "Имя пользователя")
 
         loginTextField = textField
         backgroundView.addSubview(loginTextField)

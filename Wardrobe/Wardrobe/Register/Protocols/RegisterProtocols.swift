@@ -34,7 +34,6 @@ protocol RegisterViewOutput: AnyObject {
 
 protocol RegisterInteractorInput: AnyObject {
     func register(login: String,
-                  fio: String,
                   password: String,
                   imageData: Data?)
 

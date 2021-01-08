@@ -14,11 +14,9 @@ extension RegisterRouter: RegisterRouterInput {
 
     func showWardrobeScreen(model: RegisterData) {
         let wardrobeContext = MainScreenContext(login: model.login,
-                                                userName: model.userName,
                                                 umageURL: model.imageURL)
 
         let allClothesContext = AllClothesContext(login: model.login,
-                                                  userName: model.userName,
                                                   imageURL: model.imageURL)
 
         let tabBarVC = MainTabBarContainer.assemble(wardrobeContext: wardrobeContext,
