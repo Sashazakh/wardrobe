@@ -213,6 +213,11 @@ final class RegisterViewController: UIViewController {
         conditionsLabel.textColor = GlobalColors.darkColor
         conditionsLabel.textAlignment = .left
         conditionsLabel.numberOfLines = .zero
+        conditionsLabel.isUserInteractionEnabled = true
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(didTapConditionsLabel))
+
+        recognizer.numberOfTapsRequired = 1
+        conditionsLabel.addGestureRecognizer(recognizer)
     }
 
     private func setupRegisterButton() {
@@ -388,6 +393,11 @@ final class RegisterViewController: UIViewController {
             .height(1)
             .left(loginLabel.frame.minX)
             .right(Constants.screenWidth - loginLabel.frame.maxX)
+    }
+
+    @objc
+    private func didTapConditionsLabel() {
+        output?.didTapConditionsLabel()
     }
 
     @objc

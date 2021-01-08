@@ -6,6 +6,7 @@ final class AllClothesViewController: UIViewController {
     private weak var headerView: UIView!
     private weak var moreButton: UIButton!
     private weak var pageTitle: UILabel!
+    private weak var emptyLabel: UILabel!
     private weak var categoriesTableView: UITableView!
     private weak var dropMenuView: AllClothesDropDownView!
     private let screenBounds = UIScreen.main.bounds
@@ -66,6 +67,7 @@ extension AllClothesViewController {
         setupEditButton()
         setupCategoriesTableView()
         setupDropMenuView()
+        setupEmptyTextLabel()
         setupGestureRecognizers()
     }
 
@@ -74,6 +76,7 @@ extension AllClothesViewController {
         layoutPageTitle()
         layoutEditButton()
         layoutCategoriesTableView()
+        layoutEmptyTextLabel()
         layoutDropMenuView()
     }
 
@@ -142,6 +145,34 @@ extension AllClothesViewController {
             .width(25)
             .top(pageTitle.frame.midY - moreButton.bounds.height / 2)
             .right(5%)
+    }
+
+    // MARK: edit Button
+
+    private func setupEmptyTextLabel() {
+        let label = UILabel()
+
+        emptyLabel = label
+
+        emptyLabel.text = "Создайте категории одежды с помощью меню в верхнем правом углу экрана и добавьте в них предметы гардероба."
+        emptyLabel.textAlignment = .center
+        emptyLabel.font = UIFont(name: "DMSans-Bold", size: 20)
+        emptyLabel.textColor = GlobalColors.darkColor
+        emptyLabel.adjustsFontSizeToFitWidth = true
+        emptyLabel.minimumScaleFactor = 0.1
+        emptyLabel.numberOfLines = 0
+        emptyLabel.sizeToFit()
+
+        emptyLabel.isHidden = true
+
+        view.addSubview(emptyLabel)
+    }
+
+    private func layoutEmptyTextLabel() {
+        emptyLabel.pin
+            .center()
+            .height(20%)
+            .width(90%)
     }
 
     // MARK: categories table view
@@ -290,6 +321,14 @@ extension AllClothesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension AllClothesViewController: AllClothesViewInput {
+    func hideEmptyLabel() {
+        emptyLabel.isHidden = true
+    }
+
+    func showEmptyLable() {
+        emptyLabel.isHidden = false
+    }
+
     func tableViewScrollTo(row: Int) {
         categoriesTableView?.scrollToRow(at: IndexPath(row: row, section: 0), at: .middle, animated: true)
     }
