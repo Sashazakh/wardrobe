@@ -132,6 +132,8 @@ final class RegisterViewController: UIViewController {
 
         loginTextField = textField
         backgroundView.addSubview(loginTextField)
+
+        loginTextField.keyboardType = .asciiCapable
     }
 
     private func setupPasswordTextField() {
@@ -141,6 +143,7 @@ final class RegisterViewController: UIViewController {
         backgroundView.addSubview(passwordTextField)
 
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.keyboardType = .asciiCapable
     }
 
     private func setupRepeatPasswordTextField() {
@@ -150,6 +153,7 @@ final class RegisterViewController: UIViewController {
         backgroundView.addSubview(repeatPasswordTextField)
 
         repeatPasswordTextField.isSecureTextEntry = true
+        repeatPasswordTextField.keyboardType = .asciiCapable
     }
 
     private func setupAddPhotoButton() {
