@@ -117,7 +117,7 @@ class CreatorCell: UICollectionViewCell {
                        output: WardrobeUsersViewOutput?) {
         login = wardrobeUser.login
 
-        nameLabel.text = wardrobeUser.name
+        nameLabel.text = wardrobeUser.login
         userLogin = wardrobeUser.login
 
         if let url = URL(string: wardrobeUser.imageUrl ?? "") {

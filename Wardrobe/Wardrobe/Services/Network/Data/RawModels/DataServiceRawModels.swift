@@ -113,13 +113,11 @@ struct WardrobeDetailLookRaw: Decodable {
 
 struct WardrobeUserRaw: Decodable {
     let login: String
-    let userName: String
     let imageUrl: String?
     let imageId: Int?
 
     private enum CodingKeys: String, CodingKey {
         case login = "login"
-        case userName = "user_name"
         case imageUrl = "image_url"
         case imageId = "image_id"
     }

@@ -9,7 +9,6 @@ import Foundation
 
 class WardrobeUserData {
     let login: String
-    let name: String
     let imageUrl: String?
     let imageId: Int?
 
@@ -20,7 +19,6 @@ class WardrobeUserData {
         } else {
             imageUrl = nil
         }
-        self.name = user.userName
 
         self.imageId = user.imageId
     }
