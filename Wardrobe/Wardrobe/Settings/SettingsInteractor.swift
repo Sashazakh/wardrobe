@@ -43,7 +43,7 @@ extension SettingsInteractor: SettingsInteractorInput {
                 self.handleError(with: error)
                 return
             }
-
+            AuthService.shared.setUserPassword(password: passowrd)
             self.output?.showAlert(title: "", message: "Вы успешно изменили пароль!")
         }
     }

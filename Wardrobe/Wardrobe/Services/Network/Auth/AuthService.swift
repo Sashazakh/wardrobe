@@ -204,4 +204,10 @@ extension AuthService: AuthServiceInput {
 
         UserDefaults.standard.setValue(login, forKey: Constants.loginKey)
     }
+
+    func setUserPassword(password: String?) {
+        guard let password = password else { return }
+
+        UserDefaults.standard.setValue(password, forKey: Constants.passwordKey)
+    }
 }
