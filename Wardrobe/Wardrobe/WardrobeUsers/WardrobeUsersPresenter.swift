@@ -121,6 +121,6 @@ extension WardrobeUsersPresenter: WardrobeUsersInteractorOutput {
 extension WardrobeUsersPresenter {
     private struct Constants {
         static let headDeleteWarningMessage: String = "Удаление пользователя из гардероба"
-        static let deleteUserWarningMessage: String = "Вы собираетесь пользователя из гардероба. Вы уверены?"
+        static let deleteUserWarningMessage: String = "Вы собираетесь удалить пользователя из гардероба.\n Вы уверены?"
     }
 }

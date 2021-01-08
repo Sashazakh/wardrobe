@@ -17,6 +17,8 @@ class WardrobeUsersCell: UICollectionViewCell {
 
     private var userLogin: String?
 
+    private var isNeedLayout: Bool = false
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -33,7 +35,10 @@ class WardrobeUsersCell: UICollectionViewCell {
         super.layoutSubviews()
 
         setupLayoutViews()
-        checkDeleteButton()
+        if isNeedLayout {
+            checkDeleteButton()
+            isNeedLayout = false
+        }
     }
 
     private func setupViews() {
@@ -143,22 +148,24 @@ class WardrobeUsersCell: UICollectionViewCell {
 
     private func checkDeleteButton() {
         if let output = output {
+            guard let size = btnSize else { return }
             if output.isEditButtonTapped() {
-                guard let size = btnSize else { return }
                 UIView.animate(withDuration: 0, animations: {
                     self.deleteButton.pin
-                        .top(3%)
-                        .right(7%)
+                        .after(of: self.outerView, aligned: .top)
                         .width(10)
                         .height(10)
+                        .marginLeft(-(size / 3 + size / 2))
+                        .marginVertical(-6)
                     self.deleteButton.alpha = 0
                 }, completion: { (_) in
                     UIView.animate(withDuration: 0.2, animations: {
                         self.deleteButton.pin
-                            .top(3%)
-                            .right(3%)
+                            .after(of: self.outerView, aligned: .top)
                             .width(size)
                             .height(size)
+                            .marginLeft(-(size / 3 + size / 2))
+                            .marginVertical(-6)
                         self.deleteButton.alpha = 1
                     })
                 })
@@ -166,18 +173,20 @@ class WardrobeUsersCell: UICollectionViewCell {
             } else {
                 UIView.animate(withDuration: 0, animations: {
                     self.deleteButton.pin
-                        .top(3%)
-                        .right(3%)
-                        .width(20)
-                        .height(20)
+                        .after(of: self.outerView, aligned: .top)
+                        .width(size)
+                        .height(size)
+                        .marginLeft(-(size / 3 + size / 2))
+                        .marginVertical(-6)
                     self.deleteButton.alpha = 1
                 }, completion: { (_) in
                     UIView.animate(withDuration: 0.2, animations: {
                         self.deleteButton.pin
-                            .top(3%)
-                            .right(3%)
+                            .after(of: self.outerView, aligned: .top)
                             .width(0)
                             .height(0)
+                            .marginLeft(-(size / 3 + size / 2))
+                            .marginVertical(-6)
                         self.deleteButton.alpha = 0
                     }, completion: { (_) in
                         self.deleteButton.isHidden = true
@@ -202,6 +211,7 @@ class WardrobeUsersCell: UICollectionViewCell {
         }
 
         self.output = output
+        isNeedLayout = true
         setNeedsLayout()
         layoutIfNeeded()
     }

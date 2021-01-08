@@ -175,7 +175,7 @@ extension SettingsPresenter: SettingsInteractorOutput {
 extension SettingsPresenter {
     struct Constants {
         static let headLogoutWarningMessage: String = "Выход"
-        static let logoutWarningMessage: String = "Вы собираетесь выйти.Ваши данные не будут удалены."
+        static let logoutWarningMessage: String = "Вы собираетесь выйти.\nВаши данные не будут удалены."
         static let changePasswordTitle: String = "Изменение пароля"
         static let changePasswordMessage: String = "Введите новый пароль"
         static let changePasswordMainPlaceholder: String = "Новый пароль"

@@ -129,6 +129,6 @@ extension WardrobeDetailPresenter: WardrobeDetailInteractorOutput {
 extension WardrobeDetailPresenter {
     private struct Constants {
         static let headDeleteWarningMessage: String = "Удаление набора"
-        static let deleteWardrobeWarningMessage: String = "Вы собираетесь удалить набор. Все данные будут потеряны."
+        static let deleteWardrobeWarningMessage: String = "Вы собираетесь удалить набор.\n Все данные будут потеряны."
     }
 }
