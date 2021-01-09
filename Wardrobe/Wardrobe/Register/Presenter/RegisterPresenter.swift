@@ -46,15 +46,33 @@ extension RegisterPresenter: RegisterViewOutput {
             return
         }
 
+        guard login.isValidString() else {
+            let msg = "Возможны только строчные и заглавные буквы латинского алфавита (a-z, A-Z) и цифры от 0 до 9"
+            self.showAlert(title: "Недопустимые символы в поле ввода пароля!", message: msg)
+            return
+        }
+
         guard let password = (userCredentials["password"] ?? ""),
               !password.isEmpty else {
             view?.showAlert(title: "Ошибка", message: "Введите пароль")
             return
         }
 
+        guard password.isValidString() else {
+            let msg = "Возможны только строчные и заглавные буквы латинского алфавита (a-z, A-Z) и цифры от 0 до 9"
+            self.showAlert(title: "Недопустимые символы в поле ввода пароля!", message: msg)
+            return
+        }
+
         guard let repeatPassword = (userCredentials["repeatPassword"] ?? ""),
               !repeatPassword.isEmpty else {
             view?.showAlert(title: "Ошибка", message: "Повторите пароль")
+            return
+        }
+
+        guard repeatPassword.isValidString() else {
+            let msg = "Возможны только строчные и заглавные буквы латинского алфавита (a-z, A-Z) и цифры от 0 до 9"
+            self.showAlert(title: "Недопустимые символы в поле ввода пароля!", message: msg)
             return
         }
 
