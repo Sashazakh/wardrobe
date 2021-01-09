@@ -44,6 +44,12 @@ final class SettingsPresenter {
             self.showAlert(title: "Ошибка!", message: "Вы не ввели логин.")
             return
         }
+
+        if login.contains(" ") {
+            self.showAlert(title: "Ошибка!", message: "Логин должен быть без пробела")
+            return
+        }
+
         interactor.changeUserLogin(with: login)
     }
 }
