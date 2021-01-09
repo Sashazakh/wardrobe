@@ -108,3 +108,17 @@ extension UIButton {
         return bounds.insetBy(dx: -screenBounds.height * 0.016, dy: -screenBounds.width * 0.036).contains(point)
     }
 }
+
+// MARK: Stirng
+
+extension String {
+    func isValidString() -> Bool {
+        if self.contains(" ") {
+            return false
+        }
+        let  myCharSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+        let output: String = self.trimmingCharacters(in: myCharSet.inverted)
+        let isValid: Bool = (self == output)
+        return isValid
+    }
+}

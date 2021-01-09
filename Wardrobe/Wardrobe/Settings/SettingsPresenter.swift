@@ -36,6 +36,11 @@ final class SettingsPresenter {
             return
         }
 
+        if !main.isValidString() {
+            let msg = "Возможны только строчные и заглавные буквы латинского алфавита (a-z, A-Z) и цифры от 0 до 9"
+            self.showAlert(title: "Недопустимые символы в поле ввода пароля!", message: msg)
+            return
+        }
         interactor.savePassword(with: main)
     }
 
@@ -45,8 +50,9 @@ final class SettingsPresenter {
             return
         }
 
-        if login.contains(" ") {
-            self.showAlert(title: "Ошибка!", message: "Логин должен быть без пробела")
+        if !login.isValidString() {
+            let msg = "Возможны только строчные и заглавные буквы латинского алфавита (a-z, A-Z) и цифры от 0 до 9"
+            self.showAlert(title: "Недопустимые символы в поле ввода логина!", message: msg)
             return
         }
 
