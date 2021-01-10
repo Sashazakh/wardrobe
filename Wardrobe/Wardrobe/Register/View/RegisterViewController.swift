@@ -144,6 +144,7 @@ final class RegisterViewController: UIViewController {
 
         passwordTextField.isSecureTextEntry = true
         passwordTextField.keyboardType = .asciiCapable
+        passwordTextField.autocorrectionType = .no
     }
 
     private func setupRepeatPasswordTextField() {
@@ -154,6 +155,7 @@ final class RegisterViewController: UIViewController {
 
         repeatPasswordTextField.isSecureTextEntry = true
         repeatPasswordTextField.keyboardType = .asciiCapable
+        repeatPasswordTextField.autocorrectionType = .no
     }
 
     private func setupAddPhotoButton() {

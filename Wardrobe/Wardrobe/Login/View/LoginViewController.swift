@@ -104,6 +104,7 @@ final class LoginViewController: UIViewController {
 
         passwordTextField.isSecureTextEntry = true
         passwordTextField.keyboardType = .asciiCapable
+        passwordTextField.autocorrectionType = .no
     }
 
     private func setupLoginButton() {
