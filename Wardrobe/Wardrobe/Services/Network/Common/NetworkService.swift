@@ -44,11 +44,11 @@ class NetworkService {
     }
 
     func getApiKey() -> String {
-        return apiKey ?? Constants.suckBigBlackMambaDick
+        return apiKey ?? Constants.noString
     }
 
     func getBaseURL() -> String {
-        return baseURL ?? Constants.suckBigBlackMambaDick
+        return baseURL ?? Constants.noString
     }
 }
 
@@ -88,7 +88,7 @@ extension NetworkService {
 
         static let baseURL: String = "PROD_HOST"
 
-        static let suckBigBlackMambaDick: String = "blowjob"
+        static let noString: String = "default"
 
         static let authKey: String = "isAuthorized"
 
